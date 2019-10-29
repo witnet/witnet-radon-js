@@ -1,0 +1,22 @@
+{
+  "name": "witnet-radon-js",
+  "version": "0.0.1",
+  "description": "",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "fmt": "prettier --check '{src,test}/**/*.{t,j}s'",
+    "fmt!": "prettier --write '{src,test}/**/*.{t,j}s'",
+    "test": "jest"
+  },
+  "keywords": [],
+  "author": "Witnet Foundation <info@witnet.foundation>",
+  "license": "GPL-3.0",
+  "devDependencies": {
+    "@types/jest": "^24.0.20",
+    "jest": "^24.9.0",
+    "prettier": "1.18.2",
+    "ts-jest": "^24.1.0",
+    "typescript": "^3.6.4"
+  }
+}
