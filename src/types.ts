@@ -71,6 +71,7 @@ export type MarkupOption = {
 }
 
 export interface MarkupSelectedOption {
+  // arguments: Array<MarkupInput | MarkupSelect> | []
   arguments: Array<MarkupInput | MarkupSelect> | []
   hierarchicalType: MarkupHierarchicalType.SelectedOperatorOption
   label: string
@@ -406,3 +407,47 @@ export type TypeSystemEntry =
 export type TypeSystemValue = [string, [OperatorCode, Array<OutputType>]]
 
 export type FilterArgument = [Filter, number] | [Filter, string] | [Filter, boolean]
+
+export type CacheRef = { id: number }
+
+export type CachedMarkupSelect = {
+  id: number
+  scriptId: number
+  markupType: MarkupType.Select
+  hierarchicalType: MarkupHierarchicalType.Operator | MarkupHierarchicalType.Argument
+  outputType: Array<OutputType> | OutputType
+  selected: CacheRef
+  options: Array<MarkupOption>
+  label?: string
+}
+
+export type CachedMarkupOperator = CachedMarkupSelect
+export type CachedMarkupScript = Array<CacheRef>
+
+export type CachedMarkupRequest = {
+  notBefore: number
+  retrieve: Array<CachedMarkupSource>
+  aggregate: CachedMarkupScript
+  tally: CachedMarkupScript
+}
+
+export type CachedMarkupSource = {
+  url: string
+  script: CachedMarkupScript
+}
+
+export type CachedMarkup = {
+  name: string
+  description: string
+  radRequest: CachedMarkupRequest
+}
+
+export type CachedMarkupSelectedOption = {
+  arguments: Array<CacheRef> | []
+  hierarchicalType: MarkupHierarchicalType.SelectedOperatorOption
+  label: string
+  markupType: MarkupType.Option
+  outputType: OutputType | Array<OutputType>
+}
+
+export type CachedArgument = MarkupInput | CachedMarkupSelect
