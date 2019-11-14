@@ -13,7 +13,9 @@ import {
   ResultOperatorName,
   OperatorInfos,
   MirArgumentKind,
+  CacheRef,
 } from './types'
+import { dummyHash } from './utils'
 
 export const typeSystem: TypeSystem = {
   [Type.Boolean]: {
@@ -611,4 +613,24 @@ export const operatorInfos: OperatorInfos = {
     name: 'isOk',
     arguments: [],
   },
+}
+
+export class Cache<T> {
+  private cache: {
+    [key: string]: T
+  }
+
+  constructor() {
+    this.cache = {}
+  }
+
+  get(cacheId: number): T {
+    return this.cache[cacheId]
+  }
+
+  set(item: T): CacheRef {
+    const id = dummyHash(JSON.stringify(item))
+    this.cache[id] = item
+    return { id }
+  }
 }
