@@ -1,8 +1,11 @@
 {
   "name": "witnet-radon-js",
-  "version": "0.0.1",
+  "version": "0.0.14",
   "description": "",
   "main": "dist/index.js",
+  "files": [
+    "dist/"
+  ],
   "scripts": {
     "build": "tsc -p tsconfig.build.json",
     "fmt": "prettier --check '{src,test}/**/*.{t,j}s'",

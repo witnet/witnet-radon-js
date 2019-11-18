@@ -1,299 +1,363 @@
 "use strict";
+var __read = (this && this.__read) || function (o, n) {
+    var m = typeof Symbol === "function" && o[Symbol.iterator];
+    if (!m) return o;
+    var i = m.call(o), r, ar = [], e;
+    try {
+        while ((n === void 0 || n-- > 0) && !(r = i.next()).done) ar.push(r.value);
+    }
+    catch (error) { e = { error: error }; }
+    finally {
+        try {
+            if (r && !r.done && (m = i["return"])) m.call(i);
+        }
+        finally { if (e) throw e.error; }
+    }
+    return ar;
+};
+var __spread = (this && this.__spread) || function () {
+    for (var ar = [], i = 0; i < arguments.length; i++) ar = ar.concat(__read(arguments[i]));
+    return ar;
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-var utils_1 = require("./utils");
 var types_1 = require("./types");
 var structures_1 = require("./structures");
-var markup2mir_1 = require("./markup2mir");
-var filterArgumentOptions = generateFilterArgumentOptions();
-var reducerArgumentOptions = generateReducerArgumentOptions();
-// TODO: Create factory functions to remove code repetition
+var utils_1 = require("./utils");
+exports.DEFAULT_OPERATOR = types_1.OperatorCode.ArrayCount;
+exports.DEFAULT_INPUT_TYPE = types_1.OutputType.Array;
+exports.DEFAULT_SCRIPT_FIRST_TYPE = types_1.OutputType.String;
+var EventName;
+(function (EventName) {
+    EventName[EventName["Update"] = 0] = "Update";
+})(EventName || (EventName = {}));
 var Radon = /** @class */ (function () {
-    function Radon(mir) {
-        var defaultRequest = {
-            description: '',
-            name: '',
-            radRequest: {
-                notBefore: 0,
-                retrieve: [
-                    {
-                        script: [],
-                        url: '',
-                    },
-                ],
-                aggregate: [],
-                tally: [],
-            },
-        };
-        this.cache = new structures_1.Cache();
-        this.cachedMarkup = mir ? this.mir2markup(mir) : defaultRequest;
-    }
-    Radon.prototype.wrapResultInCache = function (result) {
-        return this.cache.set(result);
-    };
-    Radon.prototype.unwrapResultFromCache = function (ref) {
-        return this.cache.get(ref.id);
-    };
-    Radon.prototype.mir2markup = function (mir) {
+    function Radon(radRequest) {
         var _this = this;
-        var aggregateScript = this.generateMarkupScript(mir.radRequest.aggregate);
-        var tallyScript = this.generateMarkupScript(mir.radRequest.tally);
-        var radRequest = {
-            notBefore: mir.radRequest.notBefore,
-            retrieve: mir.radRequest.retrieve.map(function (source) {
-                var generatedMarkupScript = _this.generateMarkupScript(source.script);
-                return {
-                    url: source.url,
-                    script: generatedMarkupScript,
-                };
-            }),
-            aggregate: aggregateScript,
-            tally: tallyScript,
-        };
-        this.cachedMarkup = {
-            name: mir.name,
-            description: mir.description,
-            radRequest: radRequest,
-        };
-        return this.cachedMarkup;
-    };
+        this.cache = new structures_1.Cache();
+        this.timelock = radRequest.timelock;
+        this.retrieve = radRequest.retrieve.map(function (source) { return new Source(_this.cache, source); });
+        // TODO: Refactor first outputType
+        this.aggregate = new Script(this.cache, radRequest.aggregate, types_1.OutputType.Array);
+        this.tally = new Script(this.cache, radRequest.tally, this.aggregate.getOutputType());
+    }
     Radon.prototype.getMir = function () {
-        return markup2mir_1.markup2mir(this.getMarkup());
+        return {
+            timelock: this.timelock,
+            retrieve: this.retrieve.map(function (source) { return source.getMir(); }),
+            aggregate: this.aggregate.getMir(),
+            tally: this.tally.getMir(),
+        };
     };
     Radon.prototype.getMarkup = function () {
-        var _this = this;
-        var cachedRadRequest = this.cachedMarkup.radRequest;
-        var radRequest = {
-            notBefore: cachedRadRequest.notBefore,
-            retrieve: cachedRadRequest.aggregate.map(function (source) { return _this.unwrapSource(source); }),
-            aggregate: this.unwrapScript(cachedRadRequest.aggregate),
-            tally: this.unwrapScript(cachedRadRequest.tally),
-        };
         return {
-            description: this.cachedMarkup.description,
-            name: this.cachedMarkup.name,
-            radRequest: radRequest,
+            timelock: this.timelock,
+            retrieve: this.retrieve.map(function (source) { return source.getMarkup(); }),
+            aggregate: this.aggregate.getMarkup(),
+            tally: this.tally.getMarkup(),
         };
     };
-    Radon.prototype.generateMarkupScript = function (script) {
-        var _this = this;
-        var markupScript = script.map(function (operator) {
-            return _this.wrapResultInCache(_this.generateMarkupOperator(operator));
-        });
-        return markupScript;
+    Radon.prototype.updateSource = function (sourceIndex, args) {
+        this.retrieve[sourceIndex].update(args);
     };
-    Radon.prototype.generateMarkupOperator = function (operator) {
-        var _a = this.getMirOperatorInfo(operator), code = _a.code, args = _a.args;
-        var operatorInfo = structures_1.operatorInfos[code];
-        var outputType = this.findOutputType(code);
-        var markupOperator = {
-            id: 0,
-            scriptId: 0,
-            markupType: types_1.MarkupType.Select,
-            hierarchicalType: types_1.MarkupHierarchicalType.Operator,
-            outputType: outputType,
-            selected: this.wrapResultInCache(this.generateSelectedOption(operatorInfo, code, args)),
-            options: this.generateMarkupOptions(operatorInfo, code, args),
-        };
-        return markupOperator;
+    // TODO: Remove any
+    Radon.prototype.update = function (id, value) {
+        ;
+        this.cache.get(id).update(value);
     };
-    Radon.prototype.generateSelectedOption = function (operatorInfo, code, args) {
-        var outputType = this.findOutputType(code);
-        var markupSelectedOption = {
-            arguments: args && args.length ? this.generateOperatorArguments(operatorInfo, args) : [],
-            hierarchicalType: types_1.MarkupHierarchicalType.SelectedOperatorOption,
-            label: operatorInfo.name,
-            markupType: types_1.MarkupType.Option,
-            // TODO: Add support for pseudotypes
-            outputType: outputType,
-        };
-        return markupSelectedOption;
+    Radon.prototype.addOperator = function (scriptId) {
+        this.cache.get(scriptId).addOperator();
     };
-    Radon.prototype.generateOperatorArguments = function (operatorInfo, args) {
-        var _this = this;
-        var operatorArguments = args.map(function (argument, index) {
-            var argumentInfo = operatorInfo.arguments[index];
-            switch (argumentInfo.type) {
-                // TODO: Add support for pseudotypes
-                case types_1.MirArgumentKind.Array:
-                case types_1.MirArgumentKind.Boolean:
-                case types_1.MirArgumentKind.Bytes:
-                case types_1.MirArgumentKind.Mapper:
-                case types_1.MirArgumentKind.Passthrough:
-                case types_1.MirArgumentKind.Result:
-                case types_1.MirArgumentKind.Float:
-                case types_1.MirArgumentKind.Inner:
-                case types_1.MirArgumentKind.Integer:
-                case types_1.MirArgumentKind.Map:
-                case types_1.MirArgumentKind.String:
-                    return _this.wrapResultInCache(_this.generateInputArgument(argument));
-                case types_1.MirArgumentKind.Filter:
-                    return _this.wrapResultInCache(_this.generateFilterArgument(argumentInfo.name, argument));
-                case types_1.MirArgumentKind.Reducer:
-                    return _this.wrapResultInCache(_this.generateReducerArgument(argumentInfo.name, argument));
-            }
-        });
-        return operatorArguments;
-    };
-    Radon.prototype.generateInputArgument = function (value) {
-        return {
-            hierarchicalType: types_1.MarkupHierarchicalType.Argument,
-            id: 0,
-            label: 'by',
-            markupType: types_1.MarkupType.Input,
-            value: value,
-        };
-    };
-    Radon.prototype.generateFilterArgument = function (label, filter) {
-        return {
-            hierarchicalType: types_1.MarkupHierarchicalType.Argument,
-            id: 0,
-            markupType: types_1.MarkupType.Select,
-            options: filterArgumentOptions,
-            scriptId: 0,
-            label: label,
-            selected: this.wrapResultInCache(this.generateSelectedFilterArgument(filter)),
-        };
-    };
-    Radon.prototype.generateReducerArgument = function (label, reducer) {
-        return {
-            hierarchicalType: types_1.MarkupHierarchicalType.Argument,
-            id: 0,
-            markupType: types_1.MarkupType.Select,
-            options: reducerArgumentOptions,
-            outputType: types_1.OutputType.Bytes,
-            scriptId: 0,
-            label: label,
-            selected: this.wrapResultInCache(this.generateSelectedReducerArgument(reducer)),
-        };
-    };
-    Radon.prototype.generateSelectedFilterArgument = function (filterArgument) {
-        var filter = filterArgument[0];
-        var argument = filterArgument[1];
-        var selectedArgument = {
-            arguments: [this.wrapResultInCache(this.generateInputArgument(argument))],
-            label: types_1.Filter[filter],
-            hierarchicalType: types_1.MarkupHierarchicalType.SelectedOperatorOption,
-            markupType: types_1.MarkupType.Option,
-            outputType: types_1.OutputType.Bytes,
-        };
-        return selectedArgument;
-    };
-    Radon.prototype.generateSelectedReducerArgument = function (reducer) {
-        var selectedArgument = {
-            arguments: [],
-            label: types_1.Reducer[reducer],
-            hierarchicalType: types_1.MarkupHierarchicalType.SelectedOperatorOption,
-            markupType: types_1.MarkupType.Option,
-            outputType: types_1.OutputType.Bytes,
-        };
-        return selectedArgument;
-    };
-    // TODO: Remove unknown to have a stronger type
-    Radon.prototype.unwrapSource = function (source) {
-        var cachedMarkupSource = this.unwrapResultFromCache(source);
-        var markupSource = {
-            url: cachedMarkupSource.url,
-            script: this.unwrapScript(cachedMarkupSource.script),
-        };
-        return markupSource;
-    };
-    Radon.prototype.unwrapScript = function (script) {
-        var _this = this;
-        var markupScript = script.map(function (operatorRef) {
-            var cachedOperator = _this.unwrapResultFromCache(operatorRef);
-            var operator = _this.unwrapOperator(cachedOperator, operatorRef.id);
-            return operator;
-        });
-        return markupScript;
-    };
-    Radon.prototype.unwrapOperator = function (operator, id) {
-        var markup = {
-            hierarchicalType: operator.hierarchicalType,
-            id: id,
-            label: operator.label,
-            markupType: operator.markupType,
-            options: operator.options,
-            outputType: operator.outputType,
-            scriptId: operator.scriptId,
-            selected: this.unwrapSelectedOption(operator.selected),
-        };
-        return markup;
-    };
-    Radon.prototype.unwrapSelectedOption = function (selectedOption) {
-        var _this = this;
-        var cachedSelectedOption = this.unwrapResultFromCache(selectedOption);
-        var markup = {
-            arguments: cachedSelectedOption.arguments.length
-                ? cachedSelectedOption.arguments.map(function (argument) {
-                    return _this.unwrapArgument(argument);
-                })
-                : [],
-            hierarchicalType: cachedSelectedOption.hierarchicalType,
-            label: cachedSelectedOption.label,
-            markupType: cachedSelectedOption.markupType,
-            outputType: cachedSelectedOption.outputType,
-        };
-        return markup;
-    };
-    Radon.prototype.unwrapArgument = function (arg) {
-        var cachedArgument = this.unwrapResultFromCache(arg);
-        switch (cachedArgument.markupType) {
-            case types_1.MarkupType.Input:
-                return {
-                    hierarchicalType: cachedArgument.hierarchicalType,
-                    id: arg.id,
-                    label: cachedArgument.label,
-                    markupType: cachedArgument.markupType,
-                    value: cachedArgument.value,
-                };
-            case types_1.MarkupType.Select:
-                return {
-                    hierarchicalType: cachedArgument.hierarchicalType,
-                    id: arg.id,
-                    label: cachedArgument.label,
-                    markupType: cachedArgument.markupType,
-                    options: cachedArgument.options,
-                    outputType: cachedArgument.outputType,
-                    scriptId: cachedArgument.scriptId,
-                    selected: this.unwrapSelectedOption(cachedArgument.selected),
-                };
-        }
-    };
-    Radon.prototype.findOutputType = function (code) {
-        var entry = Object.entries(structures_1.typeSystem).find(function (entry) {
-            return Object.values(entry[1]).find(function (x) { return x[0] === code; });
-        });
-        var operatorEntry = Object.values(entry[1]).find(function (x) { return x[0] === code; });
-        var outputType = operatorEntry[1];
-        return outputType.length > 1 ? outputType : outputType[0];
-    };
-    Radon.prototype.getMirOperatorInfo = function (operator) {
-        return Array.isArray(operator)
-            ? {
-                code: operator[0],
-                args: operator.slice(1),
-            }
-            : {
-                code: operator,
-                args: null,
-            };
-    };
-    Radon.prototype.generateMarkupOptions = function (operatorInfo, _code, _args) {
-        var markupOptions = Object.entries(structures_1.typeSystem[operatorInfo.type]).map(function (x) {
-            return {
-                hierarchicalType: types_1.MarkupHierarchicalType.OperatorOption,
-                label: x[0],
-                markupType: types_1.MarkupType.Option,
-                // TODO: Add support for Pseudotypes
-                outputType: x[1][1].length > 1 ? x[1][1] : x[1][1][0],
-            };
-        });
-        return markupOptions;
+    Radon.prototype.addSource = function () {
+        this.retrieve.push(new Source(this.cache, { url: '', script: [types_1.OperatorCode.StringAsFloat], kind: 'HTTP_GET' }));
     };
     return Radon;
 }());
 exports.Radon = Radon;
-// TODO: Call this function just at the beginning
+var Source = /** @class */ (function () {
+    function Source(cache, source) {
+        this.id = cache.insert(this).id;
+        this.cache = cache;
+        this.kind = source.kind;
+        this.url = source.url;
+        this.script = new Script(cache, source.script, types_1.OutputType.String);
+    }
+    Source.prototype.update = function (args) {
+        var _a = args.kind, kind = _a === void 0 ? this.kind : _a, _b = args.url, url = _b === void 0 ? this.url : _b;
+        this.kind = kind;
+        this.url = url;
+    };
+    Source.prototype.getMir = function () {
+        return {
+            kind: this.kind,
+            url: this.url,
+            script: this.script.getMir(),
+        };
+    };
+    Source.prototype.getMarkup = function () {
+        return {
+            kind: this.kind,
+            url: this.url,
+            script: this.script.getMarkup(),
+        };
+    };
+    Source.prototype.getOutputType = function () {
+        return this.script.getOutputType();
+    };
+    return Source;
+}());
+exports.Source = Source;
+var Script = /** @class */ (function () {
+    function Script(cache, script, firstType) {
+        var _this = this;
+        if (firstType === void 0) { firstType = exports.DEFAULT_SCRIPT_FIRST_TYPE; }
+        this.cache = cache;
+        this.operators = [];
+        this.firstType = firstType;
+        this.scriptId = cache.insert(this).id;
+        // TODO: Refactor
+        script.reduce(function (acc, item) {
+            var op = new Operator(cache, _this.scriptId, acc, item, _this.onChildrenEvent());
+            _this.operators.push(op);
+            return op.operatorInfo.outputType;
+        }, firstType);
+    }
+    Script.prototype.getMir = function () {
+        return this.operators.map(function (operator) { return operator.getMir(); });
+    };
+    // TODO: Refactor this function to be readable
+    Script.prototype.validateScript = function (index) {
+        var _this = this;
+        var removeInvalidOperators = function (idx) {
+            _this.operators.splice(idx);
+        };
+        if (index && this.operators[index + 1]) {
+            if (!areValidConsecutiveOperators(this.operators, index)) {
+                removeInvalidOperators(index);
+            }
+        }
+        else if (!index) {
+            index = index
+                ? index
+                : this.operators.reduce(function (acc, _operator, i) {
+                    return acc > 0 ? acc : areValidConsecutiveOperators(_this.operators, i) ? -1 : i;
+                }, -1);
+            if (index > 0) {
+                removeInvalidOperators(index);
+            }
+        }
+    };
+    Script.prototype.onChildrenEvent = function () {
+        var _this = this;
+        return {
+            emit: function (e) {
+                if (e.name === EventName.Update) {
+                    _this.validateScript(e.data.index);
+                }
+            },
+        };
+    };
+    Script.prototype.getMarkup = function () {
+        var markup = this.operators.map(function (operator) {
+            return operator.getMarkup();
+        });
+        // this.cache.set(this.scriptId, markup.map(operator => operator.id))
+        return markup;
+    };
+    Script.prototype.getOutputType = function () {
+        var lastOperator = this.getLastOperator();
+        return lastOperator ? lastOperator.operatorInfo.outputType : this.firstType;
+    };
+    Script.prototype.getLastOperator = function () {
+        return this.operators.length ? this.operators[this.operators.length - 1] : null;
+    };
+    Script.prototype.push = function (operator) {
+        this.operators.push(new Operator(this.cache, this.scriptId, this.getOutputType(), operator, this.onChildrenEvent()));
+    };
+    Script.prototype.addOperator = function () {
+        var lastOutputType = this.getOutputType();
+        var type = fromOutputTypeToType(lastOutputType);
+        if (type) {
+            var operator = getDefaultMirOperatorByType(type);
+            this.operators.push(new Operator(this.cache, this.scriptId, lastOutputType, operator, this.onChildrenEvent()));
+        }
+        else {
+            // TODO: search in operators the type for the regarding types:
+            // SubscriptOutput, ReducerOutput, FilterOutput, MatchOutput, Same, Inner
+            this.operators.push(new Operator(this.cache, this.scriptId, lastOutputType, null, this.onChildrenEvent()));
+        }
+    };
+    return Script;
+}());
+exports.Script = Script;
+var Operator = /** @class */ (function () {
+    function Operator(cache, scriptId, inputType, operator, eventEmitter) {
+        var _this = this;
+        var _a = getMirOperatorInfo(operator || exports.DEFAULT_OPERATOR), code = _a.code, args = _a.args;
+        this.eventEmitter = eventEmitter;
+        this.id = cache.insert(this).id;
+        this.default = !operator;
+        this.cache = cache;
+        this.code = code;
+        this.operatorInfo = structures_1.operatorInfos[code];
+        this.mirArguments = args;
+        this.inputType = inputType || exports.DEFAULT_INPUT_TYPE;
+        this.arguments = args.map(function (x, index) { return new Argument(cache, _this.operatorInfo.arguments[index], x); });
+        this.scriptId = scriptId;
+    }
+    Operator.prototype.update = function (args) {
+        var _this = this;
+        if (args.label || args.code) {
+            var operatorCode = args.code
+                ? args.code
+                : utils_1.getOperatorCodeFromOperatorName(args.label);
+            var operatorInfo = structures_1.operatorInfos[operatorCode];
+            var defaultOperatorArguments = operatorInfo.arguments.map(function (argument) {
+                return getDefaultMirArgumentByType(argument.type);
+            });
+            this.default = false;
+            this.code = operatorCode;
+            this.operatorInfo = operatorInfo;
+            this.mirArguments = defaultOperatorArguments;
+            this.arguments = defaultOperatorArguments.map(function (x, index) { return new Argument(_this.cache, _this.operatorInfo.arguments[index], x); });
+            this.eventEmitter.emit(EventName.Update);
+        }
+        else {
+            throw Error('You have to provide argument to update Operator');
+        }
+    };
+    Operator.prototype.getMir = function () {
+        return this.operatorInfo.arguments.length
+            ? __spread([this.code], this.arguments.map(function (argument) { return argument.getMir(); }))
+            : this.code;
+    };
+    Operator.prototype.getMarkup = function () {
+        var args = this.arguments.map(function (argument) { return argument.getMarkup(); });
+        return {
+            hierarchicalType: types_1.MarkupHierarchicalType.Operator,
+            id: this.id,
+            label: this.operatorInfo.name,
+            markupType: types_1.MarkupType.Select,
+            options: this.default ? structures_1.allMarkupOptions : structures_1.markupOptions[this.inputType],
+            outputType: this.operatorInfo.outputType,
+            scriptId: this.scriptId,
+            selected: {
+                arguments: args,
+                hierarchicalType: types_1.MarkupHierarchicalType.SelectedOperatorOption,
+                label: this.operatorInfo.name,
+                markupType: types_1.MarkupType.Option,
+                outputType: this.operatorInfo.outputType,
+            },
+        };
+    };
+    return Operator;
+}());
+exports.Operator = Operator;
+var Argument = /** @class */ (function () {
+    function Argument(cache, argumentInfo, argument) {
+        this.argumentType = getArgumentInfoType(argumentInfo);
+        this.id = cache.insert(this).id;
+        this.argumentInfo = argumentInfo;
+        this.cache = cache;
+        this.value = argument;
+        this.argument = Array.isArray(argument)
+            ? new Argument(this.cache, { name: 'by', optional: false, type: types_1.MirArgumentType.String }, argument[1])
+            : null;
+    }
+    Argument.prototype.getMir = function () {
+        if (this.argumentType === types_1.MarkupArgumentType.SelectFilter) {
+            return [
+                this.value[0],
+                this.argument.getMir(),
+            ];
+        }
+        else {
+            return this.value;
+        }
+    };
+    Argument.prototype.update = function (args) {
+        if (this.argumentType === types_1.MarkupArgumentType.SelectFilter) {
+            ;
+            this.value[0] = args.value;
+        }
+        else {
+            this.value = args.value;
+        }
+    };
+    Argument.prototype.getMarkup = function () {
+        if (this.argumentType === types_1.MarkupArgumentType.Input) {
+            // TODO: Refactor this ugly code
+            return {
+                hierarchicalType: types_1.MarkupHierarchicalType.Argument,
+                id: this.id,
+                label: this.argumentInfo.name,
+                markupType: types_1.MarkupType.Input,
+                value: this.value,
+            };
+        }
+        else if (this.argumentType === types_1.MarkupArgumentType.SelectFilter) {
+            var args = this.argument ? [this.argument.getMarkup()] : [];
+            // TODO: Refactor this ugly code
+            return {
+                hierarchicalType: types_1.MarkupHierarchicalType.Argument,
+                id: this.id,
+                label: this.argumentInfo.name,
+                markupType: types_1.MarkupType.Select,
+                options: generateFilterArgumentOptions(),
+                outputType: types_1.OutputType.FilterOutput,
+                selected: {
+                    arguments: args,
+                    hierarchicalType: types_1.MarkupHierarchicalType.SelectedOperatorOption,
+                    label: generateFilterArgumentOptions()[0].label,
+                    outputType: generateFilterArgumentOptions()[0].outputType,
+                    markupType: types_1.MarkupType.Option,
+                },
+            };
+            // } else if (argumentType === MarkupArgumentType.SelectReduce) {
+        }
+        else {
+            // TODO: Refactor this ugly code
+            return {
+                hierarchicalType: types_1.MarkupHierarchicalType.Argument,
+                id: this.id,
+                label: this.argumentInfo.name,
+                markupType: types_1.MarkupType.Select,
+                options: generateReducerArgumentOptions(),
+                outputType: types_1.OutputType.ReducerOutput,
+                selected: {
+                    arguments: [],
+                    hierarchicalType: types_1.MarkupHierarchicalType.SelectedOperatorOption,
+                    label: generateReducerArgumentOptions()[0].label,
+                    outputType: generateReducerArgumentOptions()[0].outputType,
+                    markupType: types_1.MarkupType.Option,
+                },
+            };
+        }
+    };
+    return Argument;
+}());
+exports.Argument = Argument;
+function areValidConsecutiveOperators(operators, idx) {
+    if (operators[idx + 1]) {
+        var outputType = operators[idx].operatorInfo.outputType;
+        var label_1 = operators[idx + 1].operatorInfo.name;
+        var options = structures_1.markupOptions[outputType];
+        return !options.find(function (operatorName) { return operatorName === label_1; });
+    }
+    else {
+        return true;
+    }
+}
+function getArgumentInfoType(info) {
+    if (info.type === types_1.MirArgumentType.FilterFunction) {
+        return types_1.MarkupArgumentType.SelectFilter;
+    }
+    else if (info.type === types_1.MirArgumentType.ReducerFunction) {
+        return types_1.MarkupArgumentType.SelectReduce;
+    }
+    else {
+        return types_1.MarkupArgumentType.Input;
+    }
+}
 function generateFilterArgumentOptions() {
     var markupOptions = utils_1.getEnumNames(types_1.Filter).map(function (name) {
         return {
@@ -301,20 +365,123 @@ function generateFilterArgumentOptions() {
             hierarchicalType: types_1.MarkupHierarchicalType.OperatorOption,
             markupType: types_1.MarkupType.Option,
             // TODO: Add support for pseudotypes
-            outputType: types_1.OutputType.Bytes,
+            outputType: types_1.OutputType.FilterOutput,
         };
     });
     return markupOptions;
 }
-// TODO: Call this function just at the beginning
+exports.generateFilterArgumentOptions = generateFilterArgumentOptions;
 function generateReducerArgumentOptions() {
     var markupOptions = utils_1.getEnumNames(types_1.Reducer).map(function (name) {
         return {
             label: name,
             hierarchicalType: types_1.MarkupHierarchicalType.OperatorOption,
             markupType: types_1.MarkupType.Option,
-            outputType: types_1.OutputType.Bytes,
+            outputType: types_1.OutputType.ReducerOutput,
         };
     });
     return markupOptions;
+}
+exports.generateReducerArgumentOptions = generateReducerArgumentOptions;
+function getMirOperatorInfo(operator) {
+    return Array.isArray(operator)
+        ? {
+            code: operator[0],
+            args: operator.slice(1),
+        }
+        : {
+            code: operator,
+            args: [],
+        };
+}
+function getDefaultMirArgumentByType(type) {
+    switch (type) {
+        case types_1.MirArgumentType.Boolean:
+            return true;
+        case types_1.MirArgumentType.FilterFunction:
+            return [types_1.Filter.LessThan, 0];
+        case types_1.MirArgumentType.Float:
+            return 0.0;
+        case types_1.MirArgumentType.Integer:
+            return 0;
+        case types_1.MirArgumentType.ReducerFunction:
+            return types_1.Reducer.averageMean;
+        case types_1.MirArgumentType.String:
+            return '';
+        case types_1.MirArgumentType.Subscript:
+            return '';
+    }
+}
+// TODO: Refactor to find the first operator instead of repeat code
+function getDefaultMirOperatorByType(type) {
+    switch (type) {
+        case types_1.Type.Array:
+            return types_1.OperatorCode.ArrayCount;
+        case types_1.Type.Boolean:
+            return [types_1.OperatorCode.BooleanMatch, '', true];
+        case types_1.Type.Bytes:
+            return types_1.OperatorCode.BytesAsString;
+        case types_1.Type.Float:
+            return types_1.OperatorCode.FloatAbsolute;
+        case types_1.Type.Integer:
+            return types_1.OperatorCode.IntegerAbsolute;
+        case types_1.Type.Map:
+            return types_1.OperatorCode.MapEntries;
+        case types_1.Type.String:
+            return types_1.OperatorCode.StringAsBoolean;
+    }
+}
+function isArrayType(type) {
+    return (type === types_1.OutputType.Array ||
+        type === types_1.OutputType.ArrayArray ||
+        type === types_1.OutputType.ArrayBoolean ||
+        type === types_1.OutputType.ArrayBytes ||
+        type === types_1.OutputType.ArrayFloat ||
+        type === types_1.OutputType.ArrayInteger ||
+        type === types_1.OutputType.ArrayMap ||
+        type === types_1.OutputType.ArrayString);
+}
+function isBooleanType(type) {
+    return type === types_1.OutputType.Boolean;
+}
+function isBytesType(type) {
+    return type === types_1.OutputType.Bytes;
+}
+function isFloatType(type) {
+    return type === types_1.OutputType.Float;
+}
+function isIntegerType(type) {
+    return type === types_1.OutputType.Integer;
+}
+function isMapType(type) {
+    return type === types_1.OutputType.Map;
+}
+function isStringType(type) {
+    return type === types_1.OutputType.String;
+}
+function fromOutputTypeToType(type) {
+    if (isArrayType(type)) {
+        return types_1.Type.Array;
+    }
+    else if (isBooleanType(type)) {
+        return types_1.Type.Boolean;
+    }
+    else if (isBytesType(type)) {
+        return types_1.Type.Bytes;
+    }
+    else if (isFloatType(type)) {
+        return types_1.Type.Float;
+    }
+    else if (isIntegerType(type)) {
+        return types_1.Type.Integer;
+    }
+    else if (isMapType(type)) {
+        return types_1.Type.Map;
+    }
+    else if (isStringType(type)) {
+        return types_1.Type.String;
+    }
+    else {
+        return null;
+    }
 }

@@ -26,6 +26,7 @@ function generateMirSources(markupSources) {
         return {
             script: generateMirScript(source.script),
             url: source.url,
+            kind: source.kind,
         };
     });
     return mirSources;
