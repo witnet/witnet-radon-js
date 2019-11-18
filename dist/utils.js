@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+var types_1 = require("./types");
 // check if contains the same elements
 function areSoftEqualArrays(arr1, arr2) {
     return (arr1.length === arr2.length &&
@@ -15,16 +16,7 @@ function getEnumValues(e) {
     return Object.values(e);
 }
 exports.getEnumValues = getEnumValues;
-function dummyHash(str) {
-    var hash = 0;
-    var chr;
-    if (str.length === 0)
-        return hash;
-    for (var i = 0; i < str.length; i++) {
-        chr = str.charCodeAt(i);
-        hash = (hash << 5) - hash + chr;
-        hash |= 0; // Convert to 32bit integer
-    }
-    return hash;
+function getOperatorCodeFromOperatorName(name) {
+    return types_1.OperatorCode[name];
 }
-exports.dummyHash = dummyHash;
+exports.getOperatorCodeFromOperatorName = getOperatorCodeFromOperatorName;

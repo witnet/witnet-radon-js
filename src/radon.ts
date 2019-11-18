@@ -1,423 +1,578 @@
-import { getEnumNames } from './utils'
-
 import {
-  Markup,
-  Mir,
+  MirRequest,
   MirSource,
-  MirScript,
+  ArgumentInfo,
+  MirArgumentType,
+  MarkupArgumentType,
+  MarkupOption,
   MirOperator,
-  OperatorInfo,
-  MarkupSelect,
-  MarkupType,
-  MarkupHierarchicalType,
   OperatorCode,
   MirArgument,
-  MarkupOption,
-  TypeSystemValue,
-  MarkupSelectedOption,
-  MarkupInput,
-  MirArgumentKind,
-  FilterArgument,
+  MirScript,
   OutputType,
-  Reducer,
+  MarkupArgument,
+  MarkupInput,
+  MarkupHierarchicalType,
+  MarkupType,
+  MarkupSelect,
   Filter,
-  TypeSystemEntry,
-  CacheRef,
+  Reducer,
+  OperatorInfo,
+  Type,
   MarkupRequest,
   MarkupSource,
   MarkupScript,
   MarkupOperator,
-  MarkupArgument,
-  CachedMarkupSelectedOption,
-  CachedArgument,
-  CachedMarkup,
-  CachedMarkupSelect,
-  CachedMarkupScript,
-  CachedMarkupRequest,
-  CachedMarkupSource,
-  CachedMarkupOperator,
+  OperatorName,
 } from './types'
+import { Cache, operatorInfos, markupOptions, allMarkupOptions } from './structures'
+import { getEnumNames, getOperatorCodeFromOperatorName } from './utils'
 
-import { Cache, operatorInfos, typeSystem } from './structures'
-import { markup2mir } from './markup2mir'
+export const DEFAULT_OPERATOR = OperatorCode.ArrayCount
+export const DEFAULT_INPUT_TYPE = OutputType.Array
+export const DEFAULT_SCRIPT_FIRST_TYPE = OutputType.String
 
-const filterArgumentOptions = generateFilterArgumentOptions()
-const reducerArgumentOptions = generateReducerArgumentOptions()
+type EventEmitter = {
+  emit: Function
+}
+enum EventName {
+  Update,
+}
+// TODO: remove any
+type Event = {
+  name: EventName
+  data: any
+}
 
-// TODO: Create factory functions to remove code repetition
 export class Radon {
-  private cache: Cache<CachedMarkupSelectedOption | Markup | CachedArgument>
-  private cachedMarkup: CachedMarkup
+  public cache: Cache
 
-  constructor(mir?: Mir) {
-    const defaultRequest = {
-      description: '',
-      name: '',
-      radRequest: {
-        notBefore: 0,
-        retrieve: [
-          {
-            script: [],
-            url: '',
-          },
-        ],
-        aggregate: [],
-        tally: [],
-      },
-    }
+  public timelock: number
+  public retrieve: Array<Source>
+  public aggregate: Script
+  public tally: Script
 
+  constructor(radRequest: MirRequest) {
     this.cache = new Cache()
-    this.cachedMarkup = mir ? this.mir2markup(mir) : defaultRequest
+    this.timelock = radRequest.timelock
+    this.retrieve = radRequest.retrieve.map(source => new Source(this.cache, source))
+    // TODO: Refactor first outputType
+    this.aggregate = new Script(this.cache, radRequest.aggregate, OutputType.Array)
+    this.tally = new Script(this.cache, radRequest.tally, this.aggregate.getOutputType())
   }
 
-  public wrapResultInCache(
-    result: Markup | CachedMarkupSelect | CachedMarkupSelectedOption | CachedArgument
-  ) {
-    return this.cache.set(result)
-  }
-
-  public unwrapResultFromCache(ref: CacheRef) {
-    return this.cache.get(ref.id)
-  }
-
-  public mir2markup(mir: Mir): CachedMarkup {
-    const aggregateScript: CachedMarkupScript = this.generateMarkupScript(mir.radRequest.aggregate)
-    const tallyScript: CachedMarkupScript = this.generateMarkupScript(mir.radRequest.tally)
-    const radRequest: CachedMarkupRequest = {
-      notBefore: mir.radRequest.notBefore,
-      retrieve: mir.radRequest.retrieve.map((source: MirSource) => {
-        let generatedMarkupScript: CachedMarkupScript = this.generateMarkupScript(source.script)
-        return {
-          url: source.url,
-          script: generatedMarkupScript,
-        } as CachedMarkupSource
-      }),
-      aggregate: aggregateScript,
-      tally: tallyScript,
-    }
-    this.cachedMarkup = {
-      name: mir.name,
-      description: mir.description,
-      radRequest,
-    } as CachedMarkup
-
-    return this.cachedMarkup
-  }
-
-  public getMir() {
-    return markup2mir(this.getMarkup())
-  }
-
-  public getMarkup(): Markup {
-    const cachedRadRequest = this.cachedMarkup.radRequest
-
-    const radRequest: MarkupRequest = {
-      notBefore: cachedRadRequest.notBefore,
-      retrieve: cachedRadRequest.aggregate.map(source => this.unwrapSource(source)),
-      aggregate: this.unwrapScript(cachedRadRequest.aggregate),
-      tally: this.unwrapScript(cachedRadRequest.tally),
-    }
-
+  public getMir(): MirRequest {
     return {
-      description: this.cachedMarkup.description,
-      name: this.cachedMarkup.name,
-      radRequest,
-    }
+      timelock: this.timelock,
+      retrieve: this.retrieve.map(source => source.getMir()),
+      aggregate: this.aggregate.getMir(),
+      tally: this.tally.getMir(),
+    } as MirRequest
   }
 
-  public generateMarkupScript(script: MirScript): CachedMarkupScript {
-    const markupScript: CachedMarkupScript = script.map((operator: MirOperator) => {
-      return this.wrapResultInCache(this.generateMarkupOperator(operator))
-    })
-
-    return markupScript
-  }
-
-  public generateMarkupOperator(operator: MirOperator): CachedMarkupOperator {
-    const { code, args } = this.getMirOperatorInfo(operator)
-    const operatorInfo: OperatorInfo = operatorInfos[code]
-    const outputType = this.findOutputType(code)
-
-    const markupOperator: CachedMarkupSelect = {
-      id: 0,
-      scriptId: 0,
-      markupType: MarkupType.Select,
-      hierarchicalType: MarkupHierarchicalType.Operator,
-      outputType,
-      selected: this.wrapResultInCache(this.generateSelectedOption(operatorInfo, code, args)),
-      options: this.generateMarkupOptions(operatorInfo, code, args),
-    }
-
-    return markupOperator
-  }
-
-  public generateSelectedOption(
-    operatorInfo: OperatorInfo,
-    code: OperatorCode,
-    args: Array<MirArgument> | null
-  ): CachedMarkupSelectedOption {
-    const outputType = this.findOutputType(code)
-    const markupSelectedOption: CachedMarkupSelectedOption = {
-      arguments: args && args.length ? this.generateOperatorArguments(operatorInfo, args) : [],
-      hierarchicalType: MarkupHierarchicalType.SelectedOperatorOption,
-      label: operatorInfo.name,
-      markupType: MarkupType.Option,
-      // TODO: Add support for pseudotypes
-      outputType: outputType,
-    }
-
-    return markupSelectedOption
-  }
-
-  public generateOperatorArguments(
-    operatorInfo: OperatorInfo,
-    args: Array<MirArgument>
-  ): Array<CacheRef> {
-    const operatorArguments: Array<CacheRef> = args.map((argument: MirArgument, index: number) => {
-      let argumentInfo = operatorInfo.arguments[index]
-      switch (argumentInfo.type) {
-        // TODO: Add support for pseudotypes
-        case MirArgumentKind.Array:
-        case MirArgumentKind.Boolean:
-        case MirArgumentKind.Bytes:
-        case MirArgumentKind.Mapper:
-        case MirArgumentKind.Passthrough:
-        case MirArgumentKind.Result:
-        case MirArgumentKind.Float:
-        case MirArgumentKind.Inner:
-        case MirArgumentKind.Integer:
-        case MirArgumentKind.Map:
-        case MirArgumentKind.String:
-          return this.wrapResultInCache(
-            this.generateInputArgument(argument as string | number | boolean)
-          )
-        case MirArgumentKind.Filter:
-          return this.wrapResultInCache(
-            this.generateFilterArgument(argumentInfo.name, argument as FilterArgument)
-          )
-        case MirArgumentKind.Reducer:
-          return this.wrapResultInCache(
-            this.generateReducerArgument(argumentInfo.name, argument as Reducer)
-          )
-      }
-    })
-    return operatorArguments
-  }
-
-  public generateInputArgument(value: string | number | boolean): MarkupInput {
+  public getMarkup(): MarkupRequest {
     return {
-      hierarchicalType: MarkupHierarchicalType.Argument,
-      id: 0,
-      label: 'by',
-      markupType: MarkupType.Input,
-      value,
-    } as MarkupInput
-  }
-
-  public generateFilterArgument(label: string, filter: FilterArgument): CachedMarkupSelect {
-    return {
-      hierarchicalType: MarkupHierarchicalType.Argument,
-      id: 0,
-      markupType: MarkupType.Select,
-      options: filterArgumentOptions,
-      scriptId: 0,
-      label,
-      selected: this.wrapResultInCache(this.generateSelectedFilterArgument(filter)),
-    } as CachedMarkupSelect
-  }
-
-  public generateReducerArgument(label: string, reducer: Reducer): CachedMarkupSelect {
-    return {
-      hierarchicalType: MarkupHierarchicalType.Argument,
-      id: 0,
-      markupType: MarkupType.Select,
-      options: reducerArgumentOptions,
-      outputType: OutputType.Bytes,
-      scriptId: 0,
-      label,
-      selected: this.wrapResultInCache(this.generateSelectedReducerArgument(reducer)),
-    } as CachedMarkupSelect
-  }
-
-  public generateSelectedFilterArgument(
-    filterArgument: FilterArgument
-  ): CachedMarkupSelectedOption {
-    const filter: Filter = filterArgument[0]
-    const argument = filterArgument[1]
-    const selectedArgument: CachedMarkupSelectedOption = {
-      arguments: [this.wrapResultInCache(this.generateInputArgument(argument))],
-      label: Filter[filter],
-      hierarchicalType: MarkupHierarchicalType.SelectedOperatorOption,
-      markupType: MarkupType.Option,
-      outputType: OutputType.Bytes,
-    }
-    return selectedArgument
-  }
-
-  public generateSelectedReducerArgument(reducer: Reducer): MarkupSelectedOption {
-    const selectedArgument: MarkupSelectedOption = {
-      arguments: [],
-      label: Reducer[reducer],
-      hierarchicalType: MarkupHierarchicalType.SelectedOperatorOption,
-      markupType: MarkupType.Option,
-      outputType: OutputType.Bytes,
-    }
-    return selectedArgument
-  }
-
-  // TODO: Remove unknown to have a stronger type
-  public unwrapSource(source: CacheRef): MarkupSource {
-    const cachedMarkupSource: CachedMarkupSource = (this.unwrapResultFromCache(
-      source
-    ) as unknown) as CachedMarkupSource
-    const markupSource: MarkupSource = {
-      url: cachedMarkupSource.url,
-      script: this.unwrapScript(cachedMarkupSource.script),
-    }
-
-    return markupSource
-  }
-  public unwrapScript(script: Array<CacheRef>): MarkupScript {
-    const markupScript: MarkupScript = script.map(operatorRef => {
-      const cachedOperator: CachedMarkupOperator = (this.unwrapResultFromCache(
-        operatorRef
-      ) as unknown) as CachedMarkupOperator
-      const operator: MarkupOperator = this.unwrapOperator(cachedOperator, operatorRef.id)
-
-      return operator
-    })
-
-    return markupScript
-  }
-
-  public unwrapOperator(operator: CachedMarkupOperator, id: number): MarkupOperator {
-    const markup: MarkupOperator = {
-      hierarchicalType: operator.hierarchicalType,
-      id: id,
-      label: operator.label,
-      markupType: operator.markupType,
-      options: operator.options,
-      outputType: operator.outputType,
-      scriptId: operator.scriptId,
-      selected: this.unwrapSelectedOption(operator.selected),
-    }
-    return markup
-  }
-  public unwrapSelectedOption(selectedOption: CacheRef): MarkupSelectedOption {
-    const cachedSelectedOption: CachedMarkupSelectedOption = this.unwrapResultFromCache(
-      selectedOption
-    ) as CachedMarkupSelectedOption
-
-    const markup: MarkupSelectedOption = {
-      arguments: cachedSelectedOption.arguments.length
-        ? (cachedSelectedOption.arguments as Array<CacheRef>).map((argument: CacheRef) => {
-            return this.unwrapArgument(argument)
-          })
-        : [],
-      hierarchicalType: cachedSelectedOption.hierarchicalType,
-      label: cachedSelectedOption.label,
-      markupType: cachedSelectedOption.markupType,
-      outputType: cachedSelectedOption.outputType,
-    }
-
-    return markup
-  }
-
-  public unwrapArgument(arg: CacheRef): MarkupArgument {
-    const cachedArgument = (this.unwrapResultFromCache(arg) as unknown) as (CachedArgument)
-
-    switch (cachedArgument.markupType) {
-      case MarkupType.Input:
-        return {
-          hierarchicalType: cachedArgument.hierarchicalType,
-          id: arg.id,
-          label: cachedArgument.label,
-          markupType: cachedArgument.markupType,
-          value: cachedArgument.value,
-        } as MarkupInput
-      case MarkupType.Select:
-        return {
-          hierarchicalType: cachedArgument.hierarchicalType,
-          id: arg.id,
-          label: cachedArgument.label,
-          markupType: cachedArgument.markupType,
-          options: cachedArgument.options,
-          outputType: cachedArgument.outputType,
-          scriptId: cachedArgument.scriptId,
-          selected: this.unwrapSelectedOption(cachedArgument.selected),
-        } as MarkupSelect
+      timelock: this.timelock,
+      retrieve: this.retrieve.map(source => source.getMarkup()),
+      aggregate: this.aggregate.getMarkup(),
+      tally: this.tally.getMarkup(),
     }
   }
-
-  public findOutputType(code: OperatorCode): OutputType | Array<OutputType> {
-    const entry: TypeSystemEntry = Object.entries(typeSystem).find(entry => {
-      return Object.values(entry[1]).find(x => x[0] === code)
-    }) as TypeSystemEntry
-    const operatorEntry: [OperatorCode, OutputType[]] = Object.values(entry[1]).find(
-      x => x[0] === code
-    ) as [OperatorCode, OutputType[]]
-    const outputType: Array<OutputType> = operatorEntry[1] as Array<OutputType>
-    return outputType.length > 1 ? outputType : outputType[0]
+  public updateSource(sourceIndex: number, args: any, ) {
+    this.retrieve[sourceIndex].update(args)
+  }
+  // TODO: Remove any
+  public update(id: number, value: any) {
+    ;(this.cache.get(id) as Source | Operator | Argument).update(value)
   }
 
-  public getMirOperatorInfo(
-    operator: MirOperator
-  ): { code: OperatorCode; args: Array<MirArgument> | null } {
-    return Array.isArray(operator)
-      ? {
-          code: operator[0] as OperatorCode,
-          args: operator.slice(1) as Array<MirArgument>,
-        }
-      : {
-          code: operator as OperatorCode,
-          args: null,
-        }
+  public addOperator(scriptId: number) {
+    (this.cache.get(scriptId) as Script).addOperator()
   }
 
-  public generateMarkupOptions(
-    operatorInfo: OperatorInfo,
-    _code: OperatorCode,
-    _args: Array<MirArgument> | null
-  ): Array<MarkupOption> {
-    const markupOptions: Array<MarkupOption> = Object.entries(typeSystem[operatorInfo.type]).map(
-      (x: TypeSystemValue) => {
-        return {
-          hierarchicalType: MarkupHierarchicalType.OperatorOption,
-          label: x[0],
-          markupType: MarkupType.Option,
-          // TODO: Add support for Pseudotypes
-          outputType: x[1][1].length > 1 ? x[1][1] : x[1][1][0],
-        }
-      }
-    )
-
-    return markupOptions
+  public addSource() {
+    this.retrieve.push(new Source(this.cache, { url: '', script: [OperatorCode.StringAsFloat], kind: 'HTTP_GET' }))
   }
 }
 
-// TODO: Call this function just at the beginning
-function generateFilterArgumentOptions(): Array<MarkupOption> {
+export class Source {
+  public cache: Cache
+  public kind: string
+  public url: string
+  public script: Script
+  public id: number
+
+  constructor(cache: Cache, source: MirSource) {
+    this.id = cache.insert(this).id
+    this.cache = cache
+    this.kind = source.kind
+    this.url = source.url
+    this.script = new Script(cache, source.script, OutputType.String)
+  }
+
+  public update(args: { kind: string; url: string }) {
+    const { kind = this.kind, url = this.url } = args
+    this.kind = kind
+    this.url = url
+  }
+
+  public getMir(): MirSource {
+    return {
+      kind: this.kind,
+      url: this.url,
+      script: this.script.getMir(),
+    } as MirSource
+  }
+
+  public getMarkup(): MarkupSource {
+    return {
+      kind: this.kind,
+      url: this.url,
+      script: this.script.getMarkup(),
+    }
+  }
+
+  public getOutputType(): OutputType {
+    return this.script.getOutputType()
+  }
+}
+
+export class Script {
+  public cache: Cache
+  public operators: Array<Operator>
+  public firstType: OutputType
+  public scriptId: number
+
+  constructor(cache: Cache, script: MirScript, firstType: OutputType = DEFAULT_SCRIPT_FIRST_TYPE) {
+    this.cache = cache
+    this.operators = []
+    this.firstType = firstType
+    this.scriptId = cache.insert(this).id
+    // TODO: Refactor
+    script.reduce((acc, item) => {
+      let op = new Operator(cache, this.scriptId, acc, item, this.onChildrenEvent())
+      this.operators.push(op)
+      return op.operatorInfo.outputType
+    }, firstType)
+  }
+
+  public getMir(): MirScript {
+    return this.operators.map(operator => operator.getMir())
+  }
+
+  // TODO: Refactor this function to be readable
+  public validateScript(index?: number) {
+    const removeInvalidOperators = (idx: number) => {
+      this.operators.splice(idx)
+    }
+
+    if (index && this.operators[index + 1]) {
+      if (!areValidConsecutiveOperators(this.operators, index)) {
+        removeInvalidOperators(index)
+      }
+    } else if (!index) {
+      index = index
+        ? index
+        : this.operators.reduce((acc, _operator: Operator, i: number) => {
+            return acc > 0 ? acc : areValidConsecutiveOperators(this.operators, i) ? -1 : i
+          }, -1)
+      if (index > 0) {
+        removeInvalidOperators(index)
+      }
+    }
+  }
+
+  public onChildrenEvent() {
+    return {
+      emit: (e: Event) => {
+        if (e.name === EventName.Update) {
+          this.validateScript(e.data.index)
+        }
+      },
+    }
+  }
+
+  public getMarkup(): MarkupScript {
+    const markup = this.operators.map(operator => {
+      return operator.getMarkup()
+    })
+
+    // this.cache.set(this.scriptId, markup.map(operator => operator.id))
+
+    return markup
+  }
+
+  public getOutputType(): OutputType {
+    const lastOperator = this.getLastOperator()
+    return lastOperator ? lastOperator.operatorInfo.outputType : this.firstType
+  }
+
+  public getLastOperator(): Operator | null {
+    return this.operators.length ? this.operators[this.operators.length - 1] : null
+  }
+
+  public push(operator: MirOperator) {
+    this.operators.push(
+      new Operator(
+        this.cache,
+        this.scriptId,
+        this.getOutputType(),
+        operator,
+        this.onChildrenEvent()
+      )
+    )
+  }
+
+  public addOperator() {
+    const lastOutputType = this.getOutputType()
+    const type: Type | null = fromOutputTypeToType(lastOutputType)
+
+    if (type) {
+      const operator: MirOperator = getDefaultMirOperatorByType(type)
+      this.operators.push(
+        new Operator(this.cache, this.scriptId, lastOutputType, operator, this.onChildrenEvent())
+      )
+    } else {
+      // TODO: search in operators the type for the regarding types:
+      // SubscriptOutput, ReducerOutput, FilterOutput, MatchOutput, Same, Inner
+      this.operators.push(
+        new Operator(this.cache, this.scriptId, lastOutputType, null, this.onChildrenEvent())
+      )
+    }
+  }
+}
+
+export class Operator {
+  public cache: Cache
+  public operatorInfo: OperatorInfo
+  public code: OperatorCode
+  public mirArguments: MirArgument[] | []
+  public arguments: Array<Argument>
+  public default: Boolean
+  public scriptId: number
+  public inputType: OutputType
+  public id: number
+  public eventEmitter: EventEmitter
+
+  constructor(
+    cache: Cache,
+    scriptId: number,
+    inputType: OutputType | null,
+    operator: MirOperator | null,
+    eventEmitter: EventEmitter
+  ) {
+    const { code, args } = getMirOperatorInfo(operator || DEFAULT_OPERATOR)
+    this.eventEmitter = eventEmitter
+    this.id = cache.insert(this).id
+    this.default = !operator
+    this.cache = cache
+    this.code = code
+    this.operatorInfo = operatorInfos[code]
+    this.mirArguments = args
+    this.inputType = inputType || DEFAULT_INPUT_TYPE
+    this.arguments = args.map(
+      (x, index: number) => new Argument(cache, this.operatorInfo.arguments[index], x)
+    )
+    this.scriptId = scriptId
+  }
+
+  public update(args: { label?: OperatorName; code?: OperatorCode }) {
+    if (args.label || args.code) {
+      const operatorCode: OperatorCode = args.code
+        ? args.code
+        : getOperatorCodeFromOperatorName(args.label as OperatorName)
+      const operatorInfo = operatorInfos[operatorCode]
+      const defaultOperatorArguments = operatorInfo.arguments.map((argument: ArgumentInfo) => {
+        return getDefaultMirArgumentByType(argument.type)
+      })
+
+      this.default = false
+      this.code = operatorCode
+      this.operatorInfo = operatorInfo
+      this.mirArguments = defaultOperatorArguments
+      this.arguments = defaultOperatorArguments.map(
+        (x, index: number) => new Argument(this.cache, this.operatorInfo.arguments[index], x)
+      )
+      this.eventEmitter.emit(EventName.Update)
+    } else {
+      throw Error('You have to provide argument to update Operator')
+    }
+  }
+
+  public getMir(): MirOperator {
+    return this.operatorInfo.arguments.length
+      ? ([this.code, ...this.arguments.map(argument => argument.getMir())] as MirOperator)
+      : this.code
+  }
+
+  public getMarkup(): MarkupOperator {
+    const args = this.arguments.map(argument => argument.getMarkup())
+    return {
+      hierarchicalType: MarkupHierarchicalType.Operator,
+      id: this.id,
+      label: this.operatorInfo.name,
+      markupType: MarkupType.Select,
+      options: this.default ? allMarkupOptions : markupOptions[this.inputType],
+      outputType: this.operatorInfo.outputType,
+      scriptId: this.scriptId,
+      selected: {
+        arguments: args,
+        hierarchicalType: MarkupHierarchicalType.SelectedOperatorOption,
+        label: this.operatorInfo.name,
+        markupType: MarkupType.Option,
+        outputType: this.operatorInfo.outputType,
+      },
+    } as MarkupSelect
+  }
+}
+
+export class Argument {
+  public cache: Cache
+  public argumentInfo: ArgumentInfo
+  public value: MirArgument | undefined
+  public argument: Argument | null
+  public id: number
+  public argumentType: MarkupArgumentType
+
+  constructor(cache: Cache, argumentInfo: ArgumentInfo, argument?: MirArgument) {
+    this.argumentType = getArgumentInfoType(argumentInfo)
+    this.id = cache.insert(this).id
+    this.argumentInfo = argumentInfo
+    this.cache = cache
+    this.value = argument
+    this.argument = Array.isArray(argument)
+      ? new Argument(
+          this.cache,
+          { name: 'by', optional: false, type: MirArgumentType.String },
+          argument[1]
+        )
+      : null
+  }
+
+  public getMir(): MirArgument {
+    if (this.argumentType === MarkupArgumentType.SelectFilter) {
+      return [
+        (this.value as [Filter, number | string | boolean])[0],
+        (this.argument as Argument).getMir(),
+      ] as MirArgument
+    } else {
+      return this.value as MirArgument
+    }
+  }
+
+  public update(args: { value: string | number | boolean | Filter }) {
+    if (this.argumentType === MarkupArgumentType.SelectFilter) {
+      ;(this.value as
+        | [Filter, number]
+        | [Filter, string]
+        | [Filter, boolean])[0] = args.value as Filter
+    } else {
+      this.value = args.value
+    }
+  }
+
+  public getMarkup(): MarkupArgument {
+    if (this.argumentType === MarkupArgumentType.Input) {
+      // TODO: Refactor this ugly code
+      return {
+        hierarchicalType: MarkupHierarchicalType.Argument,
+        id: this.id,
+        label: this.argumentInfo.name,
+        markupType: MarkupType.Input,
+        value: this.value as (string | number | boolean),
+      } as MarkupInput
+    } else if (this.argumentType === MarkupArgumentType.SelectFilter) {
+      const args = this.argument ? [this.argument.getMarkup()] : []
+      // TODO: Refactor this ugly code
+      return {
+        hierarchicalType: MarkupHierarchicalType.Argument,
+        id: this.id,
+        label: this.argumentInfo.name,
+        markupType: MarkupType.Select,
+        options: generateFilterArgumentOptions(),
+        outputType: OutputType.FilterOutput,
+        selected: {
+          arguments: args,
+          hierarchicalType: MarkupHierarchicalType.SelectedOperatorOption,
+          label: generateFilterArgumentOptions()[0].label,
+          outputType: generateFilterArgumentOptions()[0].outputType,
+          markupType: MarkupType.Option,
+        },
+      } as MarkupSelect
+      // } else if (argumentType === MarkupArgumentType.SelectReduce) {
+    } else {
+      // TODO: Refactor this ugly code
+      return {
+        hierarchicalType: MarkupHierarchicalType.Argument,
+        id: this.id,
+        label: this.argumentInfo.name,
+        markupType: MarkupType.Select,
+        options: generateReducerArgumentOptions(),
+        outputType: OutputType.ReducerOutput,
+        selected: {
+          arguments: [],
+          hierarchicalType: MarkupHierarchicalType.SelectedOperatorOption,
+          label: generateReducerArgumentOptions()[0].label,
+          outputType: generateReducerArgumentOptions()[0].outputType,
+          markupType: MarkupType.Option,
+        },
+      } as MarkupSelect
+    }
+  }
+}
+
+function areValidConsecutiveOperators(operators: Array<Operator>, idx: number) {
+  if (operators[idx + 1]) {
+    const outputType = operators[idx].operatorInfo.outputType
+    const label = operators[idx + 1].operatorInfo.name
+    const options = markupOptions[outputType]
+    return !options.find(operatorName => operatorName === label)
+  } else {
+    return true
+  }
+}
+
+function getArgumentInfoType(info: ArgumentInfo): MarkupArgumentType {
+  if (info.type === MirArgumentType.FilterFunction) {
+    return MarkupArgumentType.SelectFilter
+  } else if (info.type === MirArgumentType.ReducerFunction) {
+    return MarkupArgumentType.SelectReduce
+  } else {
+    return MarkupArgumentType.Input
+  }
+}
+
+export function generateFilterArgumentOptions(): Array<MarkupOption> {
   const markupOptions: Array<MarkupOption> = getEnumNames(Filter).map(name => {
     return {
       label: name,
       hierarchicalType: MarkupHierarchicalType.OperatorOption,
       markupType: MarkupType.Option,
       // TODO: Add support for pseudotypes
-      outputType: OutputType.Bytes,
+      outputType: OutputType.FilterOutput,
     }
   })
   return markupOptions
 }
 
-// TODO: Call this function just at the beginning
-function generateReducerArgumentOptions(): Array<MarkupOption> {
+export function generateReducerArgumentOptions(): Array<MarkupOption> {
   const markupOptions: Array<MarkupOption> = getEnumNames(Reducer).map(name => {
     return {
       label: name,
       hierarchicalType: MarkupHierarchicalType.OperatorOption,
       markupType: MarkupType.Option,
-      outputType: OutputType.Bytes,
+      outputType: OutputType.ReducerOutput,
     }
   })
   return markupOptions
+}
+
+function getMirOperatorInfo(
+  operator: MirOperator
+): { code: OperatorCode; args: Array<MirArgument> } {
+  return Array.isArray(operator)
+    ? {
+        code: operator[0] as OperatorCode,
+        args: operator.slice(1) as Array<MirArgument>,
+      }
+    : {
+        code: operator as OperatorCode,
+        args: [],
+      }
+}
+
+function getDefaultMirArgumentByType(type: MirArgumentType): MirArgument {
+  switch (type) {
+    case MirArgumentType.Boolean:
+      return true
+    case MirArgumentType.FilterFunction:
+      return [Filter.LessThan, 0]
+    case MirArgumentType.Float:
+      return 0.0
+    case MirArgumentType.Integer:
+      return 0
+    case MirArgumentType.ReducerFunction:
+      return Reducer.averageMean
+    case MirArgumentType.String:
+      return ''
+    case MirArgumentType.Subscript:
+      return ''
+  }
+}
+
+// TODO: Refactor to find the first operator instead of repeat code
+function getDefaultMirOperatorByType(type: Type): MirOperator {
+  switch (type) {
+    case Type.Array:
+      return OperatorCode.ArrayCount
+    case Type.Boolean:
+      return [OperatorCode.BooleanMatch, '', true]
+    case Type.Bytes:
+      return OperatorCode.BytesAsString
+    case Type.Float:
+      return OperatorCode.FloatAbsolute
+    case Type.Integer:
+      return OperatorCode.IntegerAbsolute
+    case Type.Map:
+      return OperatorCode.MapEntries
+    case Type.String:
+      return OperatorCode.StringAsBoolean
+  }
+}
+
+function isArrayType(type: OutputType) {
+  return (
+    type === OutputType.Array ||
+    type === OutputType.ArrayArray ||
+    type === OutputType.ArrayBoolean ||
+    type === OutputType.ArrayBytes ||
+    type === OutputType.ArrayFloat ||
+    type === OutputType.ArrayInteger ||
+    type === OutputType.ArrayMap ||
+    type === OutputType.ArrayString
+  )
+}
+
+function isBooleanType(type: OutputType) {
+  return type === OutputType.Boolean
+}
+
+function isBytesType(type: OutputType) {
+  return type === OutputType.Bytes
+}
+
+function isFloatType(type: OutputType) {
+  return type === OutputType.Float
+}
+
+function isIntegerType(type: OutputType) {
+  return type === OutputType.Integer
+}
+
+function isMapType(type: OutputType) {
+  return type === OutputType.Map
+}
+
+function isStringType(type: OutputType) {
+  return type === OutputType.String
+}
+
+function fromOutputTypeToType(type: OutputType): Type | null {
+  if (isArrayType(type)) {
+    return Type.Array
+  } else if (isBooleanType(type)) {
+    return Type.Boolean
+  } else if (isBytesType(type)) {
+    return Type.Bytes
+  } else if (isFloatType(type)) {
+    return Type.Float
+  } else if (isIntegerType(type)) {
+    return Type.Integer
+  } else if (isMapType(type)) {
+    return Type.Map
+  } else if (isStringType(type)) {
+    return Type.String
+  } else {
+    return null
+  }
 }
