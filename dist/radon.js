@@ -59,6 +59,9 @@ var Radon = /** @class */ (function () {
     Radon.prototype.updateSource = function (sourceIndex, args) {
         this.retrieve[sourceIndex].update(args);
     };
+    Radon.prototype.deleteSource = function (sourceIndex) {
+        this.retrieve.splice(sourceIndex, 1);
+    };
     // TODO: Remove any
     Radon.prototype.update = function (id, value) {
         ;

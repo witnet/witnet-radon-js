@@ -150,8 +150,8 @@
         "signature": "d0a9f547cbf8700504153eb8440c05710acfa82da742497740ff9e2939c3ffb8"
       },
       "../src/radon.ts": {
-        "version": "09c1167e960f3f2ec007000b4a6f0aad47670a8ff934a2fe489523e5c90f1518",
-        "signature": "f81c080a5d54d7770f5c717a51804492a316deca2347f046cab5228a56a6491d"
+        "version": "8ce95cd9de88c77e6dcd0d35ac3bce419ef7479ed7c9dfdcccc0fa77b88e254c",
+        "signature": "6ca57d70cc042ab2da4ee5d6f1f59bab35f52b5bd6551bffa83903b64cb13854"
       },
       "../src/index.ts": {
         "version": "3b570483a4546ac98c863fbfb5dbfae888a4288166964b4157607bde294a2f3e",
