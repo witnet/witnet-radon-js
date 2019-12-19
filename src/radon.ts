@@ -81,6 +81,11 @@ export class Radon {
   public updateSource(sourceIndex: number, args: any, ) {
     this.retrieve[sourceIndex].update(args)
   }
+
+  public deleteSource(sourceIndex: number) {
+    this.retrieve.splice(sourceIndex, 1)
+  }
+
   // TODO: Remove any
   public update(id: number, value: any) {
     ;(this.cache.get(id) as Source | Operator | Argument).update(value)
@@ -171,11 +176,10 @@ export class Script {
         removeInvalidOperators(index)
       }
     } else if (!index) {
-      index = index
-        ? index
-        : this.operators.reduce((acc, _operator: Operator, i: number) => {
-            return acc > 0 ? acc : areValidConsecutiveOperators(this.operators, i) ? -1 : i
-          }, -1)
+      index = this.operators.reduce((acc, _operator: Operator, i: number) => {
+        return acc > 0 ? acc : areValidConsecutiveOperators(this.operators, i) ? -1 : i
+      }, -1)
+      
       if (index > 0) {
         removeInvalidOperators(index)
       }
@@ -521,16 +525,7 @@ function getDefaultMirOperatorByType(type: Type): MirOperator {
 }
 
 function isArrayType(type: OutputType) {
-  return (
-    type === OutputType.Array ||
-    type === OutputType.ArrayArray ||
-    type === OutputType.ArrayBoolean ||
-    type === OutputType.ArrayBytes ||
-    type === OutputType.ArrayFloat ||
-    type === OutputType.ArrayInteger ||
-    type === OutputType.ArrayMap ||
-    type === OutputType.ArrayString
-  )
+  return type.startsWith('array')
 }
 
 function isBooleanType(type: OutputType) {

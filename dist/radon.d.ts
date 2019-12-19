@@ -23,6 +23,7 @@ export declare class Radon {
     getMir(): MirRequest;
     getMarkup(): MarkupRequest;
     updateSource(sourceIndex: number, args: any): void;
+    deleteSource(sourceIndex: number): void;
     update(id: number, value: any): void;
     addOperator(scriptId: number): void;
     addSource(): void;
