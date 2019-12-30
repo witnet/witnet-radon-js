@@ -1,6 +1,6 @@
 {
   "name": "witnet-radon-js",
-  "version": "0.0.14",
+  "version": "0.1.0",
   "description": "",
   "main": "dist/index.js",
   "files": [
@@ -14,7 +14,7 @@
   },
   "keywords": [],
   "author": "Witnet Foundation <info@witnet.foundation>",
-  "license": "MIT",
+  "license": "GPL-3.0",
   "devDependencies": {
     "@types/jest": "^24.0.20",
     "jest": "^24.9.0",

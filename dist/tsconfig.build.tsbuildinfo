@@ -398,6 +398,11 @@
       "../node_modules/typescript/lib/lib.es2019.symbol.d.ts",
       "../node_modules/typescript/lib/lib.es2020.string.d.ts",
       "../node_modules/typescript/lib/lib.es2020.symbol.wellknown.d.ts",
+      "../src/types.ts",
+      "../src/structures.ts",
+      "../src/utils.ts",
+      "../src/radon.ts",
+      "../src/index.ts",
       "../node_modules/@babel/types/lib/index.d.ts",
       "../node_modules/@types/babel__generator/index.d.ts",
       "../node_modules/@types/babel__traverse/index.d.ts",
@@ -413,12 +418,7 @@
       "../node_modules/@types/jest/index.d.ts",
       "../node_modules/@types/stack-utils/index.d.ts",
       "../node_modules/@types/yargs-parser/index.d.ts",
-      "../node_modules/@types/yargs/index.d.ts",
-      "../src/radon.ts",
-      "../src/index.ts",
-      "../src/types.ts",
-      "../src/structures.ts",
-      "../src/utils.ts"
+      "../node_modules/@types/yargs/index.d.ts"
     ]
   },
   "version": "3.6.4"
