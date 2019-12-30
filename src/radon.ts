@@ -78,7 +78,7 @@ export class Radon {
       tally: this.tally.getMarkup(),
     }
   }
-  public updateSource(sourceIndex: number, args: any, ) {
+  public updateSource(sourceIndex: number, args: any) {
     this.retrieve[sourceIndex].update(args)
   }
 
@@ -88,15 +88,17 @@ export class Radon {
 
   // TODO: Remove any
   public update(id: number, value: any) {
-    ;(this.cache.get(id) as Source | Operator | Argument).update(value)
+    ;(this.cache.get(id) as Operator | Argument).update(value)
   }
 
   public addOperator(scriptId: number) {
-    (this.cache.get(scriptId) as Script).addOperator()
+    ;(this.cache.get(scriptId) as Script).addOperator()
   }
 
   public addSource() {
-    this.retrieve.push(new Source(this.cache, { url: '', script: [OperatorCode.StringAsFloat], kind: 'HTTP_GET' }))
+    this.retrieve.push(
+      new Source(this.cache, { url: '', script: [OperatorCode.StringAsFloat], kind: 'HTTP_GET' })
+    )
   }
 }
 
@@ -179,7 +181,7 @@ export class Script {
       index = this.operators.reduce((acc, _operator: Operator, i: number) => {
         return acc > 0 ? acc : areValidConsecutiveOperators(this.operators, i) ? -1 : i
       }, -1)
-      
+
       if (index > 0) {
         removeInvalidOperators(index)
       }
@@ -280,27 +282,24 @@ export class Operator {
     this.scriptId = scriptId
   }
 
-  public update(args: { label?: OperatorName; code?: OperatorCode }) {
-    if (args.label || args.code) {
-      const operatorCode: OperatorCode = args.code
-        ? args.code
-        : getOperatorCodeFromOperatorName(args.label as OperatorName)
-      const operatorInfo = operatorInfos[operatorCode]
-      const defaultOperatorArguments = operatorInfo.arguments.map((argument: ArgumentInfo) => {
-        return getDefaultMirArgumentByType(argument.type)
-      })
+  public update(value: OperatorName | OperatorCode) {
+    // check if is updating by operatorCode or OperatorName
+    const operatorCode: OperatorCode = (parseInt(value as any)
+      ? value
+      : getOperatorCodeFromOperatorName(value as OperatorName)) as OperatorCode
+    const operatorInfo = operatorInfos[operatorCode]
+    const defaultOperatorArguments = operatorInfo.arguments.map((argument: ArgumentInfo) =>
+      getDefaultMirArgumentByType(argument.type)
+    )
 
-      this.default = false
-      this.code = operatorCode
-      this.operatorInfo = operatorInfo
-      this.mirArguments = defaultOperatorArguments
-      this.arguments = defaultOperatorArguments.map(
-        (x, index: number) => new Argument(this.cache, this.operatorInfo.arguments[index], x)
-      )
-      this.eventEmitter.emit(EventName.Update)
-    } else {
-      throw Error('You have to provide argument to update Operator')
-    }
+    this.default = false
+    this.code = operatorCode
+    this.operatorInfo = operatorInfo
+    this.mirArguments = defaultOperatorArguments
+    this.arguments = defaultOperatorArguments.map(
+      (x, index: number) => new Argument(this.cache, this.operatorInfo.arguments[index], x)
+    )
+    this.eventEmitter.emit(EventName.Update)
   }
 
   public getMir(): MirOperator {
@@ -364,14 +363,11 @@ export class Argument {
     }
   }
 
-  public update(args: { value: string | number | boolean | Filter }) {
+  public update(value: string | number | boolean | Filter) {
     if (this.argumentType === MarkupArgumentType.SelectFilter) {
-      ;(this.value as
-        | [Filter, number]
-        | [Filter, string]
-        | [Filter, boolean])[0] = args.value as Filter
+      ;(this.value as [Filter, number] | [Filter, string] | [Filter, boolean])[0] = value as Filter
     } else {
-      this.value = args.value
+      this.value = value
     }
   }
 
