@@ -68,6 +68,7 @@ var Radon = /** @class */ (function () {
         this.cache.get(id).update(value);
     };
     Radon.prototype.addOperator = function (scriptId) {
+        ;
         this.cache.get(scriptId).addOperator();
     };
     Radon.prototype.addSource = function () {
@@ -139,11 +140,9 @@ var Script = /** @class */ (function () {
             }
         }
         else if (!index) {
-            index = index
-                ? index
-                : this.operators.reduce(function (acc, _operator, i) {
-                    return acc > 0 ? acc : areValidConsecutiveOperators(_this.operators, i) ? -1 : i;
-                }, -1);
+            index = this.operators.reduce(function (acc, _operator, i) {
+                return acc > 0 ? acc : areValidConsecutiveOperators(_this.operators, i) ? -1 : i;
+            }, -1);
             if (index > 0) {
                 removeInvalidOperators(index);
             }
@@ -207,26 +206,22 @@ var Operator = /** @class */ (function () {
         this.arguments = args.map(function (x, index) { return new Argument(cache, _this.operatorInfo.arguments[index], x); });
         this.scriptId = scriptId;
     }
-    Operator.prototype.update = function (args) {
+    Operator.prototype.update = function (value) {
         var _this = this;
-        if (args.label || args.code) {
-            var operatorCode = args.code
-                ? args.code
-                : utils_1.getOperatorCodeFromOperatorName(args.label);
-            var operatorInfo = structures_1.operatorInfos[operatorCode];
-            var defaultOperatorArguments = operatorInfo.arguments.map(function (argument) {
-                return getDefaultMirArgumentByType(argument.type);
-            });
-            this.default = false;
-            this.code = operatorCode;
-            this.operatorInfo = operatorInfo;
-            this.mirArguments = defaultOperatorArguments;
-            this.arguments = defaultOperatorArguments.map(function (x, index) { return new Argument(_this.cache, _this.operatorInfo.arguments[index], x); });
-            this.eventEmitter.emit(EventName.Update);
-        }
-        else {
-            throw Error('You have to provide argument to update Operator');
-        }
+        // check if is updating by operatorCode or OperatorName
+        var operatorCode = (parseInt(value)
+            ? value
+            : utils_1.getOperatorCodeFromOperatorName(value));
+        var operatorInfo = structures_1.operatorInfos[operatorCode];
+        var defaultOperatorArguments = operatorInfo.arguments.map(function (argument) {
+            return getDefaultMirArgumentByType(argument.type);
+        });
+        this.default = false;
+        this.code = operatorCode;
+        this.operatorInfo = operatorInfo;
+        this.mirArguments = defaultOperatorArguments;
+        this.arguments = defaultOperatorArguments.map(function (x, index) { return new Argument(_this.cache, _this.operatorInfo.arguments[index], x); });
+        this.eventEmitter.emit(EventName.Update);
     };
     Operator.prototype.getMir = function () {
         return this.operatorInfo.arguments.length
@@ -277,13 +272,13 @@ var Argument = /** @class */ (function () {
             return this.value;
         }
     };
-    Argument.prototype.update = function (args) {
+    Argument.prototype.update = function (value) {
         if (this.argumentType === types_1.MarkupArgumentType.SelectFilter) {
             ;
-            this.value[0] = args.value;
+            this.value[0] = value;
         }
         else {
-            this.value = args.value;
+            this.value = value;
         }
     };
     Argument.prototype.getMarkup = function () {
@@ -435,14 +430,7 @@ function getDefaultMirOperatorByType(type) {
     }
 }
 function isArrayType(type) {
-    return (type === types_1.OutputType.Array ||
-        type === types_1.OutputType.ArrayArray ||
-        type === types_1.OutputType.ArrayBoolean ||
-        type === types_1.OutputType.ArrayBytes ||
-        type === types_1.OutputType.ArrayFloat ||
-        type === types_1.OutputType.ArrayInteger ||
-        type === types_1.OutputType.ArrayMap ||
-        type === types_1.OutputType.ArrayString);
+    return type.startsWith('array');
 }
 function isBooleanType(type) {
     return type === types_1.OutputType.Boolean;

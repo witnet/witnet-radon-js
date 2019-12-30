@@ -72,10 +72,7 @@ export declare class Operator {
     id: number;
     eventEmitter: EventEmitter;
     constructor(cache: Cache, scriptId: number, inputType: OutputType | null, operator: MirOperator | null, eventEmitter: EventEmitter);
-    update(args: {
-        label?: OperatorName;
-        code?: OperatorCode;
-    }): void;
+    update(value: OperatorName | OperatorCode): void;
     getMir(): MirOperator;
     getMarkup(): MarkupOperator;
 }
@@ -88,9 +85,7 @@ export declare class Argument {
     argumentType: MarkupArgumentType;
     constructor(cache: Cache, argumentInfo: ArgumentInfo, argument?: MirArgument);
     getMir(): MirArgument;
-    update(args: {
-        value: string | number | boolean | Filter;
-    }): void;
+    update(value: string | number | boolean | Filter): void;
     getMarkup(): MarkupArgument;
 }
 export declare function generateFilterArgumentOptions(): Array<MarkupOption>;
