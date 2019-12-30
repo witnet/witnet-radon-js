@@ -1,6 +1,6 @@
 # Witnet Radon Javascript Library
 
-**Allows transform requests to a format that facilitates create UI that manipulates requests**
+**Utility library that allows transform requests to a format that facilitates create UI that manipulates requests**
 
 ## Installation
 
@@ -8,42 +8,65 @@ You can simply add the `witnet-radon-js` package as a
 dependency with npm:
 
 ```console
-npm install witnet-radon-js 
-```
-
-or
-
-```console
-yarn add witnet-radon-js 
+yarn add witnet-radon-js
 ```
 
 
 ## Usage
 
-`witnet-radon-js` exports three utilities:
-- **mir2markup** function
-- **markup2mir** function
-- **Radon** class
+`witnet-radon-js` exports four classes:
+- **Radon**
+- **Source**
+- **Script**
+- **Operator**
 
-### mir2markup
-WIP
+### Radon
+It has the following methods:
 
-### markup2mir
-WIP
+- getMir(): MirRequest
+- getMarkup(): MarkupRequest
+- updateSource(sourceIndex: number, { kind: string, url: string }): void
+- deleteSource(index: number): void
+- update(id: number, value: any): void
+- addOperator(scriptId: number): void
+- addSource(scriptId: number): void
 
-### Radon class
-This class exposes the following methods:
+## Source
+It has the following methods:
 
-- getMir()
-- getMarkup()
-- addSource()
-- deleteSource(index: number)
-- updateSource(url: string, index: number)
-- updateMarkup(id: number, value: number | string | boolean)
-- pushOperator(scriptId: number)
+- update(args: { kind: string, url: string }): void
+- getMir(): MirSource
+- getMarkup(): MarkupSource
+- getOutputType(): OutputType
+
+## Script
+It has the following methods:
+
+- getMir(): MirScript
+- getMarkup(): MarkupScript
+- validateScript (): MarkupSource
+- onChildrenEvent(): { emit: Function }
+- getOutputType(): OutputType
+- getLastOperator(): Operator | null
+- push(operator: MirOperator): void
+- addOperator(): void
+
+## Operator
+It has the following methods:
+
+  - update(value: OperatorName | OperatorCode): void
+  - getMir(): MirOperator
+  - getMarkup: MarkupOperator
+
+## Argument
+It has the following methods:
+
+  - getMir(): MirArgument
+  - getMarkup(): MarkupOperator
+  - update(value: string | number | boolean | Filter): void
 
 ## License
 
-`witnet-radon-js` is published under the [MIT license][license].
+`witnet-radon-js` is published under the [GPL-3.0][license].
 
 [license]: https://github.com/witnet/witnet-radon-js/blob/master/LICENSE
