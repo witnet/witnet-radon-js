@@ -1,3 +1,3 @@
-test.skip('lifeguard', () => {
+test('lifeguard', () => {
   expect(true).toBe(true)
 })

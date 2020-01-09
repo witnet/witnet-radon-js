@@ -1,5 +1,5 @@
 import { Operator } from '../src/radon'
-import { OperatorCode, OutputType } from '../src/types'
+import { OperatorCode, OutputType, MirOperator } from '../src/types'
 import { Cache, markupOptions, allMarkupOptions, operatorInfos } from '../src/structures'
 
 describe('Operator methods', () => {
@@ -16,6 +16,7 @@ describe('Operator methods', () => {
         markupType: 'select',
         options: allMarkupOptions,
         outputType: 'integer',
+        scriptId: 0,
         selected: {
           arguments: [],
           hierarchicalType: 'selectedOperatorOption',
@@ -37,6 +38,7 @@ describe('Operator methods', () => {
       const expected = {
         hierarchicalType: 'operator',
         id: 1,
+        scriptId: 0,
         label: 'count',
         markupType: 'select',
         options: markupOptions.array,
@@ -62,6 +64,7 @@ describe('Operator methods', () => {
       const expected = {
         hierarchicalType: 'operator',
         id: 1,
+        scriptId: 0,
         label: 'negate',
         markupType: 'select',
         options: markupOptions.boolean,
@@ -87,6 +90,7 @@ describe('Operator methods', () => {
       const expected = {
         hierarchicalType: 'operator',
         id: 1,
+        scriptId: 0,
         label: 'asString',
         markupType: 'select',
         options: markupOptions.bytes,
@@ -112,6 +116,7 @@ describe('Operator methods', () => {
       const expected = {
         hierarchicalType: 'operator',
         id: 1,
+        scriptId: 0,
         label: 'absolute',
         markupType: 'select',
         options: markupOptions.integer,
@@ -137,6 +142,7 @@ describe('Operator methods', () => {
       const expected = {
         hierarchicalType: 'operator',
         id: 1,
+        scriptId: 0,
         label: 'absolute',
         markupType: 'select',
         options: markupOptions.float,
@@ -162,6 +168,7 @@ describe('Operator methods', () => {
       const expected = {
         hierarchicalType: 'operator',
         id: 1,
+        scriptId: 0,
         label: 'get_map',
         markupType: 'select',
         options: markupOptions.map,
@@ -187,6 +194,7 @@ describe('Operator methods', () => {
       const expected = {
         hierarchicalType: 'operator',
         id: 1,
+        scriptId: 0,
         label: 'asBoolean',
         markupType: 'select',
         options: markupOptions.string,
@@ -204,6 +212,95 @@ describe('Operator methods', () => {
     })
   })
 
+  describe('getMir', () => {
+    it('default operator', () => {
+      const cache = new Cache()
+      const operator = new Operator(cache, 0, OutputType.Array, null, { emit: () => {} })
+
+      const result = operator.getMir()
+      const expected = OperatorCode.ArrayCount
+
+      expect(result).toStrictEqual(expected)
+    })
+
+    it('array', () => {
+      const op = OperatorCode.ArrayCount
+      const cache = new Cache()
+      const operator = new Operator(cache, 0, OutputType.Array, op, { emit: () => {} })
+
+      const result = operator.getMir()
+      const expected = op
+
+      expect(result).toStrictEqual(expected)
+    })
+
+    it('boolean', () => {
+      const op = OperatorCode.BooleanNegate
+      const cache = new Cache()
+      const operator = new Operator(cache, 0, OutputType.Boolean, op, { emit: () => {} })
+
+      const result = operator.getMir()
+      const expected = op
+
+      expect(result).toStrictEqual(expected)
+    })
+
+    it('bytes', () => {
+      const op = OperatorCode.BytesAsString
+      const cache = new Cache()
+      const operator = new Operator(cache, 0, OutputType.Bytes, op, { emit: () => {} })
+
+      const result = operator.getMir()
+      const expected = op
+
+      expect(result).toStrictEqual(expected)
+    })
+
+    it('integer', () => {
+      const op = OperatorCode.IntegerAbsolute
+      const cache = new Cache()
+      const operator = new Operator(cache, 0, OutputType.Integer, op, { emit: () => {} })
+
+      const result = operator.getMir()
+      const expected = op
+
+      expect(result).toStrictEqual(expected)
+    })
+
+    it('float', () => {
+      const op = OperatorCode.FloatAbsolute
+      const cache = new Cache()
+      const operator = new Operator(cache, 0, OutputType.Float, op, { emit: () => {} })
+
+      const result = operator.getMir()
+      const expected = op
+
+      expect(result).toStrictEqual(expected)
+    })
+
+    it('map', () => {
+      const op = [OperatorCode.MapGetMap, '']
+      const cache = new Cache()
+      const operator = new Operator(cache, 0, OutputType.Map, op as MirOperator, { emit: () => {} })
+
+      const result = operator.getMir()
+      const expected = op
+
+      expect(result).toStrictEqual(expected)
+    })
+
+    it('string', () => {
+      const op = OperatorCode.StringAsBoolean
+      const cache = new Cache()
+      const operator = new Operator(cache, 0, OutputType.String, op, { emit: () => {} })
+
+      const result = operator.getMir()
+      const expected = op
+
+      expect(result).toStrictEqual(expected)
+    })
+  })
+
   describe('update', () => {
     it('default operator', () => {
       const cache = new Cache()
@@ -212,7 +309,7 @@ describe('Operator methods', () => {
       const newOperatorCode = OperatorCode.BooleanMatch
 
       expect(operator.default).toBe(true)
-      operator.update({ code: newOperatorCode })
+      operator.update(newOperatorCode)
       expect(operator.code).toBe(newOperatorCode)
       expect(operator.operatorInfo).toBe(operatorInfos[newOperatorCode])
       expect(operator.default).toBe(false)
@@ -227,7 +324,7 @@ describe('Operator methods', () => {
       const operator = new Operator(cache, 0, OutputType.Array, op, { emit: emitMock })
       const newOperatorCode = OperatorCode.BooleanMatch
 
-      operator.update({ code: newOperatorCode })
+      operator.update(newOperatorCode)
       expect(operator.code).toBe(newOperatorCode)
       expect(operator.operatorInfo).toBe(operatorInfos[newOperatorCode])
       expect(operator.inputType).toBe(OutputType.Array)
@@ -241,7 +338,7 @@ describe('Operator methods', () => {
       const operator = new Operator(cache, 0, OutputType.Boolean, op, { emit: emitMock })
       const newOperatorCode = OperatorCode.ArrayCount
 
-      operator.update({ code: newOperatorCode })
+      operator.update(newOperatorCode)
       expect(operator.code).toBe(newOperatorCode)
       expect(operator.operatorInfo).toBe(operatorInfos[newOperatorCode])
       expect(operator.inputType).toBe(OutputType.Boolean)
@@ -255,7 +352,7 @@ describe('Operator methods', () => {
       const operator = new Operator(cache, 0, OutputType.Bytes, op, { emit: emitMock })
       const newOperatorCode = OperatorCode.ArrayCount
 
-      operator.update({ code: newOperatorCode })
+      operator.update(newOperatorCode)
       expect(operator.code).toBe(newOperatorCode)
       expect(operator.operatorInfo).toBe(operatorInfos[newOperatorCode])
       expect(operator.inputType).toBe(OutputType.Bytes)
@@ -269,7 +366,7 @@ describe('Operator methods', () => {
       const operator = new Operator(cache, 0, OutputType.Integer, op, { emit: emitMock })
       const newOperatorCode = OperatorCode.FloatGraterThan
 
-      operator.update({ code: newOperatorCode })
+      operator.update(newOperatorCode)
       expect(operator.code).toBe(newOperatorCode)
       expect(operator.operatorInfo).toBe(operatorInfos[newOperatorCode])
       expect(operator.inputType).toBe(OutputType.Integer)
@@ -283,7 +380,7 @@ describe('Operator methods', () => {
       const operator = new Operator(cache, 0, OutputType.Float, op, { emit: emitMock })
       const newOperatorCode = OperatorCode.FloatCeiling
 
-      operator.update({ code: newOperatorCode })
+      operator.update(newOperatorCode)
       expect(operator.code).toBe(newOperatorCode)
       expect(operator.operatorInfo).toBe(operatorInfos[newOperatorCode])
       expect(operator.inputType).toBe(OutputType.Float)
@@ -297,7 +394,7 @@ describe('Operator methods', () => {
       const operator = new Operator(cache, 0, OutputType.Map, op, { emit: emitMock })
       const newOperatorCode = OperatorCode.MapGetString
 
-      operator.update({ code: newOperatorCode })
+      operator.update(newOperatorCode)
       expect(operator.code).toBe(newOperatorCode)
       expect(operator.operatorInfo).toBe(operatorInfos[newOperatorCode])
       expect(operator.inputType).toBe(OutputType.Map)
@@ -311,7 +408,7 @@ describe('Operator methods', () => {
       const operator = new Operator(cache, 0, OutputType.String, op, { emit: emitMock })
       const newOperatorCode = OperatorCode.StringAsInteger
 
-      operator.update({ code: newOperatorCode })
+      operator.update(newOperatorCode)
       expect(operator.code).toBe(newOperatorCode)
       expect(operator.operatorInfo).toBe(operatorInfos[newOperatorCode])
       expect(operator.inputType).toBe(OutputType.String)

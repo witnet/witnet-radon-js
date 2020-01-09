@@ -163,8 +163,67 @@ export class Script {
     }, firstType)
   }
 
+  public addOperator() {
+    const lastOutputType = this.getOutputType()
+    const type: Type | null = fromOutputTypeToType(lastOutputType)
+
+    if (type) {
+      const operator: MirOperator = getDefaultMirOperatorByType(type)
+      this.operators.push(
+        new Operator(this.cache, this.scriptId, lastOutputType, operator, this.onChildrenEvent())
+      )
+    } else {
+      // TODO: search in operators the type for the regarding types:
+      // SubscriptOutput, ReducerOutput, FilterOutput, MatchOutput, Same, Inner
+      this.operators.push(
+        new Operator(this.cache, this.scriptId, lastOutputType, null, this.onChildrenEvent())
+      )
+    }
+  }
+
   public getMir(): MirScript {
     return this.operators.map(operator => operator.getMir())
+  }
+
+  public onChildrenEvent() {
+    return {
+      emit: (e: Event) => {
+        if (e.name === EventName.Update) {
+          this.validateScript(e.data.index)
+        }
+      },
+    }
+  }
+
+  public getLastOperator(): Operator | null {
+    return this.operators.length ? this.operators[this.operators.length - 1] : null
+  }
+
+  public getMarkup(): MarkupScript {
+    const markup = this.operators.map(operator => {
+      return operator.getMarkup()
+    })
+
+    // this.cache.set(this.scriptId, markup.map(operator => operator.id))
+
+    return markup
+  }
+
+  public getOutputType(): OutputType {
+    const lastOperator = this.getLastOperator()
+    return lastOperator ? lastOperator.operatorInfo.outputType : this.firstType
+  }
+
+  public push(operator: MirOperator) {
+    this.operators.push(
+      new Operator(
+        this.cache,
+        this.scriptId,
+        this.getOutputType(),
+        operator,
+        this.onChildrenEvent()
+      )
+    )
   }
 
   // TODO: Refactor this function to be readable
@@ -187,78 +246,19 @@ export class Script {
       }
     }
   }
-
-  public onChildrenEvent() {
-    return {
-      emit: (e: Event) => {
-        if (e.name === EventName.Update) {
-          this.validateScript(e.data.index)
-        }
-      },
-    }
-  }
-
-  public getMarkup(): MarkupScript {
-    const markup = this.operators.map(operator => {
-      return operator.getMarkup()
-    })
-
-    // this.cache.set(this.scriptId, markup.map(operator => operator.id))
-
-    return markup
-  }
-
-  public getOutputType(): OutputType {
-    const lastOperator = this.getLastOperator()
-    return lastOperator ? lastOperator.operatorInfo.outputType : this.firstType
-  }
-
-  public getLastOperator(): Operator | null {
-    return this.operators.length ? this.operators[this.operators.length - 1] : null
-  }
-
-  public push(operator: MirOperator) {
-    this.operators.push(
-      new Operator(
-        this.cache,
-        this.scriptId,
-        this.getOutputType(),
-        operator,
-        this.onChildrenEvent()
-      )
-    )
-  }
-
-  public addOperator() {
-    const lastOutputType = this.getOutputType()
-    const type: Type | null = fromOutputTypeToType(lastOutputType)
-
-    if (type) {
-      const operator: MirOperator = getDefaultMirOperatorByType(type)
-      this.operators.push(
-        new Operator(this.cache, this.scriptId, lastOutputType, operator, this.onChildrenEvent())
-      )
-    } else {
-      // TODO: search in operators the type for the regarding types:
-      // SubscriptOutput, ReducerOutput, FilterOutput, MatchOutput, Same, Inner
-      this.operators.push(
-        new Operator(this.cache, this.scriptId, lastOutputType, null, this.onChildrenEvent())
-      )
-    }
-  }
 }
 
 export class Operator {
-  public cache: Cache
-  public operatorInfo: OperatorInfo
-  public code: OperatorCode
-  public mirArguments: MirArgument[] | []
   public arguments: Array<Argument>
+  public cache: Cache
+  public code: OperatorCode
   public default: Boolean
-  public scriptId: number
-  public inputType: OutputType
-  public id: number
   public eventEmitter: EventEmitter
+  public id: number
+  public inputType: OutputType
+  public mirArguments: MirArgument[] | []
+  public operatorInfo: OperatorInfo
+  public scriptId: number
 
   constructor(
     cache: Cache,
@@ -282,32 +282,6 @@ export class Operator {
     this.scriptId = scriptId
   }
 
-  public update(value: OperatorName | OperatorCode) {
-    // check if is updating by operatorCode or OperatorName
-    const operatorCode: OperatorCode = (parseInt(value as any)
-      ? value
-      : getOperatorCodeFromOperatorName(value as OperatorName)) as OperatorCode
-    const operatorInfo = operatorInfos[operatorCode]
-    const defaultOperatorArguments = operatorInfo.arguments.map((argument: ArgumentInfo) =>
-      getDefaultMirArgumentByType(argument.type)
-    )
-
-    this.default = false
-    this.code = operatorCode
-    this.operatorInfo = operatorInfo
-    this.mirArguments = defaultOperatorArguments
-    this.arguments = defaultOperatorArguments.map(
-      (x, index: number) => new Argument(this.cache, this.operatorInfo.arguments[index], x)
-    )
-    this.eventEmitter.emit(EventName.Update)
-  }
-
-  public getMir(): MirOperator {
-    return this.operatorInfo.arguments.length
-      ? ([this.code, ...this.arguments.map(argument => argument.getMir())] as MirOperator)
-      : this.code
-  }
-
   public getMarkup(): MarkupOperator {
     const args = this.arguments.map(argument => argument.getMarkup())
     return {
@@ -327,15 +301,41 @@ export class Operator {
       },
     } as MarkupSelect
   }
+
+  public getMir(): MirOperator {
+    return this.operatorInfo.arguments.length
+      ? ([this.code, ...this.arguments.map(argument => argument.getMir())] as MirOperator)
+      : this.code
+  }
+
+  public update(value: OperatorName | OperatorCode) {
+    // check if is updating by operatorCode or OperatorName
+    const operatorCode: OperatorCode = (parseInt(value as any)
+      ? value
+      : getOperatorCodeFromOperatorName(value as OperatorName)) as OperatorCode
+    const operatorInfo = operatorInfos[operatorCode]
+    const defaultOperatorArguments = operatorInfo.arguments.map((argument: ArgumentInfo) =>
+      getDefaultMirArgumentByType(argument.type)
+    )
+
+    this.default = false
+    this.code = operatorCode
+    this.operatorInfo = operatorInfo
+    this.mirArguments = defaultOperatorArguments
+    this.arguments = defaultOperatorArguments.map(
+      (x, index: number) => new Argument(this.cache, this.operatorInfo.arguments[index], x)
+    )
+    this.eventEmitter.emit(EventName.Update)
+  }
 }
 
 export class Argument {
-  public cache: Cache
-  public argumentInfo: ArgumentInfo
-  public value: MirArgument | undefined
   public argument: Argument | null
-  public id: number
+  public argumentInfo: ArgumentInfo
   public argumentType: MarkupArgumentType
+  public cache: Cache
+  public id: number
+  public value: MirArgument | undefined
 
   constructor(cache: Cache, argumentInfo: ArgumentInfo, argument?: MirArgument) {
     this.argumentType = getArgumentInfoType(argumentInfo)
@@ -350,25 +350,6 @@ export class Argument {
           argument[1]
         )
       : null
-  }
-
-  public getMir(): MirArgument {
-    if (this.argumentType === MarkupArgumentType.SelectFilter) {
-      return [
-        (this.value as [Filter, number | string | boolean])[0],
-        (this.argument as Argument).getMir(),
-      ] as MirArgument
-    } else {
-      return this.value as MirArgument
-    }
-  }
-
-  public update(value: string | number | boolean | Filter) {
-    if (this.argumentType === MarkupArgumentType.SelectFilter) {
-      ;(this.value as [Filter, number] | [Filter, string] | [Filter, boolean])[0] = value as Filter
-    } else {
-      this.value = value
-    }
   }
 
   public getMarkup(): MarkupArgument {
@@ -417,6 +398,25 @@ export class Argument {
           markupType: MarkupType.Option,
         },
       } as MarkupSelect
+    }
+  }
+
+  public getMir(): MirArgument {
+    if (this.argumentType === MarkupArgumentType.SelectFilter) {
+      return [
+        (this.value as [Filter, number | string | boolean])[0],
+        (this.argument as Argument).getMir(),
+      ] as MirArgument
+    } else {
+      return this.value as MirArgument
+    }
+  }
+
+  public update(value: string | number | boolean | Filter) {
+    if (this.argumentType === MarkupArgumentType.SelectFilter) {
+      ;(this.value as [Filter, number] | [Filter, string] | [Filter, boolean])[0] = value as Filter
+    } else {
+      this.value = value
     }
   }
 }
