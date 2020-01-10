@@ -963,7 +963,7 @@ export const primitiveMarkupOptions = {
     return generateOption(OperatorCode[x[1][0]], x[1][1])
   }),
   filterOutput: Object.entries(typeSystem.Array).map(x => {
-    return generateOption(OperatorCode[[1][0]], x[1][1])
+    return generateOption(OperatorCode[x[1][0]], x[1][1])
   }),
   float: Object.entries(typeSystem.Float).map(x => {
     return generateOption(OperatorCode[x[1][0]], x[1][1])
