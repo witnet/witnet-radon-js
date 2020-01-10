@@ -957,7 +957,7 @@ exports.primitiveMarkupOptions = {
         return generateOption(types_1.OperatorCode[x[1][0]], x[1][1]);
     }),
     filterOutput: Object.entries(exports.typeSystem.Array).map(function (x) {
-        return generateOption(types_1.OperatorCode[[1][0]], x[1][1]);
+        return generateOption(types_1.OperatorCode[x[1][0]], x[1][1]);
     }),
     float: Object.entries(exports.typeSystem.Float).map(function (x) {
         return generateOption(types_1.OperatorCode[x[1][0]], x[1][1]);

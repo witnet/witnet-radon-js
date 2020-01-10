@@ -125,8 +125,48 @@ var Script = /** @class */ (function () {
             return op.operatorInfo.outputType;
         }, firstType);
     }
+    Script.prototype.addOperator = function () {
+        var lastOutputType = this.getOutputType();
+        var type = fromOutputTypeToType(lastOutputType);
+        if (type) {
+            var operator = getDefaultMirOperatorByType(type);
+            this.operators.push(new Operator(this.cache, this.scriptId, lastOutputType, operator, this.onChildrenEvent()));
+        }
+        else {
+            // TODO: search in operators the type for the regarding types:
+            // SubscriptOutput, ReducerOutput, FilterOutput, MatchOutput, Same, Inner
+            this.operators.push(new Operator(this.cache, this.scriptId, lastOutputType, null, this.onChildrenEvent()));
+        }
+    };
     Script.prototype.getMir = function () {
         return this.operators.map(function (operator) { return operator.getMir(); });
+    };
+    Script.prototype.onChildrenEvent = function () {
+        var _this = this;
+        return {
+            emit: function (e) {
+                if (e.name === EventName.Update) {
+                    _this.validateScript(e.data.index);
+                }
+            },
+        };
+    };
+    Script.prototype.getLastOperator = function () {
+        return this.operators.length ? this.operators[this.operators.length - 1] : null;
+    };
+    Script.prototype.getMarkup = function () {
+        var markup = this.operators.map(function (operator) {
+            return operator.getMarkup();
+        });
+        // this.cache.set(this.scriptId, markup.map(operator => operator.id))
+        return markup;
+    };
+    Script.prototype.getOutputType = function () {
+        var lastOperator = this.getLastOperator();
+        return lastOperator ? lastOperator.operatorInfo.outputType : this.firstType;
+    };
+    Script.prototype.push = function (operator) {
+        this.operators.push(new Operator(this.cache, this.scriptId, this.getOutputType(), operator, this.onChildrenEvent()));
     };
     // TODO: Refactor this function to be readable
     Script.prototype.validateScript = function (index) {
@@ -148,46 +188,6 @@ var Script = /** @class */ (function () {
             }
         }
     };
-    Script.prototype.onChildrenEvent = function () {
-        var _this = this;
-        return {
-            emit: function (e) {
-                if (e.name === EventName.Update) {
-                    _this.validateScript(e.data.index);
-                }
-            },
-        };
-    };
-    Script.prototype.getMarkup = function () {
-        var markup = this.operators.map(function (operator) {
-            return operator.getMarkup();
-        });
-        // this.cache.set(this.scriptId, markup.map(operator => operator.id))
-        return markup;
-    };
-    Script.prototype.getOutputType = function () {
-        var lastOperator = this.getLastOperator();
-        return lastOperator ? lastOperator.operatorInfo.outputType : this.firstType;
-    };
-    Script.prototype.getLastOperator = function () {
-        return this.operators.length ? this.operators[this.operators.length - 1] : null;
-    };
-    Script.prototype.push = function (operator) {
-        this.operators.push(new Operator(this.cache, this.scriptId, this.getOutputType(), operator, this.onChildrenEvent()));
-    };
-    Script.prototype.addOperator = function () {
-        var lastOutputType = this.getOutputType();
-        var type = fromOutputTypeToType(lastOutputType);
-        if (type) {
-            var operator = getDefaultMirOperatorByType(type);
-            this.operators.push(new Operator(this.cache, this.scriptId, lastOutputType, operator, this.onChildrenEvent()));
-        }
-        else {
-            // TODO: search in operators the type for the regarding types:
-            // SubscriptOutput, ReducerOutput, FilterOutput, MatchOutput, Same, Inner
-            this.operators.push(new Operator(this.cache, this.scriptId, lastOutputType, null, this.onChildrenEvent()));
-        }
-    };
     return Script;
 }());
 exports.Script = Script;
@@ -206,28 +206,6 @@ var Operator = /** @class */ (function () {
         this.arguments = args.map(function (x, index) { return new Argument(cache, _this.operatorInfo.arguments[index], x); });
         this.scriptId = scriptId;
     }
-    Operator.prototype.update = function (value) {
-        var _this = this;
-        // check if is updating by operatorCode or OperatorName
-        var operatorCode = (parseInt(value)
-            ? value
-            : utils_1.getOperatorCodeFromOperatorName(value));
-        var operatorInfo = structures_1.operatorInfos[operatorCode];
-        var defaultOperatorArguments = operatorInfo.arguments.map(function (argument) {
-            return getDefaultMirArgumentByType(argument.type);
-        });
-        this.default = false;
-        this.code = operatorCode;
-        this.operatorInfo = operatorInfo;
-        this.mirArguments = defaultOperatorArguments;
-        this.arguments = defaultOperatorArguments.map(function (x, index) { return new Argument(_this.cache, _this.operatorInfo.arguments[index], x); });
-        this.eventEmitter.emit(EventName.Update);
-    };
-    Operator.prototype.getMir = function () {
-        return this.operatorInfo.arguments.length
-            ? __spread([this.code], this.arguments.map(function (argument) { return argument.getMir(); }))
-            : this.code;
-    };
     Operator.prototype.getMarkup = function () {
         var args = this.arguments.map(function (argument) { return argument.getMarkup(); });
         return {
@@ -247,6 +225,28 @@ var Operator = /** @class */ (function () {
             },
         };
     };
+    Operator.prototype.getMir = function () {
+        return this.operatorInfo.arguments.length
+            ? __spread([this.code], this.arguments.map(function (argument) { return argument.getMir(); }))
+            : this.code;
+    };
+    Operator.prototype.update = function (value) {
+        var _this = this;
+        // check if is updating by operatorCode or OperatorName
+        var operatorCode = (parseInt(value)
+            ? value
+            : utils_1.getOperatorCodeFromOperatorName(value));
+        var operatorInfo = structures_1.operatorInfos[operatorCode];
+        var defaultOperatorArguments = operatorInfo.arguments.map(function (argument) {
+            return getDefaultMirArgumentByType(argument.type);
+        });
+        this.default = false;
+        this.code = operatorCode;
+        this.operatorInfo = operatorInfo;
+        this.mirArguments = defaultOperatorArguments;
+        this.arguments = defaultOperatorArguments.map(function (x, index) { return new Argument(_this.cache, _this.operatorInfo.arguments[index], x); });
+        this.eventEmitter.emit(EventName.Update);
+    };
     return Operator;
 }());
 exports.Operator = Operator;
@@ -261,26 +261,6 @@ var Argument = /** @class */ (function () {
             ? new Argument(this.cache, { name: 'by', optional: false, type: types_1.MirArgumentType.String }, argument[1])
             : null;
     }
-    Argument.prototype.getMir = function () {
-        if (this.argumentType === types_1.MarkupArgumentType.SelectFilter) {
-            return [
-                this.value[0],
-                this.argument.getMir(),
-            ];
-        }
-        else {
-            return this.value;
-        }
-    };
-    Argument.prototype.update = function (value) {
-        if (this.argumentType === types_1.MarkupArgumentType.SelectFilter) {
-            ;
-            this.value[0] = value;
-        }
-        else {
-            this.value = value;
-        }
-    };
     Argument.prototype.getMarkup = function () {
         if (this.argumentType === types_1.MarkupArgumentType.Input) {
             // TODO: Refactor this ugly code
@@ -329,6 +309,26 @@ var Argument = /** @class */ (function () {
                     markupType: types_1.MarkupType.Option,
                 },
             };
+        }
+    };
+    Argument.prototype.getMir = function () {
+        if (this.argumentType === types_1.MarkupArgumentType.SelectFilter) {
+            return [
+                this.value[0],
+                this.argument.getMir(),
+            ];
+        }
+        else {
+            return this.value;
+        }
+    };
+    Argument.prototype.update = function (value) {
+        if (this.argumentType === types_1.MarkupArgumentType.SelectFilter) {
+            ;
+            this.value[0] = value;
+        }
+        else {
+            this.value = value;
         }
     };
     return Argument;

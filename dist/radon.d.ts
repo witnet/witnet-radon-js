@@ -49,44 +49,44 @@ export declare class Script {
     firstType: OutputType;
     scriptId: number;
     constructor(cache: Cache, script: MirScript, firstType?: OutputType);
+    addOperator(): void;
     getMir(): MirScript;
-    validateScript(index?: number): void;
     onChildrenEvent(): {
         emit: (e: Event) => void;
     };
+    getLastOperator(): Operator | null;
     getMarkup(): MarkupScript;
     getOutputType(): OutputType;
-    getLastOperator(): Operator | null;
     push(operator: MirOperator): void;
-    addOperator(): void;
+    validateScript(index?: number): void;
 }
 export declare class Operator {
-    cache: Cache;
-    operatorInfo: OperatorInfo;
-    code: OperatorCode;
-    mirArguments: MirArgument[] | [];
     arguments: Array<Argument>;
+    cache: Cache;
+    code: OperatorCode;
     default: Boolean;
-    scriptId: number;
-    inputType: OutputType;
-    id: number;
     eventEmitter: EventEmitter;
+    id: number;
+    inputType: OutputType;
+    mirArguments: MirArgument[] | [];
+    operatorInfo: OperatorInfo;
+    scriptId: number;
     constructor(cache: Cache, scriptId: number, inputType: OutputType | null, operator: MirOperator | null, eventEmitter: EventEmitter);
-    update(value: OperatorName | OperatorCode): void;
-    getMir(): MirOperator;
     getMarkup(): MarkupOperator;
+    getMir(): MirOperator;
+    update(value: OperatorName | OperatorCode): void;
 }
 export declare class Argument {
-    cache: Cache;
-    argumentInfo: ArgumentInfo;
-    value: MirArgument | undefined;
     argument: Argument | null;
-    id: number;
+    argumentInfo: ArgumentInfo;
     argumentType: MarkupArgumentType;
+    cache: Cache;
+    id: number;
+    value: MirArgument | undefined;
     constructor(cache: Cache, argumentInfo: ArgumentInfo, argument?: MirArgument);
+    getMarkup(): MarkupArgument;
     getMir(): MirArgument;
     update(value: string | number | boolean | Filter): void;
-    getMarkup(): MarkupArgument;
 }
 export declare function generateFilterArgumentOptions(): Array<MarkupOption>;
 export declare function generateReducerArgumentOptions(): Array<MarkupOption>;
