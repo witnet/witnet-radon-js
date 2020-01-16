@@ -1,6 +1,24 @@
-import { Source, Script, Operator, Argument } from './radon'
+import {
+  Source,
+  Script,
+  Operator,
+  Argument,
+  AggregationTallyOperatorFilter,
+  AggregationTallyOperatorReducer,
+  AggregationTallyFilterArgument,
+  AggregationTallyScript,
+} from './radon'
 
-export type CacheItem = Source | Script | Operator | Argument | Array<number>
+export type CacheItem =
+  | Source
+  | Script
+  | Operator
+  | AggregationTallyOperatorFilter
+  | AggregationTallyOperatorReducer
+  | Argument
+  | AggregationTallyFilterArgument
+  | Array<number>
+  | AggregationTallyScript
 export type CacheRef = { id: number }
 export enum CacheItemType {
   Array,
@@ -48,6 +66,7 @@ export enum Filter {
   deviationStandard = 0x05,
   top = 0x06,
   bottom = 0x07,
+  mode = 0x08,
   lessOrEqualThan = 0x80,
   greaterOrEqualThan = 0x81,
   notEquals = 0x82,
@@ -141,8 +160,8 @@ export type MarkupScript = Array<MarkupOperator>
 export type MarkupRequest = {
   timelock: number
   retrieve: Array<MarkupSource>
-  aggregate: MarkupScript
-  tally: MarkupScript
+  aggregate: MarkupAggregationTallyScript
+  tally: MarkupAggregationTallyScript
 }
 
 export type Markup = {
@@ -261,12 +280,42 @@ export type MirArgument =
   | [Filter, boolean]
   | Reducer
 
+export type MirAggregationTallyFilterOperator =
+  | AggregationTallyFilter
+  | [AggregationTallyFilter, number]
+  | [AggregationTallyFilter, string]
+  | [AggregationTallyFilter, boolean]
+
 export type MirOperator =
   | OperatorCode
   | [OperatorCode, MirArgument]
   | [OperatorCode, MirArgument, MirArgument]
 
+export enum AggregationTallyFilter {
+  deviationAbsolute = 0x03,
+  deviationRelative = 0x04,
+  deviationStandard = 0x05,
+  mode = 0x08,
+}
+
+export enum AggregationTallyReducer {
+  mode = 0x02,
+  averageMean = 0x03,
+  averageMeanWeighted = 0x04,
+  averageMedian = 0x05,
+  averageMedianWeighted = 0x06,
+}
+
 export type MirScript = Array<MirOperator>
+export type MirAggregationTallyScript = {
+  filters: Array<MirAggregationTallyFilterOperator>
+  reducer: AggregationTallyReducer
+}
+
+export type MarkupAggregationTallyScript = {
+  filters: Array<MarkupSelect>
+  reducer: MarkupSelect
+}
 
 export type MirSource = {
   kind: string
@@ -277,8 +326,8 @@ export type MirSource = {
 export type MirRequest = {
   timelock: number
   retrieve: Array<MirSource>
-  aggregate: MirScript
-  tally: MirScript
+  aggregate: MirAggregationTallyScript
+  tally: MirAggregationTallyScript
 }
 
 export type Mir = {

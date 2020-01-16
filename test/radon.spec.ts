@@ -1,5 +1,10 @@
 import { Radon, Operator } from '../src/radon'
-import { MirRequest, OperatorCode } from '../src/types'
+import {
+  MirRequest,
+  OperatorCode,
+  AggregationTallyReducer,
+  AggregationTallyFilter,
+} from '../src/types'
 import { markupOptions } from '../src/structures'
 
 describe('Radon', () => {
@@ -26,8 +31,14 @@ describe('Radon', () => {
           ],
         },
       ],
-      aggregate: [OperatorCode.ArrayCount, [OperatorCode.IntegerSum, 2]],
-      tally: [],
+      aggregate: {
+        filters: [AggregationTallyFilter.mode, [AggregationTallyFilter.deviationAbsolute, 3]],
+        reducer: AggregationTallyReducer.mode,
+      },
+      tally: {
+        filters: [AggregationTallyFilter.mode, [AggregationTallyFilter.deviationAbsolute, 3]],
+        reducer: AggregationTallyReducer.mode,
+      },
     }
     const radon = new Radon(mir)
     radon.addOperator(2)
@@ -58,8 +69,14 @@ describe('Radon', () => {
           ],
         },
       ],
-      aggregate: [OperatorCode.ArrayCount, [OperatorCode.IntegerSum, 2]],
-      tally: [],
+      aggregate: {
+        filters: [AggregationTallyFilter.mode, [AggregationTallyFilter.deviationAbsolute, 3]],
+        reducer: AggregationTallyReducer.mode,
+      },
+      tally: {
+        filters: [AggregationTallyFilter.mode, [AggregationTallyFilter.deviationAbsolute, 3]],
+        reducer: AggregationTallyReducer.mode,
+      },
     }
     const radon = new Radon(mir)
     radon.addSource()
@@ -89,8 +106,14 @@ describe('Radon', () => {
           ],
         },
       ],
-      aggregate: [OperatorCode.ArrayCount, [OperatorCode.IntegerSum, 2]],
-      tally: [],
+      aggregate: {
+        filters: [AggregationTallyFilter.mode, [AggregationTallyFilter.deviationAbsolute, 3]],
+        reducer: AggregationTallyReducer.mode,
+      },
+      tally: {
+        filters: [AggregationTallyFilter.mode, [AggregationTallyFilter.deviationAbsolute, 3]],
+        reducer: AggregationTallyReducer.mode,
+      },
     }
     const radon = new Radon(mir)
     radon.deleteSource(0)
@@ -121,8 +144,14 @@ describe('Radon', () => {
           ],
         },
       ],
-      aggregate: [OperatorCode.ArrayCount, [OperatorCode.IntegerSum, 2]],
-      tally: [],
+      aggregate: {
+        filters: [AggregationTallyFilter.mode, [AggregationTallyFilter.deviationAbsolute, 3]],
+        reducer: AggregationTallyReducer.mode,
+      },
+      tally: {
+        filters: [AggregationTallyFilter.mode, [AggregationTallyFilter.deviationAbsolute, 3]],
+        reducer: AggregationTallyReducer.mode,
+      },
     }
 
     const radon = new Radon(mirRequest)
@@ -269,50 +298,290 @@ describe('Radon', () => {
           ],
         },
       ],
-      aggregate: [
-        {
+      aggregate: {
+        filters: [
+          {
+            hierarchicalType: 'operator',
+            id: 16,
+            label: 'mode',
+            markupType: 'select',
+            options: [
+              {
+                hierarchicalType: 'operatorOption',
+                label: 'deviationAbsolute',
+                markupType: 'option',
+                outputType: 'filterOutput',
+              },
+              {
+                hierarchicalType: 'operatorOption',
+                label: 'deviationRelative',
+                markupType: 'option',
+                outputType: 'filterOutput',
+              },
+              {
+                hierarchicalType: 'operatorOption',
+                label: 'deviationStandard',
+                markupType: 'option',
+                outputType: 'filterOutput',
+              },
+              {
+                hierarchicalType: 'operatorOption',
+                label: 'mode',
+                markupType: 'option',
+                outputType: 'filterOutput',
+              },
+            ],
+            outputType: 'filterOutput',
+            scriptId: 15,
+            selected: {
+              arguments: [],
+              hierarchicalType: 'selectedOperatorOption',
+              label: 'mode',
+              markupType: 'option',
+              outputType: 'filterOutput',
+            },
+          },
+          {
+            hierarchicalType: 'operator',
+            id: 17,
+            label: 'deviationAbsolute',
+            markupType: 'select',
+            options: [
+              {
+                hierarchicalType: 'operatorOption',
+                label: 'deviationAbsolute',
+                markupType: 'option',
+                outputType: 'filterOutput',
+              },
+              {
+                hierarchicalType: 'operatorOption',
+                label: 'deviationRelative',
+                markupType: 'option',
+                outputType: 'filterOutput',
+              },
+              {
+                hierarchicalType: 'operatorOption',
+                label: 'deviationStandard',
+                markupType: 'option',
+                outputType: 'filterOutput',
+              },
+              {
+                hierarchicalType: 'operatorOption',
+                label: 'mode',
+                markupType: 'option',
+                outputType: 'filterOutput',
+              },
+            ],
+            outputType: 'filterOutput',
+            scriptId: 15,
+            selected: {
+              arguments: [
+                {
+                  hierarchicalType: 'argument',
+                  id: 18,
+                  label: 'by',
+                  markupType: 'input',
+                  value: 3,
+                },
+              ],
+              hierarchicalType: 'selectedOperatorOption',
+              label: 'deviationAbsolute',
+              markupType: 'option',
+              outputType: 'filterOutput',
+            },
+          },
+        ],
+        reducer: {
           hierarchicalType: 'operator',
-          id: 16,
-          label: 'count',
+          id: 19,
+          label: 'mode',
           markupType: 'select',
-          options: markupOptions.array,
-          outputType: 'integer',
+          options: [
+            {
+              hierarchicalType: 'operatorOption',
+              label: 'mode',
+              markupType: 'option',
+              outputType: 'filterOutput',
+            },
+            {
+              hierarchicalType: 'operatorOption',
+              label: 'averageMean',
+              markupType: 'option',
+              outputType: 'filterOutput',
+            },
+            {
+              hierarchicalType: 'operatorOption',
+              label: 'averageMeanWeighted',
+              markupType: 'option',
+              outputType: 'filterOutput',
+            },
+            {
+              hierarchicalType: 'operatorOption',
+              label: 'averageMedian',
+              markupType: 'option',
+              outputType: 'filterOutput',
+            },
+            {
+              hierarchicalType: 'operatorOption',
+              label: 'averageMedianWeighted',
+              markupType: 'option',
+              outputType: 'filterOutput',
+            },
+          ],
+          outputType: 'filterOutput',
           scriptId: 15,
           selected: {
             arguments: [],
             hierarchicalType: 'selectedOperatorOption',
-            label: 'count',
+            label: 'mode',
             markupType: 'option',
-            outputType: 'integer',
+            outputType: 'reducerOutput',
           },
         },
-        {
-          hierarchicalType: 'operator',
-          id: 17,
-          scriptId: 15,
-          label: 'sum',
-          markupType: 'select',
-          options: markupOptions.integer,
-          outputType: 'integer',
-          selected: {
-            arguments: [
+      },
+      tally: {
+        filters: [
+          {
+            hierarchicalType: 'operator',
+            id: 21,
+            label: 'mode',
+            markupType: 'select',
+            options: [
               {
-                hierarchicalType: 'argument',
-                id: 18,
-                label: 'addend',
-                markupType: 'input',
-                value: 2,
+                hierarchicalType: 'operatorOption',
+                label: 'deviationAbsolute',
+                markupType: 'option',
+                outputType: 'filterOutput',
+              },
+              {
+                hierarchicalType: 'operatorOption',
+                label: 'deviationRelative',
+                markupType: 'option',
+                outputType: 'filterOutput',
+              },
+              {
+                hierarchicalType: 'operatorOption',
+                label: 'deviationStandard',
+                markupType: 'option',
+                outputType: 'filterOutput',
+              },
+              {
+                hierarchicalType: 'operatorOption',
+                label: 'mode',
+                markupType: 'option',
+                outputType: 'filterOutput',
               },
             ],
+            outputType: 'filterOutput',
+            scriptId: 20,
+            selected: {
+              arguments: [],
+              hierarchicalType: 'selectedOperatorOption',
+              label: 'mode',
+              markupType: 'option',
+              outputType: 'filterOutput',
+            },
+          },
+          {
+            hierarchicalType: 'operator',
+            id: 22,
+            label: 'deviationAbsolute',
+            markupType: 'select',
+            options: [
+              {
+                hierarchicalType: 'operatorOption',
+                label: 'deviationAbsolute',
+                markupType: 'option',
+                outputType: 'filterOutput',
+              },
+              {
+                hierarchicalType: 'operatorOption',
+                label: 'deviationRelative',
+                markupType: 'option',
+                outputType: 'filterOutput',
+              },
+              {
+                hierarchicalType: 'operatorOption',
+                label: 'deviationStandard',
+                markupType: 'option',
+                outputType: 'filterOutput',
+              },
+              {
+                hierarchicalType: 'operatorOption',
+                label: 'mode',
+                markupType: 'option',
+                outputType: 'filterOutput',
+              },
+            ],
+            outputType: 'filterOutput',
+            scriptId: 20,
+            selected: {
+              arguments: [
+                {
+                  hierarchicalType: 'argument',
+                  id: 23,
+                  label: 'by',
+                  markupType: 'input',
+                  value: 3,
+                },
+              ],
+              hierarchicalType: 'selectedOperatorOption',
+              label: 'deviationAbsolute',
+              markupType: 'option',
+              outputType: 'filterOutput',
+            },
+          },
+        ],
+        reducer: {
+          hierarchicalType: 'operator',
+          id: 24,
+          label: 'mode',
+          markupType: 'select',
+          options: [
+            {
+              hierarchicalType: 'operatorOption',
+              label: 'mode',
+              markupType: 'option',
+              outputType: 'filterOutput',
+            },
+            {
+              hierarchicalType: 'operatorOption',
+              label: 'averageMean',
+              markupType: 'option',
+              outputType: 'filterOutput',
+            },
+            {
+              hierarchicalType: 'operatorOption',
+              label: 'averageMeanWeighted',
+              markupType: 'option',
+              outputType: 'filterOutput',
+            },
+            {
+              hierarchicalType: 'operatorOption',
+              label: 'averageMedian',
+              markupType: 'option',
+              outputType: 'filterOutput',
+            },
+            {
+              hierarchicalType: 'operatorOption',
+              label: 'averageMedianWeighted',
+              markupType: 'option',
+              outputType: 'filterOutput',
+            },
+          ],
+          outputType: 'filterOutput',
+          scriptId: 20,
+          selected: {
+            arguments: [],
             hierarchicalType: 'selectedOperatorOption',
-            label: 'sum',
+            label: 'mode',
             markupType: 'option',
-            outputType: 'integer',
+            outputType: 'reducerOutput',
           },
         },
-      ],
-      tally: [],
+      },
     }
+
     expect(result).toStrictEqual(expected)
   })
 
@@ -339,8 +608,14 @@ describe('Radon', () => {
           ],
         },
       ],
-      aggregate: [OperatorCode.ArrayCount, [OperatorCode.IntegerSum, 2]],
-      tally: [],
+      aggregate: {
+        filters: [AggregationTallyFilter.mode, [AggregationTallyFilter.deviationAbsolute, 3]],
+        reducer: AggregationTallyReducer.mode,
+      },
+      tally: {
+        filters: [AggregationTallyFilter.mode, [AggregationTallyFilter.deviationAbsolute, 3]],
+        reducer: AggregationTallyReducer.mode,
+      },
     }
 
     const radon = new Radon(mirRequest)
@@ -373,8 +648,14 @@ describe('Radon', () => {
             ],
           },
         ],
-        aggregate: [OperatorCode.ArrayCount, [OperatorCode.IntegerSum, 2]],
-        tally: [],
+        aggregate: {
+          filters: [AggregationTallyFilter.mode, [AggregationTallyFilter.deviationAbsolute, 3]],
+          reducer: AggregationTallyReducer.mode,
+        },
+        tally: {
+          filters: [AggregationTallyFilter.mode, [AggregationTallyFilter.deviationAbsolute, 3]],
+          reducer: AggregationTallyReducer.mode,
+        },
       }
 
       const radon = new Radon(mirRequest)
@@ -405,8 +686,14 @@ describe('Radon', () => {
             ],
           },
         ],
-        aggregate: [OperatorCode.ArrayCount, [OperatorCode.IntegerSum, 2]],
-        tally: [],
+        aggregate: {
+          filters: [AggregationTallyFilter.mode, [AggregationTallyFilter.deviationAbsolute, 3]],
+          reducer: AggregationTallyReducer.mode,
+        },
+        tally: {
+          filters: [AggregationTallyFilter.mode, [AggregationTallyFilter.deviationAbsolute, 3]],
+          reducer: AggregationTallyReducer.mode,
+        },
       }
 
       const radon = new Radon(mirRequest)
@@ -440,8 +727,14 @@ describe('Radon', () => {
             ],
           },
         ],
-        aggregate: [OperatorCode.ArrayCount, [OperatorCode.IntegerSum, 2]],
-        tally: [],
+        aggregate: {
+          filters: [AggregationTallyFilter.mode, [AggregationTallyFilter.deviationAbsolute, 3]],
+          reducer: AggregationTallyReducer.mode,
+        },
+        tally: {
+          filters: [AggregationTallyFilter.mode, [AggregationTallyFilter.deviationAbsolute, 3]],
+          reducer: AggregationTallyReducer.mode,
+        },
       }
 
       const radon = new Radon(mirRequest)

@@ -105,6 +105,18 @@ export declare const primitiveMarkupOptions: {
         outputType: OutputType;
     }[];
 };
+export declare const aTFilterMarkupOptions: {
+    hierarchicalType: string;
+    label: string;
+    markupType: string;
+    outputType: OutputType;
+}[];
+export declare const aTReducerMarkupOptions: {
+    hierarchicalType: string;
+    label: string;
+    markupType: string;
+    outputType: OutputType;
+}[];
 export declare const allMarkupOptions: {
     hierarchicalType: string;
     label: string;

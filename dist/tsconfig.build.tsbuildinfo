@@ -138,20 +138,20 @@
         "signature": "2088daed2bf4392d3ab0593206282f0f26f0294ff49099c6b9ff1faa8e732ca4"
       },
       "../src/types.ts": {
-        "version": "404cd8420309a0b29e42e58707365290209b1872bcfd9aea7d274daaa3d3beda",
-        "signature": "1013178396f4d30224a3836ecc5eaa9d61dd7a1073ab8f5e59957633a4aaf362"
-      },
-      "../src/structures.ts": {
-        "version": "051b8c66744e1ea7811e82093b8c8f0967dc103780436e76964ec562b9bb38df",
-        "signature": "dc17d8256a68dfedff5c52a84a017d9058874a4a5c7e2f12ed9749e4f7fc74f0"
+        "version": "acd314534a3afcac1eb1dc0b54d49bbfa21e18d388dde33911c06a5fc7535849",
+        "signature": "e129aa2645b69194132dfdf70a5d17f441fef13749c0520eb64b652b4833bbd7"
       },
       "../src/utils.ts": {
         "version": "eabaa0bda61b146a0fbe1f00366510a16139d0cd57c23fd38caa5278ce5ec539",
         "signature": "d0a9f547cbf8700504153eb8440c05710acfa82da742497740ff9e2939c3ffb8"
       },
+      "../src/structures.ts": {
+        "version": "f557aa2f9c0aa2de5280e66ec1f4b9fd0947171c7152296c03cf729879d3f723",
+        "signature": "e3bce04fcafb7720c3caa8b0fa37f28cccdf0618c4165ab50cd4fb71b4cf5373"
+      },
       "../src/radon.ts": {
-        "version": "3a667ea6af11be3a9b4d4adb36f1cf611680f3cf6604315b0a7caa2eed37393d",
-        "signature": "46662757e71b5bf7bff0ba545a52b34f2dcdab6a08b135e2406c28716cb460a4"
+        "version": "9471fdd72087a95a3ddc7f78e1c364509dbcb6fc7748f235aabdaa60c71498d5",
+        "signature": "0489c3f9c18c86bc9ba52f626d0cd5c92178a041095627131895649e5c67386d"
       },
       "../src/index.ts": {
         "version": "3b570483a4546ac98c863fbfb5dbfae888a4288166964b4157607bde294a2f3e",
@@ -256,11 +256,12 @@
       "../src/types.ts": [
         "../src/radon.ts"
       ],
-      "../src/structures.ts": [
-        "../src/types.ts"
-      ],
       "../src/utils.ts": [
         "../src/types.ts"
+      ],
+      "../src/structures.ts": [
+        "../src/types.ts",
+        "../src/utils.ts"
       ],
       "../src/radon.ts": [
         "../src/types.ts",
@@ -312,10 +313,10 @@
       "../src/types.ts": [
         "../src/radon.ts"
       ],
-      "../src/structures.ts": [
+      "../src/utils.ts": [
         "../src/types.ts"
       ],
-      "../src/utils.ts": [
+      "../src/structures.ts": [
         "../src/types.ts"
       ],
       "../src/radon.ts": [
@@ -399,9 +400,8 @@
       "../node_modules/typescript/lib/lib.es2020.string.d.ts",
       "../node_modules/typescript/lib/lib.es2020.symbol.wellknown.d.ts",
       "../src/types.ts",
-      "../src/structures.ts",
       "../src/utils.ts",
-      "../src/radon.ts",
+      "../src/structures.ts",
       "../src/index.ts",
       "../node_modules/@babel/types/lib/index.d.ts",
       "../node_modules/@types/babel__generator/index.d.ts",
@@ -418,7 +418,8 @@
       "../node_modules/@types/jest/index.d.ts",
       "../node_modules/@types/stack-utils/index.d.ts",
       "../node_modules/@types/yargs-parser/index.d.ts",
-      "../node_modules/@types/yargs/index.d.ts"
+      "../node_modules/@types/yargs/index.d.ts",
+      "../src/radon.ts"
     ]
   },
   "version": "3.6.4"

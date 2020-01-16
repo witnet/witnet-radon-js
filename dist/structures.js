@@ -22,6 +22,7 @@ var __spread = (this && this.__spread) || function () {
 var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k;
 Object.defineProperty(exports, "__esModule", { value: true });
 var types_1 = require("./types");
+var utils_1 = require("./utils");
 exports.typeSystem = (_a = {},
     _a[types_1.Type.Array] = (_b = {},
         _b[types_1.ArrayOperatorName.Count] = [types_1.OperatorCode.ArrayCount, types_1.OutputType.Integer],
@@ -975,6 +976,12 @@ exports.primitiveMarkupOptions = {
         return generateOption(types_1.OperatorCode[x[1][0]], x[1][1]);
     }),
 };
+exports.aTFilterMarkupOptions = utils_1.getEnumNames(types_1.AggregationTallyFilter).map(function (filter) {
+    return generateOption(filter, types_1.OutputType.FilterOutput);
+});
+exports.aTReducerMarkupOptions = utils_1.getEnumNames(types_1.AggregationTallyReducer).map(function (filter) {
+    return generateOption(filter, types_1.OutputType.FilterOutput);
+});
 exports.allMarkupOptions = removeRepeated(__spread(exports.primitiveMarkupOptions.array, exports.primitiveMarkupOptions.arrayBoolean, exports.primitiveMarkupOptions.arrayArray, exports.primitiveMarkupOptions.arrayBytes, exports.primitiveMarkupOptions.arrayFloat, exports.primitiveMarkupOptions.arrayInteger, exports.primitiveMarkupOptions.arrayMap, exports.primitiveMarkupOptions.arrayString, exports.primitiveMarkupOptions.boolean, exports.primitiveMarkupOptions.bytes, exports.primitiveMarkupOptions.filterOutput, exports.primitiveMarkupOptions.float, exports.primitiveMarkupOptions.string, exports.primitiveMarkupOptions.map, exports.primitiveMarkupOptions.integer));
 exports.markupOptions = (_k = {},
     _k[types_1.OutputType.Array] = __spread(exports.primitiveMarkupOptions.array),

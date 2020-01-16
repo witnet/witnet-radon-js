@@ -47,6 +47,7 @@ var Filter;
     Filter[Filter["deviationStandard"] = 5] = "deviationStandard";
     Filter[Filter["top"] = 6] = "top";
     Filter[Filter["bottom"] = 7] = "bottom";
+    Filter[Filter["mode"] = 8] = "mode";
     Filter[Filter["lessOrEqualThan"] = 128] = "lessOrEqualThan";
     Filter[Filter["greaterOrEqualThan"] = 129] = "greaterOrEqualThan";
     Filter[Filter["notEquals"] = 130] = "notEquals";
@@ -187,6 +188,21 @@ var MarkupArgumentType;
     MarkupArgumentType[MarkupArgumentType["SelectFilter"] = 1] = "SelectFilter";
     MarkupArgumentType[MarkupArgumentType["SelectReduce"] = 2] = "SelectReduce";
 })(MarkupArgumentType = exports.MarkupArgumentType || (exports.MarkupArgumentType = {}));
+var AggregationTallyFilter;
+(function (AggregationTallyFilter) {
+    AggregationTallyFilter[AggregationTallyFilter["deviationAbsolute"] = 3] = "deviationAbsolute";
+    AggregationTallyFilter[AggregationTallyFilter["deviationRelative"] = 4] = "deviationRelative";
+    AggregationTallyFilter[AggregationTallyFilter["deviationStandard"] = 5] = "deviationStandard";
+    AggregationTallyFilter[AggregationTallyFilter["mode"] = 8] = "mode";
+})(AggregationTallyFilter = exports.AggregationTallyFilter || (exports.AggregationTallyFilter = {}));
+var AggregationTallyReducer;
+(function (AggregationTallyReducer) {
+    AggregationTallyReducer[AggregationTallyReducer["mode"] = 2] = "mode";
+    AggregationTallyReducer[AggregationTallyReducer["averageMean"] = 3] = "averageMean";
+    AggregationTallyReducer[AggregationTallyReducer["averageMeanWeighted"] = 4] = "averageMeanWeighted";
+    AggregationTallyReducer[AggregationTallyReducer["averageMedian"] = 5] = "averageMedian";
+    AggregationTallyReducer[AggregationTallyReducer["averageMedianWeighted"] = 6] = "averageMedianWeighted";
+})(AggregationTallyReducer = exports.AggregationTallyReducer || (exports.AggregationTallyReducer = {}));
 var ArrayOperatorName;
 (function (ArrayOperatorName) {
     ArrayOperatorName["Count"] = "count";

@@ -14,7 +14,10 @@ import {
   MirArgumentType,
   CacheItem,
   CacheRef,
+  AggregationTallyFilter,
+  AggregationTallyReducer,
 } from './types'
+import { getEnumNames } from './utils'
 
 export const typeSystem: TypeSystem = {
   [Type.Array]: {
@@ -981,6 +984,14 @@ export const primitiveMarkupOptions = {
     return generateOption(OperatorCode[x[1][0]], x[1][1])
   }),
 }
+
+export const aTFilterMarkupOptions = getEnumNames(AggregationTallyFilter).map(filter =>
+  generateOption(filter, OutputType.FilterOutput)
+)
+
+export const aTReducerMarkupOptions = getEnumNames(AggregationTallyReducer).map(filter =>
+  generateOption(filter, OutputType.FilterOutput)
+)
 
 export const allMarkupOptions = removeRepeated([
   ...primitiveMarkupOptions.array,

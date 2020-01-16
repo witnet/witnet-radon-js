@@ -1,5 +1,5 @@
-import { Source, Script, Operator, Argument } from './radon';
-export declare type CacheItem = Source | Script | Operator | Argument | Array<number>;
+import { Source, Script, Operator, Argument, AggregationTallyOperatorFilter, AggregationTallyOperatorReducer, AggregationTallyFilterArgument, AggregationTallyScript } from './radon';
+export declare type CacheItem = Source | Script | Operator | AggregationTallyOperatorFilter | AggregationTallyOperatorReducer | Argument | AggregationTallyFilterArgument | Array<number> | AggregationTallyScript;
 export declare type CacheRef = {
     id: number;
 };
@@ -45,6 +45,7 @@ export declare enum Filter {
     deviationStandard = 5,
     top = 6,
     bottom = 7,
+    mode = 8,
     lessOrEqualThan = 128,
     greaterOrEqualThan = 129,
     notEquals = 130,
@@ -128,8 +129,8 @@ export declare type MarkupScript = Array<MarkupOperator>;
 export declare type MarkupRequest = {
     timelock: number;
     retrieve: Array<MarkupSource>;
-    aggregate: MarkupScript;
-    tally: MarkupScript;
+    aggregate: MarkupAggregationTallyScript;
+    tally: MarkupAggregationTallyScript;
 };
 export declare type Markup = {
     name: string;
@@ -229,8 +230,30 @@ export declare enum MarkupArgumentType {
     SelectReduce = 2
 }
 export declare type MirArgument = string | number | boolean | [Filter, number] | [Filter, string] | [Filter, boolean] | Reducer;
+export declare type MirAggregationTallyFilterOperator = AggregationTallyFilter | [AggregationTallyFilter, number] | [AggregationTallyFilter, string] | [AggregationTallyFilter, boolean];
 export declare type MirOperator = OperatorCode | [OperatorCode, MirArgument] | [OperatorCode, MirArgument, MirArgument];
+export declare enum AggregationTallyFilter {
+    deviationAbsolute = 3,
+    deviationRelative = 4,
+    deviationStandard = 5,
+    mode = 8
+}
+export declare enum AggregationTallyReducer {
+    mode = 2,
+    averageMean = 3,
+    averageMeanWeighted = 4,
+    averageMedian = 5,
+    averageMedianWeighted = 6
+}
 export declare type MirScript = Array<MirOperator>;
+export declare type MirAggregationTallyScript = {
+    filters: Array<MirAggregationTallyFilterOperator>;
+    reducer: AggregationTallyReducer;
+};
+export declare type MarkupAggregationTallyScript = {
+    filters: Array<MarkupSelect>;
+    reducer: MarkupSelect;
+};
 export declare type MirSource = {
     kind: string;
     url: string;
@@ -239,8 +262,8 @@ export declare type MirSource = {
 export declare type MirRequest = {
     timelock: number;
     retrieve: Array<MirSource>;
-    aggregate: MirScript;
-    tally: MirScript;
+    aggregate: MirAggregationTallyScript;
+    tally: MirAggregationTallyScript;
 };
 export declare type Mir = {
     name: string;

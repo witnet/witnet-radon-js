@@ -36,9 +36,8 @@ var Radon = /** @class */ (function () {
         this.cache = new structures_1.Cache();
         this.timelock = radRequest.timelock;
         this.retrieve = radRequest.retrieve.map(function (source) { return new Source(_this.cache, source); });
-        // TODO: Refactor first outputType
-        this.aggregate = new Script(this.cache, radRequest.aggregate, types_1.OutputType.Array);
-        this.tally = new Script(this.cache, radRequest.tally, this.aggregate.getOutputType());
+        this.aggregate = new AggregationTallyScript(this.cache, radRequest.aggregate);
+        this.tally = new AggregationTallyScript(this.cache, radRequest.tally);
     }
     Radon.prototype.getMir = function () {
         return {
@@ -110,6 +109,161 @@ var Source = /** @class */ (function () {
     return Source;
 }());
 exports.Source = Source;
+var AggregationTallyScript = /** @class */ (function () {
+    function AggregationTallyScript(cache, script) {
+        var _this = this;
+        this.scriptId = cache.insert(this).id;
+        this.mirScript = script;
+        this.cache = cache;
+        this.filters = script.filters.map(function (filter) { return new AggregationTallyOperatorFilter(cache, filter, _this.scriptId); });
+        this.reducer = new AggregationTallyOperatorReducer(cache, script.reducer, this.scriptId);
+    }
+    AggregationTallyScript.prototype.addOperator = function () {
+        this.filters.push(new AggregationTallyOperatorFilter(this.cache, [types_1.AggregationTallyFilter.deviationAbsolute, 1], this.scriptId));
+    };
+    AggregationTallyScript.prototype.getMir = function () {
+        return {
+            filters: this.filters.map(function (operator) { return operator.getMir(); }),
+            reducer: this.reducer.getMir(),
+        };
+    };
+    AggregationTallyScript.prototype.getMarkup = function () {
+        return {
+            filters: this.filters.map(function (operator) {
+                return operator.getMarkup();
+            }),
+            reducer: this.reducer.getMarkup(),
+        };
+    };
+    AggregationTallyScript.prototype.push = function (filter) {
+        this.filters.push(new AggregationTallyOperatorFilter(this.cache, filter, this.scriptId));
+    };
+    return AggregationTallyScript;
+}());
+exports.AggregationTallyScript = AggregationTallyScript;
+var AggregationTallyOperatorFilter = /** @class */ (function () {
+    function AggregationTallyOperatorFilter(cache, operator, scriptId) {
+        this.id = cache.insert(this).id;
+        this.default = !operator;
+        this.cache = cache;
+        this.code = Array.isArray(operator) ? operator[0] : operator;
+        this.argument = Array.isArray(operator)
+            ? new AggregationTallyFilterArgument(cache, operator[1])
+            : null;
+        this.scriptId = scriptId;
+    }
+    AggregationTallyOperatorFilter.prototype.getMarkup = function () {
+        var args = this.code === types_1.AggregationTallyFilter.mode
+            ? []
+            : [this.argument.getMarkup()];
+        return {
+            hierarchicalType: types_1.MarkupHierarchicalType.Operator,
+            id: this.id,
+            label: types_1.AggregationTallyFilter[this.code],
+            markupType: types_1.MarkupType.Select,
+            options: structures_1.aTFilterMarkupOptions,
+            outputType: types_1.OutputType.FilterOutput,
+            scriptId: this.scriptId,
+            selected: {
+                arguments: args,
+                hierarchicalType: types_1.MarkupHierarchicalType.SelectedOperatorOption,
+                label: types_1.AggregationTallyFilter[this.code],
+                markupType: types_1.MarkupType.Option,
+                outputType: types_1.OutputType.FilterOutput,
+            },
+        };
+    };
+    AggregationTallyOperatorFilter.prototype.getMir = function () {
+        return this.code === types_1.AggregationTallyFilter.mode
+            ? this.code
+            : [
+                this.code,
+                this.argument.getMir(),
+            ];
+    };
+    AggregationTallyOperatorFilter.prototype.update = function (value) {
+        // check if the argument type should change
+        if (value === types_1.AggregationTallyFilter.mode) {
+            this.argument = null;
+        }
+        else if (!this.argument) {
+            this.argument = new AggregationTallyFilterArgument(this.cache, '');
+        }
+        this.default = false;
+        if (Number.isInteger(value)) {
+            this.code = value;
+        }
+        else {
+            this.code = types_1.AggregationTallyFilter[value];
+        }
+    };
+    return AggregationTallyOperatorFilter;
+}());
+exports.AggregationTallyOperatorFilter = AggregationTallyOperatorFilter;
+var AggregationTallyOperatorReducer = /** @class */ (function () {
+    function AggregationTallyOperatorReducer(cache, operator, scriptId) {
+        if (operator === void 0) { operator = types_1.AggregationTallyReducer.averageMean; }
+        this.id = cache.insert(this).id;
+        this.cache = cache;
+        this.code = operator;
+        this.scriptId = scriptId;
+    }
+    AggregationTallyOperatorReducer.prototype.getMarkup = function () {
+        return {
+            hierarchicalType: types_1.MarkupHierarchicalType.Operator,
+            id: this.id,
+            label: types_1.AggregationTallyReducer[this.code],
+            markupType: types_1.MarkupType.Select,
+            options: structures_1.aTReducerMarkupOptions,
+            outputType: types_1.OutputType.FilterOutput,
+            scriptId: this.scriptId,
+            selected: {
+                arguments: [],
+                hierarchicalType: types_1.MarkupHierarchicalType.SelectedOperatorOption,
+                label: types_1.AggregationTallyReducer[this.code],
+                markupType: types_1.MarkupType.Option,
+                outputType: types_1.OutputType.ReducerOutput,
+            },
+        };
+    };
+    AggregationTallyOperatorReducer.prototype.getMir = function () {
+        return this.code;
+    };
+    AggregationTallyOperatorReducer.prototype.update = function (value) {
+        if (Number.isInteger(value)) {
+            this.code = value;
+        }
+        else {
+            this.code = types_1.AggregationTallyReducer[value];
+        }
+    };
+    return AggregationTallyOperatorReducer;
+}());
+exports.AggregationTallyOperatorReducer = AggregationTallyOperatorReducer;
+var AggregationTallyFilterArgument = /** @class */ (function () {
+    function AggregationTallyFilterArgument(cache, argument) {
+        this.id = cache.insert(this).id;
+        this.cache = cache;
+        this.value = argument;
+    }
+    AggregationTallyFilterArgument.prototype.getMarkup = function () {
+        return {
+            hierarchicalType: types_1.MarkupHierarchicalType.Argument,
+            id: this.id,
+            label: 'by',
+            markupType: types_1.MarkupType.Input,
+            value: this.value,
+        };
+    };
+    AggregationTallyFilterArgument.prototype.getMir = function () {
+        return this.value;
+    };
+    AggregationTallyFilterArgument.prototype.update = function (value) {
+        this.value = value;
+    };
+    return AggregationTallyFilterArgument;
+}());
+exports.AggregationTallyFilterArgument = AggregationTallyFilterArgument;
 var Script = /** @class */ (function () {
     function Script(cache, script, firstType) {
         var _this = this;
@@ -155,11 +309,9 @@ var Script = /** @class */ (function () {
         return this.operators.length ? this.operators[this.operators.length - 1] : null;
     };
     Script.prototype.getMarkup = function () {
-        var markup = this.operators.map(function (operator) {
+        return this.operators.map(function (operator) {
             return operator.getMarkup();
         });
-        // this.cache.set(this.scriptId, markup.map(operator => operator.id))
-        return markup;
     };
     Script.prototype.getOutputType = function () {
         var lastOperator = this.getLastOperator();

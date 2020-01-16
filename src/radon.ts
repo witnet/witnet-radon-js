@@ -9,6 +9,7 @@ import {
   OperatorCode,
   MirArgument,
   MirScript,
+  MirAggregationTallyScript,
   OutputType,
   MarkupArgument,
   MarkupInput,
@@ -24,8 +25,19 @@ import {
   MarkupScript,
   MarkupOperator,
   OperatorName,
+  MirAggregationTallyFilterOperator,
+  AggregationTallyFilter,
+  AggregationTallyReducer,
+  MarkupAggregationTallyScript,
 } from './types'
-import { Cache, operatorInfos, markupOptions, allMarkupOptions } from './structures'
+import {
+  Cache,
+  operatorInfos,
+  markupOptions,
+  allMarkupOptions,
+  aTFilterMarkupOptions,
+  aTReducerMarkupOptions,
+} from './structures'
 import { getEnumNames, getOperatorCodeFromOperatorName } from './utils'
 
 export const DEFAULT_OPERATOR = OperatorCode.ArrayCount
@@ -49,16 +61,15 @@ export class Radon {
 
   public timelock: number
   public retrieve: Array<Source>
-  public aggregate: Script
-  public tally: Script
+  public aggregate: AggregationTallyScript
+  public tally: AggregationTallyScript
 
   constructor(radRequest: MirRequest) {
     this.cache = new Cache()
     this.timelock = radRequest.timelock
     this.retrieve = radRequest.retrieve.map(source => new Source(this.cache, source))
-    // TODO: Refactor first outputType
-    this.aggregate = new Script(this.cache, radRequest.aggregate, OutputType.Array)
-    this.tally = new Script(this.cache, radRequest.tally, this.aggregate.getOutputType())
+    this.aggregate = new AggregationTallyScript(this.cache, radRequest.aggregate)
+    this.tally = new AggregationTallyScript(this.cache, radRequest.tally)
   }
 
   public getMir(): MirRequest {
@@ -144,6 +155,195 @@ export class Source {
   }
 }
 
+export class AggregationTallyScript {
+  public cache: Cache
+  public filters: Array<AggregationTallyOperatorFilter>
+  public mirScript: MirAggregationTallyScript
+  public reducer: AggregationTallyOperatorReducer
+  public scriptId: number
+
+  constructor(cache: Cache, script: MirAggregationTallyScript) {
+    this.scriptId = cache.insert(this).id
+    this.mirScript = script
+    this.cache = cache
+    this.filters = script.filters.map(filter => new AggregationTallyOperatorFilter(cache, filter, this.scriptId))
+    this.reducer = new AggregationTallyOperatorReducer(cache, script.reducer, this.scriptId)
+  }
+
+  public addOperator() {
+    this.filters.push(
+      new AggregationTallyOperatorFilter(this.cache, [AggregationTallyFilter.deviationAbsolute, 1], this.scriptId)
+    )
+  }
+
+  public getMir(): MirAggregationTallyScript {
+    return {
+      filters: this.filters.map(operator => operator.getMir()),
+      reducer: this.reducer.getMir(),
+    }
+  }
+
+  public getMarkup(): MarkupAggregationTallyScript {
+    return {
+      filters: this.filters.map(operator => {
+        return operator.getMarkup()
+      }),
+      reducer: this.reducer.getMarkup(),
+    }
+  }
+
+  public push(filter: AggregationTallyFilter) {
+    this.filters.push(new AggregationTallyOperatorFilter(this.cache, filter, this.scriptId))
+  }
+}
+
+export class AggregationTallyOperatorFilter {
+  public cache: Cache
+  public code: AggregationTallyFilter
+  public id: number
+  public default: boolean
+  public argument: AggregationTallyFilterArgument | null
+  public scriptId:  number
+
+  constructor(cache: Cache, operator: MirAggregationTallyFilterOperator, scriptId: number) {
+    this.id = cache.insert(this).id
+    this.default = !operator
+    this.cache = cache
+    this.code = Array.isArray(operator) ? operator[0] : operator
+    this.argument = Array.isArray(operator)
+      ? new AggregationTallyFilterArgument(cache, operator[1])
+      : null
+      this.scriptId = scriptId
+  }
+
+  public getMarkup(): MarkupSelect {
+    const args =
+      this.code === AggregationTallyFilter.mode
+        ? []
+        : [(this.argument as AggregationTallyFilterArgument).getMarkup()]
+    return {
+      hierarchicalType: MarkupHierarchicalType.Operator,
+      id: this.id,
+      label: AggregationTallyFilter[this.code],
+      markupType: MarkupType.Select,
+      options: aTFilterMarkupOptions,
+      outputType: OutputType.FilterOutput,
+      scriptId: this.scriptId,
+      selected: {
+        arguments: args,
+        hierarchicalType: MarkupHierarchicalType.SelectedOperatorOption,
+        label: AggregationTallyFilter[this.code],
+        markupType: MarkupType.Option,
+        outputType: OutputType.FilterOutput,
+      },
+    } as MarkupSelect
+  }
+
+  public getMir(): MirAggregationTallyFilterOperator {
+    return this.code === AggregationTallyFilter.mode
+      ? this.code
+      : ([
+          this.code,
+          (this.argument as AggregationTallyFilterArgument).getMir(),
+        ] as MirAggregationTallyFilterOperator)
+  }
+
+  public update(value: AggregationTallyFilter | number) {
+    // check if the argument type should change
+    if (value === AggregationTallyFilter.mode) {
+      this.argument = null
+    } else if (!this.argument) {
+      this.argument = new AggregationTallyFilterArgument(this.cache, '')
+    }
+    this.default = false
+
+    if (Number.isInteger(value)) {
+      this.code = value
+    } else {
+      this.code = AggregationTallyFilter[value] as unknown as AggregationTallyFilter
+    }
+  }
+}
+
+export class AggregationTallyOperatorReducer {
+  public cache: Cache
+  public code: AggregationTallyReducer
+  public id: number
+  public scriptId: number
+
+  constructor(
+    cache: Cache,
+    operator: AggregationTallyReducer = AggregationTallyReducer.averageMean,
+    scriptId: number
+  ) {
+    this.id = cache.insert(this).id
+    this.cache = cache
+    this.code = operator
+    this.scriptId = scriptId
+  }
+
+  public getMarkup(): MarkupSelect {
+    return {
+      hierarchicalType: MarkupHierarchicalType.Operator,
+      id: this.id,
+      label: AggregationTallyReducer[this.code],
+      markupType: MarkupType.Select,
+      options: aTReducerMarkupOptions,
+      outputType: OutputType.FilterOutput,
+      scriptId: this.scriptId,
+      selected: {
+        arguments: [],
+        hierarchicalType: MarkupHierarchicalType.SelectedOperatorOption,
+        label: AggregationTallyReducer[this.code],
+        markupType: MarkupType.Option,
+        outputType: OutputType.ReducerOutput,
+      },
+    } as MarkupSelect
+  }
+
+  public getMir(): AggregationTallyReducer {
+    return this.code
+  }
+
+  public update(value: AggregationTallyReducer | number) {
+    if (Number.isInteger(value)) {
+      this.code = value
+    } else {
+      this.code = AggregationTallyReducer[value] as unknown as AggregationTallyReducer
+    }
+  }
+}
+
+export class AggregationTallyFilterArgument {
+  public cache: Cache
+  public id: number
+  public value: string | number | boolean
+
+  constructor(cache: Cache, argument: string | number | boolean) {
+    this.id = cache.insert(this).id
+    this.cache = cache
+    this.value = argument
+  }
+
+  public getMarkup(): MarkupInput {
+    return {
+      hierarchicalType: MarkupHierarchicalType.Argument,
+      id: this.id,
+      label: 'by',
+      markupType: MarkupType.Input,
+      value: this.value as (string | number | boolean),
+    } as MarkupInput
+  }
+
+  public getMir(): MirArgument {
+    return this.value as MirArgument
+  }
+
+  public update(value: string | number | boolean | Filter) {
+    this.value = value
+  }
+}
+
 export class Script {
   public cache: Cache
   public operators: Array<Operator>
@@ -200,13 +400,9 @@ export class Script {
   }
 
   public getMarkup(): MarkupScript {
-    const markup = this.operators.map(operator => {
+    return this.operators.map(operator => {
       return operator.getMarkup()
     })
-
-    // this.cache.set(this.scriptId, markup.map(operator => operator.id))
-
-    return markup
   }
 
   public getOutputType(): OutputType {
