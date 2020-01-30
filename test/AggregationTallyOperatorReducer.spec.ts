@@ -64,7 +64,7 @@ describe('AggregationTallyOperatorReducer', () => {
     const mirOperator: AggregationTallyReducer = AggregationTallyReducer.averageMean
 
     const cache = new Cache()
-    const operator = new AggregationTallyOperatorReducer(cache, mirOperator,1)
+    const operator = new AggregationTallyOperatorReducer(cache, mirOperator, 1)
 
     const result = operator.getMir()
 

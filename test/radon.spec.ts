@@ -5,7 +5,7 @@ import {
   AggregationTallyReducer,
   AggregationTallyFilter,
 } from '../src/types'
-import { markupOptions } from '../src/structures'
+import { markupOptions, aTFilterMarkupOptions, aTReducerMarkupOptions } from '../src/structures'
 
 describe('Radon', () => {
   it('addOperator', () => {
@@ -120,217 +120,727 @@ describe('Radon', () => {
     expect(radon.retrieve.length).toBe(1)
     expect(radon.retrieve[0].url).toBe('source_2')
   })
-
-  it('getMarkup method', () => {
-    const mirRequest: MirRequest = {
-      timelock: 0,
-      retrieve: [
-        {
-          kind: 'HTTP_GET',
-          url: 'source_1',
-          script: [
-            OperatorCode.StringAsBoolean,
-            [OperatorCode.BooleanMatch, '', true],
-            OperatorCode.StringLength,
-          ],
-        },
-        {
-          kind: 'HTTP_GET',
-          url: 'source_2',
-          script: [
-            OperatorCode.StringAsBoolean,
-            [OperatorCode.BooleanMatch, '', true],
-            OperatorCode.StringLength,
-          ],
-        },
-      ],
-      aggregate: {
-        filters: [AggregationTallyFilter.mode, [AggregationTallyFilter.deviationAbsolute, 3]],
-        reducer: AggregationTallyReducer.mode,
-      },
-      tally: {
-        filters: [AggregationTallyFilter.mode, [AggregationTallyFilter.deviationAbsolute, 3]],
-        reducer: AggregationTallyReducer.mode,
-      },
-    }
-
-    const radon = new Radon(mirRequest)
-    const result = radon.getMarkup()
-    const expected = {
-      timelock: 0,
-      retrieve: [
-        {
-          kind: 'HTTP_GET',
-          url: 'source_1',
-          script: [
-            {
-              hierarchicalType: 'operator',
-              id: 3,
-              label: 'asBoolean',
-              markupType: 'select',
-              options: markupOptions.string,
-              outputType: 'boolean',
-              scriptId: 2,
-              selected: {
-                arguments: [],
-                hierarchicalType: 'selectedOperatorOption',
-                label: 'asBoolean',
-                markupType: 'option',
-                outputType: 'boolean',
-              },
-            },
-            {
-              hierarchicalType: 'operator',
-              id: 4,
-              scriptId: 2,
-              label: 'match',
-              markupType: 'select',
-              options: markupOptions.boolean,
-              outputType: 'matchOutput',
-              selected: {
-                arguments: [
-                  {
-                    hierarchicalType: 'argument',
-                    id: 5,
-                    label: 'categories',
-                    markupType: 'input',
-                    value: '',
-                  },
-                  {
-                    hierarchicalType: 'argument',
-                    id: 6,
-                    label: 'default',
-                    markupType: 'input',
-                    value: true,
-                  },
-                ],
-                hierarchicalType: 'selectedOperatorOption',
-                label: 'match',
-                markupType: 'option',
-                outputType: 'matchOutput',
-              },
-            },
-            {
-              hierarchicalType: 'operator',
-              id: 7,
-              label: 'length',
-              markupType: 'select',
-              options: markupOptions.matchOutput,
-              outputType: 'integer',
-              scriptId: 2,
-              selected: {
-                arguments: [],
-                hierarchicalType: 'selectedOperatorOption',
-                label: 'length',
-                markupType: 'option',
-                outputType: 'integer',
-              },
-            },
-          ],
-        },
-        {
-          kind: 'HTTP_GET',
-          url: 'source_2',
-          script: [
-            {
-              hierarchicalType: 'operator',
-              id: 10,
-              scriptId: 9,
-              label: 'asBoolean',
-              markupType: 'select',
-              options: markupOptions.string,
-              outputType: 'boolean',
-              selected: {
-                arguments: [],
-                hierarchicalType: 'selectedOperatorOption',
-                label: 'asBoolean',
-                markupType: 'option',
-                outputType: 'boolean',
-              },
-            },
-            {
-              hierarchicalType: 'operator',
-              id: 11,
-              scriptId: 9,
-              label: 'match',
-              markupType: 'select',
-              options: markupOptions.boolean,
-              outputType: 'matchOutput',
-              selected: {
-                arguments: [
-                  {
-                    hierarchicalType: 'argument',
-                    id: 12,
-                    label: 'categories',
-                    markupType: 'input',
-                    value: '',
-                  },
-                  {
-                    hierarchicalType: 'argument',
-                    id: 13,
-                    label: 'default',
-                    markupType: 'input',
-                    value: true,
-                  },
-                ],
-                hierarchicalType: 'selectedOperatorOption',
-                label: 'match',
-                markupType: 'option',
-                outputType: 'matchOutput',
-              },
-            },
-            {
-              hierarchicalType: 'operator',
-              id: 14,
-              scriptId: 9,
-              label: 'length',
-              markupType: 'select',
-              options: markupOptions.matchOutput,
-              outputType: 'integer',
-              selected: {
-                arguments: [],
-                hierarchicalType: 'selectedOperatorOption',
-                label: 'length',
-                markupType: 'option',
-                outputType: 'integer',
-              },
-            },
-          ],
-        },
-      ],
-      aggregate: {
-        filters: [
+  describe('getMarkupMethod', () => {
+    it('generic case', () => {
+      const mirRequest: MirRequest = {
+        timelock: 0,
+        retrieve: [
           {
+            kind: 'HTTP_GET',
+            url: 'source_1',
+            script: [
+              OperatorCode.StringAsBoolean,
+              [OperatorCode.BooleanMatch, '', true],
+              OperatorCode.StringLength,
+            ],
+          },
+          {
+            kind: 'HTTP_GET',
+            url: 'source_2',
+            script: [
+              OperatorCode.StringAsBoolean,
+              [OperatorCode.BooleanMatch, '', true],
+              OperatorCode.StringLength,
+            ],
+          },
+        ],
+        aggregate: {
+          filters: [AggregationTallyFilter.mode, [AggregationTallyFilter.deviationAbsolute, 3]],
+          reducer: AggregationTallyReducer.mode,
+        },
+        tally: {
+          filters: [AggregationTallyFilter.mode, [AggregationTallyFilter.deviationAbsolute, 3]],
+          reducer: AggregationTallyReducer.mode,
+        },
+      }
+
+      const radon = new Radon(mirRequest)
+      const result = radon.getMarkup()
+      const expected = {
+        timelock: 0,
+        retrieve: [
+          {
+            kind: 'HTTP_GET',
+            url: 'source_1',
+            script: [
+              {
+                hierarchicalType: 'operator',
+                id: 3,
+                label: 'asBoolean',
+                markupType: 'select',
+                options: markupOptions.string,
+                outputType: 'boolean',
+                scriptId: 2,
+                selected: {
+                  arguments: [],
+                  hierarchicalType: 'selectedOperatorOption',
+                  label: 'asBoolean',
+                  markupType: 'option',
+                  outputType: 'boolean',
+                },
+              },
+              {
+                hierarchicalType: 'operator',
+                id: 4,
+                scriptId: 2,
+                label: 'match',
+                markupType: 'select',
+                options: markupOptions.boolean,
+                outputType: 'matchOutput',
+                selected: {
+                  arguments: [
+                    {
+                      hierarchicalType: 'argument',
+                      id: 5,
+                      label: 'categories',
+                      markupType: 'input',
+                      value: '',
+                    },
+                    {
+                      hierarchicalType: 'argument',
+                      id: 6,
+                      label: 'default',
+                      markupType: 'input',
+                      value: true,
+                    },
+                  ],
+                  hierarchicalType: 'selectedOperatorOption',
+                  label: 'match',
+                  markupType: 'option',
+                  outputType: 'matchOutput',
+                },
+              },
+              {
+                hierarchicalType: 'operator',
+                id: 7,
+                label: 'length',
+                markupType: 'select',
+                options: markupOptions.matchOutput,
+                outputType: 'integer',
+                scriptId: 2,
+                selected: {
+                  arguments: [],
+                  hierarchicalType: 'selectedOperatorOption',
+                  label: 'length',
+                  markupType: 'option',
+                  outputType: 'integer',
+                },
+              },
+            ],
+          },
+          {
+            kind: 'HTTP_GET',
+            url: 'source_2',
+            script: [
+              {
+                hierarchicalType: 'operator',
+                id: 10,
+                scriptId: 9,
+                label: 'asBoolean',
+                markupType: 'select',
+                options: markupOptions.string,
+                outputType: 'boolean',
+                selected: {
+                  arguments: [],
+                  hierarchicalType: 'selectedOperatorOption',
+                  label: 'asBoolean',
+                  markupType: 'option',
+                  outputType: 'boolean',
+                },
+              },
+              {
+                hierarchicalType: 'operator',
+                id: 11,
+                scriptId: 9,
+                label: 'match',
+                markupType: 'select',
+                options: markupOptions.boolean,
+                outputType: 'matchOutput',
+                selected: {
+                  arguments: [
+                    {
+                      hierarchicalType: 'argument',
+                      id: 12,
+                      label: 'categories',
+                      markupType: 'input',
+                      value: '',
+                    },
+                    {
+                      hierarchicalType: 'argument',
+                      id: 13,
+                      label: 'default',
+                      markupType: 'input',
+                      value: true,
+                    },
+                  ],
+                  hierarchicalType: 'selectedOperatorOption',
+                  label: 'match',
+                  markupType: 'option',
+                  outputType: 'matchOutput',
+                },
+              },
+              {
+                hierarchicalType: 'operator',
+                id: 14,
+                scriptId: 9,
+                label: 'length',
+                markupType: 'select',
+                options: markupOptions.matchOutput,
+                outputType: 'integer',
+                selected: {
+                  arguments: [],
+                  hierarchicalType: 'selectedOperatorOption',
+                  label: 'length',
+                  markupType: 'option',
+                  outputType: 'integer',
+                },
+              },
+            ],
+          },
+        ],
+        aggregate: {
+          filters: [
+            {
+              hierarchicalType: 'operator',
+              id: 16,
+              label: 'mode',
+              markupType: 'select',
+              options: [
+                {
+                  hierarchicalType: 'operatorOption',
+                  label: 'deviationAbsolute',
+                  markupType: 'option',
+                  outputType: 'filterOutput',
+                },
+                {
+                  hierarchicalType: 'operatorOption',
+                  label: 'deviationRelative',
+                  markupType: 'option',
+                  outputType: 'filterOutput',
+                },
+                {
+                  hierarchicalType: 'operatorOption',
+                  label: 'deviationStandard',
+                  markupType: 'option',
+                  outputType: 'filterOutput',
+                },
+                {
+                  hierarchicalType: 'operatorOption',
+                  label: 'mode',
+                  markupType: 'option',
+                  outputType: 'filterOutput',
+                },
+              ],
+              outputType: 'filterOutput',
+              scriptId: 15,
+              selected: {
+                arguments: [],
+                hierarchicalType: 'selectedOperatorOption',
+                label: 'mode',
+                markupType: 'option',
+                outputType: 'filterOutput',
+              },
+            },
+            {
+              hierarchicalType: 'operator',
+              id: 17,
+              label: 'deviationAbsolute',
+              markupType: 'select',
+              options: [
+                {
+                  hierarchicalType: 'operatorOption',
+                  label: 'deviationAbsolute',
+                  markupType: 'option',
+                  outputType: 'filterOutput',
+                },
+                {
+                  hierarchicalType: 'operatorOption',
+                  label: 'deviationRelative',
+                  markupType: 'option',
+                  outputType: 'filterOutput',
+                },
+                {
+                  hierarchicalType: 'operatorOption',
+                  label: 'deviationStandard',
+                  markupType: 'option',
+                  outputType: 'filterOutput',
+                },
+                {
+                  hierarchicalType: 'operatorOption',
+                  label: 'mode',
+                  markupType: 'option',
+                  outputType: 'filterOutput',
+                },
+              ],
+              outputType: 'filterOutput',
+              scriptId: 15,
+              selected: {
+                arguments: [
+                  {
+                    hierarchicalType: 'argument',
+                    id: 18,
+                    label: 'by',
+                    markupType: 'input',
+                    value: 3,
+                  },
+                ],
+                hierarchicalType: 'selectedOperatorOption',
+                label: 'deviationAbsolute',
+                markupType: 'option',
+                outputType: 'filterOutput',
+              },
+            },
+          ],
+          reducer: {
+            hierarchicalType: 'operator',
+            id: 19,
+            label: 'mode',
+            markupType: 'select',
+            options: [
+              {
+                hierarchicalType: 'operatorOption',
+                label: 'mode',
+                markupType: 'option',
+                outputType: 'filterOutput',
+              },
+              {
+                hierarchicalType: 'operatorOption',
+                label: 'averageMean',
+                markupType: 'option',
+                outputType: 'filterOutput',
+              },
+              {
+                hierarchicalType: 'operatorOption',
+                label: 'averageMeanWeighted',
+                markupType: 'option',
+                outputType: 'filterOutput',
+              },
+              {
+                hierarchicalType: 'operatorOption',
+                label: 'averageMedian',
+                markupType: 'option',
+                outputType: 'filterOutput',
+              },
+              {
+                hierarchicalType: 'operatorOption',
+                label: 'averageMedianWeighted',
+                markupType: 'option',
+                outputType: 'filterOutput',
+              },
+            ],
+            outputType: 'filterOutput',
+            scriptId: 15,
+            selected: {
+              arguments: [],
+              hierarchicalType: 'selectedOperatorOption',
+              label: 'mode',
+              markupType: 'option',
+              outputType: 'reducerOutput',
+            },
+          },
+        },
+        tally: {
+          filters: [
+            {
+              hierarchicalType: 'operator',
+              id: 21,
+              label: 'mode',
+              markupType: 'select',
+              options: [
+                {
+                  hierarchicalType: 'operatorOption',
+                  label: 'deviationAbsolute',
+                  markupType: 'option',
+                  outputType: 'filterOutput',
+                },
+                {
+                  hierarchicalType: 'operatorOption',
+                  label: 'deviationRelative',
+                  markupType: 'option',
+                  outputType: 'filterOutput',
+                },
+                {
+                  hierarchicalType: 'operatorOption',
+                  label: 'deviationStandard',
+                  markupType: 'option',
+                  outputType: 'filterOutput',
+                },
+                {
+                  hierarchicalType: 'operatorOption',
+                  label: 'mode',
+                  markupType: 'option',
+                  outputType: 'filterOutput',
+                },
+              ],
+              outputType: 'filterOutput',
+              scriptId: 20,
+              selected: {
+                arguments: [],
+                hierarchicalType: 'selectedOperatorOption',
+                label: 'mode',
+                markupType: 'option',
+                outputType: 'filterOutput',
+              },
+            },
+            {
+              hierarchicalType: 'operator',
+              id: 22,
+              label: 'deviationAbsolute',
+              markupType: 'select',
+              options: [
+                {
+                  hierarchicalType: 'operatorOption',
+                  label: 'deviationAbsolute',
+                  markupType: 'option',
+                  outputType: 'filterOutput',
+                },
+                {
+                  hierarchicalType: 'operatorOption',
+                  label: 'deviationRelative',
+                  markupType: 'option',
+                  outputType: 'filterOutput',
+                },
+                {
+                  hierarchicalType: 'operatorOption',
+                  label: 'deviationStandard',
+                  markupType: 'option',
+                  outputType: 'filterOutput',
+                },
+                {
+                  hierarchicalType: 'operatorOption',
+                  label: 'mode',
+                  markupType: 'option',
+                  outputType: 'filterOutput',
+                },
+              ],
+              outputType: 'filterOutput',
+              scriptId: 20,
+              selected: {
+                arguments: [
+                  {
+                    hierarchicalType: 'argument',
+                    id: 23,
+                    label: 'by',
+                    markupType: 'input',
+                    value: 3,
+                  },
+                ],
+                hierarchicalType: 'selectedOperatorOption',
+                label: 'deviationAbsolute',
+                markupType: 'option',
+                outputType: 'filterOutput',
+              },
+            },
+          ],
+          reducer: {
+            hierarchicalType: 'operator',
+            id: 24,
+            label: 'mode',
+            markupType: 'select',
+            options: [
+              {
+                hierarchicalType: 'operatorOption',
+                label: 'mode',
+                markupType: 'option',
+                outputType: 'filterOutput',
+              },
+              {
+                hierarchicalType: 'operatorOption',
+                label: 'averageMean',
+                markupType: 'option',
+                outputType: 'filterOutput',
+              },
+              {
+                hierarchicalType: 'operatorOption',
+                label: 'averageMeanWeighted',
+                markupType: 'option',
+                outputType: 'filterOutput',
+              },
+              {
+                hierarchicalType: 'operatorOption',
+                label: 'averageMedian',
+                markupType: 'option',
+                outputType: 'filterOutput',
+              },
+              {
+                hierarchicalType: 'operatorOption',
+                label: 'averageMedianWeighted',
+                markupType: 'option',
+                outputType: 'filterOutput',
+              },
+            ],
+            outputType: 'filterOutput',
+            scriptId: 20,
+            selected: {
+              arguments: [],
+              hierarchicalType: 'selectedOperatorOption',
+              label: 'mode',
+              markupType: 'option',
+              outputType: 'reducerOutput',
+            },
+          },
+        },
+      }
+
+      expect(result).toStrictEqual(expected)
+    })
+
+    it('with string operator', () => {
+      const mirRequest: MirRequest = {
+        timelock: 1669852800,
+        retrieve: [
+          {
+            kind: 'HTTP-GET',
+            url: 'https://blockchain.info/q/latesthash',
+            script: [],
+          },
+          {
+            kind: 'HTTP-GET',
+            url: 'https://api-r.bitcoinchain.com/v1/status',
+            script: [119, [103, 'hash']],
+          },
+          {
+            kind: 'HTTP-GET',
+            url: 'https://api.blockchair.com/bitcoin/stats',
+            script: [119, [102, 'data'], [103, 'best_block_hash']],
+          },
+        ],
+        aggregate: {
+          filters: [],
+          reducer: 2,
+        },
+        tally: {
+          filters: [8],
+          reducer: 2,
+        },
+      }
+
+      const radon = new Radon(mirRequest)
+      const result = radon.getMarkup()
+      const expected = {
+        timelock: 1669852800,
+        retrieve: [
+          {
+            kind: 'HTTP-GET',
+            url: 'https://blockchain.info/q/latesthash',
+            script: [],
+          },
+          {
+            kind: 'HTTP-GET',
+            url: 'https://api-r.bitcoinchain.com/v1/status',
+            script: [
+              {
+                hierarchicalType: 'operator',
+                id: 5,
+                label: 'parseJson_integer',
+                markupType: 'select',
+                options: markupOptions.string,
+                outputType: 'integer',
+                scriptId: 4,
+                selected: {
+                  arguments: [],
+                  hierarchicalType: 'selectedOperatorOption',
+                  label: 'parseJson_integer',
+                  markupType: 'option',
+                  outputType: 'integer',
+                },
+              },
+              {
+                hierarchicalType: 'operator',
+                id: 6,
+                label: 'get_string',
+                markupType: 'select',
+                options: markupOptions.integer,
+                outputType: 'string',
+                scriptId: 4,
+                selected: {
+                  arguments: [
+                    {
+                      hierarchicalType: 'argument',
+                      id: 7,
+                      label: 'key',
+                      markupType: 'input',
+                      value: 'hash',
+                    },
+                  ],
+                  hierarchicalType: 'selectedOperatorOption',
+                  label: 'get_string',
+                  markupType: 'option',
+                  outputType: 'string',
+                },
+              },
+            ],
+          },
+          {
+            kind: 'HTTP-GET',
+            script: [
+              {
+                hierarchicalType: 'operator',
+                id: 10,
+                label: 'parseJson_integer',
+                markupType: 'select',
+                options: markupOptions.string,
+                outputType: 'integer',
+                scriptId: 9,
+                selected: {
+                  arguments: [],
+                  hierarchicalType: 'selectedOperatorOption',
+                  label: 'parseJson_integer',
+                  markupType: 'option',
+                  outputType: 'integer',
+                },
+              },
+              {
+                hierarchicalType: 'operator',
+                id: 11,
+                label: 'get_map',
+                markupType: 'select',
+                options: markupOptions.integer,
+                outputType: 'map',
+                scriptId: 9,
+                selected: {
+                  arguments: [
+                    {
+                      hierarchicalType: 'argument',
+                      id: 12,
+                      label: 'key',
+                      markupType: 'input',
+                      value: 'data',
+                    },
+                  ],
+                  hierarchicalType: 'selectedOperatorOption',
+                  label: 'get_map',
+                  markupType: 'option',
+                  outputType: 'map',
+                },
+              },
+              {
+                hierarchicalType: 'operator',
+                id: 13,
+                label: 'get_string',
+                markupType: 'select',
+                options: [
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'MapEntries',
+                    markupType: 'option',
+                    outputType: 'bytes',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'MapGetBytes',
+                    markupType: 'option',
+                    outputType: 'bytes',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'MapGetBoolean',
+                    markupType: 'option',
+                    outputType: 'boolean',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'MapGetFloat',
+                    markupType: 'option',
+                    outputType: 'float',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'MapGetInteger',
+                    markupType: 'option',
+                    outputType: 'integer',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'MapGetMap',
+                    markupType: 'option',
+                    outputType: 'map',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'MapGetString',
+                    markupType: 'option',
+                    outputType: 'string',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'MapKeys',
+                    markupType: 'option',
+                    outputType: 'arrayString',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'MapValuesArray',
+                    markupType: 'option',
+                    outputType: 'arrayArray',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'MapValuesBoolean',
+                    markupType: 'option',
+                    outputType: 'arrayBoolean',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'MapValuesBytes',
+                    markupType: 'option',
+                    outputType: 'arrayBytes',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'MapValuesFloat',
+                    markupType: 'option',
+                    outputType: 'arrayFloat',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'MapValuesInteger',
+                    markupType: 'option',
+                    outputType: 'arrayInteger',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'MapValuesMap',
+                    markupType: 'option',
+                    outputType: 'arrayMap',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'MapValuesString',
+                    markupType: 'option',
+                    outputType: 'arrayString',
+                  },
+                ],
+                outputType: 'string',
+                scriptId: 9,
+                selected: {
+                  arguments: [
+                    {
+                      hierarchicalType: 'argument',
+                      id: 14,
+                      label: 'key',
+                      markupType: 'input',
+                      value: 'best_block_hash',
+                    },
+                  ],
+                  hierarchicalType: 'selectedOperatorOption',
+                  label: 'get_string',
+                  markupType: 'option',
+                  outputType: 'string',
+                },
+              },
+            ],
+            url: 'https://api.blockchair.com/bitcoin/stats',
+          },
+        ],
+        aggregate: {
+          filters: [],
+          reducer: {
             hierarchicalType: 'operator',
             id: 16,
             label: 'mode',
             markupType: 'select',
-            options: [
-              {
-                hierarchicalType: 'operatorOption',
-                label: 'deviationAbsolute',
-                markupType: 'option',
-                outputType: 'filterOutput',
-              },
-              {
-                hierarchicalType: 'operatorOption',
-                label: 'deviationRelative',
-                markupType: 'option',
-                outputType: 'filterOutput',
-              },
-              {
-                hierarchicalType: 'operatorOption',
-                label: 'deviationStandard',
-                markupType: 'option',
-                outputType: 'filterOutput',
-              },
-              {
-                hierarchicalType: 'operatorOption',
-                label: 'mode',
-                markupType: 'option',
-                outputType: 'filterOutput',
-              },
-            ],
+            options: aTReducerMarkupOptions,
             outputType: 'filterOutput',
             scriptId: 15,
             selected: {
@@ -338,253 +848,51 @@ describe('Radon', () => {
               hierarchicalType: 'selectedOperatorOption',
               label: 'mode',
               markupType: 'option',
-              outputType: 'filterOutput',
+              outputType: 'reducerOutput',
             },
-          },
-          {
-            hierarchicalType: 'operator',
-            id: 17,
-            label: 'deviationAbsolute',
-            markupType: 'select',
-            options: [
-              {
-                hierarchicalType: 'operatorOption',
-                label: 'deviationAbsolute',
-                markupType: 'option',
-                outputType: 'filterOutput',
-              },
-              {
-                hierarchicalType: 'operatorOption',
-                label: 'deviationRelative',
-                markupType: 'option',
-                outputType: 'filterOutput',
-              },
-              {
-                hierarchicalType: 'operatorOption',
-                label: 'deviationStandard',
-                markupType: 'option',
-                outputType: 'filterOutput',
-              },
-              {
-                hierarchicalType: 'operatorOption',
-                label: 'mode',
-                markupType: 'option',
-                outputType: 'filterOutput',
-              },
-            ],
-            outputType: 'filterOutput',
-            scriptId: 15,
-            selected: {
-              arguments: [
-                {
-                  hierarchicalType: 'argument',
-                  id: 18,
-                  label: 'by',
-                  markupType: 'input',
-                  value: 3,
-                },
-              ],
-              hierarchicalType: 'selectedOperatorOption',
-              label: 'deviationAbsolute',
-              markupType: 'option',
-              outputType: 'filterOutput',
-            },
-          },
-        ],
-        reducer: {
-          hierarchicalType: 'operator',
-          id: 19,
-          label: 'mode',
-          markupType: 'select',
-          options: [
-            {
-              hierarchicalType: 'operatorOption',
-              label: 'mode',
-              markupType: 'option',
-              outputType: 'filterOutput',
-            },
-            {
-              hierarchicalType: 'operatorOption',
-              label: 'averageMean',
-              markupType: 'option',
-              outputType: 'filterOutput',
-            },
-            {
-              hierarchicalType: 'operatorOption',
-              label: 'averageMeanWeighted',
-              markupType: 'option',
-              outputType: 'filterOutput',
-            },
-            {
-              hierarchicalType: 'operatorOption',
-              label: 'averageMedian',
-              markupType: 'option',
-              outputType: 'filterOutput',
-            },
-            {
-              hierarchicalType: 'operatorOption',
-              label: 'averageMedianWeighted',
-              markupType: 'option',
-              outputType: 'filterOutput',
-            },
-          ],
-          outputType: 'filterOutput',
-          scriptId: 15,
-          selected: {
-            arguments: [],
-            hierarchicalType: 'selectedOperatorOption',
-            label: 'mode',
-            markupType: 'option',
-            outputType: 'reducerOutput',
           },
         },
-      },
-      tally: {
-        filters: [
-          {
-            hierarchicalType: 'operator',
-            id: 21,
-            label: 'mode',
-            markupType: 'select',
-            options: [
-              {
-                hierarchicalType: 'operatorOption',
-                label: 'deviationAbsolute',
-                markupType: 'option',
-                outputType: 'filterOutput',
-              },
-              {
-                hierarchicalType: 'operatorOption',
-                label: 'deviationRelative',
-                markupType: 'option',
-                outputType: 'filterOutput',
-              },
-              {
-                hierarchicalType: 'operatorOption',
-                label: 'deviationStandard',
-                markupType: 'option',
-                outputType: 'filterOutput',
-              },
-              {
-                hierarchicalType: 'operatorOption',
+        tally: {
+          filters: [
+            {
+              hierarchicalType: 'operator',
+              id: 18,
+              label: 'mode',
+              markupType: 'select',
+              options: aTFilterMarkupOptions,
+              outputType: 'filterOutput',
+              scriptId: 17,
+              selected: {
+                arguments: [],
+                hierarchicalType: 'selectedOperatorOption',
                 label: 'mode',
                 markupType: 'option',
                 outputType: 'filterOutput',
               },
-            ],
+            },
+          ],
+          reducer: {
+            hierarchicalType: 'operator',
+            id: 19,
+            label: 'mode',
+            markupType: 'select',
+            options: aTReducerMarkupOptions,
             outputType: 'filterOutput',
-            scriptId: 20,
+            scriptId: 17,
             selected: {
               arguments: [],
               hierarchicalType: 'selectedOperatorOption',
               label: 'mode',
               markupType: 'option',
-              outputType: 'filterOutput',
+              outputType: 'reducerOutput',
             },
-          },
-          {
-            hierarchicalType: 'operator',
-            id: 22,
-            label: 'deviationAbsolute',
-            markupType: 'select',
-            options: [
-              {
-                hierarchicalType: 'operatorOption',
-                label: 'deviationAbsolute',
-                markupType: 'option',
-                outputType: 'filterOutput',
-              },
-              {
-                hierarchicalType: 'operatorOption',
-                label: 'deviationRelative',
-                markupType: 'option',
-                outputType: 'filterOutput',
-              },
-              {
-                hierarchicalType: 'operatorOption',
-                label: 'deviationStandard',
-                markupType: 'option',
-                outputType: 'filterOutput',
-              },
-              {
-                hierarchicalType: 'operatorOption',
-                label: 'mode',
-                markupType: 'option',
-                outputType: 'filterOutput',
-              },
-            ],
-            outputType: 'filterOutput',
-            scriptId: 20,
-            selected: {
-              arguments: [
-                {
-                  hierarchicalType: 'argument',
-                  id: 23,
-                  label: 'by',
-                  markupType: 'input',
-                  value: 3,
-                },
-              ],
-              hierarchicalType: 'selectedOperatorOption',
-              label: 'deviationAbsolute',
-              markupType: 'option',
-              outputType: 'filterOutput',
-            },
-          },
-        ],
-        reducer: {
-          hierarchicalType: 'operator',
-          id: 24,
-          label: 'mode',
-          markupType: 'select',
-          options: [
-            {
-              hierarchicalType: 'operatorOption',
-              label: 'mode',
-              markupType: 'option',
-              outputType: 'filterOutput',
-            },
-            {
-              hierarchicalType: 'operatorOption',
-              label: 'averageMean',
-              markupType: 'option',
-              outputType: 'filterOutput',
-            },
-            {
-              hierarchicalType: 'operatorOption',
-              label: 'averageMeanWeighted',
-              markupType: 'option',
-              outputType: 'filterOutput',
-            },
-            {
-              hierarchicalType: 'operatorOption',
-              label: 'averageMedian',
-              markupType: 'option',
-              outputType: 'filterOutput',
-            },
-            {
-              hierarchicalType: 'operatorOption',
-              label: 'averageMedianWeighted',
-              markupType: 'option',
-              outputType: 'filterOutput',
-            },
-          ],
-          outputType: 'filterOutput',
-          scriptId: 20,
-          selected: {
-            arguments: [],
-            hierarchicalType: 'selectedOperatorOption',
-            label: 'mode',
-            markupType: 'option',
-            outputType: 'reducerOutput',
           },
         },
-      },
-    }
+      }
 
-    expect(result).toStrictEqual(expected)
+      expect(result).toStrictEqual(expected)
+    })
   })
-
   it('getMir', () => {
     const mirRequest: MirRequest = {
       timelock: 0,
@@ -659,9 +967,9 @@ describe('Radon', () => {
       }
 
       const radon = new Radon(mirRequest)
-      radon.update(7, 0x83)
+      radon.update(7, 0x73)
       const updatedOperator = radon.retrieve[0].script.operators[2]
-      expect(updatedOperator.code).toBe(0x83)
+      expect(updatedOperator.code).toBe(0x73)
     })
     it('argument', () => {
       const mirRequest: MirRequest = {

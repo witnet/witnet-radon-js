@@ -166,13 +166,19 @@ export class AggregationTallyScript {
     this.scriptId = cache.insert(this).id
     this.mirScript = script
     this.cache = cache
-    this.filters = script.filters.map(filter => new AggregationTallyOperatorFilter(cache, filter, this.scriptId))
+    this.filters = script.filters.map(
+      filter => new AggregationTallyOperatorFilter(cache, filter, this.scriptId)
+    )
     this.reducer = new AggregationTallyOperatorReducer(cache, script.reducer, this.scriptId)
   }
 
   public addOperator() {
     this.filters.push(
-      new AggregationTallyOperatorFilter(this.cache, [AggregationTallyFilter.deviationAbsolute, 1], this.scriptId)
+      new AggregationTallyOperatorFilter(
+        this.cache,
+        [AggregationTallyFilter.deviationAbsolute, 1],
+        this.scriptId
+      )
     )
   }
 
@@ -203,7 +209,7 @@ export class AggregationTallyOperatorFilter {
   public id: number
   public default: boolean
   public argument: AggregationTallyFilterArgument | null
-  public scriptId:  number
+  public scriptId: number
 
   constructor(cache: Cache, operator: MirAggregationTallyFilterOperator, scriptId: number) {
     this.id = cache.insert(this).id
@@ -213,7 +219,7 @@ export class AggregationTallyOperatorFilter {
     this.argument = Array.isArray(operator)
       ? new AggregationTallyFilterArgument(cache, operator[1])
       : null
-      this.scriptId = scriptId
+    this.scriptId = scriptId
   }
 
   public getMarkup(): MarkupSelect {
@@ -260,7 +266,7 @@ export class AggregationTallyOperatorFilter {
     if (Number.isInteger(value)) {
       this.code = value
     } else {
-      this.code = AggregationTallyFilter[value] as unknown as AggregationTallyFilter
+      this.code = (AggregationTallyFilter[value] as unknown) as AggregationTallyFilter
     }
   }
 }
@@ -309,7 +315,7 @@ export class AggregationTallyOperatorReducer {
     if (Number.isInteger(value)) {
       this.code = value
     } else {
-      this.code = AggregationTallyReducer[value] as unknown as AggregationTallyReducer
+      this.code = (AggregationTallyReducer[value] as unknown) as AggregationTallyReducer
     }
   }
 }
