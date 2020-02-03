@@ -206,14 +206,10 @@ export declare enum OperatorCode {
     StringLength = 116,
     StringMatch = 117,
     StringParseJsonArray = 118,
-    StringParseJsonBoolean = 118,
-    StringParseJsonInteger = 119,
-    StringParseJsonFloat = 120,
-    StringParseJsonMap = 121,
-    StringParseJsonString = 122,
-    StringParseXML = 123,
-    StringToLowerCase = 124,
-    StringToUpperCase = 125
+    StringParseJsonMap = 119,
+    StringParseXML = 120,
+    StringToLowerCase = 121,
+    StringToUpperCase = 122
 }
 export declare enum MirArgumentType {
     Integer = 0,
@@ -369,11 +365,7 @@ export declare enum StringOperatorName {
     Length = "length",
     Match = "match",
     ParseJsonArray = "parseJsonArray",
-    ParseJsonBoolean = "parseJsonBoolean",
-    ParseJsonInteger = "parseJsonInteger",
-    ParseJsonFloat = "parseJsonFloat",
     ParseJsonMap = "parseJsonMap",
-    ParseJsonString = "parseJsonString",
     ParseXml = "parseXml",
     ToLowerCase = "toLowerCase",
     ToUpperCase = "toUpperCase"

@@ -101,17 +101,7 @@ export const typeSystem: TypeSystem = {
     [StringOperatorName.Length]: [OperatorCode.StringLength, OutputType.Integer],
     [StringOperatorName.Match]: [OperatorCode.StringMatch, OutputType.MatchOutput],
     [StringOperatorName.ParseJsonArray]: [OperatorCode.StringParseJsonArray, OutputType.Array],
-    [StringOperatorName.ParseJsonBoolean]: [
-      OperatorCode.StringParseJsonBoolean,
-      OutputType.Boolean,
-    ],
-    [StringOperatorName.ParseJsonFloat]: [OperatorCode.StringParseJsonFloat, OutputType.Float],
-    [StringOperatorName.ParseJsonInteger]: [
-      OperatorCode.StringParseJsonInteger,
-      OutputType.Integer,
-    ],
     [StringOperatorName.ParseJsonMap]: [OperatorCode.StringParseJsonMap, OutputType.Map],
-    [StringOperatorName.ParseJsonString]: [OperatorCode.StringParseJsonString, OutputType.String],
     [StringOperatorName.ParseXml]: [OperatorCode.StringParseXML, OutputType.Map],
     [StringOperatorName.ToLowerCase]: [OperatorCode.StringToLowerCase, OutputType.String],
     [StringOperatorName.ToUpperCase]: [OperatorCode.StringToUpperCase, OutputType.String],
@@ -754,35 +744,11 @@ export const operatorInfos: OperatorInfos = {
     arguments: [],
     outputType: OutputType.Array,
   },
-  [OperatorCode.StringParseJsonBoolean]: {
-    type: Type.String,
-    name: 'parseJson_boolean',
-    arguments: [],
-    outputType: OutputType.Boolean,
-  },
-  [OperatorCode.StringParseJsonInteger]: {
-    type: Type.String,
-    name: 'parseJson_integer',
-    arguments: [],
-    outputType: OutputType.Integer,
-  },
-  [OperatorCode.StringParseJsonFloat]: {
-    type: Type.String,
-    name: 'parseJson_float',
-    arguments: [],
-    outputType: OutputType.Float,
-  },
   [OperatorCode.StringParseJsonMap]: {
     type: Type.String,
     name: 'parseJson_map',
     arguments: [],
     outputType: OutputType.Map,
-  },
-  [OperatorCode.StringParseJsonString]: {
-    type: Type.String,
-    name: 'parseJson_string',
-    arguments: [],
-    outputType: OutputType.String,
   },
   [OperatorCode.StringParseXML]: {
     type: Type.String,
