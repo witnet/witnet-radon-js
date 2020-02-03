@@ -13,7 +13,7 @@ describe('Radon', () => {
       timelock: 0,
       retrieve: [
         {
-          kind: 'HTTP_GET',
+          kind: 'HTTP-GET',
           url: 'source_1',
           script: [
             OperatorCode.StringAsBoolean,
@@ -22,7 +22,7 @@ describe('Radon', () => {
           ],
         },
         {
-          kind: 'HTTP_GET',
+          kind: 'HTTP-GET',
           url: 'source_2',
           script: [
             OperatorCode.StringAsBoolean,
@@ -51,7 +51,7 @@ describe('Radon', () => {
       timelock: 0,
       retrieve: [
         {
-          kind: 'HTTP_GET',
+          kind: 'HTTP-GET',
           url: 'source_1',
           script: [
             OperatorCode.StringAsBoolean,
@@ -60,7 +60,7 @@ describe('Radon', () => {
           ],
         },
         {
-          kind: 'HTTP_GET',
+          kind: 'HTTP-GET',
           url: 'source_2',
           script: [
             OperatorCode.StringAsBoolean,
@@ -88,7 +88,7 @@ describe('Radon', () => {
       timelock: 0,
       retrieve: [
         {
-          kind: 'HTTP_GET',
+          kind: 'HTTP-GET',
           url: 'source_1',
           script: [
             OperatorCode.StringAsBoolean,
@@ -97,7 +97,7 @@ describe('Radon', () => {
           ],
         },
         {
-          kind: 'HTTP_GET',
+          kind: 'HTTP-GET',
           url: 'source_2',
           script: [
             OperatorCode.StringAsBoolean,
@@ -120,13 +120,14 @@ describe('Radon', () => {
     expect(radon.retrieve.length).toBe(1)
     expect(radon.retrieve[0].url).toBe('source_2')
   })
+
   describe('getMarkupMethod', () => {
     it('generic case', () => {
       const mirRequest: MirRequest = {
         timelock: 0,
         retrieve: [
           {
-            kind: 'HTTP_GET',
+            kind: 'HTTP-GET',
             url: 'source_1',
             script: [
               OperatorCode.StringAsBoolean,
@@ -135,7 +136,7 @@ describe('Radon', () => {
             ],
           },
           {
-            kind: 'HTTP_GET',
+            kind: 'HTTP-GET',
             url: 'source_2',
             script: [
               OperatorCode.StringAsBoolean,
@@ -160,7 +161,7 @@ describe('Radon', () => {
         timelock: 0,
         retrieve: [
           {
-            kind: 'HTTP_GET',
+            kind: 'HTTP-GET',
             url: 'source_1',
             script: [
               {
@@ -229,7 +230,7 @@ describe('Radon', () => {
             ],
           },
           {
-            kind: 'HTTP_GET',
+            kind: 'HTTP-GET',
             url: 'source_2',
             script: [
               {
@@ -893,12 +894,13 @@ describe('Radon', () => {
       expect(result).toStrictEqual(expected)
     })
   })
+
   it('getMir', () => {
     const mirRequest: MirRequest = {
       timelock: 0,
       retrieve: [
         {
-          kind: 'HTTP_GET',
+          kind: 'HTTP-GET',
           url: 'source_1',
           script: [
             OperatorCode.StringAsBoolean,
@@ -907,7 +909,7 @@ describe('Radon', () => {
           ],
         },
         {
-          kind: 'HTTP_GET',
+          kind: 'HTTP-GET',
           url: 'source_2',
           script: [
             OperatorCode.StringAsBoolean,
@@ -938,7 +940,7 @@ describe('Radon', () => {
         timelock: 0,
         retrieve: [
           {
-            kind: 'HTTP_GET',
+            kind: 'HTTP-GET',
             url: 'source_1',
             script: [
               OperatorCode.StringAsBoolean,
@@ -947,7 +949,7 @@ describe('Radon', () => {
             ],
           },
           {
-            kind: 'HTTP_GET',
+            kind: 'HTTP-GET',
             url: 'source_2',
             script: [
               OperatorCode.StringAsBoolean,
@@ -976,7 +978,7 @@ describe('Radon', () => {
         timelock: 0,
         retrieve: [
           {
-            kind: 'HTTP_GET',
+            kind: 'HTTP-GET',
             url: 'source_1',
             script: [
               OperatorCode.StringAsBoolean,
@@ -985,7 +987,7 @@ describe('Radon', () => {
             ],
           },
           {
-            kind: 'HTTP_GET',
+            kind: 'HTTP-GET',
             url: 'source_2',
             script: [
               OperatorCode.StringAsBoolean,
@@ -1017,7 +1019,7 @@ describe('Radon', () => {
         timelock: 0,
         retrieve: [
           {
-            kind: 'HTTP_GET',
+            kind: 'HTTP-GET',
             url: 'source_1',
             script: [
               OperatorCode.StringAsBoolean,
@@ -1026,7 +1028,7 @@ describe('Radon', () => {
             ],
           },
           {
-            kind: 'HTTP_GET',
+            kind: 'HTTP-GET',
             url: 'source_2',
             script: [
               OperatorCode.StringAsBoolean,
