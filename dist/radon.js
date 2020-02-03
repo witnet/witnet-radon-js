@@ -71,7 +71,7 @@ var Radon = /** @class */ (function () {
         this.cache.get(scriptId).addOperator();
     };
     Radon.prototype.addSource = function () {
-        this.retrieve.push(new Source(this.cache, { url: '', script: [types_1.OperatorCode.StringAsFloat], kind: 'HTTP_GET' }));
+        this.retrieve.push(new Source(this.cache, { url: '', script: [types_1.OperatorCode.StringAsFloat], kind: 'HTTP-GET' }));
     };
     return Radon;
 }());

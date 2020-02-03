@@ -108,7 +108,7 @@ export class Radon {
 
   public addSource() {
     this.retrieve.push(
-      new Source(this.cache, { url: '', script: [OperatorCode.StringAsFloat], kind: 'HTTP_GET' })
+      new Source(this.cache, { url: '', script: [OperatorCode.StringAsFloat], kind: 'HTTP-GET' })
     )
   }
 }
