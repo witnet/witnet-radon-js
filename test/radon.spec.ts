@@ -163,6 +163,7 @@ describe('Radon', () => {
           {
             kind: 'HTTP-GET',
             url: 'source_1',
+            scriptId: 2,
             script: [
               {
                 hierarchicalType: 'operator',
@@ -232,6 +233,7 @@ describe('Radon', () => {
           {
             kind: 'HTTP-GET',
             url: 'source_2',
+            scriptId: 9,
             script: [
               {
                 hierarchicalType: 'operator',
@@ -625,9 +627,11 @@ describe('Radon', () => {
             kind: 'HTTP-GET',
             url: 'https://blockchain.info/q/latesthash',
             script: [],
+            scriptId: 2,
           },
           {
             kind: 'HTTP-GET',
+            scriptId: 4,
             url: 'https://api-r.bitcoinchain.com/v1/status',
             script: [
               {
@@ -740,6 +744,7 @@ describe('Radon', () => {
                 },
               },
             ],
+            scriptId: 9,
             url: 'https://api.blockchair.com/bitcoin/stats',
           },
         ],

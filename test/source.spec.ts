@@ -11,7 +11,7 @@ describe('Script', () => {
       const source = new Source(cache, { kind: 'kind', url: 'url', script: mirScript })
 
       const result = source.getMarkup()
-      const expected = { kind: 'kind', url: 'url', script: [] }
+      const expected = { kind: 'kind', url: 'url', script: [], scriptId: 2 }
       expect(result).toStrictEqual(expected)
     })
 
@@ -34,6 +34,7 @@ describe('Script', () => {
 
       const expected: any = {
         kind: 'kind',
+        scriptId: 2,
         script: [
           {
             hierarchicalType: 'operator',

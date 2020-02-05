@@ -101,6 +101,7 @@ var Source = /** @class */ (function () {
             kind: this.kind,
             url: this.url,
             script: this.script.getMarkup(),
+            scriptId: this.script.scriptId
         };
     };
     Source.prototype.getOutputType = function () {

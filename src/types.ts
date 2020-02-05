@@ -153,6 +153,7 @@ export type MarkupSource = {
   kind: string
   url: string
   script: MarkupScript
+  scriptId: number
 }
 
 export type MarkupScript = Array<MarkupOperator>

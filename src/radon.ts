@@ -147,6 +147,7 @@ export class Source {
       kind: this.kind,
       url: this.url,
       script: this.script.getMarkup(),
+      scriptId: this.script.scriptId
     }
   }
 

@@ -124,6 +124,7 @@ export declare type MarkupSource = {
     kind: string;
     url: string;
     script: MarkupScript;
+    scriptId: number;
 };
 export declare type MarkupScript = Array<MarkupOperator>;
 export declare type MarkupRequest = {
