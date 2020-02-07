@@ -138,8 +138,8 @@
         "signature": "2088daed2bf4392d3ab0593206282f0f26f0294ff49099c6b9ff1faa8e732ca4"
       },
       "../src/types.ts": {
-        "version": "0e3123612d58b91a9af79aaea7fb83327a70f4871d7a432d7c146b152b12dccf",
-        "signature": "32382b9a9d65c7dc67c1dac7cd1c03f9ea0b71263f8f066c1f4cec6a9afebc35"
+        "version": "dd207b1a8b08428dbfc5f7a0224767b38afe9bb29b5f6a8dd4e5d46592fa9a2b",
+        "signature": "4ba3f4fa51454cd45538838ea5ec4cf8576b491689244b1471214d387cf9f1a2"
       },
       "../src/utils.ts": {
         "version": "eabaa0bda61b146a0fbe1f00366510a16139d0cd57c23fd38caa5278ce5ec539",
@@ -415,10 +415,10 @@
       "../node_modules/@types/stack-utils/index.d.ts",
       "../node_modules/@types/yargs-parser/index.d.ts",
       "../node_modules/@types/yargs/index.d.ts",
+      "../src/types.ts",
       "../src/radon.ts",
       "../src/structures.ts",
       "../src/utils.ts",
-      "../src/types.ts",
       "../src/index.ts"
     ]
   },

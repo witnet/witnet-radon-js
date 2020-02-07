@@ -264,7 +264,7 @@ var MapOperatorName;
     MapOperatorName["Entries"] = "entries";
     MapOperatorName["GetArray"] = "GetArray";
     MapOperatorName["GetBoolean"] = "GetBoolean";
-    MapOperatorName["GetBytes"] = "GetArray";
+    MapOperatorName["GetBytes"] = "GetBytes";
     MapOperatorName["GetInteger"] = "GetInteger";
     MapOperatorName["GetFloat"] = "GetFloat";
     MapOperatorName["GetMap"] = "GetMap";

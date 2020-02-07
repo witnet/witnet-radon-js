@@ -344,7 +344,7 @@ export declare enum MapOperatorName {
     Entries = "entries",
     GetArray = "GetArray",
     GetBoolean = "GetBoolean",
-    GetBytes = "GetArray",
+    GetBytes = "GetBytes",
     GetInteger = "GetInteger",
     GetFloat = "GetFloat",
     GetMap = "GetMap",
