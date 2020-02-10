@@ -1,4 +1,4 @@
-import { OperatorName, OperatorCode } from './types'
+import { OperatorName, OperatorCode, MirArgumentType, MarkupInputType } from './types'
 
 // check if contains the same elements
 export function areSoftEqualArrays(arr1: any[], arr2: any[]): boolean {
@@ -19,4 +19,14 @@ export function getEnumValues(e: any): Array<any> {
 
 export function getOperatorCodeFromOperatorName(name: OperatorName): OperatorCode {
   return (OperatorCode[name as any] as unknown) as OperatorCode
+}
+
+export function getMarkupInputTypeFromArgumentType(argumentType: MirArgumentType): MarkupInputType {
+  if (argumentType === MirArgumentType.Float || argumentType === MirArgumentType.Integer) {
+    return MarkupInputType.Number
+  } else if (argumentType === MirArgumentType.Boolean) {
+    return MarkupInputType.Boolean
+  } else {
+    return MarkupInputType.String
+  }
 }

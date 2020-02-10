@@ -38,7 +38,11 @@ import {
   aTFilterMarkupOptions,
   aTReducerMarkupOptions,
 } from './structures'
-import { getEnumNames, getOperatorCodeFromOperatorName } from './utils'
+import {
+  getEnumNames,
+  getOperatorCodeFromOperatorName,
+  getMarkupInputTypeFromArgumentType,
+} from './utils'
 
 export const DEFAULT_OPERATOR = OperatorCode.ArrayCount
 export const DEFAULT_INPUT_TYPE = OutputType.Array
@@ -147,7 +151,7 @@ export class Source {
       kind: this.kind,
       url: this.url,
       script: this.script.getMarkup(),
-      scriptId: this.script.scriptId
+      scriptId: this.script.scriptId,
     }
   }
 
@@ -558,12 +562,14 @@ export class Argument {
   public getMarkup(): MarkupArgument {
     if (this.argumentType === MarkupArgumentType.Input) {
       // TODO: Refactor this ugly code
+
       return {
         hierarchicalType: MarkupHierarchicalType.Argument,
         id: this.id,
         label: this.argumentInfo.name,
         markupType: MarkupType.Input,
         value: this.value as (string | number | boolean),
+        type: getMarkupInputTypeFromArgumentType(this.argumentInfo.type),
       } as MarkupInput
     } else if (this.argumentType === MarkupArgumentType.SelectFilter) {
       const args = this.argument ? [this.argument.getMarkup()] : []

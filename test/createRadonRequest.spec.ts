@@ -1,9 +1,5 @@
-import { Radon, } from '../src/radon'
-import {
-  MirRequest,
-  AggregationTallyReducer,
-  MarkupInput,
-} from '../src/types'
+import { Radon } from '../src/radon'
+import { MirRequest, AggregationTallyReducer, MarkupInput } from '../src/types'
 
 describe('Radon', () => {
   it('addOperator', () => {
@@ -45,12 +41,16 @@ describe('Radon', () => {
     // Update the input argument with a value
     radon.update(9, 'dataseries')
 
-    expect((radon.getMarkup().retrieve[0].script[1].selected.arguments[0] as MarkupInput).value).toBe('dataseries')
+    expect(
+      (radon.getMarkup().retrieve[0].script[1].selected.arguments[0] as MarkupInput).value
+    ).toBe('dataseries')
 
     // Push new operator
     radon.addOperator(2)
 
-    expect(radon.getMarkup().retrieve[0].script[2].options.find(option => option.label === 'ArrayGetMap')).toBeTruthy()
+    expect(
+      radon.getMarkup().retrieve[0].script[2].options.find(option => option.label === 'ArrayGetMap')
+    ).toBeTruthy()
 
     // select ArrayGetMap option
     radon.update(10, 'ArrayGetMap')
@@ -60,12 +60,16 @@ describe('Radon', () => {
     // Write argument value
     radon.update(11, '0')
 
-    expect((radon.getMarkup().retrieve[0].script[2].selected.arguments[0] as MarkupInput).value).toBe('0')
+    expect(
+      (radon.getMarkup().retrieve[0].script[2].selected.arguments[0] as MarkupInput).value
+    ).toBe('0')
 
     // Push new operator
     radon.addOperator(2)
 
-    expect(radon.getMarkup().retrieve[0].script[3].options.find(option => option.label === 'MapGetMap')).toBeTruthy()
+    expect(
+      radon.getMarkup().retrieve[0].script[3].options.find(option => option.label === 'MapGetMap')
+    ).toBeTruthy()
 
     // Select MapGetMap option
     radon.update(12, 'MapGetMap')
@@ -75,12 +79,16 @@ describe('Radon', () => {
     // Write argument value
     radon.update(13, 'temp2m')
 
-    expect((radon.getMarkup().retrieve[0].script[3].selected.arguments[0] as MarkupInput).value).toBe('temp2m')
+    expect(
+      (radon.getMarkup().retrieve[0].script[3].selected.arguments[0] as MarkupInput).value
+    ).toBe('temp2m')
 
     // Push new operator
     radon.addOperator(2)
 
-    expect(radon.getMarkup().retrieve[0].script[4].options.find(option => option.label === 'MapGetFloat')).toBeTruthy()
+    expect(
+      radon.getMarkup().retrieve[0].script[4].options.find(option => option.label === 'MapGetFloat')
+    ).toBeTruthy()
 
     // Select MapGetFloat option
     radon.update(14, 'MapGetFloat')
@@ -90,6 +98,8 @@ describe('Radon', () => {
     // Write argument value
     radon.update(15, 'max')
 
-    expect((radon.getMarkup().retrieve[0].script[4].selected.arguments[0] as MarkupInput).value).toBe('max')
+    expect(
+      (radon.getMarkup().retrieve[0].script[4].selected.arguments[0] as MarkupInput).value
+    ).toBe('max')
   })
 })

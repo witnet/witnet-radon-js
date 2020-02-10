@@ -138,19 +138,19 @@
         "signature": "2088daed2bf4392d3ab0593206282f0f26f0294ff49099c6b9ff1faa8e732ca4"
       },
       "../src/types.ts": {
-        "version": "43aa498a61914cab0412d344026255917cfaf9cfd5dbe1214e3132b5b5b32745",
-        "signature": "e0cbb9085e7b5ff6a29f16b0fbd6dd5b7e1d0fec8f9fd3d38f1fb1fa36fc59e2"
+        "version": "9495d26b61bf3b98535cf869344ede007d2c7ecf2c93deb4a3a7693d97db4d95",
+        "signature": "0eddd5ffc557e2891ac530bcaaa3a59b88e86a1e9774f3dd775d1c285d9f2e88"
       },
       "../src/utils.ts": {
-        "version": "eabaa0bda61b146a0fbe1f00366510a16139d0cd57c23fd38caa5278ce5ec539",
-        "signature": "d0a9f547cbf8700504153eb8440c05710acfa82da742497740ff9e2939c3ffb8"
+        "version": "ce9070ba32d21233619d98f9462d3c903d8bce745e991fe031b84e1df15853d9",
+        "signature": "f4de26931be237eba5a08e3d771c5a3b4a0338551bff5378c5a0721fd3743449"
       },
       "../src/structures.ts": {
         "version": "fc29b7ab374899e9c01e4dfbdc8c2735ad459c6db262aacbc5dde224b70a1588",
         "signature": "e3bce04fcafb7720c3caa8b0fa37f28cccdf0618c4165ab50cd4fb71b4cf5373"
       },
       "../src/radon.ts": {
-        "version": "489483c201660c17ed87a03ee0c638da649be07fa6e68ddecf3112b8a47d354a",
+        "version": "391ea1c788cabba467c47cc3644397e4a444f3ec8e79a6c98f18c143a718ec74",
         "signature": "0489c3f9c18c86bc9ba52f626d0cd5c92178a041095627131895649e5c67386d"
       },
       "../src/index.ts": {
@@ -399,6 +399,11 @@
       "../node_modules/typescript/lib/lib.es2019.symbol.d.ts",
       "../node_modules/typescript/lib/lib.es2020.string.d.ts",
       "../node_modules/typescript/lib/lib.es2020.symbol.wellknown.d.ts",
+      "../src/types.ts",
+      "../src/utils.ts",
+      "../src/structures.ts",
+      "../src/radon.ts",
+      "../src/index.ts",
       "../node_modules/@babel/types/lib/index.d.ts",
       "../node_modules/@types/babel__generator/index.d.ts",
       "../node_modules/@types/babel__traverse/index.d.ts",
@@ -414,12 +419,7 @@
       "../node_modules/@types/jest/index.d.ts",
       "../node_modules/@types/stack-utils/index.d.ts",
       "../node_modules/@types/yargs-parser/index.d.ts",
-      "../node_modules/@types/yargs/index.d.ts",
-      "../src/types.ts",
-      "../src/radon.ts",
-      "../src/structures.ts",
-      "../src/utils.ts",
-      "../src/index.ts"
+      "../node_modules/@types/yargs/index.d.ts"
     ]
   },
   "version": "3.6.4"

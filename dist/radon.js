@@ -101,7 +101,7 @@ var Source = /** @class */ (function () {
             kind: this.kind,
             url: this.url,
             script: this.script.getMarkup(),
-            scriptId: this.script.scriptId
+            scriptId: this.script.scriptId,
         };
     };
     Source.prototype.getOutputType = function () {
@@ -423,6 +423,7 @@ var Argument = /** @class */ (function () {
                 label: this.argumentInfo.name,
                 markupType: types_1.MarkupType.Input,
                 value: this.value,
+                type: utils_1.getMarkupInputTypeFromArgumentType(this.argumentInfo.type),
             };
         }
         else if (this.argumentType === types_1.MarkupArgumentType.SelectFilter) {

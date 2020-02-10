@@ -87,6 +87,12 @@ var MarkupHierarchicalType;
     MarkupHierarchicalType["OperatorOption"] = "operatorOption";
     MarkupHierarchicalType["Argument"] = "argument";
 })(MarkupHierarchicalType = exports.MarkupHierarchicalType || (exports.MarkupHierarchicalType = {}));
+var MarkupInputType;
+(function (MarkupInputType) {
+    MarkupInputType["Number"] = "number";
+    MarkupInputType["Boolean"] = "boolean";
+    MarkupInputType["String"] = "string";
+})(MarkupInputType = exports.MarkupInputType || (exports.MarkupInputType = {}));
 var MarkupType;
 (function (MarkupType) {
     MarkupType["Select"] = "select";

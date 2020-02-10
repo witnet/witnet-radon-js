@@ -20,3 +20,15 @@ function getOperatorCodeFromOperatorName(name) {
     return types_1.OperatorCode[name];
 }
 exports.getOperatorCodeFromOperatorName = getOperatorCodeFromOperatorName;
+function getMarkupInputTypeFromArgumentType(argumentType) {
+    if (argumentType === types_1.MirArgumentType.Float || argumentType === types_1.MirArgumentType.Integer) {
+        return types_1.MarkupInputType.Number;
+    }
+    else if (argumentType === types_1.MirArgumentType.Boolean) {
+        return types_1.MarkupInputType.Boolean;
+    }
+    else {
+        return types_1.MarkupInputType.String;
+    }
+}
+exports.getMarkupInputTypeFromArgumentType = getMarkupInputTypeFromArgumentType;

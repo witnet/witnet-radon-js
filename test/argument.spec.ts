@@ -33,6 +33,7 @@ describe('Argument methods', () => {
         label: 'key',
         markupType: 'input',
         value: 'bpi',
+        type: 'string',
       }
       expect(result).toStrictEqual(expected)
     })
@@ -49,6 +50,7 @@ describe('Argument methods', () => {
         label: 'value',
         markupType: 'input',
         value: 1.1,
+        type: 'number',
       }
       expect(result).toStrictEqual(expected)
     })
@@ -65,6 +67,7 @@ describe('Argument methods', () => {
         label: 'ascending',
         markupType: 'input',
         value: true,
+        type: 'boolean',
       }
       expect(result).toStrictEqual(expected)
     })
@@ -81,6 +84,7 @@ describe('Argument methods', () => {
         label: 'script',
         markupType: 'input',
         value: 'x => x + 1',
+        type: 'string',
       }
       expect(result).toStrictEqual(expected)
     })

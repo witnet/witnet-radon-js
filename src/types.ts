@@ -107,6 +107,12 @@ export enum MarkupHierarchicalType {
   Argument = 'argument',
 }
 
+export enum MarkupInputType {
+  Number = 'number',
+  Boolean = 'boolean',
+  String = 'string',
+}
+
 export type MarkupOption = {
   hierarchicalType: MarkupHierarchicalType.OperatorOption
   label: string
@@ -129,6 +135,7 @@ export type MarkupInput = {
   markupType: MarkupType.Input
   hierarchicalType: MarkupHierarchicalType.Argument
   value: string | number | boolean
+  type: MarkupInputType
 }
 
 export type MarkupSelect = {
