@@ -396,9 +396,14 @@ export class Script {
     }
   }
 
+  public findIdx(operatorId: number) {
+    return this.operators.findIndex(x => operatorId === x.id)
+  }
+
   public deleteOperator(operatorId: number) {
-    const operatorIndex = this.operators.map(operator => operator.id).indexOf(operatorId)
+    const operatorIndex = this.findIdx(operatorId)
     this.operators.splice(operatorIndex, 1)
+    this.validateScript(operatorIndex)
   }
 
   public getMir(): MirScript {
@@ -409,7 +414,9 @@ export class Script {
     return {
       emit: (e: Event) => {
         if (e.name === EventName.Update) {
-          this.validateScript(e.data.index)
+          // TODO: create a method in Script to retrieve the index of an operator by operator ID
+          const index = this.findIdx(e.data.operator.id)
+          this.validateScript(index)
         }
       },
     }
@@ -533,7 +540,6 @@ export class Operator {
     const defaultOperatorArguments = operatorInfo.arguments.map((argument: ArgumentInfo) =>
       getDefaultMirArgumentByType(argument.type)
     )
-
     this.default = false
     this.code = operatorCode
     this.operatorInfo = operatorInfo
@@ -541,7 +547,10 @@ export class Operator {
     this.arguments = defaultOperatorArguments.map(
       (x, index: number) => new Argument(this.cache, this.operatorInfo.arguments[index], x)
     )
-    this.eventEmitter.emit(EventName.Update)
+    this.eventEmitter.emit({
+      name: EventName.Update,
+      data: { operator: { id: this.id, scriptId: this.scriptId } },
+    })
   }
 }
 
@@ -644,7 +653,7 @@ function areValidConsecutiveOperators(operators: Array<Operator>, idx: number) {
     const outputType = operators[idx].operatorInfo.outputType
     const label = operators[idx + 1].operatorInfo.name
     const options = markupOptions[outputType]
-    return !options.find(operatorName => operatorName === label)
+    return !!options.find(operatorName => operatorName === label)
   } else {
     return true
   }

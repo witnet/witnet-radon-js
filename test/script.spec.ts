@@ -3,7 +3,6 @@ import { Script, DEFAULT_SCRIPT_FIRST_TYPE, Operator, DEFAULT_OPERATOR } from '.
 import { Cache, markupOptions } from '../src/structures'
 
 // mock Operator
-
 // TODO: validateScript
 describe('Script methods', () => {
   describe('addOperator method', () => {
@@ -26,8 +25,6 @@ describe('Script methods', () => {
       expect(script.operators[script.operators.length - 1].code).toStrictEqual(DEFAULT_OPERATOR)
     })
   })
-
-  // Delete Operator test
 
   describe('deleteOperator method', () => {
     it('deletes operator by id', () => {

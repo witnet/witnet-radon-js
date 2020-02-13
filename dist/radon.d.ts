@@ -26,6 +26,7 @@ export declare class Radon {
     deleteSource(sourceIndex: number): void;
     update(id: number, value: any): void;
     addOperator(scriptId: number): void;
+    deleteOperator(scriptId: number, operatorId: number): void;
     addSource(): void;
 }
 export declare class Source {
@@ -93,6 +94,8 @@ export declare class Script {
     scriptId: number;
     constructor(cache: Cache, script: MirScript, firstType?: OutputType);
     addOperator(): void;
+    findIdx(operatorId: number): number;
+    deleteOperator(operatorId: number): void;
     getMir(): MirScript;
     onChildrenEvent(): {
         emit: (e: Event) => void;

@@ -70,6 +70,10 @@ var Radon = /** @class */ (function () {
         ;
         this.cache.get(scriptId).addOperator();
     };
+    Radon.prototype.deleteOperator = function (scriptId, operatorId) {
+        ;
+        this.cache.get(scriptId).deleteOperator(operatorId);
+    };
     Radon.prototype.addSource = function () {
         this.retrieve.push(new Source(this.cache, { url: '', script: [types_1.OperatorCode.StringAsFloat], kind: 'HTTP-GET' }));
     };
@@ -293,6 +297,14 @@ var Script = /** @class */ (function () {
             this.operators.push(new Operator(this.cache, this.scriptId, lastOutputType, null, this.onChildrenEvent()));
         }
     };
+    Script.prototype.findIdx = function (operatorId) {
+        return this.operators.findIndex(function (x) { return operatorId === x.id; });
+    };
+    Script.prototype.deleteOperator = function (operatorId) {
+        var operatorIndex = this.findIdx(operatorId);
+        this.operators.splice(operatorIndex, 1);
+        this.validateScript(operatorIndex);
+    };
     Script.prototype.getMir = function () {
         return this.operators.map(function (operator) { return operator.getMir(); });
     };
@@ -301,7 +313,9 @@ var Script = /** @class */ (function () {
         return {
             emit: function (e) {
                 if (e.name === EventName.Update) {
-                    _this.validateScript(e.data.index);
+                    // TODO: create a method in Script to retrieve the index of an operator by operator ID
+                    var index = _this.findIdx(e.data.operator.id);
+                    _this.validateScript(index);
                 }
             },
         };
@@ -398,7 +412,7 @@ var Operator = /** @class */ (function () {
         this.operatorInfo = operatorInfo;
         this.mirArguments = defaultOperatorArguments;
         this.arguments = defaultOperatorArguments.map(function (x, index) { return new Argument(_this.cache, _this.operatorInfo.arguments[index], x); });
-        this.eventEmitter.emit(EventName.Update);
+        this.eventEmitter.emit({ name: EventName.Update, data: { operator: { id: this.id, scriptId: this.scriptId } } });
     };
     return Operator;
 }());
@@ -493,7 +507,7 @@ function areValidConsecutiveOperators(operators, idx) {
         var outputType = operators[idx].operatorInfo.outputType;
         var label_1 = operators[idx + 1].operatorInfo.name;
         var options = structures_1.markupOptions[outputType];
-        return !options.find(function (operatorName) { return operatorName === label_1; });
+        return !!options.find(function (operatorName) { return operatorName === label_1; });
     }
     else {
         return true;

@@ -150,8 +150,8 @@
         "signature": "e3bce04fcafb7720c3caa8b0fa37f28cccdf0618c4165ab50cd4fb71b4cf5373"
       },
       "../src/radon.ts": {
-        "version": "391ea1c788cabba467c47cc3644397e4a444f3ec8e79a6c98f18c143a718ec74",
-        "signature": "0489c3f9c18c86bc9ba52f626d0cd5c92178a041095627131895649e5c67386d"
+        "version": "f8afe1a14fec4da3be7894728bec97069747e5dc93aa0815a529ed58be5950da",
+        "signature": "8ca493cfb3ace7efe04c61bf2c2c90ace4d953c6a583f9bdb7f21b1f0ff85f1b"
       },
       "../src/index.ts": {
         "version": "3b570483a4546ac98c863fbfb5dbfae888a4288166964b4157607bde294a2f3e",
@@ -402,7 +402,6 @@
       "../src/types.ts",
       "../src/utils.ts",
       "../src/structures.ts",
-      "../src/radon.ts",
       "../src/index.ts",
       "../node_modules/@babel/types/lib/index.d.ts",
       "../node_modules/@types/babel__generator/index.d.ts",
@@ -419,7 +418,8 @@
       "../node_modules/@types/jest/index.d.ts",
       "../node_modules/@types/stack-utils/index.d.ts",
       "../node_modules/@types/yargs-parser/index.d.ts",
-      "../node_modules/@types/yargs/index.d.ts"
+      "../node_modules/@types/yargs/index.d.ts",
+      "../src/radon.ts"
     ]
   },
   "version": "3.6.4"
