@@ -110,6 +110,10 @@ export class Radon {
     ;(this.cache.get(scriptId) as Script).addOperator()
   }
 
+  public deleteOperator(scriptId: number, operatorId: number) {
+    ;(this.cache.get(scriptId) as Script).deleteOperator(operatorId)
+  }
+
   public addSource() {
     this.retrieve.push(
       new Source(this.cache, { url: '', script: [OperatorCode.StringAsFloat], kind: 'HTTP-GET' })
@@ -390,6 +394,11 @@ export class Script {
         new Operator(this.cache, this.scriptId, lastOutputType, null, this.onChildrenEvent())
       )
     }
+  }
+
+  public deleteOperator(operatorId: number) {
+    const operatorIndex = this.operators.map(operator => operator.id).indexOf(operatorId)
+    this.operators.splice(operatorIndex, 1)
   }
 
   public getMir(): MirScript {

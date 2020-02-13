@@ -27,6 +27,19 @@ describe('Script methods', () => {
     })
   })
 
+  // Delete Operator test
+
+  describe('deleteOperator method', () => {
+    it('deletes operator by id', () => {
+      const mirScript: MirScript = [OperatorCode.StringAsBoolean, OperatorCode.BooleanMatch]
+      const cache = new Cache()
+      const script = new Script(cache, mirScript)
+      const firstOperatorId = script.operators[0].id
+      script.deleteOperator(firstOperatorId)
+      expect(script.operators.length).toStrictEqual(1)
+    })
+  })
+
   describe('getLastOperator', () => {
     it('empty', () => {
       const mirScript: MirScript = []
