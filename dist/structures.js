@@ -114,13 +114,13 @@ exports.typeSystem = (_a = {},
 exports.operatorInfos = (_j = {},
     _j[types_1.OperatorCode.ArrayCount] = {
         type: types_1.Type.Array,
-        name: 'count',
+        name: types_1.ArrayOperatorName.Count,
         arguments: [],
         outputType: types_1.OutputType.Integer,
     },
     _j[types_1.OperatorCode.ArrayFilter] = {
         type: types_1.Type.Array,
-        name: 'filter',
+        name: types_1.ArrayOperatorName.Filter,
         arguments: [
             {
                 name: 'function',
@@ -132,7 +132,7 @@ exports.operatorInfos = (_j = {},
     },
     _j[types_1.OperatorCode.ArrayFlatten] = {
         type: types_1.Type.Array,
-        name: 'flatten',
+        name: types_1.ArrayOperatorName.Flatten,
         arguments: [
             {
                 name: 'depth',
@@ -144,7 +144,7 @@ exports.operatorInfos = (_j = {},
     },
     _j[types_1.OperatorCode.ArrayGetArray] = {
         type: types_1.Type.Array,
-        name: 'get_array',
+        name: types_1.ArrayOperatorName.GetArray,
         arguments: [
             {
                 name: 'index',
@@ -156,7 +156,7 @@ exports.operatorInfos = (_j = {},
     },
     _j[types_1.OperatorCode.ArrayGetBoolean] = {
         type: types_1.Type.Boolean,
-        name: 'get_boolean',
+        name: types_1.ArrayOperatorName.GetBoolean,
         arguments: [
             {
                 name: 'index',
@@ -168,7 +168,7 @@ exports.operatorInfos = (_j = {},
     },
     _j[types_1.OperatorCode.ArrayGetBytes] = {
         type: types_1.Type.Array,
-        name: 'get_bytes',
+        name: types_1.ArrayOperatorName.GetBytes,
         arguments: [
             {
                 name: 'index',
@@ -180,7 +180,7 @@ exports.operatorInfos = (_j = {},
     },
     _j[types_1.OperatorCode.ArrayGetInteger] = {
         type: types_1.Type.Array,
-        name: 'get_integer',
+        name: types_1.ArrayOperatorName.GetInteger,
         arguments: [
             {
                 name: 'index',
@@ -192,7 +192,7 @@ exports.operatorInfos = (_j = {},
     },
     _j[types_1.OperatorCode.ArrayGetFloat] = {
         type: types_1.Type.Array,
-        name: 'get_float',
+        name: types_1.ArrayOperatorName.GetFloat,
         arguments: [
             {
                 name: 'index',
@@ -204,7 +204,7 @@ exports.operatorInfos = (_j = {},
     },
     _j[types_1.OperatorCode.ArrayGetMap] = {
         type: types_1.Type.Array,
-        name: 'get_map',
+        name: types_1.ArrayOperatorName.GetMap,
         arguments: [
             {
                 name: 'index',
@@ -216,7 +216,7 @@ exports.operatorInfos = (_j = {},
     },
     _j[types_1.OperatorCode.ArrayGetString] = {
         type: types_1.Type.Array,
-        name: 'get_string',
+        name: types_1.ArrayOperatorName.GetString,
         arguments: [
             {
                 name: 'index',
@@ -228,7 +228,7 @@ exports.operatorInfos = (_j = {},
     },
     _j[types_1.OperatorCode.ArrayMap] = {
         type: types_1.Type.Array,
-        name: 'map',
+        name: types_1.ArrayOperatorName.Map,
         arguments: [
             {
                 name: 'script',
@@ -240,7 +240,7 @@ exports.operatorInfos = (_j = {},
     },
     _j[types_1.OperatorCode.ArrayReduce] = {
         type: types_1.Type.Array,
-        name: 'reduce',
+        name: types_1.ArrayOperatorName.Reduce,
         arguments: [
             {
                 name: 'function',
@@ -252,7 +252,7 @@ exports.operatorInfos = (_j = {},
     },
     _j[types_1.OperatorCode.ArraySome] = {
         type: types_1.Type.Array,
-        name: 'some',
+        name: types_1.ArrayOperatorName.Some,
         arguments: [
             {
                 name: 'function',
@@ -264,7 +264,7 @@ exports.operatorInfos = (_j = {},
     },
     _j[types_1.OperatorCode.ArraySort] = {
         type: types_1.Type.Array,
-        name: 'sort',
+        name: types_1.ArrayOperatorName.Sort,
         arguments: [
             {
                 name: 'mapFunction',
@@ -281,7 +281,7 @@ exports.operatorInfos = (_j = {},
     },
     _j[types_1.OperatorCode.ArrayTake] = {
         type: types_1.Type.Array,
-        name: 'take',
+        name: types_1.ArrayOperatorName.Take,
         arguments: [
             { name: 'min', optional: true, type: types_1.MirArgumentType.Integer },
             {
@@ -294,7 +294,7 @@ exports.operatorInfos = (_j = {},
     },
     _j[types_1.OperatorCode.BooleanMatch] = {
         type: types_1.Type.Boolean,
-        name: 'match',
+        name: types_1.BooleanOperatorName.Match,
         arguments: [
             {
                 name: 'categories',
@@ -311,37 +311,37 @@ exports.operatorInfos = (_j = {},
     },
     _j[types_1.OperatorCode.BooleanNegate] = {
         type: types_1.Type.Boolean,
-        name: 'negate',
+        name: types_1.BooleanOperatorName.Negate,
         arguments: [],
         outputType: types_1.OutputType.Boolean,
     },
     _j[types_1.OperatorCode.BytesAsString] = {
         type: types_1.Type.Bytes,
-        name: 'asString',
+        name: types_1.BytesOperatorName.AsString,
         arguments: [],
         outputType: types_1.OutputType.String,
     },
     _j[types_1.OperatorCode.BytesHash] = {
         type: types_1.Type.Bytes,
-        name: 'hash',
+        name: types_1.BytesOperatorName.Hash,
         arguments: [],
         outputType: types_1.OutputType.Bytes,
     },
     _j[types_1.OperatorCode.IntegerAbsolute] = {
         type: types_1.Type.Integer,
-        name: 'absolute',
+        name: types_1.IntegerOperatorName.Absolute,
         arguments: [],
         outputType: types_1.OutputType.Integer,
     },
     _j[types_1.OperatorCode.IntegerAsFloat] = {
         type: types_1.Type.Integer,
-        name: 'asFloat',
+        name: types_1.IntegerOperatorName.AsFloat,
         arguments: [],
         outputType: types_1.OutputType.Float,
     },
     _j[types_1.OperatorCode.IntegerAsString] = {
         type: types_1.Type.Integer,
-        name: 'asString',
+        name: types_1.IntegerOperatorName.AsString,
         arguments: [
             {
                 name: 'base',
@@ -353,7 +353,7 @@ exports.operatorInfos = (_j = {},
     },
     _j[types_1.OperatorCode.IntegerGreaterThan] = {
         type: types_1.Type.Integer,
-        name: 'greaterThan',
+        name: types_1.IntegerOperatorName.GreaterThan,
         arguments: [
             {
                 name: 'value',
@@ -365,7 +365,7 @@ exports.operatorInfos = (_j = {},
     },
     _j[types_1.OperatorCode.IntegerLessThan] = {
         type: types_1.Type.Integer,
-        name: 'lessThan',
+        name: types_1.IntegerOperatorName.LessThan,
         arguments: [
             {
                 name: 'value',
@@ -377,7 +377,7 @@ exports.operatorInfos = (_j = {},
     },
     _j[types_1.OperatorCode.IntegerMatch] = {
         type: types_1.Type.Integer,
-        name: 'match',
+        name: types_1.IntegerOperatorName.Match,
         arguments: [],
         outputType: types_1.OutputType.MatchOutput,
     },
@@ -395,7 +395,7 @@ exports.operatorInfos = (_j = {},
     },
     _j[types_1.OperatorCode.IntegerMultiply] = {
         type: types_1.Type.Integer,
-        name: 'multiply',
+        name: types_1.IntegerOperatorName.Multiply,
         arguments: [
             {
                 name: 'factor',
@@ -407,13 +407,13 @@ exports.operatorInfos = (_j = {},
     },
     _j[types_1.OperatorCode.IntegerNegate] = {
         type: types_1.Type.Integer,
-        name: 'negate',
+        name: types_1.IntegerOperatorName.Negate,
         arguments: [],
         outputType: types_1.OutputType.Integer,
     },
     _j[types_1.OperatorCode.IntegerPower] = {
         type: types_1.Type.Integer,
-        name: 'power',
+        name: types_1.IntegerOperatorName.Power,
         arguments: [
             {
                 name: 'exponent',
@@ -425,13 +425,13 @@ exports.operatorInfos = (_j = {},
     },
     _j[types_1.OperatorCode.IntegerReciprocal] = {
         type: types_1.Type.Integer,
-        name: 'reciprocal',
+        name: types_1.IntegerOperatorName.Reciprocal,
         arguments: [],
         outputType: types_1.OutputType.Float,
     },
     _j[types_1.OperatorCode.IntegerSum] = {
         type: types_1.Type.Integer,
-        name: 'sum',
+        name: types_1.IntegerOperatorName.Sum,
         arguments: [
             {
                 name: 'addend',
@@ -443,13 +443,13 @@ exports.operatorInfos = (_j = {},
     },
     _j[types_1.OperatorCode.FloatAbsolute] = {
         type: types_1.Type.Float,
-        name: 'absolute',
+        name: types_1.IntegerOperatorName.Absolute,
         arguments: [],
         outputType: types_1.OutputType.Float,
     },
     _j[types_1.OperatorCode.FloatAsString] = {
         type: types_1.Type.Float,
-        name: 'asString',
+        name: types_1.FloatOperatorName.AsString,
         arguments: [
             {
                 name: 'decimals',
@@ -461,13 +461,13 @@ exports.operatorInfos = (_j = {},
     },
     _j[types_1.OperatorCode.FloatCeiling] = {
         type: types_1.Type.Float,
-        name: 'ceiling',
+        name: types_1.FloatOperatorName.Ceiling,
         arguments: [],
         outputType: types_1.OutputType.Integer,
     },
     _j[types_1.OperatorCode.FloatGraterThan] = {
         type: types_1.Type.Float,
-        name: 'greaterThan',
+        name: types_1.FloatOperatorName.GreaterThan,
         arguments: [
             {
                 name: 'value',
@@ -479,13 +479,13 @@ exports.operatorInfos = (_j = {},
     },
     _j[types_1.OperatorCode.FloatFloor] = {
         type: types_1.Type.Float,
-        name: 'floor',
+        name: types_1.FloatOperatorName.Floor,
         arguments: [],
         outputType: types_1.OutputType.Float,
     },
     _j[types_1.OperatorCode.FloatLessThan] = {
         type: types_1.Type.Float,
-        name: 'lessThan',
+        name: types_1.FloatOperatorName.LessThan,
         arguments: [
             {
                 name: 'value',
@@ -497,7 +497,7 @@ exports.operatorInfos = (_j = {},
     },
     _j[types_1.OperatorCode.FloatModulo] = {
         type: types_1.Type.Float,
-        name: 'modulo',
+        name: types_1.FloatOperatorName.Modulo,
         arguments: [
             {
                 name: 'modulus',
@@ -509,7 +509,7 @@ exports.operatorInfos = (_j = {},
     },
     _j[types_1.OperatorCode.FloatMultiply] = {
         type: types_1.Type.Float,
-        name: 'multiply',
+        name: types_1.FloatOperatorName.Multiply,
         arguments: [
             {
                 name: 'factor',
@@ -521,7 +521,7 @@ exports.operatorInfos = (_j = {},
     },
     _j[types_1.OperatorCode.FloatNegate] = {
         type: types_1.Type.Float,
-        name: 'negate',
+        name: types_1.FloatOperatorName.Negate,
         arguments: [],
         outputType: types_1.OutputType.Float,
     },
@@ -530,7 +530,7 @@ exports.operatorInfos = (_j = {},
         name: 'power',
         arguments: [
             {
-                name: 'exponent',
+                name: types_1.FloatOperatorName.Power,
                 optional: false,
                 type: types_1.MirArgumentType.Float,
             },
@@ -539,19 +539,19 @@ exports.operatorInfos = (_j = {},
     },
     _j[types_1.OperatorCode.FloatReciprocal] = {
         type: types_1.Type.Float,
-        name: 'reciprocal',
+        name: types_1.FloatOperatorName.Reciprocal,
         arguments: [],
         outputType: types_1.OutputType.Float,
     },
     _j[types_1.OperatorCode.FloatRound] = {
         type: types_1.Type.Float,
-        name: 'round',
+        name: types_1.FloatOperatorName.Round,
         arguments: [],
         outputType: types_1.OutputType.Integer,
     },
     _j[types_1.OperatorCode.Floatsum] = {
         type: types_1.Type.Float,
-        name: 'sum',
+        name: types_1.FloatOperatorName.Sum,
         arguments: [
             {
                 name: 'addend',
@@ -563,19 +563,19 @@ exports.operatorInfos = (_j = {},
     },
     _j[types_1.OperatorCode.FloatTruncate] = {
         type: types_1.Type.Float,
-        name: 'truncate',
+        name: types_1.FloatOperatorName.Truncate,
         arguments: [],
         outputType: types_1.OutputType.Integer,
     },
     _j[types_1.OperatorCode.MapEntries] = {
         type: types_1.Type.Map,
-        name: 'entries',
+        name: types_1.MapOperatorName.Entries,
         arguments: [],
         outputType: types_1.OutputType.Array,
     },
     _j[types_1.OperatorCode.MapGetArray] = {
         type: types_1.Type.Map,
-        name: 'get_array',
+        name: types_1.MapOperatorName.GetArray,
         arguments: [
             {
                 name: 'key',
@@ -587,7 +587,7 @@ exports.operatorInfos = (_j = {},
     },
     _j[types_1.OperatorCode.MapGetBoolean] = {
         type: types_1.Type.Map,
-        name: 'get_boolean',
+        name: types_1.MapOperatorName.GetBoolean,
         arguments: [
             {
                 name: 'key',
@@ -599,7 +599,7 @@ exports.operatorInfos = (_j = {},
     },
     _j[types_1.OperatorCode.MapGetBytes] = {
         type: types_1.Type.Map,
-        name: 'get_bytes',
+        name: types_1.MapOperatorName.GetBytes,
         arguments: [
             {
                 name: 'key',
@@ -611,7 +611,7 @@ exports.operatorInfos = (_j = {},
     },
     _j[types_1.OperatorCode.MapGetInteger] = {
         type: types_1.Type.Map,
-        name: 'get_integer',
+        name: types_1.MapOperatorName.GetInteger,
         arguments: [
             {
                 name: 'key',
@@ -623,7 +623,7 @@ exports.operatorInfos = (_j = {},
     },
     _j[types_1.OperatorCode.MapGetFloat] = {
         type: types_1.Type.Map,
-        name: 'get_float',
+        name: types_1.MapOperatorName.GetFloat,
         arguments: [
             {
                 name: 'key',
@@ -635,7 +635,7 @@ exports.operatorInfos = (_j = {},
     },
     _j[types_1.OperatorCode.MapGetMap] = {
         type: types_1.Type.Map,
-        name: 'get_map',
+        name: types_1.MapOperatorName.GetMap,
         arguments: [
             {
                 name: 'key',
@@ -647,7 +647,7 @@ exports.operatorInfos = (_j = {},
     },
     _j[types_1.OperatorCode.MapGetString] = {
         type: types_1.Type.Map,
-        name: 'get_string',
+        name: types_1.MapOperatorName.GetString,
         arguments: [
             {
                 name: 'key',
@@ -659,115 +659,115 @@ exports.operatorInfos = (_j = {},
     },
     _j[types_1.OperatorCode.MapKeys] = {
         type: types_1.Type.Map,
-        name: 'keys',
+        name: types_1.MapOperatorName.Keys,
         arguments: [],
         outputType: types_1.OutputType.ArrayString,
     },
     _j[types_1.OperatorCode.MapValuesArray] = {
         type: types_1.Type.Map,
-        name: 'values_array',
+        name: types_1.MapOperatorName.valuesArray,
         arguments: [],
         outputType: types_1.OutputType.ArrayArray,
     },
     _j[types_1.OperatorCode.MapValuesBoolean] = {
         type: types_1.Type.Map,
-        name: 'values_boolean',
+        name: types_1.MapOperatorName.valuesBoolean,
         arguments: [],
         outputType: types_1.OutputType.ArrayBoolean,
     },
     _j[types_1.OperatorCode.MapValuesBytes] = {
         type: types_1.Type.Map,
-        name: 'values_bytes',
+        name: types_1.MapOperatorName.valuesBytes,
         arguments: [],
         outputType: types_1.OutputType.ArrayBytes,
     },
     _j[types_1.OperatorCode.MapValuesInteger] = {
         type: types_1.Type.Map,
-        name: 'values_integer',
+        name: types_1.MapOperatorName.valuesInteger,
         arguments: [],
         outputType: types_1.OutputType.ArrayInteger,
     },
     _j[types_1.OperatorCode.MapValuesFloat] = {
         type: types_1.Type.Map,
-        name: 'values_float',
+        name: types_1.MapOperatorName.valuesFloat,
         arguments: [],
         outputType: types_1.OutputType.ArrayFloat,
     },
     _j[types_1.OperatorCode.MapValuesMap] = {
         type: types_1.Type.Map,
-        name: 'values_map',
+        name: types_1.MapOperatorName.valuesMap,
         arguments: [],
         outputType: types_1.OutputType.ArrayMap,
     },
     _j[types_1.OperatorCode.MapValuesString] = {
         type: types_1.Type.Map,
-        name: 'values_string',
+        name: types_1.MapOperatorName.valuesString,
         arguments: [],
         outputType: types_1.OutputType.ArrayString,
     },
     _j[types_1.OperatorCode.StringAsBoolean] = {
         type: types_1.Type.String,
-        name: 'asBoolean',
+        name: types_1.StringOperatorName.AsBoolean,
         arguments: [],
         outputType: types_1.OutputType.Boolean,
     },
     _j[types_1.OperatorCode.StringAsBytes] = {
         type: types_1.Type.String,
-        name: 'asBytes',
+        name: types_1.StringOperatorName.AsBytes,
         arguments: [],
         outputType: types_1.OutputType.Bytes,
     },
     _j[types_1.OperatorCode.StringAsFloat] = {
         type: types_1.Type.String,
-        name: 'asFloat',
+        name: types_1.StringOperatorName.AsFloat,
         arguments: [],
         outputType: types_1.OutputType.Float,
     },
     _j[types_1.OperatorCode.StringAsInteger] = {
         type: types_1.Type.String,
-        name: 'asInteger',
+        name: types_1.StringOperatorName.AsInteger,
         arguments: [],
         outputType: types_1.OutputType.Integer,
     },
     _j[types_1.OperatorCode.StringLength] = {
         type: types_1.Type.String,
-        name: 'length',
+        name: types_1.StringOperatorName.Length,
         arguments: [],
         outputType: types_1.OutputType.Integer,
     },
     _j[types_1.OperatorCode.StringMatch] = {
         type: types_1.Type.String,
-        name: 'match',
+        name: types_1.StringOperatorName.Match,
         arguments: [],
         outputType: types_1.OutputType.MatchOutput,
     },
     _j[types_1.OperatorCode.StringParseJsonArray] = {
         type: types_1.Type.String,
-        name: 'parseJson_array',
+        name: types_1.StringOperatorName.ParseJsonArray,
         arguments: [],
         outputType: types_1.OutputType.Array,
     },
     _j[types_1.OperatorCode.StringParseJsonMap] = {
         type: types_1.Type.String,
-        name: 'parseJson_map',
+        name: types_1.StringOperatorName.ParseJsonMap,
         arguments: [],
         outputType: types_1.OutputType.Map,
     },
     _j[types_1.OperatorCode.StringParseXML] = {
         type: types_1.Type.String,
-        name: 'parseXml',
+        name: types_1.StringOperatorName.ParseXml,
         arguments: [],
         outputType: types_1.OutputType.Map,
     },
     _j[types_1.OperatorCode.StringToLowerCase] = {
         type: types_1.Type.String,
-        name: 'toLowerCase',
+        name: types_1.StringOperatorName.ToLowerCase,
         arguments: [],
         outputType: types_1.OutputType.String,
     },
     _j[types_1.OperatorCode.StringToUpperCase] = {
         type: types_1.Type.String,
-        name: 'toUpperCase',
+        name: types_1.StringOperatorName.ToUpperCase,
         arguments: [],
         outputType: types_1.OutputType.String,
     },

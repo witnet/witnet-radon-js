@@ -146,7 +146,7 @@
         "signature": "f4de26931be237eba5a08e3d771c5a3b4a0338551bff5378c5a0721fd3743449"
       },
       "../src/structures.ts": {
-        "version": "fc29b7ab374899e9c01e4dfbdc8c2735ad459c6db262aacbc5dde224b70a1588",
+        "version": "538590b1a8387178a52a9216f4862db21d45cdee007ac2c2a79d3ffbd7834bcf",
         "signature": "e3bce04fcafb7720c3caa8b0fa37f28cccdf0618c4165ab50cd4fb71b4cf5373"
       },
       "../src/radon.ts": {
