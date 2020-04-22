@@ -100,7 +100,7 @@ describe('Radon', () => {
     // select ArrayGetMap option
     radon.update(10, 'ArrayGetMap')
 
-    expect(radon.getMarkup().retrieve[0].script[2].selected.label).toBe('get_map')
+    expect(radon.getMarkup().retrieve[0].script[2].selected.label).toBe('getMap')
 
     // Write argument value
     radon.update(11, '0')
@@ -119,7 +119,7 @@ describe('Radon', () => {
     // Select MapGetMap option
     radon.update(12, 'MapGetMap')
 
-    expect(radon.getMarkup().retrieve[0].script[3].selected.label).toBe('get_map')
+    expect(radon.getMarkup().retrieve[0].script[3].selected.label).toBe('getMap')
 
     // Write argument value
     radon.update(13, 'temp2m')
@@ -138,7 +138,7 @@ describe('Radon', () => {
     // Select MapGetFloat option
     radon.update(14, 'MapGetFloat')
 
-    expect(radon.getMarkup().retrieve[0].script[4].selected.label).toBe('get_float')
+    expect(radon.getMarkup().retrieve[0].script[4].selected.label).toBe('getFloat')
 
     // Write argument value
     radon.update(15, 'max')
