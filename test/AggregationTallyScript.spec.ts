@@ -204,6 +204,7 @@ describe('AggregationTallyScript', () => {
       expect(result).toStrictEqual(mirScript)
     })
   })
+
   describe('addOperator', () => {
     it('without empty filters', () => {
       const mirScript: MirAggregationTallyScript = {
@@ -244,6 +245,7 @@ describe('AggregationTallyScript', () => {
       const expected = AggregationTallyFilter.deviationAbsolute
       expect(script.filters[1].code).toStrictEqual(expected)
     })
+
     it('with empty filters', () => {
       const mirScript: MirAggregationTallyScript = {
         filters: [],

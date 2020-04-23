@@ -299,7 +299,7 @@ exports.operatorInfos = (_j = {},
             {
                 name: 'categories',
                 optional: false,
-                type: types_1.MirArgumentType.Subscript,
+                type: types_1.MirArgumentType.String,
             },
             {
                 name: 'default',

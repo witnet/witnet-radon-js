@@ -2,7 +2,6 @@ import { MirScript, OperatorCode, OutputType } from '../src/types'
 import { Script, DEFAULT_SCRIPT_FIRST_TYPE, Operator, DEFAULT_OPERATOR } from '../src/radon'
 import { Cache, markupOptions } from '../src/structures'
 
-// mock Operator
 // TODO: validateScript
 describe('Script methods', () => {
   describe('addOperator method', () => {
@@ -215,6 +214,7 @@ describe('Script methods', () => {
       const cache = new Cache()
       const script = new Script(cache, mirScript)
       const result = script.getOutputType()
+
       expect(result).toBe(DEFAULT_SCRIPT_FIRST_TYPE)
     })
 
@@ -223,6 +223,7 @@ describe('Script methods', () => {
       const cache = new Cache()
       const script = new Script(cache, mirScript)
       const result = script.getOutputType()
+
       expect(result).toBe(OutputType.Integer)
     })
   })

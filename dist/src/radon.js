@@ -281,7 +281,13 @@ var Script = /** @class */ (function () {
         script.reduce(function (acc, item) {
             var op = new Operator(cache, _this.scriptId, acc, item, _this.onChildrenEvent());
             _this.operators.push(op);
-            return op.operatorInfo.outputType;
+            // if the outputType is same return its input type to be able to calculate the options
+            if (op.operatorInfo.outputType === 'same') {
+                return acc;
+            }
+            else {
+                return op.operatorInfo.outputType;
+            }
         }, firstType);
     }
     Script.prototype.addOperator = function () {
@@ -412,21 +418,47 @@ var Operator = /** @class */ (function () {
         this.operatorInfo = operatorInfo;
         this.mirArguments = defaultOperatorArguments;
         this.arguments = defaultOperatorArguments.map(function (x, index) { return new Argument(_this.cache, _this.operatorInfo.arguments[index], x); });
-        this.eventEmitter.emit({ name: EventName.Update, data: { operator: { id: this.id, scriptId: this.scriptId } } });
+        this.eventEmitter.emit({
+            name: EventName.Update,
+            data: { operator: { id: this.id, scriptId: this.scriptId } },
+        });
     };
     return Operator;
 }());
 exports.Operator = Operator;
 var Argument = /** @class */ (function () {
-    function Argument(cache, argumentInfo, argument) {
+    // TODO: find a better way to discriminate if the argument is a subscript
+    function Argument(cache, argumentInfo, argument, subscript) {
+        if (subscript === void 0) { subscript = false; }
         this.argumentType = getArgumentInfoType(argumentInfo);
         this.id = cache.insert(this).id;
         this.argumentInfo = argumentInfo;
         this.cache = cache;
         this.value = argument;
-        this.argument = Array.isArray(argument)
-            ? new Argument(this.cache, { name: 'by', optional: false, type: types_1.MirArgumentType.String }, argument[1])
-            : null;
+        this.subscript = subscript;
+        if (this.argumentInfo.type === types_1.MirArgumentType.Boolean ||
+            this.argumentInfo.type === types_1.MirArgumentType.Float ||
+            this.argumentInfo.type === types_1.MirArgumentType.Integer ||
+            this.argumentInfo.type === types_1.MirArgumentType.String) {
+            this.argument = null;
+        }
+        else if (this.argumentInfo.type === types_1.MirArgumentType.FilterFunction) {
+            if (this.subscript) {
+                this.argument = new Script(this.cache, argument);
+            }
+            else {
+                this.argument = new Argument(this.cache, { name: 'by', optional: false, type: types_1.MirArgumentType.String }, argument[1]);
+            }
+        }
+        else if (this.argumentInfo.type === types_1.MirArgumentType.ReducerFunction) {
+            this.argument = new Argument(this.cache, { name: 'by', optional: false, type: types_1.MirArgumentType.String }, argument);
+        }
+        else if (this.argumentInfo.type === types_1.MirArgumentType.Subscript) {
+            this.argument = new Script(this.cache, argument);
+        }
+        else {
+            this.argument = null;
+        }
     }
     Argument.prototype.getMarkup = function () {
         if (this.argumentType === types_1.MarkupArgumentType.Input) {
@@ -440,9 +472,8 @@ var Argument = /** @class */ (function () {
                 type: utils_1.getMarkupInputTypeFromArgumentType(this.argumentInfo.type),
             };
         }
-        else if (this.argumentType === types_1.MarkupArgumentType.SelectFilter) {
+        else if (this.argumentType === types_1.MarkupArgumentType.SelectFilter && !this.subscript) {
             var args = this.argument ? [this.argument.getMarkup()] : [];
-            // TODO: Refactor this ugly code
             return {
                 hierarchicalType: types_1.MarkupHierarchicalType.Argument,
                 id: this.id,
@@ -459,6 +490,16 @@ var Argument = /** @class */ (function () {
                 },
             };
             // } else if (argumentType === MarkupArgumentType.SelectReduce) {
+        }
+        else if (this.argumentType === types_1.MarkupArgumentType.Subscript || this.subscript) {
+            return {
+                id: this.id,
+                label: this.argumentInfo.name,
+                markupType: types_1.MarkupType.Script,
+                outputType: types_1.OutputType.SubscriptOutput,
+                hierarchicalType: types_1.MarkupHierarchicalType.Argument,
+                subscript: this.argument.getMarkup(),
+            };
         }
         else {
             // TODO: Refactor this ugly code
@@ -485,6 +526,9 @@ var Argument = /** @class */ (function () {
                 this.value[0],
                 this.argument.getMir(),
             ];
+        }
+        else if (this.argumentType === types_1.MarkupArgumentType.Subscript) {
+            return this.argument.getMir();
         }
         else {
             return this.value;
@@ -519,6 +563,9 @@ function getArgumentInfoType(info) {
     }
     else if (info.type === types_1.MirArgumentType.ReducerFunction) {
         return types_1.MarkupArgumentType.SelectReduce;
+    }
+    else if (info.type === types_1.MirArgumentType.Subscript) {
+        return types_1.MarkupArgumentType.Subscript;
     }
     else {
         return types_1.MarkupArgumentType.Input;

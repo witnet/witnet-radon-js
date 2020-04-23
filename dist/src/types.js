@@ -98,6 +98,7 @@ var MarkupType;
     MarkupType["Select"] = "select";
     MarkupType["Option"] = "option";
     MarkupType["Input"] = "input";
+    MarkupType["Script"] = "script";
 })(MarkupType = exports.MarkupType || (exports.MarkupType = {}));
 var OperatorCode;
 (function (OperatorCode) {
@@ -189,6 +190,7 @@ var MarkupArgumentType;
     MarkupArgumentType[MarkupArgumentType["Input"] = 0] = "Input";
     MarkupArgumentType[MarkupArgumentType["SelectFilter"] = 1] = "SelectFilter";
     MarkupArgumentType[MarkupArgumentType["SelectReduce"] = 2] = "SelectReduce";
+    MarkupArgumentType[MarkupArgumentType["Subscript"] = 3] = "Subscript";
 })(MarkupArgumentType = exports.MarkupArgumentType || (exports.MarkupArgumentType = {}));
 var AggregationTallyFilter;
 (function (AggregationTallyFilter) {
@@ -268,13 +270,13 @@ var FloatOperatorName;
 var MapOperatorName;
 (function (MapOperatorName) {
     MapOperatorName["Entries"] = "entries";
-    MapOperatorName["GetArray"] = "GetArray";
-    MapOperatorName["GetBoolean"] = "GetBoolean";
-    MapOperatorName["GetBytes"] = "GetBytes";
-    MapOperatorName["GetInteger"] = "GetInteger";
-    MapOperatorName["GetFloat"] = "GetFloat";
-    MapOperatorName["GetMap"] = "GetMap";
-    MapOperatorName["GetString"] = "GetString";
+    MapOperatorName["GetArray"] = "getArray";
+    MapOperatorName["GetBoolean"] = "getBoolean";
+    MapOperatorName["GetBytes"] = "getBytes";
+    MapOperatorName["GetInteger"] = "getInteger";
+    MapOperatorName["GetFloat"] = "getFloat";
+    MapOperatorName["GetMap"] = "getMap";
+    MapOperatorName["GetString"] = "getString";
     MapOperatorName["Keys"] = "keys";
     MapOperatorName["valuesArray"] = "valuesArray";
     MapOperatorName["valuesBoolean"] = "valuesBoolean";

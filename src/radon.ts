@@ -29,6 +29,7 @@ import {
   AggregationTallyFilter,
   AggregationTallyReducer,
   MarkupAggregationTallyScript,
+  MarkupArgumentScript,
 } from './types'
 import {
   Cache,
@@ -374,7 +375,14 @@ export class Script {
     script.reduce((acc, item) => {
       let op = new Operator(cache, this.scriptId, acc, item, this.onChildrenEvent())
       this.operators.push(op)
-      return op.operatorInfo.outputType
+
+      // If the `outputType` is `same` (a pseudo-type), return the input type
+      // so the available methods can be guessed correctly.
+      if (op.operatorInfo.outputType === 'same') {
+        return acc
+      } else {
+        return op.operatorInfo.outputType
+      }
     }, firstType)
   }
 
@@ -555,32 +563,59 @@ export class Operator {
 }
 
 export class Argument {
-  public argument: Argument | null
+  public argument: Argument | Script | null
   public argumentInfo: ArgumentInfo
   public argumentType: MarkupArgumentType
   public cache: Cache
   public id: number
   public value: MirArgument | undefined
+  public subscript: boolean
 
-  constructor(cache: Cache, argumentInfo: ArgumentInfo, argument?: MirArgument) {
+  // TODO: find a better way to discriminate whether the argument is a subscript
+  constructor(
+    cache: Cache,
+    argumentInfo: ArgumentInfo,
+    argument?: MirArgument,
+    subscript: boolean = false
+  ) {
     this.argumentType = getArgumentInfoType(argumentInfo)
     this.id = cache.insert(this).id
     this.argumentInfo = argumentInfo
     this.cache = cache
     this.value = argument
-    this.argument = Array.isArray(argument)
-      ? new Argument(
+    this.subscript = subscript
+    if (
+      this.argumentInfo.type === MirArgumentType.Boolean ||
+      this.argumentInfo.type === MirArgumentType.Float ||
+      this.argumentInfo.type === MirArgumentType.Integer ||
+      this.argumentInfo.type === MirArgumentType.String
+    ) {
+      this.argument = null
+    } else if (this.argumentInfo.type === MirArgumentType.FilterFunction) {
+      if (this.subscript) {
+        this.argument = new Script(this.cache, argument as MirScript)
+      } else {
+        this.argument = new Argument(
           this.cache,
           { name: 'by', optional: false, type: MirArgumentType.String },
-          argument[1]
+          (argument as [Filter, boolean | string | number])[1]
         )
-      : null
+      }
+    } else if (this.argumentInfo.type === MirArgumentType.ReducerFunction) {
+      this.argument = new Argument(
+        this.cache,
+        { name: 'by', optional: false, type: MirArgumentType.String },
+        argument as Reducer
+      )
+    } else if (this.argumentInfo.type === MirArgumentType.Subscript) {
+      this.argument = new Script(this.cache, argument as MirScript)
+    } else {
+      this.argument = null
+    }
   }
 
   public getMarkup(): MarkupArgument {
     if (this.argumentType === MarkupArgumentType.Input) {
-      // TODO: Refactor this ugly code
-
       return {
         hierarchicalType: MarkupHierarchicalType.Argument,
         id: this.id,
@@ -589,9 +624,8 @@ export class Argument {
         value: this.value as (string | number | boolean),
         type: getMarkupInputTypeFromArgumentType(this.argumentInfo.type),
       } as MarkupInput
-    } else if (this.argumentType === MarkupArgumentType.SelectFilter) {
+    } else if (this.argumentType === MarkupArgumentType.SelectFilter && !this.subscript) {
       const args = this.argument ? [this.argument.getMarkup()] : []
-      // TODO: Refactor this ugly code
       return {
         hierarchicalType: MarkupHierarchicalType.Argument,
         id: this.id,
@@ -607,7 +641,15 @@ export class Argument {
           markupType: MarkupType.Option,
         },
       } as MarkupSelect
-      // } else if (argumentType === MarkupArgumentType.SelectReduce) {
+    } else if (this.argumentType === MarkupArgumentType.Subscript || this.subscript) {
+      return {
+        id: this.id,
+        label: this.argumentInfo.name,
+        markupType: MarkupType.Script,
+        outputType: OutputType.SubscriptOutput,
+        hierarchicalType: MarkupHierarchicalType.Argument,
+        subscript: (this.argument as Script).getMarkup(),
+      } as MarkupArgumentScript
     } else {
       // TODO: Refactor this ugly code
       return {
@@ -634,6 +676,8 @@ export class Argument {
         (this.value as [Filter, number | string | boolean])[0],
         (this.argument as Argument).getMir(),
       ] as MirArgument
+    } else if (this.argumentType === MarkupArgumentType.Subscript) {
+      return (this.argument as Script).getMir()
     } else {
       return this.value as MirArgument
     }
@@ -664,6 +708,8 @@ function getArgumentInfoType(info: ArgumentInfo): MarkupArgumentType {
     return MarkupArgumentType.SelectFilter
   } else if (info.type === MirArgumentType.ReducerFunction) {
     return MarkupArgumentType.SelectReduce
+  } else if (info.type === MirArgumentType.Subscript) {
+    return MarkupArgumentType.Subscript
   } else {
     return MarkupArgumentType.Input
   }
@@ -675,7 +721,6 @@ export function generateFilterArgumentOptions(): Array<MarkupOption> {
       label: name,
       hierarchicalType: MarkupHierarchicalType.OperatorOption,
       markupType: MarkupType.Option,
-      // TODO: Add support for pseudotypes
       outputType: OutputType.FilterOutput,
     }
   })

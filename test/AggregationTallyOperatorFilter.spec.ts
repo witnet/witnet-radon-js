@@ -55,6 +55,7 @@ describe('AggregationTallyOperatorFilter', () => {
 
       expect(result).toStrictEqual(expected)
     })
+
     it('with argument', () => {
       const mirOperator: MirAggregationTallyFilterOperator = [
         AggregationTallyFilter.deviationAbsolute,
@@ -130,6 +131,7 @@ describe('AggregationTallyOperatorFilter', () => {
 
       expect(result).toStrictEqual(mirOperator)
     })
+
     it('with argument', () => {
       const mirOperator: MirAggregationTallyFilterOperator = [
         AggregationTallyFilter.deviationAbsolute,
@@ -143,6 +145,7 @@ describe('AggregationTallyOperatorFilter', () => {
       expect(result).toStrictEqual(mirOperator)
     })
   })
+
   describe('update', () => {
     it('without argument', () => {
       const mirOperator: MirAggregationTallyFilterOperator = AggregationTallyFilter.mode

@@ -123,13 +123,14 @@ export declare class Operator {
     update(value: OperatorName | OperatorCode): void;
 }
 export declare class Argument {
-    argument: Argument | null;
+    argument: Argument | Script | null;
     argumentInfo: ArgumentInfo;
     argumentType: MarkupArgumentType;
     cache: Cache;
     id: number;
     value: MirArgument | undefined;
-    constructor(cache: Cache, argumentInfo: ArgumentInfo, argument?: MirArgument);
+    subscript: boolean;
+    constructor(cache: Cache, argumentInfo: ArgumentInfo, argument?: MirArgument, subscript?: boolean);
     getMarkup(): MarkupArgument;
     getMir(): MirArgument;
     update(value: string | number | boolean | Filter): void;

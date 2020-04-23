@@ -1,7 +1,7 @@
 import {
   Argument,
   generateReducerArgumentOptions,
-  generateFilterArgumentOptions,
+  // generateFilterArgumentOptions,
 } from '../src/radon'
 import { Cache, operatorInfos } from '../src/structures'
 import {
@@ -17,7 +17,7 @@ import {
 } from '../src/types'
 
 const reducerOptions = generateReducerArgumentOptions()
-const filterOptions = generateFilterArgumentOptions()
+// const filterOptions = generateFilterArgumentOptions()
 
 describe('Argument methods', () => {
   describe('getMarkup', () => {
@@ -73,19 +73,199 @@ describe('Argument methods', () => {
     })
 
     it('subscript', () => {
-      const operator: MirOperator = [OperatorCode.ArrayMap, 'x => x + 1']
+      const operator: MirOperator = [
+        OperatorCode.ArrayMap,
+        [[OperatorCode.MapGetString, 'symbol'], OperatorCode.StringToLowerCase],
+      ]
       const argumentInfo = operatorInfos[operator[0]].arguments[0]
       const cache = new Cache()
       const argument = new Argument(cache, argumentInfo, operator[1])
       const result = argument.getMarkup()
       const expected = {
-        hierarchicalType: 'argument',
         id: 1,
         label: 'script',
-        markupType: 'input',
-        value: 'x => x + 1',
-        type: 'string',
+        markupType: 'script',
+        outputType: 'subscriptOutput',
+        hierarchicalType: 'argument',
+        subscript: [
+          {
+            hierarchicalType: 'operator',
+            id: 3,
+            label: 'getString',
+            markupType: 'select',
+            options: [
+              {
+                hierarchicalType: 'operatorOption',
+                label: 'StringAsBoolean',
+                markupType: 'option',
+                outputType: 'boolean',
+              },
+              {
+                hierarchicalType: 'operatorOption',
+                label: 'StringAsBytes',
+                markupType: 'option',
+                outputType: 'bytes',
+              },
+              {
+                hierarchicalType: 'operatorOption',
+                label: 'StringAsFloat',
+                markupType: 'option',
+                outputType: 'float',
+              },
+              {
+                hierarchicalType: 'operatorOption',
+                label: 'StringAsInteger',
+                markupType: 'option',
+                outputType: 'integer',
+              },
+              {
+                hierarchicalType: 'operatorOption',
+                label: 'StringLength',
+                markupType: 'option',
+                outputType: 'integer',
+              },
+              {
+                hierarchicalType: 'operatorOption',
+                label: 'StringMatch',
+                markupType: 'option',
+                outputType: 'matchOutput',
+              },
+              {
+                hierarchicalType: 'operatorOption',
+                label: 'StringParseJsonArray',
+                markupType: 'option',
+                outputType: 'array',
+              },
+              {
+                hierarchicalType: 'operatorOption',
+                label: 'StringParseJsonMap',
+                markupType: 'option',
+                outputType: 'map',
+              },
+              {
+                hierarchicalType: 'operatorOption',
+                label: 'StringParseXML',
+                markupType: 'option',
+                outputType: 'map',
+              },
+              {
+                hierarchicalType: 'operatorOption',
+                label: 'StringToLowerCase',
+                markupType: 'option',
+                outputType: 'string',
+              },
+              {
+                hierarchicalType: 'operatorOption',
+                label: 'StringToUpperCase',
+                markupType: 'option',
+                outputType: 'string',
+              },
+            ],
+            outputType: 'string',
+            scriptId: 2,
+            selected: {
+              arguments: [
+                {
+                  hierarchicalType: 'argument',
+                  id: 4,
+                  label: 'key',
+                  markupType: 'input',
+                  value: 'symbol',
+                  type: 'string',
+                },
+              ],
+              hierarchicalType: 'selectedOperatorOption',
+              label: 'getString',
+              markupType: 'option',
+              outputType: 'string',
+            },
+          },
+          {
+            hierarchicalType: 'operator',
+            id: 5,
+            label: 'toLowerCase',
+            markupType: 'select',
+            options: [
+              {
+                hierarchicalType: 'operatorOption',
+                label: 'StringAsBoolean',
+                markupType: 'option',
+                outputType: 'boolean',
+              },
+              {
+                hierarchicalType: 'operatorOption',
+                label: 'StringAsBytes',
+                markupType: 'option',
+                outputType: 'bytes',
+              },
+              {
+                hierarchicalType: 'operatorOption',
+                label: 'StringAsFloat',
+                markupType: 'option',
+                outputType: 'float',
+              },
+              {
+                hierarchicalType: 'operatorOption',
+                label: 'StringAsInteger',
+                markupType: 'option',
+                outputType: 'integer',
+              },
+              {
+                hierarchicalType: 'operatorOption',
+                label: 'StringLength',
+                markupType: 'option',
+                outputType: 'integer',
+              },
+              {
+                hierarchicalType: 'operatorOption',
+                label: 'StringMatch',
+                markupType: 'option',
+                outputType: 'matchOutput',
+              },
+              {
+                hierarchicalType: 'operatorOption',
+                label: 'StringParseJsonArray',
+                markupType: 'option',
+                outputType: 'array',
+              },
+              {
+                hierarchicalType: 'operatorOption',
+                label: 'StringParseJsonMap',
+                markupType: 'option',
+                outputType: 'map',
+              },
+              {
+                hierarchicalType: 'operatorOption',
+                label: 'StringParseXML',
+                markupType: 'option',
+                outputType: 'map',
+              },
+              {
+                hierarchicalType: 'operatorOption',
+                label: 'StringToLowerCase',
+                markupType: 'option',
+                outputType: 'string',
+              },
+              {
+                hierarchicalType: 'operatorOption',
+                label: 'StringToUpperCase',
+                markupType: 'option',
+                outputType: 'string',
+              },
+            ],
+            outputType: 'string',
+            scriptId: 2,
+            selected: {
+              arguments: [],
+              hierarchicalType: 'selectedOperatorOption',
+              label: 'toLowerCase',
+              markupType: 'option',
+              outputType: 'string',
+            },
+          },
+        ],
       }
+
       expect(result).toStrictEqual(expected)
     })
 
@@ -93,22 +273,333 @@ describe('Argument methods', () => {
       const operator: MirOperator = [OperatorCode.ArraySome, 0x00, 1]
       const argumentInfo = operatorInfos[operator[0]].arguments[0]
       const cache = new Cache()
-      const argument = new Argument(cache, argumentInfo, operator[1])
+      const argument = new Argument(cache, argumentInfo, [operator[1], operator[2]] as [
+        Filter,
+        number
+      ])
       const result = argument.getMarkup()
       const expected = {
         hierarchicalType: 'argument',
         id: 1,
         label: 'function',
         markupType: 'select',
-        options: filterOptions,
+        options: [
+          {
+            label: 'greaterThan',
+            hierarchicalType: 'operatorOption',
+            markupType: 'option',
+            outputType: 'filterOutput',
+          },
+          {
+            label: 'LessThan',
+            hierarchicalType: 'operatorOption',
+            markupType: 'option',
+            outputType: 'filterOutput',
+          },
+          {
+            label: 'equals',
+            hierarchicalType: 'operatorOption',
+            markupType: 'option',
+            outputType: 'filterOutput',
+          },
+          {
+            label: 'deviationAbsolute',
+            hierarchicalType: 'operatorOption',
+            markupType: 'option',
+            outputType: 'filterOutput',
+          },
+          {
+            label: 'deviationRelative',
+            hierarchicalType: 'operatorOption',
+            markupType: 'option',
+            outputType: 'filterOutput',
+          },
+          {
+            label: 'deviationStandard',
+            hierarchicalType: 'operatorOption',
+            markupType: 'option',
+            outputType: 'filterOutput',
+          },
+          {
+            label: 'top',
+            hierarchicalType: 'operatorOption',
+            markupType: 'option',
+            outputType: 'filterOutput',
+          },
+          {
+            label: 'bottom',
+            hierarchicalType: 'operatorOption',
+            markupType: 'option',
+            outputType: 'filterOutput',
+          },
+          {
+            label: 'mode',
+            hierarchicalType: 'operatorOption',
+            markupType: 'option',
+            outputType: 'filterOutput',
+          },
+          {
+            label: 'lessOrEqualThan',
+            hierarchicalType: 'operatorOption',
+            markupType: 'option',
+            outputType: 'filterOutput',
+          },
+          {
+            label: 'greaterOrEqualThan',
+            hierarchicalType: 'operatorOption',
+            markupType: 'option',
+            outputType: 'filterOutput',
+          },
+          {
+            label: 'notEquals',
+            hierarchicalType: 'operatorOption',
+            markupType: 'option',
+            outputType: 'filterOutput',
+          },
+          {
+            label: 'notDeviationAbsolute',
+            hierarchicalType: 'operatorOption',
+            markupType: 'option',
+            outputType: 'filterOutput',
+          },
+          {
+            label: 'notDeviationRelative',
+            hierarchicalType: 'operatorOption',
+            markupType: 'option',
+            outputType: 'filterOutput',
+          },
+          {
+            label: 'notDeviationStandard',
+            hierarchicalType: 'operatorOption',
+            markupType: 'option',
+            outputType: 'filterOutput',
+          },
+          {
+            label: 'notTop',
+            hierarchicalType: 'operatorOption',
+            markupType: 'option',
+            outputType: 'filterOutput',
+          },
+          {
+            label: 'notBottom',
+            hierarchicalType: 'operatorOption',
+            markupType: 'option',
+            outputType: 'filterOutput',
+          },
+        ],
         outputType: 'filterOutput',
         selected: {
-          arguments: [],
-          hierarchicalType: MarkupHierarchicalType.SelectedOperatorOption,
+          arguments: [
+            {
+              hierarchicalType: 'argument',
+              id: 2,
+              label: 'by',
+              markupType: 'input',
+              value: 1,
+              type: 'string',
+            },
+          ],
+          hierarchicalType: 'selectedOperatorOption',
           label: 'greaterThan',
-          markupType: MarkupType.Option,
-          outputType: OutputType.FilterOutput,
+          outputType: 'filterOutput',
+          markupType: 'option',
         },
+      }
+      expect(result).toStrictEqual(expected)
+    })
+
+    it('filter with subscript', () => {
+      const operator: MirOperator = [
+        OperatorCode.ArraySome,
+        [[OperatorCode.MapGetString, 'symbol'], OperatorCode.StringToLowerCase],
+      ]
+      const argumentInfo = operatorInfos[operator[0]].arguments[0]
+      const cache = new Cache()
+      const argument = new Argument(cache, argumentInfo, operator[1], true)
+      const result = argument.getMarkup()
+      const expected = {
+        id: 1,
+        label: 'function',
+        markupType: 'script',
+        outputType: 'subscriptOutput',
+        hierarchicalType: 'argument',
+        subscript: [
+          {
+            hierarchicalType: 'operator',
+            id: 3,
+            label: 'getString',
+            markupType: 'select',
+            options: [
+              {
+                hierarchicalType: 'operatorOption',
+                label: 'StringAsBoolean',
+                markupType: 'option',
+                outputType: 'boolean',
+              },
+              {
+                hierarchicalType: 'operatorOption',
+                label: 'StringAsBytes',
+                markupType: 'option',
+                outputType: 'bytes',
+              },
+              {
+                hierarchicalType: 'operatorOption',
+                label: 'StringAsFloat',
+                markupType: 'option',
+                outputType: 'float',
+              },
+              {
+                hierarchicalType: 'operatorOption',
+                label: 'StringAsInteger',
+                markupType: 'option',
+                outputType: 'integer',
+              },
+              {
+                hierarchicalType: 'operatorOption',
+                label: 'StringLength',
+                markupType: 'option',
+                outputType: 'integer',
+              },
+              {
+                hierarchicalType: 'operatorOption',
+                label: 'StringMatch',
+                markupType: 'option',
+                outputType: 'matchOutput',
+              },
+              {
+                hierarchicalType: 'operatorOption',
+                label: 'StringParseJsonArray',
+                markupType: 'option',
+                outputType: 'array',
+              },
+              {
+                hierarchicalType: 'operatorOption',
+                label: 'StringParseJsonMap',
+                markupType: 'option',
+                outputType: 'map',
+              },
+              {
+                hierarchicalType: 'operatorOption',
+                label: 'StringParseXML',
+                markupType: 'option',
+                outputType: 'map',
+              },
+              {
+                hierarchicalType: 'operatorOption',
+                label: 'StringToLowerCase',
+                markupType: 'option',
+                outputType: 'string',
+              },
+              {
+                hierarchicalType: 'operatorOption',
+                label: 'StringToUpperCase',
+                markupType: 'option',
+                outputType: 'string',
+              },
+            ],
+            outputType: 'string',
+            scriptId: 2,
+            selected: {
+              arguments: [
+                {
+                  hierarchicalType: 'argument',
+                  id: 4,
+                  label: 'key',
+                  markupType: 'input',
+                  value: 'symbol',
+                  type: 'string',
+                },
+              ],
+              hierarchicalType: 'selectedOperatorOption',
+              label: 'getString',
+              markupType: 'option',
+              outputType: 'string',
+            },
+          },
+          {
+            hierarchicalType: 'operator',
+            id: 5,
+            label: 'toLowerCase',
+            markupType: 'select',
+            options: [
+              {
+                hierarchicalType: 'operatorOption',
+                label: 'StringAsBoolean',
+                markupType: 'option',
+                outputType: 'boolean',
+              },
+              {
+                hierarchicalType: 'operatorOption',
+                label: 'StringAsBytes',
+                markupType: 'option',
+                outputType: 'bytes',
+              },
+              {
+                hierarchicalType: 'operatorOption',
+                label: 'StringAsFloat',
+                markupType: 'option',
+                outputType: 'float',
+              },
+              {
+                hierarchicalType: 'operatorOption',
+                label: 'StringAsInteger',
+                markupType: 'option',
+                outputType: 'integer',
+              },
+              {
+                hierarchicalType: 'operatorOption',
+                label: 'StringLength',
+                markupType: 'option',
+                outputType: 'integer',
+              },
+              {
+                hierarchicalType: 'operatorOption',
+                label: 'StringMatch',
+                markupType: 'option',
+                outputType: 'matchOutput',
+              },
+              {
+                hierarchicalType: 'operatorOption',
+                label: 'StringParseJsonArray',
+                markupType: 'option',
+                outputType: 'array',
+              },
+              {
+                hierarchicalType: 'operatorOption',
+                label: 'StringParseJsonMap',
+                markupType: 'option',
+                outputType: 'map',
+              },
+              {
+                hierarchicalType: 'operatorOption',
+                label: 'StringParseXML',
+                markupType: 'option',
+                outputType: 'map',
+              },
+              {
+                hierarchicalType: 'operatorOption',
+                label: 'StringToLowerCase',
+                markupType: 'option',
+                outputType: 'string',
+              },
+              {
+                hierarchicalType: 'operatorOption',
+                label: 'StringToUpperCase',
+                markupType: 'option',
+                outputType: 'string',
+              },
+            ],
+            outputType: 'string',
+            scriptId: 2,
+            selected: {
+              arguments: [],
+              hierarchicalType: 'selectedOperatorOption',
+              label: 'toLowerCase',
+              markupType: 'option',
+              outputType: 'string',
+            },
+          },
+        ],
       }
       expect(result).toStrictEqual(expected)
     })
@@ -171,12 +662,15 @@ describe('Argument methods', () => {
 
     it('subscript', () => {
       const argumentInfo = operatorInfos[OperatorCode.ArrayMap].arguments[0]
+      const operator: MirOperator = [
+        OperatorCode.ArrayMap,
+        [[OperatorCode.MapGetString, 'symbol'], OperatorCode.StringToLowerCase],
+      ]
       const cache = new Cache()
-      const argument = new Argument(cache, argumentInfo, 'x => x + 1')
+      const argument = new Argument(cache, argumentInfo, operator[1])
       const result = argument.getMir()
-      const expected = 'x => x + 1'
 
-      expect(result).toStrictEqual(expected)
+      expect(result).toStrictEqual(operator[1])
     })
 
     it('filter', () => {
@@ -185,6 +679,7 @@ describe('Argument methods', () => {
       const argument = new Argument(cache, argumentInfo, [0x00, 1])
       const result = argument.getMir()
       const expected = [0x00, 1]
+
       expect(result).toStrictEqual(expected)
     })
 
@@ -194,6 +689,7 @@ describe('Argument methods', () => {
       const argument = new Argument(cache, argumentInfo, 0x00)
       const result = argument.getMir()
       const expected = 0x00
+
       expect(result).toStrictEqual(expected)
     })
   })
@@ -224,21 +720,6 @@ describe('Argument methods', () => {
 
       const argument = new Argument(cache, argumentInfo, 0)
       const newValue = 9
-      argument.update(newValue)
-
-      expect(argument.value).toBe(newValue)
-    })
-
-    it('subscript', () => {
-      const cache = new Cache()
-      const argumentInfo: ArgumentInfo = {
-        name: 'categories',
-        optional: false,
-        type: MirArgumentType.Subscript,
-      }
-
-      const argument = new Argument(cache, argumentInfo, 'subscript_1')
-      const newValue = 'subscript_2'
       argument.update(newValue)
 
       expect(argument.value).toBe(newValue)

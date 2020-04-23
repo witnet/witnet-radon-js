@@ -122,10 +122,19 @@ export declare type MarkupSelect = {
 export declare enum MarkupType {
     Select = "select",
     Option = "option",
-    Input = "input"
+    Input = "input",
+    Script = "script"
 }
 export declare type MarkupOperator = MarkupSelect;
-export declare type MarkupArgument = MarkupSelect | MarkupInput;
+export declare type MarkupArgument = MarkupSelect | MarkupInput | MarkupArgumentScript;
+export declare type MarkupArgumentScript = {
+    id: Number;
+    subscript: MarkupScript;
+    label: string;
+    markupType: MarkupType.Script;
+    outputType: OutputType.SubscriptOutput;
+    hierarchicalType: MarkupHierarchicalType.Argument;
+};
 export declare type MarkupSource = {
     kind: string;
     url: string;
@@ -230,9 +239,10 @@ export declare enum MirArgumentType {
 export declare enum MarkupArgumentType {
     Input = 0,
     SelectFilter = 1,
-    SelectReduce = 2
+    SelectReduce = 2,
+    Subscript = 3
 }
-export declare type MirArgument = string | number | boolean | [Filter, number] | [Filter, string] | [Filter, boolean] | Reducer;
+export declare type MirArgument = string | number | boolean | [Filter, number] | [Filter, string] | [Filter, boolean] | MirScript | Reducer;
 export declare type MirAggregationTallyFilterOperator = AggregationTallyFilter | [AggregationTallyFilter, number] | [AggregationTallyFilter, string] | [AggregationTallyFilter, boolean];
 export declare type MirOperator = OperatorCode | [OperatorCode, MirArgument] | [OperatorCode, MirArgument, MirArgument];
 export declare enum AggregationTallyFilter {
@@ -348,13 +358,13 @@ export declare enum FloatOperatorName {
 }
 export declare enum MapOperatorName {
     Entries = "entries",
-    GetArray = "GetArray",
-    GetBoolean = "GetBoolean",
-    GetBytes = "GetBytes",
-    GetInteger = "GetInteger",
-    GetFloat = "GetFloat",
-    GetMap = "GetMap",
-    GetString = "GetString",
+    GetArray = "getArray",
+    GetBoolean = "getBoolean",
+    GetBytes = "getBytes",
+    GetInteger = "getInteger",
+    GetFloat = "getFloat",
+    GetMap = "getMap",
+    GetString = "getString",
     Keys = "keys",
     valuesArray = "valuesArray",
     valuesBoolean = "valuesBoolean",
@@ -401,21 +411,4 @@ export declare type TypeSystem = {
         [B in BytesOperatorName]: [OperatorCode, OutputType];
     };
 };
-export declare type TypeSystemEntry = [Type, {
-    [B in BooleanOperatorName]: [OperatorCode, OutputType];
-}] | [Type, {
-    [I in IntegerOperatorName]: [OperatorCode, OutputType];
-}] | [Type, {
-    [F in FloatOperatorName]: [OperatorCode, OutputType];
-}] | [Type, {
-    [S in StringOperatorName]: [OperatorCode, OutputType];
-}] | [Type, {
-    [A in ArrayOperatorName]: [OperatorCode, OutputType];
-}] | [Type, {
-    [M in MapOperatorName]: [OperatorCode, OutputType];
-}] | [Type, {
-    [B in BytesOperatorName]: [OperatorCode, OutputType];
-}];
-export declare type TypeSystemValue = [string, [OperatorCode, OutputType]];
-export declare type FilterArgument = [Filter, number] | [Filter, string] | [Filter, boolean];
 //# sourceMappingURL=types.d.ts.map

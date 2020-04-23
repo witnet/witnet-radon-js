@@ -153,9 +153,19 @@ export enum MarkupType {
   Select = 'select',
   Option = 'option',
   Input = 'input',
+  Script = 'script',
 }
 export type MarkupOperator = MarkupSelect
-export type MarkupArgument = MarkupSelect | MarkupInput
+export type MarkupArgument = MarkupSelect | MarkupInput | MarkupArgumentScript
+export type MarkupArgumentScript = {
+  id: Number
+  subscript: MarkupScript
+  label: string
+  markupType: MarkupType.Script
+  outputType: OutputType.SubscriptOutput
+  hierarchicalType: MarkupHierarchicalType.Argument
+}
+
 export type MarkupSource = {
   kind: string
   url: string
@@ -273,6 +283,7 @@ export enum MarkupArgumentType {
   Input,
   SelectFilter,
   SelectReduce,
+  Subscript,
 }
 
 export type MirArgument =
@@ -282,6 +293,7 @@ export type MirArgument =
   | [Filter, number]
   | [Filter, string]
   | [Filter, boolean]
+  | MirScript
   | Reducer
 
 export type MirAggregationTallyFilterOperator =
@@ -482,16 +494,3 @@ export type TypeSystem = {
     [B in BytesOperatorName]: [OperatorCode, OutputType]
   }
 }
-
-export type TypeSystemEntry =
-  | [Type, { [B in BooleanOperatorName]: [OperatorCode, OutputType] }]
-  | [Type, { [I in IntegerOperatorName]: [OperatorCode, OutputType] }]
-  | [Type, { [F in FloatOperatorName]: [OperatorCode, OutputType] }]
-  | [Type, { [S in StringOperatorName]: [OperatorCode, OutputType] }]
-  | [Type, { [A in ArrayOperatorName]: [OperatorCode, OutputType] }]
-  | [Type, { [M in MapOperatorName]: [OperatorCode, OutputType] }]
-  | [Type, { [B in BytesOperatorName]: [OperatorCode, OutputType] }]
-
-export type TypeSystemValue = [string, [OperatorCode, OutputType]]
-
-export type FilterArgument = [Filter, number] | [Filter, string] | [Filter, boolean]

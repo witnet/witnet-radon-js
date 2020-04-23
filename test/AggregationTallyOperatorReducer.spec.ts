@@ -60,6 +60,7 @@ describe('AggregationTallyOperatorReducer', () => {
 
     expect(result).toStrictEqual(expected)
   })
+
   it('getMir', () => {
     const mirOperator: AggregationTallyReducer = AggregationTallyReducer.averageMean
 

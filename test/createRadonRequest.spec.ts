@@ -48,6 +48,7 @@ describe('Radon', () => {
 
     expect(radon.getMarkup().retrieve[0].script[2]).toBe(undefined)
   })
+
   it('addOperator', () => {
     const mir: MirRequest = {
       timelock: 0,

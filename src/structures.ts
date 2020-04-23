@@ -296,7 +296,7 @@ export const operatorInfos: OperatorInfos = {
       {
         name: 'categories',
         optional: false,
-        type: MirArgumentType.Subscript,
+        type: MirArgumentType.String,
       },
       {
         name: 'default',

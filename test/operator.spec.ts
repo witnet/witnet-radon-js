@@ -309,7 +309,9 @@ describe('Operator methods', () => {
       const newOperatorCode = OperatorCode.BooleanMatch
 
       expect(operator.default).toBe(true)
+
       operator.update(newOperatorCode)
+
       expect(operator.code).toBe(newOperatorCode)
       expect(operator.operatorInfo).toBe(operatorInfos[newOperatorCode])
       expect(operator.default).toBe(false)
@@ -325,6 +327,7 @@ describe('Operator methods', () => {
       const newOperatorCode = OperatorCode.BooleanMatch
 
       operator.update(newOperatorCode)
+
       expect(operator.code).toBe(newOperatorCode)
       expect(operator.operatorInfo).toBe(operatorInfos[newOperatorCode])
       expect(operator.inputType).toBe(OutputType.Array)
@@ -339,6 +342,7 @@ describe('Operator methods', () => {
       const newOperatorCode = OperatorCode.ArrayCount
 
       operator.update(newOperatorCode)
+
       expect(operator.code).toBe(newOperatorCode)
       expect(operator.operatorInfo).toBe(operatorInfos[newOperatorCode])
       expect(operator.inputType).toBe(OutputType.Boolean)
@@ -353,6 +357,7 @@ describe('Operator methods', () => {
       const newOperatorCode = OperatorCode.ArrayCount
 
       operator.update(newOperatorCode)
+
       expect(operator.code).toBe(newOperatorCode)
       expect(operator.operatorInfo).toBe(operatorInfos[newOperatorCode])
       expect(operator.inputType).toBe(OutputType.Bytes)
@@ -367,6 +372,7 @@ describe('Operator methods', () => {
       const newOperatorCode = OperatorCode.FloatGraterThan
 
       operator.update(newOperatorCode)
+
       expect(operator.code).toBe(newOperatorCode)
       expect(operator.operatorInfo).toBe(operatorInfos[newOperatorCode])
       expect(operator.inputType).toBe(OutputType.Integer)
@@ -381,6 +387,7 @@ describe('Operator methods', () => {
       const newOperatorCode = OperatorCode.FloatCeiling
 
       operator.update(newOperatorCode)
+
       expect(operator.code).toBe(newOperatorCode)
       expect(operator.operatorInfo).toBe(operatorInfos[newOperatorCode])
       expect(operator.inputType).toBe(OutputType.Float)
@@ -395,6 +402,7 @@ describe('Operator methods', () => {
       const newOperatorCode = OperatorCode.MapGetString
 
       operator.update(newOperatorCode)
+
       expect(operator.code).toBe(newOperatorCode)
       expect(operator.operatorInfo).toBe(operatorInfos[newOperatorCode])
       expect(operator.inputType).toBe(OutputType.Map)
@@ -409,6 +417,7 @@ describe('Operator methods', () => {
       const newOperatorCode = OperatorCode.StringAsInteger
 
       operator.update(newOperatorCode)
+
       expect(operator.code).toBe(newOperatorCode)
       expect(operator.operatorInfo).toBe(operatorInfos[newOperatorCode])
       expect(operator.inputType).toBe(OutputType.String)
