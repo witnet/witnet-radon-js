@@ -108,12 +108,38 @@ export const typeSystem: TypeSystem = {
   },
 }
 
+const descriptions = {
+  getKey: (inputType: string, outputType: string) => (key: String) => `Access to the “${key}” key of the input ${inputType}, and manage the value as ${['a', 'i'].includes(outputType[0]) ? 'an' : 'a'} ${outputType} value.`,
+  mapValues: (type: string) => `Obtain a list with the values of the input Map, and manage the value as an Array of ${type}`,
+  cast: (inputType: string, outputType: string) => `Cast the ${inputType} input into ${outputType} output`,
+  atFilter: (filter: string) => {
+      switch(filter) {
+        case 'deviationAbsolute': return ''
+        case 'deviationRelative': return ''
+        case 'deviationStandard': return ''
+        case 'mode': return ''
+        default: return ''
+    }
+  },
+  atReducer: (reducer: string) => {
+    switch (reducer) {
+      case 'mode': return ''
+      case 'averageMean': return ''
+      case 'averageMeanWeighted': return ''
+      case 'averageMedian': return ''
+      case 'averageMedianWeighted': return ''
+      default: return ''
+    }
+  }
+}
+
 export const operatorInfos: OperatorInfos = {
   [OperatorCode.ArrayCount]: {
     type: Type.Array,
     name: ArrayOperatorName.Count,
     arguments: [],
     outputType: OutputType.Integer,
+    description: () => 'Compute the number of elements of the input Array, and mannage the values as an Integer value.',
   },
   [OperatorCode.ArrayFilter]: {
     type: Type.Array,
@@ -126,6 +152,30 @@ export const operatorInfos: OperatorInfos = {
       },
     ],
     outputType: OutputType.Same,
+    // TODO: prettify
+    description: (filter: string) => {
+      // 'Discard any element of the input Array that doesn\'t fit the function',
+      switch(filter) {
+        case 'greaterThan': return ''
+        case 'lessThan': return ''
+        case 'equals': return ''
+        case 'deviationAbsolute': return ''
+        case 'deviationRelative': return ''
+        case 'deviationStandard': return ''
+        case 'top': return ''
+        case 'bottom': return ''
+        case 'mode': return ''
+        case 'lessOrEqualThan': return ''
+        case 'greaterOrEqualThan': return ''
+        case 'notEquals': return ''
+        case 'notDeviationAbsolute': return ''
+        case 'notDeviationRelative': return ''
+        case 'notDeviationStandard': return ''
+        case 'notTop': return ''
+        case 'notBottom': return ''
+        default: return ''
+      }
+    }
   },
   [OperatorCode.ArrayFlatten]: {
     type: Type.Array,
@@ -138,6 +188,7 @@ export const operatorInfos: OperatorInfos = {
       },
     ],
     outputType: OutputType.Inner,
+    description: () => 'Remove one level of nesting of the input Array, and manage the values as Array',
   },
   [OperatorCode.ArrayGetArray]: {
     type: Type.Array,
@@ -150,6 +201,7 @@ export const operatorInfos: OperatorInfos = {
       },
     ],
     outputType: OutputType.Array,
+    description: descriptions.getKey('Array', 'Array'),
   },
   [OperatorCode.ArrayGetBoolean]: {
     type: Type.Boolean,
@@ -162,6 +214,7 @@ export const operatorInfos: OperatorInfos = {
       },
     ],
     outputType: OutputType.Boolean,
+    description: descriptions.getKey('Array', 'Boolean'),
   },
   [OperatorCode.ArrayGetBytes]: {
     type: Type.Array,
@@ -174,6 +227,7 @@ export const operatorInfos: OperatorInfos = {
       },
     ],
     outputType: OutputType.Bytes,
+    description: descriptions.getKey('Array', 'Bytes'),
   },
   [OperatorCode.ArrayGetInteger]: {
     type: Type.Array,
@@ -186,6 +240,8 @@ export const operatorInfos: OperatorInfos = {
       },
     ],
     outputType: OutputType.Integer,
+    description: descriptions.getKey('Array', 'Integer'),
+
   },
   [OperatorCode.ArrayGetFloat]: {
     type: Type.Array,
@@ -198,6 +254,7 @@ export const operatorInfos: OperatorInfos = {
       },
     ],
     outputType: OutputType.Boolean,
+    description: descriptions.getKey('Array', 'Float'),
   },
   [OperatorCode.ArrayGetMap]: {
     type: Type.Array,
@@ -210,6 +267,7 @@ export const operatorInfos: OperatorInfos = {
       },
     ],
     outputType: OutputType.Map,
+    description: descriptions.getKey('Array', 'Map'),
   },
   [OperatorCode.ArrayGetString]: {
     type: Type.Array,
@@ -222,6 +280,7 @@ export const operatorInfos: OperatorInfos = {
       },
     ],
     outputType: OutputType.String,
+    description: descriptions.getKey('Array', 'String'),
   },
   [OperatorCode.ArrayMap]: {
     type: Type.Array,
@@ -234,6 +293,7 @@ export const operatorInfos: OperatorInfos = {
       },
     ],
     outputType: OutputType.SubscriptOutput,
+    description: descriptions.getKey('Array', 'Map'),
   },
   [OperatorCode.ArrayReduce]: {
     type: Type.Array,
@@ -246,6 +306,23 @@ export const operatorInfos: OperatorInfos = {
       },
     ],
     outputType: OutputType.Inner,
+    // TODO: wip
+    description: (reducer: string) => {
+      switch (reducer) {
+        case 'min': return ''
+        case 'max': return ''
+        case 'mode': return ''
+        case 'averageMean': return ''
+        case 'averageMeanWeighted': return ''
+        case 'averageMedian': return ''
+        case 'averageMedianWeighted': return ''
+        case 'deviationStandard': return ''
+        case 'deviationAverage': return ''
+        case 'deviationMedian': return ''
+        case 'deviationMaximum': return ''
+        default: return ''
+      }
+    },
   },
   [OperatorCode.ArraySome]: {
     type: Type.Array,
@@ -258,6 +335,29 @@ export const operatorInfos: OperatorInfos = {
       },
     ],
     outputType: OutputType.Boolean,
+    // TODO: improve it
+    description: (filter: string) => {
+      switch(filter) {
+        case 'greaterThan': return ''
+        case 'lessThan': return ''
+        case 'equals': return ''
+        case 'deviationAbsolute': return ''
+        case 'deviationRelative': return ''
+        case 'deviationStandard': return ''
+        case 'top': return ''
+        case 'bottom': return ''
+        case 'mode': return ''
+        case 'lessOrEqualThan': return ''
+        case 'greaterOrEqualThan': return ''
+        case 'notEquals': return ''
+        case 'notDeviationAbsolute': return ''
+        case 'notDeviationRelative': return ''
+        case 'notDeviationStandard': return ''
+        case 'notTop': return ''
+        case 'notBottom': return ''
+        default: return ''
+      }
+    },
   },
   [OperatorCode.ArraySort]: {
     type: Type.Array,
@@ -275,6 +375,8 @@ export const operatorInfos: OperatorInfos = {
       },
     ],
     outputType: OutputType.Same,
+    // TODO: wip
+    description: () => '',
   },
   [OperatorCode.ArrayTake]: {
     type: Type.Array,
@@ -288,6 +390,8 @@ export const operatorInfos: OperatorInfos = {
       },
     ],
     outputType: OutputType.Same,
+    // TODO: improve it
+    description: () => 'Get a group of the input Array',
   },
   [OperatorCode.BooleanMatch]: {
     type: Type.Boolean,
@@ -305,36 +409,43 @@ export const operatorInfos: OperatorInfos = {
       },
     ],
     outputType: OutputType.MatchOutput,
+    // TODO: improve it
+    description: () => '',
   },
   [OperatorCode.BooleanNegate]: {
     type: Type.Boolean,
     name: BooleanOperatorName.Negate,
     arguments: [],
     outputType: OutputType.Boolean,
+    description: () => 'Flip the value of the input Boolean and, manage the values as Boolean',
   },
   [OperatorCode.BytesAsString]: {
     type: Type.Bytes,
     name: BytesOperatorName.AsString,
     arguments: [],
     outputType: OutputType.String,
+    description: () => descriptions.cast('Bytes', 'String'),
   },
   [OperatorCode.BytesHash]: {
     type: Type.Bytes,
     name: BytesOperatorName.Hash,
     arguments: [],
     outputType: OutputType.Bytes,
+    description: () => 'Compute the hash of the input Bytes and, manage it as Bytes',
   },
   [OperatorCode.IntegerAbsolute]: {
     type: Type.Integer,
     name: IntegerOperatorName.Absolute,
     arguments: [],
     outputType: OutputType.Integer,
+    description: () => 'Compute the absolute value of the input Integer and, manage it as Integer',
   },
   [OperatorCode.IntegerAsFloat]: {
     type: Type.Integer,
     name: IntegerOperatorName.AsFloat,
     arguments: [],
     outputType: OutputType.Float,
+    description: () => descriptions.cast('Integer', 'Float'),
   },
   [OperatorCode.IntegerAsString]: {
     type: Type.Integer,
@@ -347,6 +458,8 @@ export const operatorInfos: OperatorInfos = {
       },
     ],
     outputType: OutputType.String,
+    // TODO: improve it
+    description: () => descriptions.cast('Integer', 'String'),
   },
   [OperatorCode.IntegerGreaterThan]: {
     type: Type.Integer,
@@ -359,6 +472,7 @@ export const operatorInfos: OperatorInfos = {
       },
     ],
     outputType: OutputType.Boolean,
+    description: (argument: string) => `Compare if the input Integer is greater than ${argument}, and manage the value as Boolean`,
   },
   [OperatorCode.IntegerLessThan]: {
     type: Type.Integer,
@@ -371,12 +485,15 @@ export const operatorInfos: OperatorInfos = {
       },
     ],
     outputType: OutputType.Boolean,
+    description: (argument: string) => `Compare if the input Integer is less than ${argument}, and manage the value as Boolean`,
   },
   [OperatorCode.IntegerMatch]: {
     type: Type.Integer,
     name: IntegerOperatorName.Match,
     arguments: [],
     outputType: OutputType.MatchOutput,
+    // TODO: improve it
+    description: () => '',
   },
   [OperatorCode.IntegerModulo]: {
     type: Type.Integer,
@@ -389,6 +506,7 @@ export const operatorInfos: OperatorInfos = {
       },
     ],
     outputType: OutputType.Integer,
+    description: (argument) => `Compute the division by the input Integer and ${argument} Integer. Then manage the result as Integer`,
   },
   [OperatorCode.IntegerMultiply]: {
     type: Type.Integer,
@@ -401,12 +519,14 @@ export const operatorInfos: OperatorInfos = {
       },
     ],
     outputType: OutputType.Integer,
+    description: (argument) => `Compute the product by the input Integer and ${argument} Integer. Then manage the result as Integer`,
   },
   [OperatorCode.IntegerNegate]: {
     type: Type.Integer,
     name: IntegerOperatorName.Negate,
     arguments: [],
     outputType: OutputType.Integer,
+    description: () => `Compute the negative of the input Integer, and manage the result as Integer`,
   },
   [OperatorCode.IntegerPower]: {
     type: Type.Integer,
@@ -419,12 +539,14 @@ export const operatorInfos: OperatorInfos = {
       },
     ],
     outputType: OutputType.Integer,
+    description: (exponent) => `Compute the input Integer raised to the power of Integer ${exponent}. Then, handle the result as an integer value.`,
   },
   [OperatorCode.IntegerReciprocal]: {
     type: Type.Integer,
     name: IntegerOperatorName.Reciprocal,
     arguments: [],
     outputType: OutputType.Float,
+    description: () => 'Compute the multiplicative inverse of the input Integer and manage the result as Float',
   },
   [OperatorCode.IntegerSum]: {
     type: Type.Integer,
@@ -437,12 +559,14 @@ export const operatorInfos: OperatorInfos = {
       },
     ],
     outputType: OutputType.Integer,
+    description: (addend: string) => `Compute the addition between the input Integer and ${addend}. Then handle the result as Integer.`,
   },
   [OperatorCode.FloatAbsolute]: {
     type: Type.Float,
     name: IntegerOperatorName.Absolute,
     arguments: [],
     outputType: OutputType.Float,
+    description: () => 'Compute the absolute value of the input Float, and manage the result as Float.',
   },
   [OperatorCode.FloatAsString]: {
     type: Type.Float,
@@ -455,12 +579,15 @@ export const operatorInfos: OperatorInfos = {
       },
     ],
     outputType: OutputType.String,
+    description: () => descriptions.cast('Float', 'String')
   },
   [OperatorCode.FloatCeiling]: {
     type: Type.Float,
     name: FloatOperatorName.Ceiling,
     arguments: [],
     outputType: OutputType.Integer,
+    // TODO
+    description: () => 'Compute the the least Integer greater than or equal the input Float.',
   },
   [OperatorCode.FloatGraterThan]: {
     type: Type.Float,
@@ -473,12 +600,14 @@ export const operatorInfos: OperatorInfos = {
       },
     ],
     outputType: OutputType.Boolean,
+    description: (value: string) => `Compare if the input Float is greater than ${value}, and manage the value as Boolean.`,
   },
   [OperatorCode.FloatFloor]: {
     type: Type.Float,
     name: FloatOperatorName.Floor,
     arguments: [],
     outputType: OutputType.Float,
+    description: () => 'Compute the greatest integer less or equal the input Float, and manage the result as Integer',
   },
   [OperatorCode.FloatLessThan]: {
     type: Type.Float,
@@ -491,6 +620,7 @@ export const operatorInfos: OperatorInfos = {
       },
     ],
     outputType: OutputType.Boolean,
+    description: (argument: string) => `Compare if the input Float is less than ${argument}, and manage the value as Boolean`,
   },
   [OperatorCode.FloatModulo]: {
     type: Type.Float,
@@ -503,6 +633,7 @@ export const operatorInfos: OperatorInfos = {
       },
     ],
     outputType: OutputType.Float,
+    description: (argument) => `Compute the division by the input Float and ${argument}. Then manage the result as Float`,
   },
   [OperatorCode.FloatMultiply]: {
     type: Type.Float,
@@ -515,12 +646,14 @@ export const operatorInfos: OperatorInfos = {
       },
     ],
     outputType: OutputType.Float,
+    description: (argument) => `Compute the product by the input Float and ${argument}. Then manage the result as Integer`,
   },
   [OperatorCode.FloatNegate]: {
     type: Type.Float,
     name: FloatOperatorName.Negate,
     arguments: [],
     outputType: OutputType.Float,
+    description: () => `Compute the negative of the input Integer, and manage the result as Float`,
   },
   [OperatorCode.FloatPower]: {
     type: Type.Float,
@@ -533,18 +666,21 @@ export const operatorInfos: OperatorInfos = {
       },
     ],
     outputType: OutputType.Float,
+    description: (exponent) => `Compute the input Float raised to the power of ${exponent}. Then, handle the result as Float.`,
   },
   [OperatorCode.FloatReciprocal]: {
     type: Type.Float,
     name: FloatOperatorName.Reciprocal,
     arguments: [],
     outputType: OutputType.Float,
+    description: () => 'Compute the multiplicative inverse of the input Float and manage the result as Float',
   },
   [OperatorCode.FloatRound]: {
     type: Type.Float,
     name: FloatOperatorName.Round,
     arguments: [],
     outputType: OutputType.Integer,
+    description: () => 'Round integer part from the Float input, and manage the result as Integer',
   },
   [OperatorCode.Floatsum]: {
     type: Type.Float,
@@ -557,18 +693,21 @@ export const operatorInfos: OperatorInfos = {
       },
     ],
     outputType: OutputType.Float,
+    description: (addend: string) => `Compute the addition between the input Float and ${addend}. Then handle the result as Float.`,
   },
   [OperatorCode.FloatTruncate]: {
     type: Type.Float,
     name: FloatOperatorName.Truncate,
     arguments: [],
     outputType: OutputType.Integer,
+    description: () => 'Remove integer part from the Float input, and manage the result as Integer',
   },
   [OperatorCode.MapEntries]: {
     type: Type.Map,
     name: MapOperatorName.Entries,
     arguments: [],
     outputType: OutputType.Array,
+    description: () => `Obtain a list of key-value tuples from the input Map, and manage the value as Array`,
   },
   [OperatorCode.MapGetArray]: {
     type: Type.Map,
@@ -581,6 +720,7 @@ export const operatorInfos: OperatorInfos = {
       },
     ],
     outputType: OutputType.Array,
+    description: descriptions.getKey('Map', 'Array'),
   },
   [OperatorCode.MapGetBoolean]: {
     type: Type.Map,
@@ -593,6 +733,8 @@ export const operatorInfos: OperatorInfos = {
       },
     ],
     outputType: OutputType.Boolean,
+    description: descriptions.getKey('Map', 'Boolean'),
+
   },
   [OperatorCode.MapGetBytes]: {
     type: Type.Map,
@@ -605,6 +747,8 @@ export const operatorInfos: OperatorInfos = {
       },
     ],
     outputType: OutputType.Bytes,
+    description: descriptions.getKey('Map', 'Bytes'),
+
   },
   [OperatorCode.MapGetInteger]: {
     type: Type.Map,
@@ -617,6 +761,8 @@ export const operatorInfos: OperatorInfos = {
       },
     ],
     outputType: OutputType.Integer,
+    description: descriptions.getKey('Map', 'Integer'),
+
   },
   [OperatorCode.MapGetFloat]: {
     type: Type.Map,
@@ -629,6 +775,8 @@ export const operatorInfos: OperatorInfos = {
       },
     ],
     outputType: OutputType.Float,
+    description: descriptions.getKey('Map', 'Float'),
+
   },
   [OperatorCode.MapGetMap]: {
     type: Type.Map,
@@ -641,6 +789,8 @@ export const operatorInfos: OperatorInfos = {
       },
     ],
     outputType: OutputType.Map,
+    description: descriptions.getKey('Map', 'Map'),
+
   },
   [OperatorCode.MapGetString]: {
     type: Type.Map,
@@ -653,120 +803,142 @@ export const operatorInfos: OperatorInfos = {
       },
     ],
     outputType: OutputType.String,
+    description: descriptions.getKey('Map', 'String'),
+
   },
   [OperatorCode.MapKeys]: {
     type: Type.Map,
     name: MapOperatorName.Keys,
     arguments: [],
     outputType: OutputType.ArrayString,
+    description: () => 'Obtain a list with the keys names of the input Map, and manage the value as Array of String',
   },
   [OperatorCode.MapValuesArray]: {
     type: Type.Map,
     name: MapOperatorName.valuesArray,
     arguments: [],
     outputType: OutputType.ArrayArray,
+    description: () => descriptions.mapValues('Array'),
   },
   [OperatorCode.MapValuesBoolean]: {
     type: Type.Map,
     name: MapOperatorName.valuesBoolean,
     arguments: [],
     outputType: OutputType.ArrayBoolean,
+    description: () => descriptions.mapValues('Boolean'),
   },
   [OperatorCode.MapValuesBytes]: {
     type: Type.Map,
     name: MapOperatorName.valuesBytes,
     arguments: [],
     outputType: OutputType.ArrayBytes,
+    description: () => descriptions.mapValues('Bytes'),
   },
   [OperatorCode.MapValuesInteger]: {
     type: Type.Map,
     name: MapOperatorName.valuesInteger,
     arguments: [],
     outputType: OutputType.ArrayInteger,
+    description: () => descriptions.mapValues('Integer'),
   },
   [OperatorCode.MapValuesFloat]: {
     type: Type.Map,
     name: MapOperatorName.valuesFloat,
     arguments: [],
     outputType: OutputType.ArrayFloat,
+    description: () => descriptions.mapValues('Float')
   },
   [OperatorCode.MapValuesMap]: {
     type: Type.Map,
     name: MapOperatorName.valuesMap,
     arguments: [],
     outputType: OutputType.ArrayMap,
+    description: () => descriptions.mapValues('Map'),
   },
   [OperatorCode.MapValuesString]: {
     type: Type.Map,
     name: MapOperatorName.valuesString,
     arguments: [],
     outputType: OutputType.ArrayString,
+    description: () => descriptions.mapValues('String'),
   },
   [OperatorCode.StringAsBoolean]: {
     type: Type.String,
     name: StringOperatorName.AsBoolean,
     arguments: [],
     outputType: OutputType.Boolean,
+    description: () => descriptions.cast('String', 'Boolean'),
   },
   [OperatorCode.StringAsBytes]: {
     type: Type.String,
     name: StringOperatorName.AsBytes,
     arguments: [],
     outputType: OutputType.Bytes,
+    description: () => descriptions.cast('String', 'Bytes'),
   },
   [OperatorCode.StringAsFloat]: {
     type: Type.String,
     name: StringOperatorName.AsFloat,
     arguments: [],
     outputType: OutputType.Float,
+    description: () => descriptions.cast('String', 'Float'),
   },
   [OperatorCode.StringAsInteger]: {
     type: Type.String,
     name: StringOperatorName.AsInteger,
     arguments: [],
     outputType: OutputType.Integer,
+    description: () => descriptions.cast('String', 'Integer'),
   },
   [OperatorCode.StringLength]: {
     type: Type.String,
     name: StringOperatorName.Length,
     arguments: [],
     outputType: OutputType.Integer,
+    description: () => 'Count the number of elements of the input String, and mannage the values as an Integer value.',
   },
   [OperatorCode.StringMatch]: {
     type: Type.String,
     name: StringOperatorName.Match,
     arguments: [],
     outputType: OutputType.MatchOutput,
+    // TODO:
+    description: () => '',
   },
   [OperatorCode.StringParseJsonArray]: {
     type: Type.String,
     name: StringOperatorName.ParseJsonArray,
     arguments: [],
     outputType: OutputType.Array,
+    description: () => 'Interpretate the input String as a JSON-encoded Array structure',
   },
   [OperatorCode.StringParseJsonMap]: {
     type: Type.String,
     name: StringOperatorName.ParseJsonMap,
     arguments: [],
     outputType: OutputType.Map,
+    description: () => 'Interpretate the input String as a JSON-encoded Map structure',
   },
   [OperatorCode.StringParseXML]: {
     type: Type.String,
     name: StringOperatorName.ParseXml,
     arguments: [],
     outputType: OutputType.Map,
+    description: () => 'Interpretate the input String as a XML-encoded Map structure',
   },
   [OperatorCode.StringToLowerCase]: {
     type: Type.String,
     name: StringOperatorName.ToLowerCase,
     arguments: [],
     outputType: OutputType.String,
+    description: () => 'Convert to lowercase the input String, and manage the value as String',
   },
   [OperatorCode.StringToUpperCase]: {
     type: Type.String,
     name: StringOperatorName.ToUpperCase,
     arguments: [],
     outputType: OutputType.String,
+    description: () => 'Convert to uppercase the input String, and manage the value as String',
   },
 }
 

@@ -59,7 +59,7 @@ export enum Reducer {
 
 export enum Filter {
   greaterThan = 0x00,
-  LessThan = 0x01,
+  lessThan = 0x01,
   equals = 0x02,
   deviationAbsolute = 0x03,
   deviationRelative = 0x04,
@@ -361,6 +361,7 @@ export type OperatorInfo = {
   type: Type
   name: string
   arguments: Array<ArgumentInfo>
+  description: (x: any) => String
 }
 
 export type ArgumentInfo = { name: string; optional: boolean; type: MirArgumentType }
