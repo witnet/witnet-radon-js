@@ -59,7 +59,7 @@ export enum Reducer {
 
 export enum Filter {
   greaterThan = 0x00,
-  LessThan = 0x01,
+  lessThan = 0x01,
   equals = 0x02,
   deviationAbsolute = 0x03,
   deviationRelative = 0x04,
@@ -147,6 +147,7 @@ export type MarkupSelect = {
   selected: MarkupSelectedOption
   options: Array<MarkupOption>
   label: string
+  description?: () => String
 }
 
 export enum MarkupType {
@@ -361,6 +362,7 @@ export type OperatorInfo = {
   type: Type
   name: string
   arguments: Array<ArgumentInfo>
+  description: (x: any, y?: any) => String
 }
 
 export type ArgumentInfo = { name: string; optional: boolean; type: MirArgumentType }
@@ -493,4 +495,11 @@ export type TypeSystem = {
   [Type.Bytes]: {
     [B in BytesOperatorName]: [OperatorCode, OutputType]
   }
+}
+
+export type AggregationTallyFilterDescriptions = {
+  [T in AggregationTallyFilter]: (arg1?: any) => string
+}
+export type AggregationTallyReducerDescriptions = {
+  [T in AggregationTallyReducer]: (arg1?: any) => string
 }

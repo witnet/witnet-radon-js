@@ -38,7 +38,7 @@ export declare enum Reducer {
 }
 export declare enum Filter {
     greaterThan = 0,
-    LessThan = 1,
+    lessThan = 1,
     equals = 2,
     deviationAbsolute = 3,
     deviationRelative = 4,
@@ -118,6 +118,7 @@ export declare type MarkupSelect = {
     selected: MarkupSelectedOption;
     options: Array<MarkupOption>;
     label: string;
+    description?: () => String;
 };
 export declare enum MarkupType {
     Select = "select",
@@ -292,6 +293,7 @@ export declare type OperatorInfo = {
     type: Type;
     name: string;
     arguments: Array<ArgumentInfo>;
+    description: (x: any, y?: any) => String;
 };
 export declare type ArgumentInfo = {
     name: string;
@@ -410,5 +412,11 @@ export declare type TypeSystem = {
     [Type.Bytes]: {
         [B in BytesOperatorName]: [OperatorCode, OutputType];
     };
+};
+export declare type AggregationTallyFilterDescriptions = {
+    [T in AggregationTallyFilter]: (arg1?: any) => string;
+};
+export declare type AggregationTallyReducerDescriptions = {
+    [T in AggregationTallyReducer]: (arg1?: any) => string;
 };
 //# sourceMappingURL=types.d.ts.map

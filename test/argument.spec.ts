@@ -164,6 +164,8 @@ describe('Argument methods', () => {
             outputType: 'string',
             scriptId: 2,
             selected: {
+              description:
+                'Access to the “symbol” key of the input Map, and manage the value as String',
               arguments: [
                 {
                   hierarchicalType: 'argument',
@@ -256,6 +258,7 @@ describe('Argument methods', () => {
             outputType: 'string',
             scriptId: 2,
             selected: {
+              description: 'Convert to lowercase the input String, and manage the value as String',
               arguments: [],
               hierarchicalType: 'selectedOperatorOption',
               label: 'toLowerCase',
@@ -291,7 +294,7 @@ describe('Argument methods', () => {
             outputType: 'filterOutput',
           },
           {
-            label: 'LessThan',
+            label: 'lessThan',
             hierarchicalType: 'operatorOption',
             markupType: 'option',
             outputType: 'filterOutput',
@@ -500,6 +503,8 @@ describe('Argument methods', () => {
             outputType: 'string',
             scriptId: 2,
             selected: {
+              description:
+                'Access to the “symbol” key of the input Map, and manage the value as String',
               arguments: [
                 {
                   hierarchicalType: 'argument',
@@ -592,6 +597,7 @@ describe('Argument methods', () => {
             outputType: 'string',
             scriptId: 2,
             selected: {
+              description: 'Convert to lowercase the input String, and manage the value as String',
               arguments: [],
               hierarchicalType: 'selectedOperatorOption',
               label: 'toLowerCase',
@@ -732,12 +738,9 @@ describe('Argument methods', () => {
         optional: false,
         type: MirArgumentType.FilterFunction,
       }
-
-      const argument = new Argument(cache, argumentInfo, [Filter.LessThan, 5])
-      const newValue = Filter.bottom
-      argument.update(newValue)
-
-      expect(argument.value).toStrictEqual([newValue, 5])
+      const argument = new Argument(cache, argumentInfo, [Filter.lessThan, 5])
+      argument.update('bottom')
+      expect(argument.value).toStrictEqual([Filter.bottom, 5])
     })
 
     it('reducer function', () => {

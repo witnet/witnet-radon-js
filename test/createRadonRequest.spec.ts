@@ -95,7 +95,9 @@ describe('Radon', () => {
     radon.addOperator(2)
 
     expect(
-      radon.getMarkup().retrieve[0].script[2].options.find(option => option.label === 'ArrayGetMap')
+      radon
+        .getMarkup()
+        .retrieve[0].script[2].options.find((option) => option.label === 'ArrayGetMap')
     ).toBeTruthy()
 
     // select ArrayGetMap option
@@ -114,7 +116,7 @@ describe('Radon', () => {
     radon.addOperator(2)
 
     expect(
-      radon.getMarkup().retrieve[0].script[3].options.find(option => option.label === 'MapGetMap')
+      radon.getMarkup().retrieve[0].script[3].options.find((option) => option.label === 'MapGetMap')
     ).toBeTruthy()
 
     // Select MapGetMap option
@@ -133,7 +135,9 @@ describe('Radon', () => {
     radon.addOperator(2)
 
     expect(
-      radon.getMarkup().retrieve[0].script[4].options.find(option => option.label === 'MapGetFloat')
+      radon
+        .getMarkup()
+        .retrieve[0].script[4].options.find((option) => option.label === 'MapGetFloat')
     ).toBeTruthy()
 
     // Select MapGetFloat option

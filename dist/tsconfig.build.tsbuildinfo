@@ -145,149 +145,25 @@
         "version": "1debec13dc47b66e7e5a5ceb3872ea7f141613148f6083ef6dc38626ee8c9a93",
         "signature": "1debec13dc47b66e7e5a5ceb3872ea7f141613148f6083ef6dc38626ee8c9a93"
       },
-      "./src/types.d.ts": {
-        "version": "7dcec5744d5a5759179e466f78f6b937a06a636cd2ff2a104dd55ecc88e6341a",
-        "signature": "7dcec5744d5a5759179e466f78f6b937a06a636cd2ff2a104dd55ecc88e6341a"
-      },
-      "./src/structures.d.ts": {
-        "version": "e3bce04fcafb7720c3caa8b0fa37f28cccdf0618c4165ab50cd4fb71b4cf5373",
-        "signature": "e3bce04fcafb7720c3caa8b0fa37f28cccdf0618c4165ab50cd4fb71b4cf5373"
-      },
-      "./src/radon.d.ts": {
-        "version": "c594e168a1af99c7ff8e74a7422292e304690e60bc9cc17da0945bf05c715afd",
-        "signature": "c594e168a1af99c7ff8e74a7422292e304690e60bc9cc17da0945bf05c715afd"
-      },
-      "./src/index.d.ts": {
-        "version": "e89b8e02f3bde404f8c2ea8f0d184c816f5d8b0c871663a9b17a96ee822e2999",
-        "signature": "e89b8e02f3bde404f8c2ea8f0d184c816f5d8b0c871663a9b17a96ee822e2999"
-      },
-      "./src/utils.d.ts": {
-        "version": "f4de26931be237eba5a08e3d771c5a3b4a0338551bff5378c5a0721fd3743449",
-        "signature": "f4de26931be237eba5a08e3d771c5a3b4a0338551bff5378c5a0721fd3743449"
-      },
-      "./test/AggregationTallyFilterArgument.spec.d.ts": {
-        "version": "07470d84eadd413316bce4bfcdd8506a9f62bf6039e74763af04020f2589e9f4",
-        "signature": "07470d84eadd413316bce4bfcdd8506a9f62bf6039e74763af04020f2589e9f4"
-      },
-      "./test/AggregationTallyOperatorFilter.spec.d.ts": {
-        "version": "6e7dcc667ce9e3c0bdd7e9c3172f7827bd2902988e749e8e2a553b0ec76424e2",
-        "signature": "6e7dcc667ce9e3c0bdd7e9c3172f7827bd2902988e749e8e2a553b0ec76424e2"
-      },
-      "./test/AggregationTallyOperatorReducer.spec.d.ts": {
-        "version": "8536a82feeb0e638fd74547a9f1ef1bb0a550f4c77cd67aa821124cf481f0d8a",
-        "signature": "8536a82feeb0e638fd74547a9f1ef1bb0a550f4c77cd67aa821124cf481f0d8a"
-      },
-      "./test/AggregationTallyScript.spec.d.ts": {
-        "version": "177015224708bf4049110ae1d3a440921d9f35ef157c44a3e2c33e96a9504560",
-        "signature": "177015224708bf4049110ae1d3a440921d9f35ef157c44a3e2c33e96a9504560"
-      },
-      "./test/argument.spec.d.ts": {
-        "version": "00966b3e63cd5e19441ab9488f666b621168d7cb6ce4c7919be2fc8347fefea8",
-        "signature": "00966b3e63cd5e19441ab9488f666b621168d7cb6ce4c7919be2fc8347fefea8"
-      },
-      "./test/createRadonRequest.spec.d.ts": {
-        "version": "477eb2bd8389f5469c756ff0ba00caabf0e61aa16e22422bf66432c76eb35477",
-        "signature": "477eb2bd8389f5469c756ff0ba00caabf0e61aa16e22422bf66432c76eb35477"
-      },
-      "./test/index.spec.d.ts": {
-        "version": "e31795325ab50d7cb897290914d7f6c9201f4872247b7103038013090e77fa09",
-        "signature": "e31795325ab50d7cb897290914d7f6c9201f4872247b7103038013090e77fa09"
-      },
-      "./test/operator.spec.d.ts": {
-        "version": "35b3bca3c0b7ba5f2683b9b771334b891bb45555318b4ff3903649393ec25ab9",
-        "signature": "35b3bca3c0b7ba5f2683b9b771334b891bb45555318b4ff3903649393ec25ab9"
-      },
-      "./test/radon.spec.d.ts": {
-        "version": "a7502f15433570183c22ea15f807484696502dafe230369ff739337c7600e661",
-        "signature": "a7502f15433570183c22ea15f807484696502dafe230369ff739337c7600e661"
-      },
-      "./test/script.spec.d.ts": {
-        "version": "9bf87be9e5db2cc55864eb43a0a86c2dafd63cc5ad8848b90702718336530031",
-        "signature": "9bf87be9e5db2cc55864eb43a0a86c2dafd63cc5ad8848b90702718336530031"
-      },
-      "./test/source.spec.d.ts": {
-        "version": "db67f5d5bc9800dfdfe79624b2e774dde6957d470465c5f88ed9a9ef4fc88df6",
-        "signature": "db67f5d5bc9800dfdfe79624b2e774dde6957d470465c5f88ed9a9ef4fc88df6"
-      },
-      "./test/structures.spec.d.ts": {
-        "version": "d304a706138e93e54e67cd42e85b2f0e32f185588cd79482d046271b74f15d7c",
-        "signature": "d304a706138e93e54e67cd42e85b2f0e32f185588cd79482d046271b74f15d7c"
-      },
-      "./test/utils.spec.d.ts": {
-        "version": "96babe3a69eac2df10f6f4d925925c60a21706cf90819dbb1ad9b77c96a73907",
-        "signature": "96babe3a69eac2df10f6f4d925925c60a21706cf90819dbb1ad9b77c96a73907"
-      },
       "../src/types.ts": {
-        "version": "d4bfe77cb2338c0516b577917df0feb3429f6e656b5b983d97f172135eeaab51",
-        "signature": "7dcec5744d5a5759179e466f78f6b937a06a636cd2ff2a104dd55ecc88e6341a"
+        "version": "58b9e206a3c940a85755d1940db3c671b6c6d1a563280530d89178d41313f4fe",
+        "signature": "99a9cb9fef16ed13090edf0ce09dcaf615d04be115fc192e6ee59f0a8be062ea"
       },
       "../src/utils.ts": {
-        "version": "ce9070ba32d21233619d98f9462d3c903d8bce745e991fe031b84e1df15853d9",
+        "version": "3c6b98a84194b1119422049bfa52ce6bee27a94a8b307ad49b596371ae5f3ae3",
         "signature": "f4de26931be237eba5a08e3d771c5a3b4a0338551bff5378c5a0721fd3743449"
       },
       "../src/structures.ts": {
-        "version": "c9b48f8b39e8003ee61d58ee7aeb689f70cf7dddd0ec6e87fb9eaa5563022b8a",
-        "signature": "e3bce04fcafb7720c3caa8b0fa37f28cccdf0618c4165ab50cd4fb71b4cf5373"
+        "version": "aa996f524d4a24eff5a0ca9d2b398ff80ad12d4defea767c723d6f1638c367e7",
+        "signature": "b5ec551239a1a6e314edcbc9a6e1a730e86429b724d81721616c187a76c68b0e"
       },
       "../src/radon.ts": {
-        "version": "ad4f759d46bd0d9b652781de1646edb2384fe6f0c23b3476624613d5123d2d02",
+        "version": "92918e4a8ae6959f9984f04ef8b91280c17443099eb937f3d0e86ea33e6c4792",
         "signature": "c594e168a1af99c7ff8e74a7422292e304690e60bc9cc17da0945bf05c715afd"
       },
       "../src/index.ts": {
         "version": "3b570483a4546ac98c863fbfb5dbfae888a4288166964b4157607bde294a2f3e",
         "signature": "e89b8e02f3bde404f8c2ea8f0d184c816f5d8b0c871663a9b17a96ee822e2999"
-      },
-      "../test/AggregationTallyFilterArgument.spec.ts": {
-        "version": "ae5e690b5b751c4b469d1a41360e47d28210a0a033901e555235caa86fc4d9bf",
-        "signature": "07470d84eadd413316bce4bfcdd8506a9f62bf6039e74763af04020f2589e9f4"
-      },
-      "../test/AggregationTallyOperatorFilter.spec.ts": {
-        "version": "15a00ea3e9627a86eddfb00b3e8c3a6ef9c0f83c2d0f68e1d9c9e8de789f48a6",
-        "signature": "6e7dcc667ce9e3c0bdd7e9c3172f7827bd2902988e749e8e2a553b0ec76424e2"
-      },
-      "../test/AggregationTallyOperatorReducer.spec.ts": {
-        "version": "2c0f2efdd1275782486312e5a59cb691b169310af847e14a00a5f13ce24f2e3f",
-        "signature": "8536a82feeb0e638fd74547a9f1ef1bb0a550f4c77cd67aa821124cf481f0d8a"
-      },
-      "../test/AggregationTallyScript.spec.ts": {
-        "version": "3ea025553ed29de23c3bdf3cd71a38e00d8700b9aac8e0f27a9d264ef2237812",
-        "signature": "177015224708bf4049110ae1d3a440921d9f35ef157c44a3e2c33e96a9504560"
-      },
-      "../test/argument.spec.ts": {
-        "version": "f61f562045a95e3e229c4c91592a0c5a8134e0d59e165405470a3a0d139f1372",
-        "signature": "00966b3e63cd5e19441ab9488f666b621168d7cb6ce4c7919be2fc8347fefea8"
-      },
-      "../test/createRadonRequest.spec.ts": {
-        "version": "848e027e67f2dd68acb9df23a851ae282d326ad2d42a4a0a2114d1042025e60b",
-        "signature": "477eb2bd8389f5469c756ff0ba00caabf0e61aa16e22422bf66432c76eb35477"
-      },
-      "../test/index.spec.ts": {
-        "version": "a8ff6386e9c2095d732742182297782641657b1625a764df8454d10701d56044",
-        "signature": "e31795325ab50d7cb897290914d7f6c9201f4872247b7103038013090e77fa09"
-      },
-      "../test/operator.spec.ts": {
-        "version": "595c25739b30fbfbddc1e79aede0177d229a676d01ac67f7bbca7f4a52220731",
-        "signature": "35b3bca3c0b7ba5f2683b9b771334b891bb45555318b4ff3903649393ec25ab9"
-      },
-      "../test/radon.spec.ts": {
-        "version": "02f07dafc7efd0290e165eceb0a9f2fd6bda543c175468166c97e53852b6d404",
-        "signature": "a7502f15433570183c22ea15f807484696502dafe230369ff739337c7600e661"
-      },
-      "../test/script.spec.ts": {
-        "version": "3769280d92200ee6ad32fa41a281cb877eb14f47ca91cdf94e54fccb3b21f51b",
-        "signature": "9bf87be9e5db2cc55864eb43a0a86c2dafd63cc5ad8848b90702718336530031"
-      },
-      "../test/source.spec.ts": {
-        "version": "ea531055f9cd77e77b6b5b5cf92de2d47301cd885d2d0a4e8a0d18c5d442f6a5",
-        "signature": "db67f5d5bc9800dfdfe79624b2e774dde6957d470465c5f88ed9a9ef4fc88df6"
-      },
-      "../test/structures.spec.ts": {
-        "version": "a1418c4334224974c02923b2ef89834ae6cdf63536d87e05a905c39483a835eb",
-        "signature": "d304a706138e93e54e67cd42e85b2f0e32f185588cd79482d046271b74f15d7c"
-      },
-      "../test/utils.spec.ts": {
-        "version": "316244db4ee2df86c5ef930e825127ffbd19fe3db52ab81fe6546fa1241d1e36",
-        "signature": "96babe3a69eac2df10f6f4d925925c60a21706cf90819dbb1ad9b77c96a73907"
       },
       "../node_modules/@types/babel__generator/node_modules/@babel/types/lib/index.d.ts": {
         "version": "e8c8045d31df75a2031be9d0e96274b26a394f48e6eac6a7cbb1b778d16d74ac",
@@ -425,25 +301,10 @@
         "../@types"
       ],
       "esModuleInterop": true,
-      "configFilePath": "../tsconfig.json"
+      "project": "../tsconfig.build.json",
+      "configFilePath": "../tsconfig.build.json"
     },
     "referencedMap": {
-      "./src/types.d.ts": [
-        "./src/radon.d.ts"
-      ],
-      "./src/structures.d.ts": [
-        "./src/types.d.ts"
-      ],
-      "./src/radon.d.ts": [
-        "./src/types.d.ts",
-        "./src/structures.d.ts"
-      ],
-      "./src/index.d.ts": [
-        "./src/radon.d.ts"
-      ],
-      "./src/utils.d.ts": [
-        "./src/types.d.ts"
-      ],
       "../src/types.ts": [
         "../src/radon.ts"
       ],
@@ -461,61 +322,6 @@
       ],
       "../src/index.ts": [
         "../src/radon.ts"
-      ],
-      "../test/AggregationTallyFilterArgument.spec.ts": [
-        "../src/radon.ts",
-        "../src/structures.ts"
-      ],
-      "../test/AggregationTallyOperatorFilter.spec.ts": [
-        "../src/radon.ts",
-        "../src/structures.ts",
-        "../src/types.ts"
-      ],
-      "../test/AggregationTallyOperatorReducer.spec.ts": [
-        "../src/radon.ts",
-        "../src/structures.ts",
-        "../src/types.ts"
-      ],
-      "../test/AggregationTallyScript.spec.ts": [
-        "../src/radon.ts",
-        "../src/structures.ts",
-        "../src/types.ts"
-      ],
-      "../test/argument.spec.ts": [
-        "../src/radon.ts",
-        "../src/structures.ts",
-        "../src/types.ts"
-      ],
-      "../test/createRadonRequest.spec.ts": [
-        "../src/radon.ts",
-        "../src/types.ts"
-      ],
-      "../test/operator.spec.ts": [
-        "../src/radon.ts",
-        "../src/types.ts",
-        "../src/structures.ts"
-      ],
-      "../test/radon.spec.ts": [
-        "../src/radon.ts",
-        "../src/types.ts",
-        "../src/structures.ts"
-      ],
-      "../test/script.spec.ts": [
-        "../src/types.ts",
-        "../src/radon.ts",
-        "../src/structures.ts"
-      ],
-      "../test/source.spec.ts": [
-        "../src/types.ts",
-        "../src/radon.ts",
-        "../src/structures.ts"
-      ],
-      "../test/structures.spec.ts": [
-        "../src/utils.ts",
-        "../src/types.ts"
-      ],
-      "../test/utils.spec.ts": [
-        "../src/utils.ts"
       ],
       "../node_modules/@types/babel__generator/index.d.ts": [
         "../node_modules/@types/babel__generator/node_modules/@babel/types/lib/index.d.ts"
@@ -636,22 +442,6 @@
       ],
       "../node_modules/@types/yargs/index.d.ts": [
         "../node_modules/@types/yargs-parser/index.d.ts"
-      ],
-      "./src/types.d.ts": [
-        "./src/radon.d.ts"
-      ],
-      "./src/utils.d.ts": [
-        "./src/types.d.ts"
-      ],
-      "./src/radon.d.ts": [
-        "./src/types.d.ts",
-        "./src/structures.d.ts"
-      ],
-      "./src/index.d.ts": [
-        "./src/radon.d.ts"
-      ],
-      "./src/structures.d.ts": [
-        "./src/types.d.ts"
       ]
     },
     "semanticDiagnosticsPerFile": [
@@ -691,24 +481,6 @@
       "../node_modules/typescript/lib/lib.es2020.promise.d.ts",
       "../node_modules/typescript/lib/lib.es2020.string.d.ts",
       "../node_modules/typescript/lib/lib.es2020.symbol.wellknown.d.ts",
-      "../src/types.ts",
-      "../src/utils.ts",
-      "../src/structures.ts",
-      "../src/radon.ts",
-      "../src/index.ts",
-      "../test/AggregationTallyFilterArgument.spec.ts",
-      "../test/AggregationTallyOperatorFilter.spec.ts",
-      "../test/AggregationTallyOperatorReducer.spec.ts",
-      "../test/AggregationTallyScript.spec.ts",
-      "../test/argument.spec.ts",
-      "../test/createRadonRequest.spec.ts",
-      "../test/index.spec.ts",
-      "../test/operator.spec.ts",
-      "../test/radon.spec.ts",
-      "../test/script.spec.ts",
-      "../test/source.spec.ts",
-      "../test/structures.spec.ts",
-      "../test/utils.spec.ts",
       "../node_modules/@types/babel__generator/node_modules/@babel/types/lib/index.d.ts",
       "../node_modules/@types/babel__generator/index.d.ts",
       "../node_modules/@types/babel__traverse/node_modules/@babel/types/lib/index.d.ts",
@@ -735,7 +507,12 @@
       "../node_modules/@types/prettier/index.d.ts",
       "../node_modules/@types/stack-utils/index.d.ts",
       "../node_modules/@types/yargs-parser/index.d.ts",
-      "../node_modules/@types/yargs/index.d.ts"
+      "../node_modules/@types/yargs/index.d.ts",
+      "../src/structures.ts",
+      "../src/utils.ts",
+      "../src/types.ts",
+      "../src/radon.ts",
+      "../src/index.ts"
     ]
   },
   "version": "3.8.3"

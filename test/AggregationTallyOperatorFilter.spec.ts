@@ -48,6 +48,8 @@ describe('AggregationTallyOperatorFilter', () => {
           arguments: [],
           hierarchicalType: 'selectedOperatorOption',
           label: 'mode',
+          description:
+            'Discard any result that is different from the mode. Long story short: remove outliers',
           markupType: 'option',
           outputType: 'filterOutput',
         },
@@ -100,6 +102,8 @@ describe('AggregationTallyOperatorFilter', () => {
         outputType: 'filterOutput',
         scriptId: 0,
         selected: {
+          description:
+            'Discard any result that is more than by times the absolute deviation times away from the average. Long story short: remove outliers',
           arguments: [
             {
               hierarchicalType: 'argument',

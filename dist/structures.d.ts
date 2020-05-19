@@ -1,5 +1,7 @@
-import { TypeSystem, OutputType, OperatorInfos, CacheItem, CacheRef } from './types';
+import { TypeSystem, OutputType, OperatorInfos, CacheItem, CacheRef, AggregationTallyFilterDescriptions, AggregationTallyReducerDescriptions } from './types';
 export declare const typeSystem: TypeSystem;
+export declare const aggregationTallyFilterDescriptions: AggregationTallyFilterDescriptions;
+export declare const aggregationTallyReducerDescriptions: AggregationTallyReducerDescriptions;
 export declare const operatorInfos: OperatorInfos;
 export declare class Cache {
     private counter;

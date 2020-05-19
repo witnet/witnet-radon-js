@@ -91,6 +91,7 @@ describe('Script methods', () => {
           options: markupOptions.string,
           outputType: 'boolean',
           selected: {
+            description: 'Cast the String input into Boolean',
             arguments: [],
             hierarchicalType: 'selectedOperatorOption',
             label: 'asBoolean',
@@ -124,6 +125,7 @@ describe('Script methods', () => {
           options: markupOptions.string,
           outputType: 'boolean',
           selected: {
+            description: 'Cast the String input into Boolean',
             arguments: [],
             hierarchicalType: 'selectedOperatorOption',
             label: 'asBoolean',
@@ -143,6 +145,8 @@ describe('Script methods', () => {
             arguments: [],
             hierarchicalType: 'selectedOperatorOption',
             label: 'negate',
+            description:
+              'Negate the input Boolean (make it True if it was False, or make it False if it was True)',
             markupType: 'option',
             outputType: 'boolean',
           },
@@ -156,6 +160,8 @@ describe('Script methods', () => {
           options: markupOptions.boolean,
           outputType: 'matchOutput',
           selected: {
+            description:
+              'Match the Boolean input with "subscript" and return the value asociated with it. Similar than a switch statement',
             arguments: [],
             hierarchicalType: 'selectedOperatorOption',
             label: 'match',

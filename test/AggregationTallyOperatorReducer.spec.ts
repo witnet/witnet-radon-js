@@ -51,6 +51,7 @@ describe('AggregationTallyOperatorReducer', () => {
       scriptId: 1,
       selected: {
         arguments: [],
+        description: 'Compute the average mean of the values',
         hierarchicalType: 'selectedOperatorOption',
         label: 'averageMean',
         markupType: 'option',

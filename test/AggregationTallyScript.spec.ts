@@ -55,6 +55,7 @@ describe('AggregationTallyScript', () => {
           outputType: 'filterOutput',
           scriptId: 1,
           selected: {
+            description: 'Compute the mode of the values',
             arguments: [],
             hierarchicalType: 'selectedOperatorOption',
             label: 'mode',
@@ -120,6 +121,8 @@ describe('AggregationTallyScript', () => {
                   value: 3,
                 },
               ],
+              description:
+                'Discard any result that is more than by times the absolute deviation times away from the average. Long story short: remove outliers',
               hierarchicalType: 'selectedOperatorOption',
               label: 'deviationAbsolute',
               markupType: 'option',
@@ -167,6 +170,7 @@ describe('AggregationTallyScript', () => {
           outputType: 'filterOutput',
           scriptId: 1,
           selected: {
+            description: 'Compute the mode of the values',
             arguments: [],
             hierarchicalType: 'selectedOperatorOption',
             label: 'mode',

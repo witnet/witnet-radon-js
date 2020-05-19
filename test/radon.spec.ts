@@ -175,6 +175,7 @@ describe('Radon', () => {
                 scriptId: 2,
                 selected: {
                   arguments: [],
+                  description: 'Cast the String input into Boolean',
                   hierarchicalType: 'selectedOperatorOption',
                   label: 'asBoolean',
                   markupType: 'option',
@@ -210,6 +211,8 @@ describe('Radon', () => {
                   ],
                   hierarchicalType: 'selectedOperatorOption',
                   label: 'match',
+                  description:
+                    'Match the Boolean input with "" and return the value asociated with it. Similar than a switch statement',
                   markupType: 'option',
                   outputType: 'matchOutput',
                 },
@@ -226,6 +229,8 @@ describe('Radon', () => {
                   arguments: [],
                   hierarchicalType: 'selectedOperatorOption',
                   label: 'length',
+                  description:
+                    'Count the number of elements of the input String, and mannage the values as Integer.',
                   markupType: 'option',
                   outputType: 'integer',
                 },
@@ -248,6 +253,7 @@ describe('Radon', () => {
                 selected: {
                   arguments: [],
                   hierarchicalType: 'selectedOperatorOption',
+                  description: 'Cast the String input into Boolean',
                   label: 'asBoolean',
                   markupType: 'option',
                   outputType: 'boolean',
@@ -282,6 +288,8 @@ describe('Radon', () => {
                   ],
                   hierarchicalType: 'selectedOperatorOption',
                   label: 'match',
+                  description:
+                    'Match the Boolean input with "" and return the value asociated with it. Similar than a switch statement',
                   markupType: 'option',
                   outputType: 'matchOutput',
                 },
@@ -298,6 +306,8 @@ describe('Radon', () => {
                   arguments: [],
                   hierarchicalType: 'selectedOperatorOption',
                   label: 'length',
+                  description:
+                    'Count the number of elements of the input String, and mannage the values as Integer.',
                   markupType: 'option',
                   outputType: 'integer',
                 },
@@ -344,6 +354,8 @@ describe('Radon', () => {
                 arguments: [],
                 hierarchicalType: 'selectedOperatorOption',
                 label: 'mode',
+                description:
+                  'Discard any result that is different from the mode. Long story short: remove outliers',
                 markupType: 'option',
                 outputType: 'filterOutput',
               },
@@ -393,6 +405,8 @@ describe('Radon', () => {
                 ],
                 hierarchicalType: 'selectedOperatorOption',
                 label: 'deviationAbsolute',
+                description:
+                  'Discard any result that is more than by times the absolute deviation times away from the average. Long story short: remove outliers',
                 markupType: 'option',
                 outputType: 'filterOutput',
               },
@@ -441,6 +455,7 @@ describe('Radon', () => {
               arguments: [],
               hierarchicalType: 'selectedOperatorOption',
               label: 'mode',
+              description: 'Compute the mode of the values',
               markupType: 'option',
               outputType: 'reducerOutput',
             },
@@ -485,6 +500,8 @@ describe('Radon', () => {
                 arguments: [],
                 hierarchicalType: 'selectedOperatorOption',
                 label: 'mode',
+                description:
+                  'Discard any result that is different from the mode. Long story short: remove outliers',
                 markupType: 'option',
                 outputType: 'filterOutput',
               },
@@ -523,6 +540,8 @@ describe('Radon', () => {
               outputType: 'filterOutput',
               scriptId: 20,
               selected: {
+                description:
+                  'Discard any result that is more than by times the absolute deviation times away from the average. Long story short: remove outliers',
                 arguments: [
                   {
                     hierarchicalType: 'argument',
@@ -579,6 +598,7 @@ describe('Radon', () => {
             outputType: 'filterOutput',
             scriptId: 20,
             selected: {
+              description: 'Compute the mode of the values',
               arguments: [],
               hierarchicalType: 'selectedOperatorOption',
               label: 'mode',
@@ -647,6 +667,7 @@ describe('Radon', () => {
                 outputType: 'map',
                 scriptId: 4,
                 selected: {
+                  description: 'Interpretate the input String as a JSON-encoded Map structure.',
                   arguments: [],
                   hierarchicalType: 'selectedOperatorOption',
                   label: 'parseJsonMap',
@@ -675,6 +696,8 @@ describe('Radon', () => {
                   ],
                   hierarchicalType: 'selectedOperatorOption',
                   label: 'getString',
+                  description:
+                    'Access to the “hash” key of the input Map, and manage the value as String',
                   markupType: 'option',
                   outputType: 'string',
                 },
@@ -693,6 +716,7 @@ describe('Radon', () => {
                 outputType: 'map',
                 scriptId: 9,
                 selected: {
+                  description: 'Interpretate the input String as a JSON-encoded Map structure.',
                   arguments: [],
                   hierarchicalType: 'selectedOperatorOption',
                   label: 'parseJsonMap',
@@ -721,6 +745,8 @@ describe('Radon', () => {
                   ],
                   hierarchicalType: 'selectedOperatorOption',
                   label: 'getMap',
+                  description:
+                    'Access to the “data” key of the input Map, and manage the value as Map',
                   markupType: 'option',
                   outputType: 'map',
                 },
@@ -744,6 +770,8 @@ describe('Radon', () => {
                       type: 'string',
                     },
                   ],
+                  description:
+                    'Access to the “best_block_hash” key of the input Map, and manage the value as String',
                   hierarchicalType: 'selectedOperatorOption',
                   label: 'getString',
                   markupType: 'option',
@@ -766,6 +794,7 @@ describe('Radon', () => {
             outputType: 'filterOutput',
             scriptId: 15,
             selected: {
+              description: 'Compute the mode of the values',
               arguments: [],
               hierarchicalType: 'selectedOperatorOption',
               label: 'mode',
@@ -785,6 +814,8 @@ describe('Radon', () => {
               outputType: 'filterOutput',
               scriptId: 17,
               selected: {
+                description:
+                  'Discard any result that is different from the mode. Long story short: remove outliers',
                 arguments: [],
                 hierarchicalType: 'selectedOperatorOption',
                 label: 'mode',
@@ -805,6 +836,7 @@ describe('Radon', () => {
               arguments: [],
               hierarchicalType: 'selectedOperatorOption',
               label: 'mode',
+              description: 'Compute the mode of the values',
               markupType: 'option',
               outputType: 'reducerOutput',
             },
@@ -941,6 +973,7 @@ describe('Radon', () => {
                 outputType: 'map',
                 scriptId: 2,
                 selected: {
+                  description: 'Interpretate the input String as a JSON-encoded Map structure.',
                   arguments: [],
                   hierarchicalType: 'selectedOperatorOption',
                   label: 'parseJsonMap',
@@ -1064,6 +1097,8 @@ describe('Radon', () => {
                       type: 'string',
                     },
                   ],
+                  description:
+                    'Access to the “data” key of the input Map, and manage the value as Array',
                   hierarchicalType: 'selectedOperatorOption',
                   label: 'getArray',
                   markupType: 'option',
@@ -1170,6 +1205,8 @@ describe('Radon', () => {
                 outputType: 'same',
                 scriptId: 2,
                 selected: {
+                  description:
+                    'Discard the items in the inpuyt array that doesn\'t match the 97,symbol,117,{ "BTC": true, "ETH": true } function',
                   arguments: [
                     {
                       hierarchicalType: 'argument',
@@ -1184,7 +1221,7 @@ describe('Radon', () => {
                           outputType: 'filterOutput',
                         },
                         {
-                          label: 'LessThan',
+                          label: 'lessThan',
                           hierarchicalType: 'operatorOption',
                           markupType: 'option',
                           outputType: 'filterOutput',
@@ -1405,6 +1442,7 @@ describe('Radon', () => {
                   },
                 ],
                 selected: {
+                  description: 'Sort the input Array in 103,symbol order',
                   arguments: [
                     {
                       hierarchicalType: 'argument',
@@ -1499,6 +1537,8 @@ describe('Radon', () => {
                                 type: 'string',
                               },
                             ],
+                            description:
+                              'Access to the “symbol” key of the input Map, and manage the value as String',
                             hierarchicalType: 'selectedOperatorOption',
                             label: 'getString',
                             markupType: 'option',
@@ -1614,6 +1654,9 @@ describe('Radon', () => {
                   },
                 ],
                 selected: {
+                  description:
+                    'Apply the 103,changePercent24h script on all the elements of the input Array',
+
                   arguments: [
                     {
                       hierarchicalType: 'argument',
@@ -1708,6 +1751,8 @@ describe('Radon', () => {
                                 type: 'string',
                               },
                             ],
+                            description:
+                              'Access to the “changePercent24h” key of the input Map, and manage the value as String',
                             hierarchicalType: 'selectedOperatorOption',
                             label: 'getString',
                             markupType: 'option',
@@ -1809,6 +1854,7 @@ describe('Radon', () => {
                   arguments: [],
                   hierarchicalType: 'selectedOperatorOption',
                   label: 'asBoolean',
+                  description: 'Cast the String input into Boolean',
                   markupType: 'option',
                   outputType: 'boolean',
                 },
@@ -1919,6 +1965,8 @@ describe('Radon', () => {
                       type: 'boolean',
                     },
                   ],
+                  description:
+                    'Match the Boolean input with "" and return the value asociated with it. Similar than a switch statement',
                   hierarchicalType: 'selectedOperatorOption',
                   label: 'match',
                   markupType: 'option',
@@ -2961,6 +3009,8 @@ describe('Radon', () => {
                 outputType: 'integer',
                 scriptId: 20,
                 selected: {
+                  description:
+                    'Count the number of elements of the input String, and mannage the values as Integer.',
                   arguments: [],
                   hierarchicalType: 'selectedOperatorOption',
                   label: 'length',
@@ -3011,6 +3061,8 @@ describe('Radon', () => {
                 arguments: [],
                 hierarchicalType: 'selectedOperatorOption',
                 label: 'mode',
+                description:
+                  'Discard any result that is different from the mode. Long story short: remove outliers',
                 markupType: 'option',
                 outputType: 'filterOutput',
               },
@@ -3049,6 +3101,8 @@ describe('Radon', () => {
               outputType: 'filterOutput',
               scriptId: 26,
               selected: {
+                description:
+                  'Discard any result that is more than by times the absolute deviation times away from the average. Long story short: remove outliers',
                 arguments: [
                   {
                     hierarchicalType: 'argument',
@@ -3105,6 +3159,7 @@ describe('Radon', () => {
             outputType: 'filterOutput',
             scriptId: 26,
             selected: {
+              description: 'Compute the mode of the values',
               arguments: [],
               hierarchicalType: 'selectedOperatorOption',
               label: 'mode',
@@ -3149,6 +3204,8 @@ describe('Radon', () => {
               outputType: 'filterOutput',
               scriptId: 31,
               selected: {
+                description:
+                  'Discard any result that is different from the mode. Long story short: remove outliers',
                 arguments: [],
                 hierarchicalType: 'selectedOperatorOption',
                 label: 'mode',
@@ -3199,6 +3256,8 @@ describe('Radon', () => {
                     value: 3,
                   },
                 ],
+                description:
+                  'Discard any result that is more than by times the absolute deviation times away from the average. Long story short: remove outliers',
                 hierarchicalType: 'selectedOperatorOption',
                 label: 'deviationAbsolute',
                 markupType: 'option',
@@ -3246,6 +3305,7 @@ describe('Radon', () => {
             outputType: 'filterOutput',
             scriptId: 31,
             selected: {
+              description: 'Compute the mode of the values',
               arguments: [],
               hierarchicalType: 'selectedOperatorOption',
               label: 'mode',

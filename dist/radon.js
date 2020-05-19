@@ -158,6 +158,7 @@ var AggregationTallyOperatorFilter = /** @class */ (function () {
         this.scriptId = scriptId;
     }
     AggregationTallyOperatorFilter.prototype.getMarkup = function () {
+        var _a;
         var args = this.code === types_1.AggregationTallyFilter.mode
             ? []
             : [this.argument.getMarkup()];
@@ -175,6 +176,7 @@ var AggregationTallyOperatorFilter = /** @class */ (function () {
                 label: types_1.AggregationTallyFilter[this.code],
                 markupType: types_1.MarkupType.Option,
                 outputType: types_1.OutputType.FilterOutput,
+                description: structures_1.aggregationTallyFilterDescriptions === null || structures_1.aggregationTallyFilterDescriptions === void 0 ? void 0 : structures_1.aggregationTallyFilterDescriptions[this.code]((_a = args === null || args === void 0 ? void 0 : args[0]) === null || _a === void 0 ? void 0 : _a.label),
             },
         };
     };
@@ -228,6 +230,7 @@ var AggregationTallyOperatorReducer = /** @class */ (function () {
                 label: types_1.AggregationTallyReducer[this.code],
                 markupType: types_1.MarkupType.Option,
                 outputType: types_1.OutputType.ReducerOutput,
+                description: structures_1.aggregationTallyReducerDescriptions === null || structures_1.aggregationTallyReducerDescriptions === void 0 ? void 0 : structures_1.aggregationTallyReducerDescriptions[this.code](),
             },
         };
     };
@@ -281,7 +284,8 @@ var Script = /** @class */ (function () {
         script.reduce(function (acc, item) {
             var op = new Operator(cache, _this.scriptId, acc, item, _this.onChildrenEvent());
             _this.operators.push(op);
-            // if the outputType is same return its input type to be able to calculate the options
+            // If the `outputType` is `same` (a pseudo-type), return the input type
+            // so the available methods can be guessed correctly.
             if (op.operatorInfo.outputType === 'same') {
                 return acc;
             }
@@ -380,6 +384,7 @@ var Operator = /** @class */ (function () {
         this.scriptId = scriptId;
     }
     Operator.prototype.getMarkup = function () {
+        var _a, _b, _c, _d;
         var args = this.arguments.map(function (argument) { return argument.getMarkup(); });
         return {
             hierarchicalType: types_1.MarkupHierarchicalType.Operator,
@@ -395,6 +400,7 @@ var Operator = /** @class */ (function () {
                 label: this.operatorInfo.name,
                 markupType: types_1.MarkupType.Option,
                 outputType: this.operatorInfo.outputType,
+                description: this.operatorInfo.description((_b = (_a = this.arguments) === null || _a === void 0 ? void 0 : _a[0]) === null || _b === void 0 ? void 0 : _b.value, (_d = (_c = this.arguments) === null || _c === void 0 ? void 0 : _c[1]) === null || _d === void 0 ? void 0 : _d.value),
             },
         };
     };
@@ -427,7 +433,7 @@ var Operator = /** @class */ (function () {
 }());
 exports.Operator = Operator;
 var Argument = /** @class */ (function () {
-    // TODO: find a better way to discriminate if the argument is a subscript
+    // TODO: find a better way to discriminate whether the argument is a subscript
     function Argument(cache, argumentInfo, argument, subscript) {
         if (subscript === void 0) { subscript = false; }
         this.argumentType = getArgumentInfoType(argumentInfo);
@@ -462,7 +468,6 @@ var Argument = /** @class */ (function () {
     }
     Argument.prototype.getMarkup = function () {
         if (this.argumentType === types_1.MarkupArgumentType.Input) {
-            // TODO: Refactor this ugly code
             return {
                 hierarchicalType: types_1.MarkupHierarchicalType.Argument,
                 id: this.id,
@@ -489,7 +494,6 @@ var Argument = /** @class */ (function () {
                     markupType: types_1.MarkupType.Option,
                 },
             };
-            // } else if (argumentType === MarkupArgumentType.SelectReduce) {
         }
         else if (this.argumentType === types_1.MarkupArgumentType.Subscript || this.subscript) {
             return {
@@ -537,7 +541,7 @@ var Argument = /** @class */ (function () {
     Argument.prototype.update = function (value) {
         if (this.argumentType === types_1.MarkupArgumentType.SelectFilter) {
             ;
-            this.value[0] = value;
+            this.value[0] = types_1.Filter[value];
         }
         else {
             this.value = value;
@@ -577,7 +581,6 @@ function generateFilterArgumentOptions() {
             label: name,
             hierarchicalType: types_1.MarkupHierarchicalType.OperatorOption,
             markupType: types_1.MarkupType.Option,
-            // TODO: Add support for pseudotypes
             outputType: types_1.OutputType.FilterOutput,
         };
     });
@@ -612,7 +615,7 @@ function getDefaultMirArgumentByType(type) {
         case types_1.MirArgumentType.Boolean:
             return true;
         case types_1.MirArgumentType.FilterFunction:
-            return [types_1.Filter.LessThan, 0];
+            return [types_1.Filter.lessThan, 0];
         case types_1.MirArgumentType.Float:
             return 0.0;
         case types_1.MirArgumentType.Integer:

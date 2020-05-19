@@ -10,7 +10,7 @@ export function areSoftEqualArrays(arr1: any[], arr2: any[]): boolean {
 }
 
 export function getEnumNames(e: any): Array<any> {
-  return Object.keys(e).filter(key => !parseInt(key) && !Number.isInteger(parseInt(key)))
+  return Object.keys(e).filter((key) => !parseInt(key) && !Number.isInteger(parseInt(key)))
 }
 
 export function getEnumValues(e: any): Array<any> {

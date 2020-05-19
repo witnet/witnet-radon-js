@@ -19,6 +19,7 @@ describe('Operator methods', () => {
         scriptId: 0,
         selected: {
           arguments: [],
+          description: 'Count the number of elements in the input Array',
           hierarchicalType: 'selectedOperatorOption',
           label: 'count',
           markupType: 'option',
@@ -44,6 +45,7 @@ describe('Operator methods', () => {
         options: markupOptions.array,
         outputType: 'integer',
         selected: {
+          description: 'Count the number of elements in the input Array',
           arguments: [],
           hierarchicalType: 'selectedOperatorOption',
           label: 'count',
@@ -70,6 +72,8 @@ describe('Operator methods', () => {
         options: markupOptions.boolean,
         outputType: 'boolean',
         selected: {
+          description:
+            'Negate the input Boolean (make it True if it was False, or make it False if it was True)',
           arguments: [],
           hierarchicalType: 'selectedOperatorOption',
           label: 'negate',
@@ -96,6 +100,7 @@ describe('Operator methods', () => {
         options: markupOptions.bytes,
         outputType: 'string',
         selected: {
+          description: 'Cast the Bytes input into String',
           arguments: [],
           hierarchicalType: 'selectedOperatorOption',
           label: 'asString',
@@ -122,6 +127,7 @@ describe('Operator methods', () => {
         options: markupOptions.integer,
         outputType: 'integer',
         selected: {
+          description: 'Calculate the absolute value of the input Integer',
           arguments: [],
           hierarchicalType: 'selectedOperatorOption',
           label: 'absolute',
@@ -148,6 +154,8 @@ describe('Operator methods', () => {
         options: markupOptions.float,
         outputType: 'float',
         selected: {
+          description:
+            'Compute the absolute value of the input Float, and manage the result as Float.',
           arguments: [],
           hierarchicalType: 'selectedOperatorOption',
           label: 'absolute',
@@ -175,6 +183,7 @@ describe('Operator methods', () => {
         outputType: 'map',
         selected: {
           arguments: [],
+          description: 'Access to the “key” key of the input Map, and manage the value as Map',
           hierarchicalType: 'selectedOperatorOption',
           label: 'getMap',
           markupType: 'option',
@@ -200,6 +209,7 @@ describe('Operator methods', () => {
         options: markupOptions.string,
         outputType: 'boolean',
         selected: {
+          description: 'Cast the String input into Boolean',
           arguments: [],
           hierarchicalType: 'selectedOperatorOption',
           label: 'asBoolean',

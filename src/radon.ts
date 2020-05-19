@@ -38,6 +38,8 @@ import {
   allMarkupOptions,
   aTFilterMarkupOptions,
   aTReducerMarkupOptions,
+  aggregationTallyReducerDescriptions,
+  aggregationTallyFilterDescriptions,
 } from './structures'
 import {
   getEnumNames,
@@ -72,7 +74,7 @@ export class Radon {
   constructor(radRequest: MirRequest) {
     this.cache = new Cache()
     this.timelock = radRequest.timelock
-    this.retrieve = radRequest.retrieve.map(source => new Source(this.cache, source))
+    this.retrieve = radRequest.retrieve.map((source) => new Source(this.cache, source))
     this.aggregate = new AggregationTallyScript(this.cache, radRequest.aggregate)
     this.tally = new AggregationTallyScript(this.cache, radRequest.tally)
   }
@@ -80,7 +82,7 @@ export class Radon {
   public getMir(): MirRequest {
     return {
       timelock: this.timelock,
-      retrieve: this.retrieve.map(source => source.getMir()),
+      retrieve: this.retrieve.map((source) => source.getMir()),
       aggregate: this.aggregate.getMir(),
       tally: this.tally.getMir(),
     } as MirRequest
@@ -89,7 +91,7 @@ export class Radon {
   public getMarkup(): MarkupRequest {
     return {
       timelock: this.timelock,
-      retrieve: this.retrieve.map(source => source.getMarkup()),
+      retrieve: this.retrieve.map((source) => source.getMarkup()),
       aggregate: this.aggregate.getMarkup(),
       tally: this.tally.getMarkup(),
     }
@@ -177,7 +179,7 @@ export class AggregationTallyScript {
     this.mirScript = script
     this.cache = cache
     this.filters = script.filters.map(
-      filter => new AggregationTallyOperatorFilter(cache, filter, this.scriptId)
+      (filter) => new AggregationTallyOperatorFilter(cache, filter, this.scriptId)
     )
     this.reducer = new AggregationTallyOperatorReducer(cache, script.reducer, this.scriptId)
   }
@@ -194,14 +196,14 @@ export class AggregationTallyScript {
 
   public getMir(): MirAggregationTallyScript {
     return {
-      filters: this.filters.map(operator => operator.getMir()),
+      filters: this.filters.map((operator) => operator.getMir()),
       reducer: this.reducer.getMir(),
     }
   }
 
   public getMarkup(): MarkupAggregationTallyScript {
     return {
-      filters: this.filters.map(operator => {
+      filters: this.filters.map((operator) => {
         return operator.getMarkup()
       }),
       reducer: this.reducer.getMarkup(),
@@ -251,6 +253,7 @@ export class AggregationTallyOperatorFilter {
         label: AggregationTallyFilter[this.code],
         markupType: MarkupType.Option,
         outputType: OutputType.FilterOutput,
+        description: aggregationTallyFilterDescriptions?.[this.code](args?.[0]?.label),
       },
     } as MarkupSelect
   }
@@ -313,6 +316,7 @@ export class AggregationTallyOperatorReducer {
         label: AggregationTallyReducer[this.code],
         markupType: MarkupType.Option,
         outputType: OutputType.ReducerOutput,
+        description: aggregationTallyReducerDescriptions?.[this.code](),
       },
     } as MarkupSelect
   }
@@ -347,7 +351,7 @@ export class AggregationTallyFilterArgument {
       id: this.id,
       label: 'by',
       markupType: MarkupType.Input,
-      value: this.value as (string | number | boolean),
+      value: this.value as string | number | boolean,
     } as MarkupInput
   }
 
@@ -405,7 +409,7 @@ export class Script {
   }
 
   public findIdx(operatorId: number) {
-    return this.operators.findIndex(x => operatorId === x.id)
+    return this.operators.findIndex((x) => operatorId === x.id)
   }
 
   public deleteOperator(operatorId: number) {
@@ -415,7 +419,7 @@ export class Script {
   }
 
   public getMir(): MirScript {
-    return this.operators.map(operator => operator.getMir())
+    return this.operators.map((operator) => operator.getMir())
   }
 
   public onChildrenEvent() {
@@ -435,7 +439,7 @@ export class Script {
   }
 
   public getMarkup(): MarkupScript {
-    return this.operators.map(operator => {
+    return this.operators.map((operator) => {
       return operator.getMarkup()
     })
   }
@@ -514,7 +518,7 @@ export class Operator {
   }
 
   public getMarkup(): MarkupOperator {
-    const args = this.arguments.map(argument => argument.getMarkup())
+    const args = this.arguments.map((argument) => argument.getMarkup())
     return {
       hierarchicalType: MarkupHierarchicalType.Operator,
       id: this.id,
@@ -529,13 +533,17 @@ export class Operator {
         label: this.operatorInfo.name,
         markupType: MarkupType.Option,
         outputType: this.operatorInfo.outputType,
+        description: this.operatorInfo.description(
+          this.arguments?.[0]?.value,
+          this.arguments?.[1]?.value
+        ),
       },
     } as MarkupSelect
   }
 
   public getMir(): MirOperator {
     return this.operatorInfo.arguments.length
-      ? ([this.code, ...this.arguments.map(argument => argument.getMir())] as MirOperator)
+      ? ([this.code, ...this.arguments.map((argument) => argument.getMir())] as MirOperator)
       : this.code
   }
 
@@ -621,7 +629,7 @@ export class Argument {
         id: this.id,
         label: this.argumentInfo.name,
         markupType: MarkupType.Input,
-        value: this.value as (string | number | boolean),
+        value: this.value as string | number | boolean,
         type: getMarkupInputTypeFromArgumentType(this.argumentInfo.type),
       } as MarkupInput
     } else if (this.argumentType === MarkupArgumentType.SelectFilter && !this.subscript) {
@@ -685,7 +693,9 @@ export class Argument {
 
   public update(value: string | number | boolean | Filter) {
     if (this.argumentType === MarkupArgumentType.SelectFilter) {
-      ;(this.value as [Filter, number] | [Filter, string] | [Filter, boolean])[0] = value as Filter
+      ;(this.value as [Filter, number] | [Filter, string] | [Filter, boolean])[0] = (Filter[
+        value as number
+      ] as unknown) as Filter
     } else {
       this.value = value
     }
@@ -697,7 +707,7 @@ function areValidConsecutiveOperators(operators: Array<Operator>, idx: number) {
     const outputType = operators[idx].operatorInfo.outputType
     const label = operators[idx + 1].operatorInfo.name
     const options = markupOptions[outputType]
-    return !!options.find(operatorName => operatorName === label)
+    return !!options.find((operatorName) => operatorName === label)
   } else {
     return true
   }
@@ -716,7 +726,7 @@ function getArgumentInfoType(info: ArgumentInfo): MarkupArgumentType {
 }
 
 export function generateFilterArgumentOptions(): Array<MarkupOption> {
-  const markupOptions: Array<MarkupOption> = getEnumNames(Filter).map(name => {
+  const markupOptions: Array<MarkupOption> = getEnumNames(Filter).map((name) => {
     return {
       label: name,
       hierarchicalType: MarkupHierarchicalType.OperatorOption,
@@ -728,7 +738,7 @@ export function generateFilterArgumentOptions(): Array<MarkupOption> {
 }
 
 export function generateReducerArgumentOptions(): Array<MarkupOption> {
-  const markupOptions: Array<MarkupOption> = getEnumNames(Reducer).map(name => {
+  const markupOptions: Array<MarkupOption> = getEnumNames(Reducer).map((name) => {
     return {
       label: name,
       hierarchicalType: MarkupHierarchicalType.OperatorOption,
@@ -758,7 +768,7 @@ function getDefaultMirArgumentByType(type: MirArgumentType): MirArgument {
     case MirArgumentType.Boolean:
       return true
     case MirArgumentType.FilterFunction:
-      return [Filter.LessThan, 0]
+      return [Filter.lessThan, 0]
     case MirArgumentType.Float:
       return 0.0
     case MirArgumentType.Integer:
