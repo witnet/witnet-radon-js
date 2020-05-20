@@ -16,6 +16,8 @@ import {
   CacheRef,
   AggregationTallyFilter,
   AggregationTallyReducer,
+  AggregationTallyFilterDescriptions,
+  AggregationTallyReducerDescriptions,
 } from './types'
 import { getEnumNames } from './utils'
 
@@ -134,14 +136,14 @@ const descriptions = {
   }
 }
 
-export const aggregationTallyFilterDescriptions: { [T in AggregationTallyFilter]: (arg1?: any) => string } = {
+export const aggregationTallyFilterDescriptions: AggregationTallyFilterDescriptions = {
   [AggregationTallyFilter.deviationAbsolute]: () => '',
   [AggregationTallyFilter.deviationRelative]: () => '',
   [AggregationTallyFilter.deviationStandard]: () => '',
   [AggregationTallyFilter.mode]: () => '',
 }
 
-export const aggregationTallyReducerDescriptions: { [T in AggregationTallyReducer]: (arg1?: any) => string } = {
+export const aggregationTallyReducerDescriptions: AggregationTallyReducerDescriptions = {
   [AggregationTallyReducer.mode]: () => '',
   [AggregationTallyReducer.averageMean]: () => '',
   [AggregationTallyReducer.averageMeanWeighted]: () => '',

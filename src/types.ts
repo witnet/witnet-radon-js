@@ -496,3 +496,6 @@ export type TypeSystem = {
     [B in BytesOperatorName]: [OperatorCode, OutputType]
   }
 }
+
+export type AggregationTallyFilterDescriptions = { [T in AggregationTallyFilter]: (arg1?: any) => string }
+export type AggregationTallyReducerDescriptions = { [T in AggregationTallyReducer]: (arg1?: any) => string }
