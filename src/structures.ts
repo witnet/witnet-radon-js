@@ -134,6 +134,21 @@ const descriptions = {
   }
 }
 
+export const aggregationTallyFilterDescriptions: { [T in AggregationTallyFilter]: (arg1?: any) => string } = {
+  [AggregationTallyFilter.deviationAbsolute]: () => '',
+  [AggregationTallyFilter.deviationRelative]: () => '',
+  [AggregationTallyFilter.deviationStandard]: () => '',
+  [AggregationTallyFilter.mode]: () => '',
+}
+
+export const aggregationTallyReducerDescriptions: { [T in AggregationTallyReducer]: (arg1?: any) => string } = {
+  [AggregationTallyReducer.mode]: () => '',
+  [AggregationTallyReducer.averageMean]: () => '',
+  [AggregationTallyReducer.averageMeanWeighted]: () => '',
+  [AggregationTallyReducer.averageMedian]: () => '',
+  [AggregationTallyReducer.averageMedianWeighted]: () => '',
+}
+
 export const operatorInfos: OperatorInfos = {
   [OperatorCode.ArrayCount]: {
     type: Type.Array,

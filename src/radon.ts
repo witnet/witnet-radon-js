@@ -38,6 +38,8 @@ import {
   allMarkupOptions,
   aTFilterMarkupOptions,
   aTReducerMarkupOptions,
+  aggregationTallyReducerDescriptions,
+  aggregationTallyFilterDescriptions,
 } from './structures'
 import {
   getEnumNames,
@@ -237,6 +239,8 @@ export class AggregationTallyOperatorFilter {
       this.code === AggregationTallyFilter.mode
         ? []
         : [(this.argument as AggregationTallyFilterArgument).getMarkup()]
+        console.log('args', args)
+        console.log('op', this.code)
     return {
       hierarchicalType: MarkupHierarchicalType.Operator,
       id: this.id,
@@ -251,6 +255,7 @@ export class AggregationTallyOperatorFilter {
         label: AggregationTallyFilter[this.code],
         markupType: MarkupType.Option,
         outputType: OutputType.FilterOutput,
+        description: aggregationTallyFilterDescriptions[this.code]
       },
     } as MarkupSelect
   }
@@ -313,6 +318,7 @@ export class AggregationTallyOperatorReducer {
         label: AggregationTallyReducer[this.code],
         markupType: MarkupType.Option,
         outputType: OutputType.ReducerOutput,
+        description: aggregationTallyReducerDescriptions[this.code]
       },
     } as MarkupSelect
   }

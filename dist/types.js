@@ -40,7 +40,7 @@ var Reducer;
 var Filter;
 (function (Filter) {
     Filter[Filter["greaterThan"] = 0] = "greaterThan";
-    Filter[Filter["LessThan"] = 1] = "LessThan";
+    Filter[Filter["lessThan"] = 1] = "lessThan";
     Filter[Filter["equals"] = 2] = "equals";
     Filter[Filter["deviationAbsolute"] = 3] = "deviationAbsolute";
     Filter[Filter["deviationRelative"] = 4] = "deviationRelative";
