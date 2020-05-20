@@ -147,6 +147,7 @@ export type MarkupSelect = {
   selected: MarkupSelectedOption
   options: Array<MarkupOption>
   label: string
+  description?: () => String
 }
 
 export enum MarkupType {
@@ -361,7 +362,7 @@ export type OperatorInfo = {
   type: Type
   name: string
   arguments: Array<ArgumentInfo>
-  description: (x: any) => String
+  description: (x: any, y?: any) => String
 }
 
 export type ArgumentInfo = { name: string; optional: boolean; type: MirArgumentType }

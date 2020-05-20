@@ -109,9 +109,9 @@ export const typeSystem: TypeSystem = {
 }
 
 const descriptions = {
-  getKey: (inputType: string, outputType: string) => (key: String) => `Access to the “${key}” key of the input ${inputType}, and manage the value as ${['a', 'i'].includes(outputType[0]) ? 'an' : 'a'} ${outputType} value.`,
-  mapValues: (type: string) => `Obtain a list with the values of the input Map, and manage the value as an Array of ${type}`,
-  cast: (inputType: string, outputType: string) => `Cast the ${inputType} input into ${outputType} output`,
+  getKey: (inputType: string, outputType: string) => (key: String) => `Access to the “${key}” key of the input ${inputType}, and manage the value as ${outputType}.`,
+  mapValues: (type: string) => `Obtain a list with the values of the input Map, and manage the value as an Array of ${type}.`,
+  cast: (inputType: string, outputType: string) => `Cast the ${inputType} input into ${outputType}.`,
   atFilter: (filter: string) => {
       switch(filter) {
         case 'deviationAbsolute': return ''
@@ -121,6 +121,7 @@ const descriptions = {
         default: return ''
     }
   },
+
   atReducer: (reducer: string) => {
     switch (reducer) {
       case 'mode': return ''
@@ -139,7 +140,7 @@ export const operatorInfos: OperatorInfos = {
     name: ArrayOperatorName.Count,
     arguments: [],
     outputType: OutputType.Integer,
-    description: () => 'Compute the number of elements of the input Array, and mannage the values as an Integer value.',
+    description: () => 'Compute the number of elements of the input Array, and mannage the result as Integer.',
   },
   [OperatorCode.ArrayFilter]: {
     type: Type.Array,
@@ -293,7 +294,7 @@ export const operatorInfos: OperatorInfos = {
       },
     ],
     outputType: OutputType.SubscriptOutput,
-    description: descriptions.getKey('Array', 'Map'),
+    description: () => 'Apply the subscript received as argument',
   },
   [OperatorCode.ArrayReduce]: {
     type: Type.Array,
@@ -390,8 +391,7 @@ export const operatorInfos: OperatorInfos = {
       },
     ],
     outputType: OutputType.Same,
-    // TODO: improve it
-    description: () => 'Get a group of the input Array',
+    description: (min, max) => `Get a group of the input Array between ${min} and ${max}, and manage the result as Array.`,
   },
   [OperatorCode.BooleanMatch]: {
     type: Type.Boolean,
@@ -431,14 +431,14 @@ export const operatorInfos: OperatorInfos = {
     name: BytesOperatorName.Hash,
     arguments: [],
     outputType: OutputType.Bytes,
-    description: () => 'Compute the hash of the input Bytes and, manage it as Bytes',
+    description: () => 'Compute the hash of the input Bytes, and manage the result as Bytes',
   },
   [OperatorCode.IntegerAbsolute]: {
     type: Type.Integer,
     name: IntegerOperatorName.Absolute,
     arguments: [],
     outputType: OutputType.Integer,
-    description: () => 'Compute the absolute value of the input Integer and, manage it as Integer',
+    description: () => 'Compute the absolute value of the input Integer, and manage it as Integer',
   },
   [OperatorCode.IntegerAsFloat]: {
     type: Type.Integer,
@@ -472,7 +472,7 @@ export const operatorInfos: OperatorInfos = {
       },
     ],
     outputType: OutputType.Boolean,
-    description: (argument: string) => `Compare if the input Integer is greater than ${argument}, and manage the value as Boolean`,
+    description: (argument: string) => `Compare if the input Integer is greater than ${argument}, and manage the value as Boolean.`,
   },
   [OperatorCode.IntegerLessThan]: {
     type: Type.Integer,
@@ -485,7 +485,7 @@ export const operatorInfos: OperatorInfos = {
       },
     ],
     outputType: OutputType.Boolean,
-    description: (argument: string) => `Compare if the input Integer is less than ${argument}, and manage the value as Boolean`,
+    description: (argument: string) => `Compare if the input Integer is less than ${argument}, and manage the value as Boolean.`,
   },
   [OperatorCode.IntegerMatch]: {
     type: Type.Integer,
@@ -506,7 +506,7 @@ export const operatorInfos: OperatorInfos = {
       },
     ],
     outputType: OutputType.Integer,
-    description: (argument) => `Compute the division by the input Integer and ${argument} Integer. Then manage the result as Integer`,
+    description: (argument) => `Compute the division by the input Integer and ${argument} Integer. Then manage the result as Integer.`,
   },
   [OperatorCode.IntegerMultiply]: {
     type: Type.Integer,
@@ -519,14 +519,14 @@ export const operatorInfos: OperatorInfos = {
       },
     ],
     outputType: OutputType.Integer,
-    description: (argument) => `Compute the product by the input Integer and ${argument} Integer. Then manage the result as Integer`,
+    description: factor => `Compute the product by the input Integer and ${factor}. Then manage the result as Integer.`,
   },
   [OperatorCode.IntegerNegate]: {
     type: Type.Integer,
     name: IntegerOperatorName.Negate,
     arguments: [],
     outputType: OutputType.Integer,
-    description: () => `Compute the negative of the input Integer, and manage the result as Integer`,
+    description: () => `Compute the negative of the input Integer, and manage the result as Integer.`,
   },
   [OperatorCode.IntegerPower]: {
     type: Type.Integer,
@@ -539,14 +539,14 @@ export const operatorInfos: OperatorInfos = {
       },
     ],
     outputType: OutputType.Integer,
-    description: (exponent) => `Compute the input Integer raised to the power of Integer ${exponent}. Then, handle the result as an integer value.`,
+    description: (exponent) => `Compute the input Integer raised to the power of Integer ${exponent}. Then, handle the result as Integer.`,
   },
   [OperatorCode.IntegerReciprocal]: {
     type: Type.Integer,
     name: IntegerOperatorName.Reciprocal,
     arguments: [],
     outputType: OutputType.Float,
-    description: () => 'Compute the multiplicative inverse of the input Integer and manage the result as Float',
+    description: () => 'Compute the multiplicative inverse of the input Integer, and manage the result as Float.',
   },
   [OperatorCode.IntegerSum]: {
     type: Type.Integer,
@@ -700,14 +700,14 @@ export const operatorInfos: OperatorInfos = {
     name: FloatOperatorName.Truncate,
     arguments: [],
     outputType: OutputType.Integer,
-    description: () => 'Remove integer part from the Float input, and manage the result as Integer',
+    description: () => 'Take integer part from the Float input, and manage the result as Integer.',
   },
   [OperatorCode.MapEntries]: {
     type: Type.Map,
     name: MapOperatorName.Entries,
     arguments: [],
     outputType: OutputType.Array,
-    description: () => `Obtain a list of key-value tuples from the input Map, and manage the value as Array`,
+    description: () => `Obtain a list of key-value tuples from the input Map, and manage the value as Array.`,
   },
   [OperatorCode.MapGetArray]: {
     type: Type.Map,
@@ -811,7 +811,7 @@ export const operatorInfos: OperatorInfos = {
     name: MapOperatorName.Keys,
     arguments: [],
     outputType: OutputType.ArrayString,
-    description: () => 'Obtain a list with the keys names of the input Map, and manage the value as Array of String',
+    description: () => 'Obtain a list with the keys names of the input Map, and manage the value as Array of String.',
   },
   [OperatorCode.MapValuesArray]: {
     type: Type.Map,
@@ -895,7 +895,7 @@ export const operatorInfos: OperatorInfos = {
     name: StringOperatorName.Length,
     arguments: [],
     outputType: OutputType.Integer,
-    description: () => 'Count the number of elements of the input String, and mannage the values as an Integer value.',
+    description: () => 'Count the number of elements of the input String, and mannage the values as Integer.',
   },
   [OperatorCode.StringMatch]: {
     type: Type.String,
@@ -910,21 +910,21 @@ export const operatorInfos: OperatorInfos = {
     name: StringOperatorName.ParseJsonArray,
     arguments: [],
     outputType: OutputType.Array,
-    description: () => 'Interpretate the input String as a JSON-encoded Array structure',
+    description: () => 'Interpretate the input String as a JSON-encoded Array structure.',
   },
   [OperatorCode.StringParseJsonMap]: {
     type: Type.String,
     name: StringOperatorName.ParseJsonMap,
     arguments: [],
     outputType: OutputType.Map,
-    description: () => 'Interpretate the input String as a JSON-encoded Map structure',
+    description: () => 'Interpretate the input String as a JSON-encoded Map structure.',
   },
   [OperatorCode.StringParseXML]: {
     type: Type.String,
     name: StringOperatorName.ParseXml,
     arguments: [],
     outputType: OutputType.Map,
-    description: () => 'Interpretate the input String as a XML-encoded Map structure',
+    description: () => 'Interpretate the input String as a XML-encoded Map structure.',
   },
   [OperatorCode.StringToLowerCase]: {
     type: Type.String,

@@ -733,7 +733,7 @@ describe('Argument methods', () => {
         type: MirArgumentType.FilterFunction,
       }
 
-      const argument = new Argument(cache, argumentInfo, [Filter.LessThan, 5])
+      const argument = new Argument(cache, argumentInfo, [Filter.lessThan, 5])
       const newValue = Filter.bottom
       argument.update(newValue)
 

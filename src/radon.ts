@@ -515,6 +515,8 @@ export class Operator {
 
   public getMarkup(): MarkupOperator {
     const args = this.arguments.map(argument => argument.getMarkup())
+    console.log('this.arguemnts', this.arguments)
+    console.log('args', args)
     return {
       hierarchicalType: MarkupHierarchicalType.Operator,
       id: this.id,
@@ -529,6 +531,7 @@ export class Operator {
         label: this.operatorInfo.name,
         markupType: MarkupType.Option,
         outputType: this.operatorInfo.outputType,
+        description: this.operatorInfo.description(this.arguments?.[0]?.value, this.arguments?.[1]?.value)
       },
     } as MarkupSelect
   }
@@ -758,7 +761,7 @@ function getDefaultMirArgumentByType(type: MirArgumentType): MirArgument {
     case MirArgumentType.Boolean:
       return true
     case MirArgumentType.FilterFunction:
-      return [Filter.LessThan, 0]
+      return [Filter.lessThan, 0]
     case MirArgumentType.Float:
       return 0.0
     case MirArgumentType.Integer:
