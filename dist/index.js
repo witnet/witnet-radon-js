@@ -1,10 +1,11 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.Operator = exports.Script = exports.Source = exports.Radon = void 0;
 var radon_1 = require("./radon");
-exports.Radon = radon_1.Radon;
-exports.Source = radon_1.Source;
-exports.Script = radon_1.Script;
-exports.Operator = radon_1.Operator;
+Object.defineProperty(exports, "Radon", { enumerable: true, get: function () { return radon_1.Radon; } });
+Object.defineProperty(exports, "Source", { enumerable: true, get: function () { return radon_1.Source; } });
+Object.defineProperty(exports, "Script", { enumerable: true, get: function () { return radon_1.Script; } });
+Object.defineProperty(exports, "Operator", { enumerable: true, get: function () { return radon_1.Operator; } });
 exports.default = {
     Radon: radon_1.Radon,
     Source: radon_1.Source,
