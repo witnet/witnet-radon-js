@@ -183,6 +183,44 @@ describe('AggregationTallyScript', () => {
     })
   })
 
+  describe('deleteOperator', () => {
+    it('without repeated filters', () => {
+      const mirScript: MirAggregationTallyScript = {
+        filters: [
+          [AggregationTallyFilter.deviationAbsolute, 3],
+          AggregationTallyFilter.mode
+        ],
+        reducer: 0x02,
+      }
+      const cache = new Cache()
+      const script = new AggregationTallyScript(cache, mirScript)
+
+      script.deleteOperator(script.filters[0].id)
+
+
+      expect(script.filters[0].code).toStrictEqual(AggregationTallyFilter.mode)
+    })
+
+    it('with repeated filters', () => {
+      const mirScript: MirAggregationTallyScript = {
+        filters: [
+          [AggregationTallyFilter.deviationAbsolute, 3],
+          AggregationTallyFilter.mode,
+          [AggregationTallyFilter.deviationAbsolute, 3],
+        ],
+        reducer: 0x02,
+      }
+      const cache = new Cache()
+      const script = new AggregationTallyScript(cache, mirScript)
+      script.deleteOperator(script.filters[2].id)
+
+      expect(script.filters[0].code).toStrictEqual(AggregationTallyFilter.deviationAbsolute)
+      expect(script.filters[1].code).toStrictEqual(AggregationTallyFilter.mode)
+      expect(script.filters[2]).toBeUndefined()
+
+    })
+  })
+
   describe('getMir', () => {
     it('with non-empty-filters', () => {
       const mirScript: MirAggregationTallyScript = {

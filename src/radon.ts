@@ -194,6 +194,12 @@ export class AggregationTallyScript {
     )
   }
 
+  // Remove the filter from the filter's list by id
+  public deleteOperator(operatorId: number) {
+    const operatorIndex = this.findIdx(operatorId)
+    this.filters.splice(operatorIndex, 1)
+  }
+
   public getMir(): MirAggregationTallyScript {
     return {
       filters: this.filters.map((operator) => operator.getMir()),
@@ -208,6 +214,10 @@ export class AggregationTallyScript {
       }),
       reducer: this.reducer.getMarkup(),
     }
+  }
+
+  public findIdx(filterId: number) {
+    return this.filters.findIndex((x) => filterId === x.id)
   }
 
   public push(filter: AggregationTallyFilter) {

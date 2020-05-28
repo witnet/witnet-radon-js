@@ -127,6 +127,11 @@ var AggregationTallyScript = /** @class */ (function () {
     AggregationTallyScript.prototype.addOperator = function () {
         this.filters.push(new AggregationTallyOperatorFilter(this.cache, [types_1.AggregationTallyFilter.deviationAbsolute, 1], this.scriptId));
     };
+    // Remove the filter from the filter's list by id
+    AggregationTallyScript.prototype.deleteOperator = function (operatorId) {
+        var operatorIndex = this.findIdx(operatorId);
+        this.filters.splice(operatorIndex, 1);
+    };
     AggregationTallyScript.prototype.getMir = function () {
         return {
             filters: this.filters.map(function (operator) { return operator.getMir(); }),
@@ -140,6 +145,9 @@ var AggregationTallyScript = /** @class */ (function () {
             }),
             reducer: this.reducer.getMarkup(),
         };
+    };
+    AggregationTallyScript.prototype.findIdx = function (filterId) {
+        return this.filters.findIndex(function (x) { return filterId === x.id; });
     };
     AggregationTallyScript.prototype.push = function (filter) {
         this.filters.push(new AggregationTallyOperatorFilter(this.cache, filter, this.scriptId));

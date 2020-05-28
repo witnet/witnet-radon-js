@@ -202,8 +202,8 @@
         "affectsGlobalScope": false
       },
       "../src/radon.ts": {
-        "version": "92918e4a8ae6959f9984f04ef8b91280c17443099eb937f3d0e86ea33e6c4792",
-        "signature": "c594e168a1af99c7ff8e74a7422292e304690e60bc9cc17da0945bf05c715afd",
+        "version": "d7bf1329d1150b269b5f3336bec61684b662be302286052ff6b920acc0c322af",
+        "signature": "add99d8b03975a8d86e7eb1c1eddec6c9378b3e69adc704061f786edbbdb13d9",
         "affectsGlobalScope": false
       },
       "../src/index.ts": {

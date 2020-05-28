@@ -52,8 +52,10 @@ export declare class AggregationTallyScript {
     scriptId: number;
     constructor(cache: Cache, script: MirAggregationTallyScript);
     addOperator(): void;
+    deleteOperator(operatorId: number): void;
     getMir(): MirAggregationTallyScript;
     getMarkup(): MarkupAggregationTallyScript;
+    findIdx(filterId: number): number;
     push(filter: AggregationTallyFilter): void;
 }
 export declare class AggregationTallyOperatorFilter {
