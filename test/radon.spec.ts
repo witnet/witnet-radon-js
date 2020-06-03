@@ -15,6 +15,7 @@ describe('Radon', () => {
         {
           kind: 'HTTP-GET',
           url: 'source_1',
+          contentType: 'JSON API',
           script: [
             OperatorCode.StringAsBoolean,
             [OperatorCode.BooleanMatch, '', true],
@@ -24,6 +25,7 @@ describe('Radon', () => {
         {
           kind: 'HTTP-GET',
           url: 'source_2',
+          contentType: 'JSON API',
           script: [
             OperatorCode.StringAsBoolean,
             [OperatorCode.BooleanMatch, '', true],
@@ -53,6 +55,7 @@ describe('Radon', () => {
         {
           kind: 'HTTP-GET',
           url: 'source_1',
+          contentType: 'JSON API',
           script: [
             OperatorCode.StringAsBoolean,
             [OperatorCode.BooleanMatch, '', true],
@@ -62,6 +65,7 @@ describe('Radon', () => {
         {
           kind: 'HTTP-GET',
           url: 'source_2',
+          contentType: 'JSON API',
           script: [
             OperatorCode.StringAsBoolean,
             [OperatorCode.BooleanMatch, '', true],
@@ -90,6 +94,7 @@ describe('Radon', () => {
         {
           kind: 'HTTP-GET',
           url: 'source_1',
+          contentType: 'JSON API',
           script: [
             OperatorCode.StringAsBoolean,
             [OperatorCode.BooleanMatch, '', true],
@@ -99,6 +104,7 @@ describe('Radon', () => {
         {
           kind: 'HTTP-GET',
           url: 'source_2',
+          contentType: 'JSON API',
           script: [
             OperatorCode.StringAsBoolean,
             [OperatorCode.BooleanMatch, '', true],
@@ -129,6 +135,7 @@ describe('Radon', () => {
           {
             kind: 'HTTP-GET',
             url: 'source_1',
+            contentType: 'JSON API',
             script: [
               OperatorCode.StringAsBoolean,
               [OperatorCode.BooleanMatch, '', true],
@@ -138,6 +145,7 @@ describe('Radon', () => {
           {
             kind: 'HTTP-GET',
             url: 'source_2',
+            contentType: 'JSON API',
             script: [
               OperatorCode.StringAsBoolean,
               [OperatorCode.BooleanMatch, '', true],
@@ -163,6 +171,7 @@ describe('Radon', () => {
           {
             kind: 'HTTP-GET',
             url: 'source_1',
+            contentType: 'JSON API',
             scriptId: 2,
             script: [
               {
@@ -241,6 +250,7 @@ describe('Radon', () => {
             kind: 'HTTP-GET',
             url: 'source_2',
             scriptId: 9,
+            contentType: 'JSON API',
             script: [
               {
                 hierarchicalType: 'operator',
@@ -619,16 +629,19 @@ describe('Radon', () => {
           {
             kind: 'HTTP-GET',
             url: 'https://blockchain.info/q/latesthash',
+            contentType: 'JSON API',
             script: [],
           },
           {
             kind: 'HTTP-GET',
             url: 'https://api-r.bitcoinchain.com/v1/status',
+            contentType: 'JSON API',
             script: [119, [103, 'hash']],
           },
           {
             kind: 'HTTP-GET',
             url: 'https://api.blockchair.com/bitcoin/stats',
+            contentType: 'JSON API',
             script: [119, [102, 'data'], [103, 'best_block_hash']],
           },
         ],
@@ -650,12 +663,14 @@ describe('Radon', () => {
           {
             kind: 'HTTP-GET',
             url: 'https://blockchain.info/q/latesthash',
+            contentType: 'JSON API',
             script: [],
             scriptId: 2,
           },
           {
             kind: 'HTTP-GET',
             scriptId: 4,
+            contentType: 'JSON API',
             url: 'https://api-r.bitcoinchain.com/v1/status',
             script: [
               {
@@ -706,6 +721,7 @@ describe('Radon', () => {
           },
           {
             kind: 'HTTP-GET',
+            contentType: 'JSON API',
             script: [
               {
                 hierarchicalType: 'operator',
@@ -854,6 +870,7 @@ describe('Radon', () => {
           {
             kind: 'HTTP-GET',
             url: 'source_1',
+            contentType: 'JSON API',
             script: [
               OperatorCode.StringParseJsonMap,
               [OperatorCode.MapGetArray, 'data'],
@@ -871,6 +888,7 @@ describe('Radon', () => {
           {
             kind: 'HTTP-GET',
             url: 'source_2',
+            contentType: 'JSON API',
             script: [
               OperatorCode.StringAsBoolean,
               [OperatorCode.BooleanMatch, '', true],
@@ -896,6 +914,7 @@ describe('Radon', () => {
           {
             kind: 'HTTP-GET',
             url: 'source_1',
+            contentType: 'JSON API',
             script: [
               {
                 hierarchicalType: 'operator',
@@ -3019,6 +3038,7 @@ describe('Radon', () => {
                 },
               },
             ],
+            contentType: 'JSON API',
             scriptId: 20,
           },
         ],
@@ -3327,6 +3347,7 @@ describe('Radon', () => {
           {
             kind: 'HTTP-GET',
             url: 'source_1',
+            contentType: 'JSON API',
             script: [
               OperatorCode.StringAsBoolean,
               [OperatorCode.BooleanMatch, '', true],
@@ -3336,6 +3357,7 @@ describe('Radon', () => {
           {
             kind: 'HTTP-GET',
             url: 'source_2',
+            contentType: 'JSON API',
             script: [
               OperatorCode.StringAsBoolean,
               [OperatorCode.BooleanMatch, '', true],
@@ -3366,6 +3388,7 @@ describe('Radon', () => {
           {
             kind: 'HTTP-GET',
             url: 'source_1',
+            contentType: 'JSON API',
             script: [
               OperatorCode.StringParseJsonMap,
               [OperatorCode.MapGetArray, 'data'],
@@ -3383,6 +3406,7 @@ describe('Radon', () => {
           {
             kind: 'HTTP-GET',
             url: 'source_2',
+            contentType: 'JSON API',
             script: [
               OperatorCode.StringAsBoolean,
               [OperatorCode.BooleanMatch, '', true],
@@ -3416,6 +3440,7 @@ describe('Radon', () => {
           {
             kind: 'HTTP-GET',
             url: 'source_1',
+            contentType: 'JSON API',
             script: [
               OperatorCode.StringAsBoolean,
               [OperatorCode.BooleanMatch, '', true],
@@ -3425,6 +3450,7 @@ describe('Radon', () => {
           {
             kind: 'HTTP-GET',
             url: 'source_2',
+            contentType: 'JSON API',
             script: [
               OperatorCode.StringAsBoolean,
               [OperatorCode.BooleanMatch, '', true],
@@ -3455,6 +3481,7 @@ describe('Radon', () => {
           {
             kind: 'HTTP-GET',
             url: 'source_1',
+            contentType: 'JSON API',
             script: [
               OperatorCode.StringAsBoolean,
               [OperatorCode.BooleanMatch, '', true],
@@ -3464,6 +3491,7 @@ describe('Radon', () => {
           {
             kind: 'HTTP-GET',
             url: 'source_2',
+            contentType: 'JSON API',
             script: [
               OperatorCode.StringAsBoolean,
               [OperatorCode.BooleanMatch, '', true],
@@ -3496,6 +3524,7 @@ describe('Radon', () => {
           {
             kind: 'HTTP-GET',
             url: 'source_1',
+            contentType: 'JSON API',
             script: [
               OperatorCode.StringAsBoolean,
               [OperatorCode.BooleanMatch, '', true],
@@ -3505,6 +3534,7 @@ describe('Radon', () => {
           {
             kind: 'HTTP-GET',
             url: 'source_2',
+            contentType: 'JSON API',
             script: [
               OperatorCode.StringAsBoolean,
               [OperatorCode.BooleanMatch, '', true],

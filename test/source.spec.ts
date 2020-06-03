@@ -2,16 +2,27 @@ import { MirScript, OperatorCode } from '../src/types'
 import { Source } from '../src/radon'
 import { Cache, markupOptions } from '../src/structures'
 
-describe('Script', () => {
+describe('Source', () => {
   describe('getMarkup method', () => {
     it('empty', () => {
       const mirScript: MirScript = []
       const cache = new Cache()
 
-      const source = new Source(cache, { kind: 'kind', url: 'url', script: mirScript })
+      const source = new Source(cache, {
+        kind: 'kind',
+        url: 'url',
+        script: mirScript,
+        contentType: 'JSON API',
+      })
 
       const result = source.getMarkup()
-      const expected = { kind: 'kind', url: 'url', script: [], scriptId: 2 }
+      const expected = {
+        kind: 'kind',
+        url: 'url',
+        contentType: 'JSON API',
+        script: [],
+        scriptId: 2,
+      }
       expect(result).toStrictEqual(expected)
     })
 
@@ -27,6 +38,7 @@ describe('Script', () => {
       const mirSource = {
         kind: 'kind',
         url: 'url',
+        contentType: 'JSON API',
         script: mirScript,
       }
 
@@ -34,6 +46,7 @@ describe('Script', () => {
 
       const expected: any = {
         kind: 'kind',
+        contentType: 'JSON API',
         scriptId: 2,
         script: [
           {
@@ -102,10 +115,15 @@ describe('Script', () => {
       const mirScript: MirScript = []
       const cache = new Cache()
 
-      const source = new Source(cache, { kind: 'kind', url: 'url', script: mirScript })
+      const source = new Source(cache, {
+        kind: 'kind',
+        url: 'url',
+        script: mirScript,
+        contentType: 'JSON API',
+      })
 
       const result = source.getMir()
-      const expected = { kind: 'kind', url: 'url', script: [] }
+      const expected = { kind: 'kind', url: 'url', script: [], contentType: 'JSON API' }
 
       expect(result).toStrictEqual(expected)
     })
@@ -122,6 +140,7 @@ describe('Script', () => {
       const mirSource = {
         kind: 'kind',
         url: 'url',
+        contentType: 'JSON API',
         script: mirScript,
       }
 

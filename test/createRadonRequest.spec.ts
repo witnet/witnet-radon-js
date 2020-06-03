@@ -9,6 +9,7 @@ describe('Radon', () => {
         {
           kind: 'HTTP-GET',
           url: 'source_1',
+          contentType: 'JSON API',
           script: [],
         },
       ],
@@ -56,6 +57,7 @@ describe('Radon', () => {
         {
           kind: 'HTTP-GET',
           url: 'source_1',
+          contentType: 'JSON API',
           script: [],
         },
       ],

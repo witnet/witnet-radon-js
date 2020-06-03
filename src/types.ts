@@ -170,6 +170,7 @@ export type MarkupArgumentScript = {
 export type MarkupSource = {
   kind: string
   url: string
+  contentType: string
   script: MarkupScript
   scriptId: number
 }
@@ -337,6 +338,7 @@ export type MarkupAggregationTallyScript = {
 export type MirSource = {
   kind: string
   url: string
+  contentType: string
   script: MirScript
 }
 

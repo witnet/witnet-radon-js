@@ -119,7 +119,12 @@ export class Radon {
 
   public addSource() {
     this.retrieve.push(
-      new Source(this.cache, { url: '', script: [OperatorCode.StringAsFloat], kind: 'HTTP-GET' })
+      new Source(this.cache, {
+        url: '',
+        script: [OperatorCode.StringAsFloat],
+        kind: 'HTTP-GET',
+        contentType: 'JSON API',
+      })
     )
   }
 }
@@ -128,6 +133,7 @@ export class Source {
   public cache: Cache
   public kind: string
   public url: string
+  public contentType: string
   public script: Script
   public id: number
 
@@ -136,19 +142,22 @@ export class Source {
     this.cache = cache
     this.kind = source.kind
     this.url = source.url
+    this.contentType = source.contentType
     this.script = new Script(cache, source.script, OutputType.String)
   }
 
-  public update(args: { kind: string; url: string }) {
-    const { kind = this.kind, url = this.url } = args
+  public update(args: { kind: string; url: string; contentType: string }) {
+    const { kind = this.kind, url = this.url, contentType = this.contentType } = args
     this.kind = kind
     this.url = url
+    this.contentType = contentType
   }
 
   public getMir(): MirSource {
     return {
       kind: this.kind,
       url: this.url,
+      contentType: this.contentType,
       script: this.script.getMir(),
     } as MirSource
   }
@@ -157,6 +166,7 @@ export class Source {
     return {
       kind: this.kind,
       url: this.url,
+      contentType: this.contentType,
       script: this.script.getMarkup(),
       scriptId: this.script.scriptId,
     }
