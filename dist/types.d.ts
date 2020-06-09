@@ -139,6 +139,7 @@ export declare type MarkupArgumentScript = {
 export declare type MarkupSource = {
     kind: string;
     url: string;
+    contentType: string;
     script: MarkupScript;
     scriptId: number;
 };
@@ -271,6 +272,7 @@ export declare type MarkupAggregationTallyScript = {
 export declare type MirSource = {
     kind: string;
     url: string;
+    contentType: string;
     script: MirScript;
 };
 export declare type MirRequest = {

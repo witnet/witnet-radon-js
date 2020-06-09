@@ -33,12 +33,14 @@ export declare class Source {
     cache: Cache;
     kind: string;
     url: string;
+    contentType: string;
     script: Script;
     id: number;
     constructor(cache: Cache, source: MirSource);
     update(args: {
         kind: string;
         url: string;
+        contentType: string;
     }): void;
     getMir(): MirSource;
     getMarkup(): MarkupSource;

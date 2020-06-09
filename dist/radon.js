@@ -76,7 +76,12 @@ var Radon = /** @class */ (function () {
         this.cache.get(scriptId).deleteOperator(operatorId);
     };
     Radon.prototype.addSource = function () {
-        this.retrieve.push(new Source(this.cache, { url: '', script: [types_1.OperatorCode.StringAsFloat], kind: 'HTTP-GET' }));
+        this.retrieve.push(new Source(this.cache, {
+            url: '',
+            script: [types_1.OperatorCode.StringAsFloat],
+            kind: 'HTTP-GET',
+            contentType: 'JSON API',
+        }));
     };
     return Radon;
 }());
@@ -87,17 +92,20 @@ var Source = /** @class */ (function () {
         this.cache = cache;
         this.kind = source.kind;
         this.url = source.url;
+        this.contentType = source.contentType;
         this.script = new Script(cache, source.script, types_1.OutputType.String);
     }
     Source.prototype.update = function (args) {
-        var _a = args.kind, kind = _a === void 0 ? this.kind : _a, _b = args.url, url = _b === void 0 ? this.url : _b;
+        var _a = args.kind, kind = _a === void 0 ? this.kind : _a, _b = args.url, url = _b === void 0 ? this.url : _b, _c = args.contentType, contentType = _c === void 0 ? this.contentType : _c;
         this.kind = kind;
         this.url = url;
+        this.contentType = contentType;
     };
     Source.prototype.getMir = function () {
         return {
             kind: this.kind,
             url: this.url,
+            contentType: this.contentType,
             script: this.script.getMir(),
         };
     };
@@ -105,6 +113,7 @@ var Source = /** @class */ (function () {
         return {
             kind: this.kind,
             url: this.url,
+            contentType: this.contentType,
             script: this.script.getMarkup(),
             scriptId: this.script.scriptId,
         };
