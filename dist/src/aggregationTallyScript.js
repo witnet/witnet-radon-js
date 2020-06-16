@@ -1,0 +1,46 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.AggregationTallyScript = void 0;
+var types_1 = require("./types");
+var aggregationTallyOperatorReducer_1 = require("./aggregationTallyOperatorReducer");
+var aggregationTallyOperatorFilter_1 = require("./aggregationTallyOperatorFilter");
+var AggregationTallyScript = /** @class */ (function () {
+    function AggregationTallyScript(cache, script) {
+        var _this = this;
+        this.scriptId = cache.insert(this).id;
+        this.mirScript = script;
+        this.cache = cache;
+        this.filters = script.filters.map(function (filter) { return new aggregationTallyOperatorFilter_1.AggregationTallyOperatorFilter(cache, filter, _this.scriptId); });
+        this.reducer = new aggregationTallyOperatorReducer_1.AggregationTallyOperatorReducer(cache, script.reducer, this.scriptId);
+    }
+    AggregationTallyScript.prototype.addOperator = function () {
+        this.filters.push(new aggregationTallyOperatorFilter_1.AggregationTallyOperatorFilter(this.cache, [types_1.AggregationTallyFilter.deviationAbsolute, 1], this.scriptId));
+    };
+    // Remove the filter from the filter's list by id
+    AggregationTallyScript.prototype.deleteOperator = function (operatorId) {
+        var operatorIndex = this.findIdx(operatorId);
+        this.filters.splice(operatorIndex, 1);
+    };
+    AggregationTallyScript.prototype.getMir = function () {
+        return {
+            filters: this.filters.map(function (operator) { return operator.getMir(); }),
+            reducer: this.reducer.getMir(),
+        };
+    };
+    AggregationTallyScript.prototype.getMarkup = function () {
+        return {
+            filters: this.filters.map(function (operator) {
+                return operator.getMarkup();
+            }),
+            reducer: this.reducer.getMarkup(),
+        };
+    };
+    AggregationTallyScript.prototype.findIdx = function (filterId) {
+        return this.filters.findIndex(function (x) { return filterId === x.id; });
+    };
+    AggregationTallyScript.prototype.push = function (filter) {
+        this.filters.push(new aggregationTallyOperatorFilter_1.AggregationTallyOperatorFilter(this.cache, filter, this.scriptId));
+    };
+    return AggregationTallyScript;
+}());
+exports.AggregationTallyScript = AggregationTallyScript;

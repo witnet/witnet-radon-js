@@ -1085,13 +1085,15 @@ export const primitiveMarkupOptions = {
   }),
 }
 
-export const aTFilterMarkupOptions = getEnumNames(AggregationTallyFilter).map((filter) =>
-  generateOption(filter, OutputType.FilterOutput)
-)
+export const aTFilterMarkupOptions = () =>
+  getEnumNames(AggregationTallyFilter).map((filter) =>
+    generateOption(filter, OutputType.FilterOutput)
+  )
 
-export const aTReducerMarkupOptions = getEnumNames(AggregationTallyReducer).map((filter) =>
-  generateOption(filter, OutputType.FilterOutput)
-)
+export const aTReducerMarkupOptions = () =>
+  getEnumNames(AggregationTallyReducer).map((filter) =>
+    generateOption(filter, OutputType.FilterOutput)
+  )
 
 export const allMarkupOptions = removeRepeated([
   ...primitiveMarkupOptions.array,

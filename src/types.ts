@@ -1,13 +1,25 @@
-import {
-  Source,
-  Script,
-  Operator,
-  Argument,
-  AggregationTallyOperatorFilter,
-  AggregationTallyOperatorReducer,
-  AggregationTallyFilterArgument,
-  AggregationTallyScript,
-} from './radon'
+import { AggregationTallyFilterArgument } from './aggregationTallyFilterArgument'
+import { AggregationTallyOperatorFilter } from './aggregationTallyOperatorFilter'
+import { AggregationTallyOperatorReducer } from './aggregationTallyOperatorReducer'
+import { AggregationTallyScript } from './aggregationTallyScript'
+import { Argument } from './argument'
+import { Operator } from './operator'
+import { Script } from './script'
+import { Source } from './source'
+
+export type EventEmitter = {
+  emit: Function
+}
+
+export enum EventName {
+  Update,
+}
+
+// TODO: remove any
+export type Event = {
+  name: EventName
+  data: any
+}
 
 export type CacheItem =
   | Source

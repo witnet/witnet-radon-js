@@ -186,30 +186,80 @@
         "signature": "89bf2b7a601b73ea4311eda9c41f86a58994fec1bee3b87c4a14d68d9adcdcbd",
         "affectsGlobalScope": true
       },
-      "../src/types.ts": {
-        "version": "2e1d95a35e787caef49d78fce63c1408e4db5e62af3594fa9b09775631599597",
-        "signature": "a1a5784a61ac271678b39161bbe4b3a26d0e48d4c61f4899ee3439b1f6c3d4b4",
+      "../src/constants.ts": {
+        "version": "1fc470812b1b9bb1acdae45bcf0dc7ded4ff52e71e5f6dea19e8615f4caec1fb",
+        "signature": "fca18eef4edf799683982c933b65f129f42ad83cffbbbb58d338a8e22bfb04bf",
+        "affectsGlobalScope": false
+      },
+      "../src/script.ts": {
+        "version": "8985983b1ae428fedca48b62c023dbb6bedaf12f805399511741bf8c1a05b903",
+        "signature": "ffe103ccdd9c9b0959544618e9c6e322983269b7294736db159f2b0dab282d88",
+        "affectsGlobalScope": false
+      },
+      "../src/argument.ts": {
+        "version": "932f6bd2843d07a62246b4ed14a8e13dbe6a51908a22e011216a3563c237db78",
+        "signature": "ae39bb8ea44b8f6a7967a6366601fdeefb2330015b8ad7f2d93f4f51ec1b6527",
+        "affectsGlobalScope": false
+      },
+      "../src/operator.ts": {
+        "version": "3b0895f83bbe3e009dafba3c204f83ac6082c6158bf8874940d0f609d0575191",
+        "signature": "f7602680b118d510bbeda7d6ac8b61f907007c20d8885b26890392c6d3bedd16",
         "affectsGlobalScope": false
       },
       "../src/utils.ts": {
-        "version": "3c6b98a84194b1119422049bfa52ce6bee27a94a8b307ad49b596371ae5f3ae3",
-        "signature": "f4de26931be237eba5a08e3d771c5a3b4a0338551bff5378c5a0721fd3743449",
+        "version": "623206b9cf6e3aa3c46565a182169ff223f185c59230abb82a40fc9326a8cae9",
+        "signature": "891887b2c346daff16af60f3353163f624c9036fef902fbd4d7a98da484f5b8d",
         "affectsGlobalScope": false
       },
       "../src/structures.ts": {
-        "version": "aa996f524d4a24eff5a0ca9d2b398ff80ad12d4defea767c723d6f1638c367e7",
-        "signature": "b5ec551239a1a6e314edcbc9a6e1a730e86429b724d81721616c187a76c68b0e",
+        "version": "3d84cb13fe368220e8637d3245891010c7ae9c6c308874e5770885e43b73733d",
+        "signature": "3ca0bae9d05e86852eddcd9d03d6cb59c4b1629f3775fec38e77f7622e652fcc",
+        "affectsGlobalScope": false
+      },
+      "../src/aggregationTallyOperatorFilter.ts": {
+        "version": "85e77e4a7013928279eace8eecc031c805ef23e43f7d328b7a4e4a913048a6de",
+        "signature": "e5d9574ad38f5079a3aa09cbbdddd712a677d2909a22bd5411a6ac7db29cfad5",
+        "affectsGlobalScope": false
+      },
+      "../src/aggregationTallyOperatorReducer.ts": {
+        "version": "cdef666461ee7eb1aa2a22e5a4f04357e8158525983898e9ba4b77a8c3afa426",
+        "signature": "e66675f097758a4ee818d8d4ae49bfd705c2317211cd83a14707ff099f69ced5",
+        "affectsGlobalScope": false
+      },
+      "../src/aggregationTallyScript.ts": {
+        "version": "c2f170519de745e60524dbcd70799de0a8fecfe8c460cf946a98d09b1ec20c34",
+        "signature": "7e84e093befef8774d068256ead23cde96fbdbd17aa8d041b0cc3f41e5cf3eae",
+        "affectsGlobalScope": false
+      },
+      "../src/source.ts": {
+        "version": "85bacc4d346a4ff0ebf6dca7e297d28bb52debde8e73e1b1a9ec8ae947347298",
+        "signature": "da593fc9b73b772a6bcae277b6ad8c1d936665cb66a1d209446ff6e58736ca30",
+        "affectsGlobalScope": false
+      },
+      "../src/types.ts": {
+        "version": "dd40b3323a83fac927cd458d01c82a464ec44f570bed1bcfa5e243f3b31df914",
+        "signature": "5d6b198d1d99542a590719207cb58785983a7ff8b765d5ccf3b8f0fff86d9bce",
+        "affectsGlobalScope": false
+      },
+      "../src/aggregationTallyFilterArgument.ts": {
+        "version": "fef1542e4f5fe4f3b91987c91a024f2b7b40762fab7b022be7de4e6197dfc719",
+        "signature": "155c43d23b99fadbf0a13e2cc907bdb77df9f4b993ec1a8f47fb308bdf041b90",
         "affectsGlobalScope": false
       },
       "../src/radon.ts": {
-        "version": "1100f596f56e15f9a577917c76577f451320147adb67a84abf9e8ad704eb56c8",
-        "signature": "b3f73b92d5cedecc188288d934477a2c312d73185085951e0bbf59764c6b0717",
+        "version": "f3c86c43170d86c4b178ba530f8f5c1d80e5fb189d81772180ae8187b21f7523",
+        "signature": "8b393fb5fc0980b9cef2184112a614f3420c58fb8037f6e20c52b8a199623e29",
         "affectsGlobalScope": false
       },
       "../src/index.ts": {
-        "version": "3b570483a4546ac98c863fbfb5dbfae888a4288166964b4157607bde294a2f3e",
-        "signature": "e89b8e02f3bde404f8c2ea8f0d184c816f5d8b0c871663a9b17a96ee822e2999",
+        "version": "1ab1310355655696f77365c8ac33fad889e24cf61d8d65fb6acc64b4914915c5",
+        "signature": "78c109c75a514ecbd16fb7705e049de9a2c6ab70c9a8333c07d16c21726db007",
         "affectsGlobalScope": false
+      },
+      "../test/src/sanity.ts": {
+        "version": "7cad891c8801403fbb8bd506528acc6ffe32e231408236ae0744fa7489a58d97",
+        "signature": "dfd85a07bf0ad12cfc6ef3480241ce6d13fac8f69733c9c429a6344d4b3e5284",
+        "affectsGlobalScope": true
       },
       "../node_modules/@types/babel__generator/node_modules/@babel/types/lib/index.d.ts": {
         "version": "e8c8045d31df75a2031be9d0e96274b26a394f48e6eac6a7cbb1b778d16d74ac",
@@ -1586,13 +1636,86 @@
         "../node_modules/@types/node/ts3.2/util.d.ts",
         "../node_modules/@types/node/util.d.ts"
       ],
+      "../src/aggregationTallyFilterArgument.ts": [
+        "../node_modules/@types/graceful-fs/index.d.ts",
+        "../node_modules/@types/node/fs.d.ts",
+        "../node_modules/@types/node/ts3.2/fs.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts",
+        "../node_modules/@types/node/util.d.ts",
+        "../src/structures.ts",
+        "../src/types.ts"
+      ],
+      "../src/aggregationTallyOperatorFilter.ts": [
+        "../node_modules/@types/graceful-fs/index.d.ts",
+        "../node_modules/@types/node/fs.d.ts",
+        "../node_modules/@types/node/ts3.2/fs.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts",
+        "../node_modules/@types/node/util.d.ts",
+        "../src/aggregationTallyFilterArgument.ts",
+        "../src/structures.ts",
+        "../src/types.ts"
+      ],
+      "../src/aggregationTallyOperatorReducer.ts": [
+        "../node_modules/@types/graceful-fs/index.d.ts",
+        "../node_modules/@types/node/fs.d.ts",
+        "../node_modules/@types/node/ts3.2/fs.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts",
+        "../node_modules/@types/node/util.d.ts",
+        "../src/structures.ts",
+        "../src/types.ts"
+      ],
+      "../src/aggregationTallyScript.ts": [
+        "../node_modules/@types/graceful-fs/index.d.ts",
+        "../node_modules/@types/node/fs.d.ts",
+        "../node_modules/@types/node/ts3.2/fs.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts",
+        "../node_modules/@types/node/util.d.ts",
+        "../src/aggregationTallyOperatorFilter.ts",
+        "../src/aggregationTallyOperatorReducer.ts",
+        "../src/structures.ts",
+        "../src/types.ts"
+      ],
+      "../src/argument.ts": [
+        "../node_modules/@types/graceful-fs/index.d.ts",
+        "../node_modules/@types/node/fs.d.ts",
+        "../node_modules/@types/node/ts3.2/fs.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts",
+        "../node_modules/@types/node/util.d.ts",
+        "../src/script.ts",
+        "../src/structures.ts",
+        "../src/types.ts",
+        "../src/utils.ts"
+      ],
+      "../src/constants.ts": [
+        "../node_modules/@types/graceful-fs/index.d.ts",
+        "../node_modules/@types/node/fs.d.ts",
+        "../node_modules/@types/node/ts3.2/fs.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts",
+        "../node_modules/@types/node/util.d.ts",
+        "../src/types.ts"
+      ],
       "../src/index.ts": [
         "../node_modules/@types/graceful-fs/index.d.ts",
         "../node_modules/@types/node/fs.d.ts",
         "../node_modules/@types/node/ts3.2/fs.d.ts",
         "../node_modules/@types/node/ts3.2/util.d.ts",
         "../node_modules/@types/node/util.d.ts",
-        "../src/radon.ts"
+        "../src/operator.ts",
+        "../src/radon.ts",
+        "../src/script.ts",
+        "../src/source.ts"
+      ],
+      "../src/operator.ts": [
+        "../node_modules/@types/graceful-fs/index.d.ts",
+        "../node_modules/@types/node/fs.d.ts",
+        "../node_modules/@types/node/ts3.2/fs.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts",
+        "../node_modules/@types/node/util.d.ts",
+        "../src/argument.ts",
+        "../src/constants.ts",
+        "../src/structures.ts",
+        "../src/types.ts",
+        "../src/utils.ts"
       ],
       "../src/radon.ts": [
         "../node_modules/@types/graceful-fs/index.d.ts",
@@ -1600,9 +1723,35 @@
         "../node_modules/@types/node/ts3.2/fs.d.ts",
         "../node_modules/@types/node/ts3.2/util.d.ts",
         "../node_modules/@types/node/util.d.ts",
+        "../src/aggregationTallyScript.ts",
+        "../src/argument.ts",
+        "../src/operator.ts",
+        "../src/script.ts",
+        "../src/source.ts",
+        "../src/structures.ts",
+        "../src/types.ts"
+      ],
+      "../src/script.ts": [
+        "../node_modules/@types/graceful-fs/index.d.ts",
+        "../node_modules/@types/node/fs.d.ts",
+        "../node_modules/@types/node/ts3.2/fs.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts",
+        "../node_modules/@types/node/util.d.ts",
+        "../src/constants.ts",
+        "../src/operator.ts",
         "../src/structures.ts",
         "../src/types.ts",
         "../src/utils.ts"
+      ],
+      "../src/source.ts": [
+        "../node_modules/@types/graceful-fs/index.d.ts",
+        "../node_modules/@types/node/fs.d.ts",
+        "../node_modules/@types/node/ts3.2/fs.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts",
+        "../node_modules/@types/node/util.d.ts",
+        "../src/script.ts",
+        "../src/structures.ts",
+        "../src/types.ts"
       ],
       "../src/structures.ts": [
         "../node_modules/@types/graceful-fs/index.d.ts",
@@ -1619,7 +1768,14 @@
         "../node_modules/@types/node/ts3.2/fs.d.ts",
         "../node_modules/@types/node/ts3.2/util.d.ts",
         "../node_modules/@types/node/util.d.ts",
-        "../src/radon.ts"
+        "../src/aggregationTallyFilterArgument.ts",
+        "../src/aggregationTallyOperatorFilter.ts",
+        "../src/aggregationTallyOperatorReducer.ts",
+        "../src/aggregationTallyScript.ts",
+        "../src/argument.ts",
+        "../src/operator.ts",
+        "../src/script.ts",
+        "../src/source.ts"
       ],
       "../src/utils.ts": [
         "../node_modules/@types/graceful-fs/index.d.ts",
@@ -1627,7 +1783,16 @@
         "../node_modules/@types/node/ts3.2/fs.d.ts",
         "../node_modules/@types/node/ts3.2/util.d.ts",
         "../node_modules/@types/node/util.d.ts",
+        "../src/operator.ts",
+        "../src/structures.ts",
         "../src/types.ts"
+      ],
+      "../test/src/sanity.ts": [
+        "../node_modules/@types/graceful-fs/index.d.ts",
+        "../node_modules/@types/node/fs.d.ts",
+        "../node_modules/@types/node/ts3.2/fs.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts",
+        "../node_modules/@types/node/util.d.ts"
       ]
     },
     "exportedModulesMap": {
@@ -2574,10 +2739,57 @@
         "../node_modules/@types/node/ts3.2/util.d.ts",
         "../node_modules/@types/node/util.d.ts"
       ],
+      "../src/aggregationTallyFilterArgument.ts": [
+        "../src/structures.ts",
+        "../src/types.ts"
+      ],
+      "../src/aggregationTallyOperatorFilter.ts": [
+        "../src/aggregationTallyFilterArgument.ts",
+        "../src/structures.ts",
+        "../src/types.ts"
+      ],
+      "../src/aggregationTallyOperatorReducer.ts": [
+        "../src/structures.ts",
+        "../src/types.ts"
+      ],
+      "../src/aggregationTallyScript.ts": [
+        "../src/aggregationTallyOperatorFilter.ts",
+        "../src/aggregationTallyOperatorReducer.ts",
+        "../src/structures.ts",
+        "../src/types.ts"
+      ],
+      "../src/argument.ts": [
+        "../src/script.ts",
+        "../src/structures.ts",
+        "../src/types.ts"
+      ],
+      "../src/constants.ts": [
+        "../src/types.ts"
+      ],
       "../src/index.ts": [
-        "../src/radon.ts"
+        "../src/operator.ts",
+        "../src/radon.ts",
+        "../src/script.ts",
+        "../src/source.ts"
+      ],
+      "../src/operator.ts": [
+        "../src/argument.ts",
+        "../src/structures.ts",
+        "../src/types.ts"
       ],
       "../src/radon.ts": [
+        "../src/aggregationTallyScript.ts",
+        "../src/source.ts",
+        "../src/structures.ts",
+        "../src/types.ts"
+      ],
+      "../src/script.ts": [
+        "../src/operator.ts",
+        "../src/structures.ts",
+        "../src/types.ts"
+      ],
+      "../src/source.ts": [
+        "../src/script.ts",
         "../src/structures.ts",
         "../src/types.ts"
       ],
@@ -2585,9 +2797,17 @@
         "../src/types.ts"
       ],
       "../src/types.ts": [
-        "../src/radon.ts"
+        "../src/aggregationTallyFilterArgument.ts",
+        "../src/aggregationTallyOperatorFilter.ts",
+        "../src/aggregationTallyOperatorReducer.ts",
+        "../src/aggregationTallyScript.ts",
+        "../src/argument.ts",
+        "../src/operator.ts",
+        "../src/script.ts",
+        "../src/source.ts"
       ],
       "../src/utils.ts": [
+        "../src/operator.ts",
         "../src/types.ts"
       ]
     },
@@ -2709,11 +2929,21 @@
       "../node_modules/typescript/lib/lib.es2020.symbol.wellknown.d.ts",
       "../node_modules/typescript/lib/lib.es5.d.ts",
       "../node_modules/typescript/lib/lib.esnext.intl.d.ts",
+      "../src/aggregationTallyFilterArgument.ts",
+      "../src/aggregationTallyOperatorFilter.ts",
+      "../src/aggregationTallyOperatorReducer.ts",
+      "../src/aggregationTallyScript.ts",
+      "../src/argument.ts",
+      "../src/constants.ts",
       "../src/index.ts",
+      "../src/operator.ts",
       "../src/radon.ts",
+      "../src/script.ts",
+      "../src/source.ts",
       "../src/structures.ts",
       "../src/types.ts",
-      "../src/utils.ts"
+      "../src/utils.ts",
+      "../test/src/sanity.ts"
     ]
   },
   "version": "3.9.3"
