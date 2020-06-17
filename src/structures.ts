@@ -40,6 +40,7 @@ export const typeSystem: TypeSystem = {
     [ArrayOperatorName.Take]: [OperatorCode.ArrayTake, OutputType.Array],
   },
   [Type.Boolean]: {
+    [BooleanOperatorName.AsString]: [OperatorCode.BooleanAsString, OutputType.String],
     [BooleanOperatorName.Match]: [OperatorCode.BooleanMatch, OutputType.MatchOutput],
     [BooleanOperatorName.Negate]: [OperatorCode.BooleanNegate, OutputType.Boolean],
   },
@@ -344,6 +345,13 @@ export const operatorInfos: OperatorInfos = {
     outputType: OutputType.Same,
     description: (min, max) =>
       `Take the elements from the input Array between positions ${min} and ${max}, and discard all the rest`,
+  },
+  [OperatorCode.BooleanAsString]: {
+    type: Type.Boolean,
+    name: BooleanOperatorName.AsString,
+    arguments: [],
+    outputType: OutputType.Boolean,
+    description: () => descriptions.cast('Boolean', 'String'),
   },
   [OperatorCode.BooleanMatch]: {
     type: Type.Boolean,

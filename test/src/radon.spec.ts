@@ -1887,6 +1887,12 @@ describe('Radon', () => {
                 options: [
                   {
                     hierarchicalType: 'operatorOption',
+                    label: 'BooleanAsString',
+                    markupType: 'option',
+                    outputType: 'string',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
                     label: 'BooleanMatch',
                     markupType: 'option',
                     outputType: 'matchOutput',
@@ -2592,6 +2598,12 @@ describe('Radon', () => {
                     label: 'ArrayTake',
                     markupType: 'option',
                     outputType: 'arrayString',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'BooleanAsString',
+                    markupType: 'option',
+                    outputType: 'string',
                   },
                   {
                     hierarchicalType: 'operatorOption',

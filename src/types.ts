@@ -219,8 +219,9 @@ export enum OperatorCode {
   ArraySort = 0x1e,
   ArrayTake = 0x1f,
 
-  BooleanMatch = 0x20,
-  BooleanNegate = 0x21,
+  BooleanAsString = 0x20,
+  BooleanMatch = 0x21,
+  BooleanNegate = 0x22,
 
   BytesAsString = 0x30,
   BytesHash = 0x31,
@@ -404,6 +405,7 @@ export enum ArrayOperatorName {
 }
 
 export enum BooleanOperatorName {
+  AsString = 'asString',
   Negate = 'negate',
   Match = 'match',
 }

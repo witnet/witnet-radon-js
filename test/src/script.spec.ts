@@ -58,7 +58,7 @@ describe('Script methods', () => {
       const cache = new Cache()
       const script = new Script(cache, mirScript)
       const result = script.getLastOperator()
-      const expectedCode = 32
+      const expectedCode = 33
       const expectedArguments: any = ['', true]
 
       expect((result as Operator).code).toStrictEqual(expectedCode)
@@ -244,7 +244,7 @@ describe('Script methods', () => {
     const script = new Script(cache, mirScript)
 
     script.push([OperatorCode.BooleanMatch, '', true])
-    const expectedCode = 32
+    const expectedCode = 33
     const expectedArguments: any = ['', true]
 
     expect(script.operators[script.operators.length - 1].code).toStrictEqual(expectedCode)
