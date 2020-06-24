@@ -3,6 +3,34 @@ import { Cache } from '../../src/structures'
 import { AggregationTallyFilter, MirAggregationTallyFilterOperator } from '../../src/types'
 
 describe('AggregationTallyOperatorFilter', () => {
+  describe('getJs', () => {
+    it('without argument', () => {
+      const mirOperator: MirAggregationTallyFilterOperator = AggregationTallyFilter.mode
+
+      const cache = new Cache()
+      const operator = new AggregationTallyOperatorFilter(cache, mirOperator, 0)
+
+      const result = operator.getJs()
+      const expected = 'Witnet.Types.FILTERS.mode'
+
+      expect(result).toStrictEqual(expected)
+    })
+    it('with argument', () => {
+      const mirOperator: MirAggregationTallyFilterOperator = [
+        AggregationTallyFilter.deviationAbsolute,
+        3,
+      ]
+
+      const cache = new Cache()
+      const operator = new AggregationTallyOperatorFilter(cache, mirOperator, 0)
+
+      const result = operator.getJs()
+      const expected = '[Witnet.Types.FILTERS.deviationAbsolute, 3]'
+
+      expect(result).toStrictEqual(expected)
+    })
+  })
+
   describe('getMarkup', () => {
     it('without argument', () => {
       const mirOperator: MirAggregationTallyFilterOperator = AggregationTallyFilter.mode

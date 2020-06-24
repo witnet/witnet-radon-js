@@ -62,6 +62,12 @@ export class Script {
     return this.operators.findIndex((x) => operatorId === x.id)
   }
 
+  public getJs(): string {
+    const operators = this.operators.map((operator) => operator.getJs()).join('\n')
+
+    return operators
+  }
+
   public getLastOperator(): Operator | null {
     return this.operators.length ? this.operators[this.operators.length - 1] : null
   }

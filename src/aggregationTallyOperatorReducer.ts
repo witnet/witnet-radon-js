@@ -12,6 +12,7 @@ export class AggregationTallyOperatorReducer {
   public code: AggregationTallyReducer
   public id: number
   public scriptId: number
+  public label: string
 
   constructor(
     cache: Cache,
@@ -22,13 +23,20 @@ export class AggregationTallyOperatorReducer {
     this.cache = cache
     this.code = operator
     this.scriptId = scriptId
+    this.label = AggregationTallyReducer[this.code]
+  }
+
+  public getJs(): string {
+    const reducerName = this.label
+
+    return `Witnet.Types.REDUCERS.${reducerName}`
   }
 
   public getMarkup(): MarkupSelect {
     return {
       hierarchicalType: MarkupHierarchicalType.Operator,
       id: this.id,
-      label: AggregationTallyReducer[this.code],
+      label: this.label,
       markupType: MarkupType.Select,
       options: aTReducerMarkupOptions(),
       outputType: OutputType.FilterOutput,
@@ -36,7 +44,7 @@ export class AggregationTallyOperatorReducer {
       selected: {
         arguments: [],
         hierarchicalType: MarkupHierarchicalType.SelectedOperatorOption,
-        label: AggregationTallyReducer[this.code],
+        label: this.label,
         markupType: MarkupType.Option,
         outputType: OutputType.ReducerOutput,
         description: aggregationTallyReducerDescriptions?.[this.code](),

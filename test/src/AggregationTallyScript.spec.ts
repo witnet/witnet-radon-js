@@ -1,6 +1,7 @@
 import { AggregationTallyScript } from '../../src/aggregationTallyScript'
 import { Cache } from '../../src/structures'
 import { AggregationTallyFilter, MirAggregationTallyScript } from '../../src/types'
+import { formatJsTest } from '../utils'
 
 describe('AggregationTallyScript', () => {
   describe('addOperator', () => {
@@ -61,6 +62,45 @@ describe('AggregationTallyScript', () => {
       expect(script.filters[0].code).toStrictEqual(AggregationTallyFilter.deviationAbsolute)
       expect(script.filters[1].code).toStrictEqual(AggregationTallyFilter.mode)
       expect(script.filters[2]).toBeUndefined()
+    })
+  })
+
+  describe('getJs', () => {
+    it('with empty filters', () => {
+      const mirScript: MirAggregationTallyScript = {
+        filters: [],
+        reducer: 0x02,
+      }
+      const cache = new Cache()
+      const script = new AggregationTallyScript(cache, mirScript)
+
+      const result = formatJsTest(script.getJs('aggregator'))
+      const expected = formatJsTest(`const aggregator = new Witnet.aggregator({
+        filters: [
+        ],
+          reducer: Witnet.Types.REDUCERS.mode,
+        })`)
+
+      expect(result).toStrictEqual(expected)
+    })
+
+    it(' with non-empty filters', () => {
+      const mirScript: MirAggregationTallyScript = {
+        filters: [[AggregationTallyFilter.deviationAbsolute, 3]],
+        reducer: 0x02,
+      }
+      const cache = new Cache()
+      const script = new AggregationTallyScript(cache, mirScript)
+
+      const result = formatJsTest(script.getJs('aggregator'))
+      const expected = formatJsTest(`const aggregator = new Witnet.aggregator({
+        filters: [
+          [Witnet.Types.FILTERS.deviationAbsolute, 3]
+        ],
+          reducer: Witnet.Types.REDUCERS.mode,
+        })`)
+
+      expect(result).toStrictEqual(expected)
     })
   })
 

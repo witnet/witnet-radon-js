@@ -3,6 +3,7 @@ import { Script } from '../../src/script'
 import { Operator } from '../../src/operator'
 import { DEFAULT_SCRIPT_FIRST_TYPE, DEFAULT_OPERATOR } from '../../src/constants'
 import { Cache, markupOptions } from '../../src/structures'
+import { removeBreakLine } from '../utils'
 
 // TODO: validateScript
 describe('Script methods', () => {
@@ -63,6 +64,45 @@ describe('Script methods', () => {
 
       expect((result as Operator).code).toStrictEqual(expectedCode)
       expect((result as Operator).mirArguments).toStrictEqual(expectedArguments)
+    })
+  })
+
+  describe('getJs', () => {
+    it('empty', () => {
+      const mirScript: MirScript = []
+      const cache = new Cache()
+      const script = new Script(cache, mirScript)
+
+      const result = script.getJs()
+      expect(result).toStrictEqual('')
+    })
+
+    it('one operator', () => {
+      const cache = new Cache()
+
+      const mirScript: MirScript = [OperatorCode.StringAsBoolean]
+
+      const script = new Script(cache, mirScript)
+      const result = script.getJs()
+      const expected = '.asBoolean()'
+
+      expect(result).toStrictEqual(expected)
+    })
+
+    it('multiple operators', () => {
+      const cache = new Cache()
+
+      const mirScript: MirScript = [
+        OperatorCode.StringAsBoolean,
+        OperatorCode.BooleanNegate,
+        OperatorCode.BooleanMatch,
+      ]
+
+      const script = new Script(cache, mirScript)
+      const result = removeBreakLine(script.getJs())
+      const expected: any = removeBreakLine(`.asBoolean().negate().match()`)
+
+      expect(result).toStrictEqual(expected)
     })
   })
 

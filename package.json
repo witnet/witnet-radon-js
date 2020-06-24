@@ -2,7 +2,7 @@
   "name": "witnet-radon-js",
   "version": "0.6.1",
   "description": "",
-  "main": "dist/index.js",
+  "main": "dist/src/index.js",
   "files": [
     "dist/"
   ],
@@ -18,8 +18,10 @@
   "devDependencies": {
     "@types/jest": "latest",
     "jest": "latest",
-    "prettier": "latest",
     "ts-jest": "latest",
     "typescript": "latest"
+  },
+  "dependencies": {
+    "prettier": "^2.0.5"
   }
 }

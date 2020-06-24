@@ -71,6 +71,30 @@ export class Argument {
     }
   }
 
+  public getJs(): string | number{
+    const type = this.argumentInfo.type
+
+      if (type === MirArgumentType.Boolean) {
+        return this.value as string
+      } else if (type === MirArgumentType.FilterFunction) {
+        // FIXME: how filter argument is represented
+        return JSON.stringify(this.value)
+      } else if (type === MirArgumentType.Float) {
+        return this.value as number
+      } else if (type === MirArgumentType.Integer) {
+        return this.value as number
+      } else if (type === MirArgumentType.ReducerFunction) {
+        // FIXME: how filter argument is represented
+        return Reducer[this.value as Reducer]
+      } else if (type === MirArgumentType.String) {
+        return JSON.stringify(this.value)
+      } else if (type === MirArgumentType.Subscript) {
+        return `new Script()${(this.argument as Script).getJs()}`
+      } else {
+        return JSON.stringify(this.value)
+      }
+  }
+
   public getMarkup(): MarkupArgument {
     if (this.argumentType === MarkupArgumentType.Input) {
       return {

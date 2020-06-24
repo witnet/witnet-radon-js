@@ -7,6 +7,7 @@ import {
   AggregationTallyFilter,
 } from '../../src/types'
 import { markupOptions, aTFilterMarkupOptions, aTReducerMarkupOptions } from '../../src/structures'
+import { formatJsTest } from '../utils'
 
 describe('Radon', () => {
   it('addOperator', () => {
@@ -677,7 +678,7 @@ describe('Radon', () => {
               {
                 hierarchicalType: 'operator',
                 id: 5,
-                label: 'parseJsonMap',
+                label: 'parseJSONMap',
                 markupType: 'select',
                 options: markupOptions.string,
                 outputType: 'map',
@@ -686,7 +687,7 @@ describe('Radon', () => {
                   description: 'Interpretate the input String as a JSON-encoded Map structure.',
                   arguments: [],
                   hierarchicalType: 'selectedOperatorOption',
-                  label: 'parseJsonMap',
+                  label: 'parseJSONMap',
                   markupType: 'option',
                   outputType: 'map',
                 },
@@ -727,7 +728,7 @@ describe('Radon', () => {
               {
                 hierarchicalType: 'operator',
                 id: 10,
-                label: 'parseJsonMap',
+                label: 'parseJSONMap',
                 markupType: 'select',
                 options: markupOptions.string,
                 outputType: 'map',
@@ -736,7 +737,7 @@ describe('Radon', () => {
                   description: 'Interpretate the input String as a JSON-encoded Map structure.',
                   arguments: [],
                   hierarchicalType: 'selectedOperatorOption',
-                  label: 'parseJsonMap',
+                  label: 'parseJSONMap',
                   markupType: 'option',
                   outputType: 'map',
                 },
@@ -920,7 +921,7 @@ describe('Radon', () => {
               {
                 hierarchicalType: 'operator',
                 id: 3,
-                label: 'parseJsonMap',
+                label: 'parseJSONMap',
                 markupType: 'select',
                 options: [
                   {
@@ -996,7 +997,7 @@ describe('Radon', () => {
                   description: 'Interpretate the input String as a JSON-encoded Map structure.',
                   arguments: [],
                   hierarchicalType: 'selectedOperatorOption',
-                  label: 'parseJsonMap',
+                  label: 'parseJSONMap',
                   markupType: 'option',
                   outputType: 'map',
                 },
@@ -3570,6 +3571,211 @@ describe('Radon', () => {
       const updatedSource = radon.retrieve[0]
       expect(updatedSource.url).toBe('new_url')
       expect(updatedSource.kind).toBe('new_kind')
+    })
+  })
+
+  describe('getJs method', () => {
+    it('case 1', () => {
+
+      const mirRequest: MirRequest = {
+        timelock: 0,
+        retrieve: [
+          {
+            kind: 'HTTP-GET',
+            url: 'source_1',
+            contentType: 'JSON API',
+            script: [
+              OperatorCode.StringAsBoolean,
+              [OperatorCode.BooleanMatch, '', true],
+              OperatorCode.StringLength,
+            ],
+          },
+          {
+            kind: 'HTTP-GET',
+            url: 'source_2',
+            contentType: 'JSON API',
+            script: [
+              OperatorCode.StringAsBoolean,
+              [OperatorCode.BooleanMatch, '', true],
+              OperatorCode.StringLength,
+            ],
+          },
+        ],
+        aggregate: {
+          filters: [AggregationTallyFilter.mode, [AggregationTallyFilter.deviationAbsolute, 3]],
+          reducer: AggregationTallyReducer.mode,
+        },
+        tally: {
+          filters: [AggregationTallyFilter.mode, [AggregationTallyFilter.deviationAbsolute, 3]],
+          reducer: AggregationTallyReducer.mode,
+        },
+      }
+
+      const radon = new Radon(mirRequest)
+      const js = formatJsTest(radon.getJs())
+      const expected = formatJsTest(
+        `import * as Witnet from \"witnet-requests\"
+        const request = new Witnet.Request()
+        const source_0 = new Witnet.Source(\"source_1\")
+          .asBoolean()
+          .match(\"\", true)
+          .length()
+        const source_1 = new Witnet.Source(\"source_2\")
+          .asBoolean()
+          .match(\"\", true)
+          .length()
+        const aggregator = new Witnet.aggregator({
+          filters: [
+            Witnet.Types.FILTERS.mode[(Witnet.Types.FILTERS.deviationAbsolute, 3)],
+          ],
+          reducer: Witnet.Types.REDUCERS.mode,
+        })
+        const tally = new Witnet.tally({
+          filters: [
+            Witnet.Types.FILTERS.mode[(Witnet.Types.FILTERS.deviationAbsolute, 3)],
+          ],
+          reducer: Witnet.Types.REDUCERS.mode,
+        })
+        const request = new Witnet.Request()
+          .addSource(source_0)
+          .addSource(source_1)
+          .setAggregator(aggregator) // Set the aggregator function
+          .setTally(tally) // Set the tally function
+          .setQuorum(4, 70) // Set witness count
+          .setFees(10, 1, 1, 1) // Set economic incentives
+          .schedule(0) // Make this request immediately solvable
+        export { request as default }`
+      )
+
+      expect(js).toBe(expected)
+    })
+
+    it('case 2', () => {
+      const mirRequest: MirRequest = {
+        timelock: 0,
+        "retrieve": [
+          {
+            "kind": "HTTP-GET",
+            "script": [
+              119,
+              [
+                102,
+                "data"
+              ],
+              [
+                101,
+                "closing_price"
+              ]
+            ],
+            contentType: 'JSON API',
+            "url": "https://api.bithumb.com/public/ticker/BTC"
+          },
+          {
+            contentType: 'JSON API',
+            "kind": "HTTP-GET",
+            "script": [
+              119,
+              [
+                101,
+                "price"
+              ]
+            ],
+            "url": "https://api.coinpaprika.com/v1/price-converter?base_currency_id=btc-bitcoin&quote_currency_id=krw-south-korea-won&amount=1"
+          },
+          {
+            contentType: 'JSON API',
+            "kind": "HTTP-GET",
+            "script": [
+              119,
+              [
+                102,
+                "result"
+              ],
+              [
+                97,
+                "rows"
+              ],
+              [
+                17, //filter
+                [
+                  [0x67, 'symbol'],
+                  [0x75, '{btc: true}', false]
+
+                ]
+              ],
+              [
+                27, //map
+                [
+                  [0x65, 'price']
+                ]
+
+              ],
+              [
+                23, // get
+                "0"
+              ]
+            ],
+            "url": "https://billboard.service.cryptowat.ch/assets?quote=krw&limit=1&sort=volume"
+          }
+
+
+        ],
+        "aggregate": {
+          "filters": [],
+          "reducer": 2
+        },
+        "tally": {
+          "filters": [],
+          "reducer": 2
+        },
+      }
+      const radon = new Radon(mirRequest)
+      const js = formatJsTest(radon.getJs())
+      const expected = formatJsTest(`
+        import * as Witnet from "witnet-requests"
+        const request = new Witnet.Request()
+        const source_0 = new Witnet.Source("https://api.bithumb.com/public/ticker/BTC")
+          .parseJSONMap()
+          .getMap("data")
+          .getFloat("closing_price")
+        const source_1 = new Witnet.Source(
+          "https://api.coinpaprika.com/v1/price-converter?base_currency_id=btc-bitcoin&quote_currency_id=krw-south-korea-won&amount=1"
+        )
+          .parseJSONMap()
+          .getFloat("price")
+        const source_2 = new Witnet.Source(
+          "https://billboard.service.cryptowat.ch/assets?quote=krw&limit=1&sort=volume"
+        )
+          .parseJSONMap()
+          .getMap("result")
+          .getArray("rows")
+          .filter([
+            [103, "symbol"],
+            [117, "{btc: true}", false],
+          ])
+          .map(new Script().getFloat("price"))
+          .getFloat(0)
+        const aggregator = new Witnet.aggregator({
+          filters: [],
+          reducer: Witnet.Types.REDUCERS.mode,
+        })
+        const tally = new Witnet.tally({
+          filters: [],
+          reducer: Witnet.Types.REDUCERS.mode,
+        })
+        const request = new Witnet.Request()
+          .addSource(source_0)
+          .addSource(source_1)
+          .addSource(source_2)
+          .setAggregator(aggregator) // Set the aggregator function
+          .setTally(tally) // Set the tally function
+          .setQuorum(4, 70) // Set witness count
+          .setFees(10, 1, 1, 1) // Set economic incentives
+          .schedule(0) // Make this request immediately solvable
+        export { request as default }
+      `)
+
+      expect(js).toBe(expected)
     })
   })
 })

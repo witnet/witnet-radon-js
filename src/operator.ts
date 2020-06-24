@@ -10,14 +10,12 @@ import {
   MirOperator,
   OperatorCode,
   OperatorInfo,
-  OperatorName,
   OutputType,
 } from './types'
 import { Cache, operatorInfos, markupOptions, allMarkupOptions } from './structures'
 import {
   getDefaultMirArgumentByType,
   getMirOperatorInfo,
-  getOperatorCodeFromOperatorName,
 } from './utils'
 import { Argument } from './argument'
 import { DEFAULT_OPERATOR, DEFAULT_INPUT_TYPE } from './constants'
@@ -30,7 +28,7 @@ export class Operator {
   public eventEmitter: EventEmitter
   public id: number
   public inputType: OutputType
-  public mirArguments: MirArgument[] | []
+  public mirArguments: MirArgument[]
   public operatorInfo: OperatorInfo
   public scriptId: number
 
@@ -54,6 +52,15 @@ export class Operator {
       (x, index: number) => new Argument(cache, this.operatorInfo.arguments[index], x)
     )
     this.scriptId = scriptId
+  }
+
+  public getJs(): string {
+    const operatorName = this.operatorInfo.name
+    const args = this.arguments
+      .map((arg: Argument) => arg.getJs())
+      .join(',')
+
+    return `.${operatorName}(${args})`
   }
 
   public getMarkup(): MarkupOperator {
@@ -87,11 +94,11 @@ export class Operator {
       : this.code
   }
 
-  public update(value: OperatorName | OperatorCode) {
-    // check if is updating by operatorCode or OperatorName
-    const operatorCode: OperatorCode = (parseInt(value as any)
+  public update(value: keyof typeof OperatorCode | OperatorCode) {
+    const operatorCode: OperatorCode = typeof value === 'number'
       ? value
-      : getOperatorCodeFromOperatorName(value as OperatorName)) as OperatorCode
+      // Use operatorCode as reverse mapping
+      : OperatorCode[value]
     const operatorInfo = operatorInfos[operatorCode]
     const defaultOperatorArguments = operatorInfo.arguments.map((argument: ArgumentInfo) =>
       getDefaultMirArgumentByType(argument.type)

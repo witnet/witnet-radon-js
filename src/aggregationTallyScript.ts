@@ -40,6 +40,20 @@ export class AggregationTallyScript {
     this.filters.splice(operatorIndex, 1)
   }
 
+  public getJs(stage: 'aggregator' | 'tally'): string {
+    const variableName = stage
+    const className = stage
+    const filters = this.filters.map((filter) => filter.getJs()).join('\n')
+    const reducer = this.reducer.getJs()
+
+    return `const ${variableName} = new Witnet.${className}({
+        filters: [
+          ${filters}
+        ],
+          reducer: ${reducer},
+        })`
+  }
+
   public getMir(): MirAggregationTallyScript {
     return {
       filters: this.filters.map((operator) => operator.getMir()),

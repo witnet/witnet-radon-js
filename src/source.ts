@@ -19,6 +19,12 @@ export class Source {
     this.script = new Script(cache, source.script, OutputType.String)
   }
 
+  public getJs(index: number): string {
+    const script = this.script.getJs()
+    return `const source_${index} = new Witnet.Source("${this.url}")
+        ${script}`
+  }
+
   public getMir(): MirSource {
     return {
       kind: this.kind,

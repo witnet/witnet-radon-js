@@ -457,13 +457,13 @@ export enum MapOperatorName {
   GetMap = 'getMap',
   GetString = 'getString',
   Keys = 'keys',
-  valuesArray = 'valuesArray',
-  valuesBoolean = 'valuesBoolean',
-  valuesBytes = 'valuesBytes',
-  valuesInteger = 'valuesInteger',
-  valuesFloat = 'valuesFloat',
-  valuesMap = 'valuesMap',
-  valuesString = 'valuesString',
+  valuesArray = 'valuesAsArray',
+  valuesBoolean = 'valuesAsBoolean',
+  valuesBytes = 'valuesAsBytes',
+  valuesInteger = 'valuesAsInteger',
+  valuesFloat = 'valuesAsFloat',
+  valuesMap = 'valuesAsMap',
+  valuesString = 'valuesAsString',
 }
 
 export enum StringOperatorName {
@@ -473,9 +473,9 @@ export enum StringOperatorName {
   AsInteger = 'asInteger',
   Length = 'length',
   Match = 'match',
-  ParseJsonArray = 'parseJsonArray',
-  ParseJsonMap = 'parseJsonMap',
-  ParseXml = 'parseXml',
+  ParseJsonArray = 'parseJSONArray',
+  ParseJsonMap = 'parseJSONMap',
+  ParseXml = 'parseXML',
   ToLowerCase = 'toLowerCase',
   ToUpperCase = 'toUpperCase',
 }

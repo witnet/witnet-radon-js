@@ -5,6 +5,7 @@ import { AggregationTallyScript } from './aggregationTallyScript'
 import { Script } from './script'
 import { Operator } from './operator'
 import { Argument } from './argument'
+import { formatJs } from './utils'
 
 export class Radon {
   public cache: Cache
@@ -43,6 +44,40 @@ export class Radon {
 
   public deleteSource(sourceIndex: number) {
     this.retrieve.splice(sourceIndex, 1)
+  }
+
+  public getJs(): string {
+    const sourcesDeclaration = this.retrieve
+      .map((source, index) => `${source.getJs(index)}`)
+      .join('\n')
+    const aggregatorDeclaration = this.aggregate.getJs('aggregator')
+    const tallyDeclaration = this.tally.getJs('tally')
+
+    const addSources = this.retrieve
+      .map((_, index) => '.addSource(source_' + index + ')\n')
+      .join('')
+
+    const js = `import * as Witnet from "witnet-requests"
+
+                const request = new Witnet.Request()
+
+                ${sourcesDeclaration}
+
+                ${aggregatorDeclaration}
+
+                ${tallyDeclaration}
+
+                const request = new Witnet.Request()
+                  ${addSources}
+                  .setAggregator(aggregator) // Set the aggregator function
+                  .setTally(tally) // Set the tally function
+                  .setQuorum(4, 70) // Set witness count
+                  .setFees(10, 1, 1, 1) // Set economic incentives
+                  .schedule(0) // Make this request immediately solvable
+
+                export { request as default }`
+
+    return formatJs(js)
   }
 
   public getMarkup(): MarkupRequest {

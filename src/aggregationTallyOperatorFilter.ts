@@ -16,16 +16,30 @@ export class AggregationTallyOperatorFilter {
   public default: boolean
   public argument: AggregationTallyFilterArgument | null
   public scriptId: number
+  public operator: MirAggregationTallyFilterOperator
+  public label: string
 
   constructor(cache: Cache, operator: MirAggregationTallyFilterOperator, scriptId: number) {
+    const code = Array.isArray(operator) ? operator[0] : operator
     this.id = cache.insert(this).id
     this.default = !operator
     this.cache = cache
-    this.code = Array.isArray(operator) ? operator[0] : operator
+    this.code = code
     this.argument = Array.isArray(operator)
       ? new AggregationTallyFilterArgument(cache, operator[1])
       : null
     this.scriptId = scriptId
+    this.operator = operator
+    this.label = AggregationTallyFilter[code]
+  }
+
+  public getJs(): string {
+    const filter = this.label
+    const argument = this.argument?.getJs()
+
+    return this.argument
+      ? `[Witnet.Types.FILTERS.${filter}, ${argument}]`
+      : `Witnet.Types.FILTERS.${filter}`
   }
 
   public getMarkup(): MarkupSelect {
@@ -37,7 +51,7 @@ export class AggregationTallyOperatorFilter {
     return {
       hierarchicalType: MarkupHierarchicalType.Operator,
       id: this.id,
-      label: AggregationTallyFilter[this.code],
+      label: this.label,
       markupType: MarkupType.Select,
       options: aTFilterMarkupOptions(),
       outputType: OutputType.FilterOutput,
@@ -45,7 +59,7 @@ export class AggregationTallyOperatorFilter {
       selected: {
         arguments: args,
         hierarchicalType: MarkupHierarchicalType.SelectedOperatorOption,
-        label: AggregationTallyFilter[this.code],
+        label: this.label,
         markupType: MarkupType.Option,
         outputType: OutputType.FilterOutput,
         description: aggregationTallyFilterDescriptions?.[this.code](args?.[0]?.label),

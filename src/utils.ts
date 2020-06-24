@@ -1,3 +1,5 @@
+import prettier from 'prettier'
+
 import {
   ArgumentInfo,
   MarkupInputType,
@@ -10,7 +12,6 @@ import {
   Filter,
   Reducer,
   Type,
-  OperatorName,
 } from './types'
 import { markupOptions } from './structures'
 import { Operator } from './operator'
@@ -55,6 +56,10 @@ export function fromOutputTypeToType(type: OutputType): Type | null {
   }
 }
 
+export function formatJs(source: string) {
+  return prettier.format(source, { semi: false, parser: 'babel' })
+}
+
 export function getEnumNames(e: any): Array<any> {
   return Object.keys(e).filter((key) => !parseInt(key) && !Number.isInteger(parseInt(key)))
 }
@@ -71,10 +76,6 @@ export function getMarkupInputTypeFromArgumentType(argumentType: MirArgumentType
   } else {
     return MarkupInputType.String
   }
-}
-
-export function getOperatorCodeFromOperatorName(name: OperatorName): OperatorCode {
-  return (OperatorCode[name as any] as unknown) as OperatorCode
 }
 
 export function getArgumentInfoType(info: ArgumentInfo): MarkupArgumentType {

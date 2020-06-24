@@ -22,6 +22,14 @@ export class AggregationTallyFilterArgument {
     } as MarkupInput
   }
 
+  public getJs(): string | number | boolean {
+    if (typeof this.value === 'string') {
+      return JSON.stringify(this.value)
+    } else {
+      return this.value
+    }
+  }
+
   public getMir(): MirArgument {
     return this.value as MirArgument
   }

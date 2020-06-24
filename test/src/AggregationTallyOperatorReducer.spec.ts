@@ -3,6 +3,18 @@ import { Cache } from '../../src/structures'
 import { AggregationTallyReducer } from '../../src/types'
 
 describe('AggregationTallyOperatorReducer', () => {
+  it('getJs', () => {
+    const mirOperator: AggregationTallyReducer = AggregationTallyReducer.averageMean
+
+    const cache = new Cache()
+    const operator = new AggregationTallyOperatorReducer(cache, mirOperator, 1)
+
+    const result = operator.getJs()
+    const expected = 'Witnet.Types.REDUCERS.averageMean'
+
+    expect(result).toStrictEqual(expected)
+  })
+
   it('getMarkup', () => {
     const mirOperator: AggregationTallyReducer = AggregationTallyReducer.averageMean
 
