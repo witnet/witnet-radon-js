@@ -188,8 +188,9 @@ export declare enum OperatorCode {
     ArraySome = 29,
     ArraySort = 30,
     ArrayTake = 31,
-    BooleanMatch = 32,
-    BooleanNegate = 33,
+    BooleanAsString = 32,
+    BooleanMatch = 33,
+    BooleanNegate = 34,
     BytesAsString = 48,
     BytesHash = 49,
     IntegerAbsolute = 64,
@@ -340,6 +341,7 @@ export declare enum ArrayOperatorName {
     Take = "take"
 }
 export declare enum BooleanOperatorName {
+    AsString = "asString",
     Negate = "negate",
     Match = "match"
 }
@@ -387,13 +389,13 @@ export declare enum MapOperatorName {
     GetMap = "getMap",
     GetString = "getString",
     Keys = "keys",
-    valuesArray = "valuesArray",
-    valuesBoolean = "valuesBoolean",
-    valuesBytes = "valuesBytes",
-    valuesInteger = "valuesInteger",
-    valuesFloat = "valuesFloat",
-    valuesMap = "valuesMap",
-    valuesString = "valuesString"
+    valuesArray = "valuesAsArray",
+    valuesBoolean = "valuesAsBoolean",
+    valuesBytes = "valuesAsBytes",
+    valuesInteger = "valuesAsInteger",
+    valuesFloat = "valuesAsFloat",
+    valuesMap = "valuesAsMap",
+    valuesString = "valuesAsString"
 }
 export declare enum StringOperatorName {
     AsBoolean = "asBoolean",
@@ -402,9 +404,9 @@ export declare enum StringOperatorName {
     AsInteger = "asInteger",
     Length = "length",
     Match = "match",
-    ParseJsonArray = "parseJsonArray",
-    ParseJsonMap = "parseJsonMap",
-    ParseXml = "parseXml",
+    ParseJsonArray = "parseJSONArray",
+    ParseJsonMap = "parseJSONMap",
+    ParseXml = "parseXML",
     ToLowerCase = "toLowerCase",
     ToUpperCase = "toUpperCase"
 }

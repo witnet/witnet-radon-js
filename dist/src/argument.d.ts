@@ -10,6 +10,7 @@ export declare class Argument {
     value: MirArgument | undefined;
     subscript: boolean;
     constructor(cache: Cache, argumentInfo: ArgumentInfo, argument?: MirArgument, subscript?: boolean);
+    getJs(): string | number;
     getMarkup(): MarkupArgument;
     getMir(): MirArgument;
     update(value: string | number | boolean | Filter): void;

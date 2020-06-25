@@ -10,12 +10,17 @@ var AggregationTallyOperatorReducer = /** @class */ (function () {
         this.cache = cache;
         this.code = operator;
         this.scriptId = scriptId;
+        this.label = types_1.AggregationTallyReducer[this.code];
     }
+    AggregationTallyOperatorReducer.prototype.getJs = function () {
+        var reducerName = this.label;
+        return "Witnet.Types.REDUCERS." + reducerName;
+    };
     AggregationTallyOperatorReducer.prototype.getMarkup = function () {
         return {
             hierarchicalType: types_1.MarkupHierarchicalType.Operator,
             id: this.id,
-            label: types_1.AggregationTallyReducer[this.code],
+            label: this.label,
             markupType: types_1.MarkupType.Select,
             options: structures_1.aTReducerMarkupOptions(),
             outputType: types_1.OutputType.FilterOutput,
@@ -23,7 +28,7 @@ var AggregationTallyOperatorReducer = /** @class */ (function () {
             selected: {
                 arguments: [],
                 hierarchicalType: types_1.MarkupHierarchicalType.SelectedOperatorOption,
-                label: types_1.AggregationTallyReducer[this.code],
+                label: this.label,
                 markupType: types_1.MarkupType.Option,
                 outputType: types_1.OutputType.ReducerOutput,
                 description: structures_1.aggregationTallyReducerDescriptions === null || structures_1.aggregationTallyReducerDescriptions === void 0 ? void 0 : structures_1.aggregationTallyReducerDescriptions[this.code](),

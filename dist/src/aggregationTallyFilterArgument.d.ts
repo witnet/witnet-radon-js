@@ -6,6 +6,7 @@ export declare class AggregationTallyFilterArgument {
     value: string | number | boolean;
     constructor(cache: Cache, argument: string | number | boolean);
     getMarkup(): MarkupInput;
+    getJs(): string | number | boolean;
     getMir(): MirArgument;
     update(value: string | number | boolean | Filter): void;
 }

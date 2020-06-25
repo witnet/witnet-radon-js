@@ -8,7 +8,10 @@ export declare class AggregationTallyOperatorFilter {
     default: boolean;
     argument: AggregationTallyFilterArgument | null;
     scriptId: number;
+    operator: MirAggregationTallyFilterOperator;
+    label: string;
     constructor(cache: Cache, operator: MirAggregationTallyFilterOperator, scriptId: number);
+    getJs(): string;
     getMarkup(): MarkupSelect;
     getMir(): MirAggregationTallyFilterOperator;
     update(value: AggregationTallyFilter | number): void;

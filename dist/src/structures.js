@@ -43,6 +43,7 @@ exports.typeSystem = (_a = {},
         _b[types_1.ArrayOperatorName.Take] = [types_1.OperatorCode.ArrayTake, types_1.OutputType.Array],
         _b),
     _a[types_1.Type.Boolean] = (_c = {},
+        _c[types_1.BooleanOperatorName.AsString] = [types_1.OperatorCode.BooleanAsString, types_1.OutputType.String],
         _c[types_1.BooleanOperatorName.Match] = [types_1.OperatorCode.BooleanMatch, types_1.OutputType.MatchOutput],
         _c[types_1.BooleanOperatorName.Negate] = [types_1.OperatorCode.BooleanNegate, types_1.OutputType.Boolean],
         _c),
@@ -374,6 +375,13 @@ exports.operatorInfos = (_l = {},
         description: function (min, max) {
             return "Take the elements from the input Array between positions " + min + " and " + max + ", and discard all the rest";
         },
+    },
+    _l[types_1.OperatorCode.BooleanAsString] = {
+        type: types_1.Type.Boolean,
+        name: types_1.BooleanOperatorName.AsString,
+        arguments: [],
+        outputType: types_1.OutputType.String,
+        description: function () { return descriptions.cast('Boolean', 'String'); },
     },
     _l[types_1.OperatorCode.BooleanMatch] = {
         type: types_1.Type.Boolean,

@@ -48,6 +48,10 @@ var Script = /** @class */ (function () {
     Script.prototype.findIdx = function (operatorId) {
         return this.operators.findIndex(function (x) { return operatorId === x.id; });
     };
+    Script.prototype.getJs = function () {
+        var operators = this.operators.map(function (operator) { return operator.getJs(); }).join('\n');
+        return operators;
+    };
     Script.prototype.getLastOperator = function () {
         return this.operators.length ? this.operators[this.operators.length - 1] : null;
     };

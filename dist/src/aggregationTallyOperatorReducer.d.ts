@@ -5,7 +5,9 @@ export declare class AggregationTallyOperatorReducer {
     code: AggregationTallyReducer;
     id: number;
     scriptId: number;
+    label: string;
     constructor(cache: Cache, operator: AggregationTallyReducer | undefined, scriptId: number);
+    getJs(): string;
     getMarkup(): MarkupSelect;
     getMir(): AggregationTallyReducer;
     update(value: AggregationTallyReducer | number): void;

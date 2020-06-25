@@ -1,4 +1,4 @@
-import { EventEmitter, MarkupOperator, MirArgument, MirOperator, OperatorCode, OperatorInfo, OperatorName, OutputType } from './types';
+import { EventEmitter, MarkupOperator, MirArgument, MirOperator, OperatorCode, OperatorInfo, OutputType } from './types';
 import { Cache } from './structures';
 import { Argument } from './argument';
 export declare class Operator {
@@ -9,12 +9,13 @@ export declare class Operator {
     eventEmitter: EventEmitter;
     id: number;
     inputType: OutputType;
-    mirArguments: MirArgument[] | [];
+    mirArguments: MirArgument[];
     operatorInfo: OperatorInfo;
     scriptId: number;
     constructor(cache: Cache, scriptId: number, inputType: OutputType | null, operator: MirOperator | null, eventEmitter: EventEmitter);
+    getJs(): string;
     getMarkup(): MarkupOperator;
     getMir(): MirOperator;
-    update(value: OperatorName | OperatorCode): void;
+    update(value: keyof typeof OperatorCode | OperatorCode): void;
 }
 //# sourceMappingURL=operator.d.ts.map

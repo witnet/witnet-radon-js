@@ -17,6 +17,14 @@ var AggregationTallyFilterArgument = /** @class */ (function () {
             value: this.value,
         };
     };
+    AggregationTallyFilterArgument.prototype.getJs = function () {
+        if (typeof this.value === 'string') {
+            return JSON.stringify(this.value);
+        }
+        else {
+            return this.value;
+        }
+    };
     AggregationTallyFilterArgument.prototype.getMir = function () {
         return this.value;
     };

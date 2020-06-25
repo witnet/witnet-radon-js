@@ -5,6 +5,7 @@ var types_1 = require("./types");
 var structures_1 = require("./structures");
 var source_1 = require("./source");
 var aggregationTallyScript_1 = require("./aggregationTallyScript");
+var utils_1 = require("./utils");
 var Radon = /** @class */ (function () {
     function Radon(radRequest) {
         var _this = this;
@@ -32,6 +33,18 @@ var Radon = /** @class */ (function () {
     };
     Radon.prototype.deleteSource = function (sourceIndex) {
         this.retrieve.splice(sourceIndex, 1);
+    };
+    Radon.prototype.getJs = function () {
+        var sourcesDeclaration = this.retrieve
+            .map(function (source, index) { return "" + source.getJs(index); })
+            .join('\n');
+        var aggregatorDeclaration = this.aggregate.getJs('aggregator');
+        var tallyDeclaration = this.tally.getJs('tally');
+        var addSources = this.retrieve
+            .map(function (_, index) { return '.addSource(source_' + index + ')\n'; })
+            .join('');
+        var js = "import * as Witnet from \"witnet-requests\"\n\n                const request = new Witnet.Request()\n\n                " + sourcesDeclaration + "\n\n                " + aggregatorDeclaration + "\n\n                " + tallyDeclaration + "\n\n                const request = new Witnet.Request()\n                  " + addSources + "\n                  .setAggregator(aggregator) // Set the aggregator function\n                  .setTally(tally) // Set the tally function\n                  .setQuorum(4, 70) // Set witness count\n                  .setFees(10, 1, 1, 1) // Set economic incentives\n                  .schedule(0) // Make this request immediately solvable\n\n                export { request as default }";
+        return utils_1.formatJs(js);
     };
     Radon.prototype.getMarkup = function () {
         return {

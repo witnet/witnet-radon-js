@@ -9,6 +9,7 @@ export declare class Source {
     script: Script;
     id: number;
     constructor(cache: Cache, source: MirSource);
+    getJs(index: number): string;
     getMir(): MirSource;
     getMarkup(): MarkupSource;
     getOutputType(): OutputType;

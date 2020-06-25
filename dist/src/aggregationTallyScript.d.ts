@@ -11,6 +11,7 @@ export declare class AggregationTallyScript {
     constructor(cache: Cache, script: MirAggregationTallyScript);
     addOperator(): void;
     deleteOperator(operatorId: number): void;
+    getJs(stage: 'aggregator' | 'tally'): string;
     getMir(): MirAggregationTallyScript;
     getMarkup(): MarkupAggregationTallyScript;
     findIdx(filterId: number): number;

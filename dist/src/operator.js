@@ -41,6 +41,13 @@ var Operator = /** @class */ (function () {
         this.arguments = args.map(function (x, index) { return new argument_1.Argument(cache, _this.operatorInfo.arguments[index], x); });
         this.scriptId = scriptId;
     }
+    Operator.prototype.getJs = function () {
+        var operatorName = this.operatorInfo.name;
+        var args = this.arguments
+            .map(function (arg) { return arg.getJs(); })
+            .join(',');
+        return "." + operatorName + "(" + args + ")";
+    };
     Operator.prototype.getMarkup = function () {
         var _a, _b, _c, _d;
         var args = this.arguments.map(function (argument) { return argument.getMarkup(); });
@@ -69,10 +76,10 @@ var Operator = /** @class */ (function () {
     };
     Operator.prototype.update = function (value) {
         var _this = this;
-        // check if is updating by operatorCode or OperatorName
-        var operatorCode = (parseInt(value)
+        var operatorCode = typeof value === 'number'
             ? value
-            : utils_1.getOperatorCodeFromOperatorName(value));
+            // Use operatorCode as reverse mapping
+            : types_1.OperatorCode[value];
         var operatorInfo = structures_1.operatorInfos[operatorCode];
         var defaultOperatorArguments = operatorInfo.arguments.map(function (argument) {
             return utils_1.getDefaultMirArgumentByType(argument.type);

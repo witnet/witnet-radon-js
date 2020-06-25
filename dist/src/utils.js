@@ -1,6 +1,10 @@
 "use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.isStringType = exports.isMapType = exports.isIntegerType = exports.isFloatType = exports.isBytesType = exports.isBooleanType = exports.isArrayType = exports.getMirOperatorInfo = exports.getDefaultMirOperatorByType = exports.getDefaultMirArgumentByType = exports.getArgumentInfoType = exports.getOperatorCodeFromOperatorName = exports.getMarkupInputTypeFromArgumentType = exports.getEnumValues = exports.getEnumNames = exports.fromOutputTypeToType = exports.areValidConsecutiveOperators = exports.areSoftEqualArrays = void 0;
+exports.isStringType = exports.isMapType = exports.isIntegerType = exports.isFloatType = exports.isBytesType = exports.isBooleanType = exports.isArrayType = exports.getMirOperatorInfo = exports.getDefaultMirOperatorByType = exports.getDefaultMirArgumentByType = exports.getArgumentInfoType = exports.getMarkupInputTypeFromArgumentType = exports.getEnumValues = exports.getEnumNames = exports.formatJs = exports.fromOutputTypeToType = exports.areValidConsecutiveOperators = exports.areSoftEqualArrays = void 0;
+var prettier_1 = __importDefault(require("prettier"));
 var types_1 = require("./types");
 var structures_1 = require("./structures");
 // check if contains the same elements
@@ -49,6 +53,10 @@ function fromOutputTypeToType(type) {
     }
 }
 exports.fromOutputTypeToType = fromOutputTypeToType;
+function formatJs(source) {
+    return prettier_1.default.format(source, { semi: false, parser: 'babel' });
+}
+exports.formatJs = formatJs;
 function getEnumNames(e) {
     return Object.keys(e).filter(function (key) { return !parseInt(key) && !Number.isInteger(parseInt(key)); });
 }
@@ -69,10 +77,6 @@ function getMarkupInputTypeFromArgumentType(argumentType) {
     }
 }
 exports.getMarkupInputTypeFromArgumentType = getMarkupInputTypeFromArgumentType;
-function getOperatorCodeFromOperatorName(name) {
-    return types_1.OperatorCode[name];
-}
-exports.getOperatorCodeFromOperatorName = getOperatorCodeFromOperatorName;
 function getArgumentInfoType(info) {
     if (info.type === types_1.MirArgumentType.FilterFunction) {
         return types_1.MarkupArgumentType.SelectFilter;

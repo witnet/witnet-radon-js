@@ -38,6 +38,35 @@ var Argument = /** @class */ (function () {
             this.argument = null;
         }
     }
+    Argument.prototype.getJs = function () {
+        var type = this.argumentInfo.type;
+        if (type === types_1.MirArgumentType.Boolean) {
+            return this.value;
+        }
+        else if (type === types_1.MirArgumentType.FilterFunction) {
+            // FIXME: how filter argument is represented
+            return JSON.stringify(this.value);
+        }
+        else if (type === types_1.MirArgumentType.Float) {
+            return this.value;
+        }
+        else if (type === types_1.MirArgumentType.Integer) {
+            return this.value;
+        }
+        else if (type === types_1.MirArgumentType.ReducerFunction) {
+            // FIXME: how filter argument is represented
+            return types_1.Reducer[this.value];
+        }
+        else if (type === types_1.MirArgumentType.String) {
+            return JSON.stringify(this.value);
+        }
+        else if (type === types_1.MirArgumentType.Subscript) {
+            return "new Script()" + this.argument.getJs();
+        }
+        else {
+            return JSON.stringify(this.value);
+        }
+    };
     Argument.prototype.getMarkup = function () {
         if (this.argumentType === types_1.MarkupArgumentType.Input) {
             return {

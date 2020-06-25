@@ -10,6 +10,7 @@ export declare class Script {
     addOperator(): void;
     deleteOperator(operatorId: number): void;
     findIdx(operatorId: number): number;
+    getJs(): string;
     getLastOperator(): Operator | null;
     getMarkup(): MarkupScript;
     getMir(): MirScript;

@@ -21,6 +21,13 @@ var AggregationTallyScript = /** @class */ (function () {
         var operatorIndex = this.findIdx(operatorId);
         this.filters.splice(operatorIndex, 1);
     };
+    AggregationTallyScript.prototype.getJs = function (stage) {
+        var variableName = stage;
+        var className = stage;
+        var filters = this.filters.map(function (filter) { return filter.getJs(); }).join('\n');
+        var reducer = this.reducer.getJs();
+        return "const " + variableName + " = new Witnet." + className + "({\n        filters: [\n          " + filters + "\n        ],\n          reducer: " + reducer + ",\n        })";
+    };
     AggregationTallyScript.prototype.getMir = function () {
         return {
             filters: this.filters.map(function (operator) { return operator.getMir(); }),

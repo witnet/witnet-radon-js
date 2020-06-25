@@ -13,6 +13,7 @@ export declare class Radon {
     addSource(): void;
     deleteOperator(scriptId: number, operatorId: number): void;
     deleteSource(sourceIndex: number): void;
+    getJs(): string;
     getMarkup(): MarkupRequest;
     getMir(): MirRequest;
     update(id: number, value: any): void;

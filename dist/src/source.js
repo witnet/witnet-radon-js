@@ -7,11 +7,15 @@ var Source = /** @class */ (function () {
     function Source(cache, source) {
         this.id = cache.insert(this).id;
         this.cache = cache;
-        this.kind = source.kind;
-        this.url = source.url;
-        this.contentType = source.contentType;
+        this.kind = source.kind || 'HTTP-GET';
+        this.url = source.url || '';
+        this.contentType = source.contentType || 'JSON API';
         this.script = new script_1.Script(cache, source.script, types_1.OutputType.String);
     }
+    Source.prototype.getJs = function (index) {
+        var script = this.script.getJs();
+        return "const source_" + index + " = new Witnet.Source(\"" + this.url + "\")\n        " + script;
+    };
     Source.prototype.getMir = function () {
         return {
             kind: this.kind,
