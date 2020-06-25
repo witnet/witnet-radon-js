@@ -13,9 +13,9 @@ export class Source {
   constructor(cache: Cache, source: MirSource) {
     this.id = cache.insert(this).id
     this.cache = cache
-    this.kind = source.kind
-    this.url = source.url
-    this.contentType = source.contentType
+    this.kind = source.kind || 'HTTP-GET'
+    this.url = source.url || ''
+    this.contentType = source.contentType || 'JSON API'
     this.script = new Script(cache, source.script, OutputType.String)
   }
 
