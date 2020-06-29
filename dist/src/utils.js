@@ -4,7 +4,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.isStringType = exports.isMapType = exports.isIntegerType = exports.isFloatType = exports.isBytesType = exports.isBooleanType = exports.isArrayType = exports.getMirOperatorInfo = exports.getDefaultMirOperatorByType = exports.getDefaultMirArgumentByType = exports.getArgumentInfoType = exports.getMarkupInputTypeFromArgumentType = exports.getEnumValues = exports.getEnumNames = exports.formatJs = exports.fromOutputTypeToType = exports.areValidConsecutiveOperators = exports.areSoftEqualArrays = void 0;
-var prettier_1 = __importDefault(require("prettier"));
+var standalone_1 = __importDefault(require("prettier/standalone"));
+var parser_babel_1 = __importDefault(require("prettier/parser-babel"));
 var types_1 = require("./types");
 var structures_1 = require("./structures");
 // check if contains the same elements
@@ -54,7 +55,7 @@ function fromOutputTypeToType(type) {
 }
 exports.fromOutputTypeToType = fromOutputTypeToType;
 function formatJs(source) {
-    return prettier_1.default.format(source, { semi: false, parser: 'babel' });
+    return standalone_1.default.format(source, { semi: false, plugins: [parser_babel_1.default], parser: 'babel' });
 }
 exports.formatJs = formatJs;
 function getEnumNames(e) {
