@@ -14,7 +14,7 @@ import {
   Reducer,
   Type,
 } from './types'
-import { markupOptions } from './structures'
+import { markupOptions,  } from './structures'
 import { Operator } from './operator'
 
 // check if contains the same elements

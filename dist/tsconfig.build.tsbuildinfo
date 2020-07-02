@@ -222,28 +222,28 @@
         "affectsGlobalScope": false
       },
       "../src/utils.ts": {
-        "version": "d6f9f395ddd18b988f31626144f3d4d71d84120754b324557d67ecb5f98e5672",
-        "signature": "8511956b7cc76a8ab6b99fe6328ac63dd767d36b45b7f04648c2ab90a727ea96",
+        "version": "94b51ef91cb2bf0c6f05679069a734c932fda115e1283186dd3702235fa20e39",
+        "signature": "22736acca63347467b044cc6f5f2525627f6195c98b952c10adde1ba8d70db5e",
         "affectsGlobalScope": false
       },
       "../src/structures.ts": {
-        "version": "27ee9459d91e6dbdafeaee29dc98821d9fb626087ffed620244cdcdefaab7d24",
-        "signature": "3ca0bae9d05e86852eddcd9d03d6cb59c4b1629f3775fec38e77f7622e652fcc",
+        "version": "9f6b70873380dfbd9f2c6dc28e61658366419bab974dc0d9b8baa5d5579ba487",
+        "signature": "9cbfc7e0582380d6eb259b8342cf5aaabb0ee5767eaf1c0f86ebd09b77cb84c5",
         "affectsGlobalScope": false
       },
-      "../src/aggregationTallyOperatorFilter.ts": {
-        "version": "5355cb2d65a4275b643948640a710705c59e2bd0a062c7aff970563c9b62f21d",
-        "signature": "7d47a72708dfc6aa6d44043670e16581badef0f53ac4782a9abcf618165a9849",
+      "../src/aggregationtallyoperatorfilter.ts": {
+        "version": "85e77e4a7013928279eace8eecc031c805ef23e43f7d328b7a4e4a913048a6de",
+        "signature": "e5d9574ad38f5079a3aa09cbbdddd712a677d2909a22bd5411a6ac7db29cfad5",
         "affectsGlobalScope": false
       },
-      "../src/aggregationTallyOperatorReducer.ts": {
-        "version": "b2433fb43fa2b18cc57e416b793fae559e9c0d4ea90de684c0d8dcc7343ecb29",
-        "signature": "de9bf99eca068b731c795f3f7943c49f3cd46a38231c11137f6dd107aa81b896",
+      "../src/aggregationtallyoperatorreducer.ts": {
+        "version": "cdef666461ee7eb1aa2a22e5a4f04357e8158525983898e9ba4b77a8c3afa426",
+        "signature": "e66675f097758a4ee818d8d4ae49bfd705c2317211cd83a14707ff099f69ced5",
         "affectsGlobalScope": false
       },
-      "../src/aggregationTallyScript.ts": {
-        "version": "4c934b01b5075eca206f4a44bb24dea3b01acc5ad40cac44da01c156852d0d7b",
-        "signature": "a054d2cd7eb3ac8b4129c605cb5494b724eecb4eb7f5a05a0474bef08e0de4d4",
+      "../src/aggregationtallyscript.ts": {
+        "version": "c2f170519de745e60524dbcd70799de0a8fecfe8c460cf946a98d09b1ec20c34",
+        "signature": "7e84e093befef8774d068256ead23cde96fbdbd17aa8d041b0cc3f41e5cf3eae",
         "affectsGlobalScope": false
       },
       "../src/source.ts": {
@@ -252,13 +252,13 @@
         "affectsGlobalScope": false
       },
       "../src/types.ts": {
-        "version": "4ee601f195d8e4ffc9378afffce26599750c8cb3676d3eda9cffee8ff6b66754",
-        "signature": "bf794b05495bb84e313fc63816f885d8d54c61d5ee0d81900d504f04004c0ae1",
+        "version": "94682a43cc482d235daea28057de3ab684a8b24f4f410c1fbd5ad940bdeaed51",
+        "signature": "38e41f974e9215702b950e929ddc7576698b46312b80d2e62d523e82c1992505",
         "affectsGlobalScope": false
       },
-      "../src/aggregationTallyFilterArgument.ts": {
-        "version": "10e393ab7e02a8e406c0c3b6215d9a2c53b30362d81ad22579059db9b3aecc92",
-        "signature": "7baa884c567a29ef23c4b4fa17f7f14d9349f53757af198697ad1557545ea708",
+      "../src/aggregationtallyfilterargument.ts": {
+        "version": "fef1542e4f5fe4f3b91987c91a024f2b7b40762fab7b022be7de4e6197dfc719",
+        "signature": "155c43d23b99fadbf0a13e2cc907bdb77df9f4b993ec1a8f47fb308bdf041b90",
         "affectsGlobalScope": false
       },
       "../src/radon.ts": {
@@ -591,7 +591,7 @@
         "signature": "029769d13d9917e3284cb2356ed28a6576e8b07ae6a06ee1e672518adf21a102",
         "affectsGlobalScope": false
       },
-      "../node_modules/@types/jest/node_modules/jest-diff/build/cleanupSemantic.d.ts": {
+      "../node_modules/@types/jest/node_modules/jest-diff/build/cleanupsemantic.d.ts": {
         "version": "e222104af6cb9415238ad358488b74d76eceeff238c1268ec6e85655b05341da",
         "signature": "e222104af6cb9415238ad358488b74d76eceeff238c1268ec6e85655b05341da",
         "affectsGlobalScope": false
@@ -601,12 +601,12 @@
         "signature": "69da61a7b5093dac77fa3bec8be95dcf9a74c95a0e9161edb98bb24e30e439d2",
         "affectsGlobalScope": false
       },
-      "../node_modules/@types/jest/node_modules/jest-diff/build/diffLines.d.ts": {
+      "../node_modules/@types/jest/node_modules/jest-diff/build/difflines.d.ts": {
         "version": "eba230221317c985ab1953ccc3edc517f248b37db4fef7875cb2c8d08aff7be7",
         "signature": "eba230221317c985ab1953ccc3edc517f248b37db4fef7875cb2c8d08aff7be7",
         "affectsGlobalScope": false
       },
-      "../node_modules/@types/jest/node_modules/jest-diff/build/printDiffs.d.ts": {
+      "../node_modules/@types/jest/node_modules/jest-diff/build/printdiffs.d.ts": {
         "version": "b83e796810e475da3564c6515bc0ae9577070596a33d89299b7d99f94ecfd921",
         "signature": "b83e796810e475da3564c6515bc0ae9577070596a33d89299b7d99f94ecfd921",
         "affectsGlobalScope": false
@@ -787,16 +787,16 @@
         "../node_modules/@types/node/ts3.2/util.d.ts",
         "../node_modules/@types/node/util.d.ts"
       ],
-      "../node_modules/@types/jest/node_modules/jest-diff/build/cleanupSemantic.d.ts": [
+      "../node_modules/@types/jest/node_modules/jest-diff/build/cleanupsemantic.d.ts": [
         "../node_modules/@types/graceful-fs/index.d.ts",
         "../node_modules/@types/node/fs.d.ts",
         "../node_modules/@types/node/ts3.2/fs.d.ts",
         "../node_modules/@types/node/ts3.2/util.d.ts",
         "../node_modules/@types/node/util.d.ts"
       ],
-      "../node_modules/@types/jest/node_modules/jest-diff/build/diffLines.d.ts": [
+      "../node_modules/@types/jest/node_modules/jest-diff/build/difflines.d.ts": [
         "../node_modules/@types/graceful-fs/index.d.ts",
-        "../node_modules/@types/jest/node_modules/jest-diff/build/cleanupSemantic.d.ts",
+        "../node_modules/@types/jest/node_modules/jest-diff/build/cleanupsemantic.d.ts",
         "../node_modules/@types/jest/node_modules/jest-diff/build/types.d.ts",
         "../node_modules/@types/node/fs.d.ts",
         "../node_modules/@types/node/ts3.2/fs.d.ts",
@@ -805,18 +805,18 @@
       ],
       "../node_modules/@types/jest/node_modules/jest-diff/build/index.d.ts": [
         "../node_modules/@types/graceful-fs/index.d.ts",
-        "../node_modules/@types/jest/node_modules/jest-diff/build/cleanupSemantic.d.ts",
-        "../node_modules/@types/jest/node_modules/jest-diff/build/diffLines.d.ts",
-        "../node_modules/@types/jest/node_modules/jest-diff/build/printDiffs.d.ts",
+        "../node_modules/@types/jest/node_modules/jest-diff/build/cleanupsemantic.d.ts",
+        "../node_modules/@types/jest/node_modules/jest-diff/build/difflines.d.ts",
+        "../node_modules/@types/jest/node_modules/jest-diff/build/printdiffs.d.ts",
         "../node_modules/@types/jest/node_modules/jest-diff/build/types.d.ts",
         "../node_modules/@types/node/fs.d.ts",
         "../node_modules/@types/node/ts3.2/fs.d.ts",
         "../node_modules/@types/node/ts3.2/util.d.ts",
         "../node_modules/@types/node/util.d.ts"
       ],
-      "../node_modules/@types/jest/node_modules/jest-diff/build/printDiffs.d.ts": [
+      "../node_modules/@types/jest/node_modules/jest-diff/build/printdiffs.d.ts": [
         "../node_modules/@types/graceful-fs/index.d.ts",
-        "../node_modules/@types/jest/node_modules/jest-diff/build/cleanupSemantic.d.ts",
+        "../node_modules/@types/jest/node_modules/jest-diff/build/cleanupsemantic.d.ts",
         "../node_modules/@types/jest/node_modules/jest-diff/build/types.d.ts",
         "../node_modules/@types/node/fs.d.ts",
         "../node_modules/@types/node/ts3.2/fs.d.ts",
@@ -1619,7 +1619,7 @@
         "../node_modules/@types/node/ts3.2/util.d.ts",
         "../node_modules/@types/node/util.d.ts"
       ],
-      "../src/aggregationTallyFilterArgument.ts": [
+      "../src/aggregationtallyfilterargument.ts": [
         "../node_modules/@types/graceful-fs/index.d.ts",
         "../node_modules/@types/node/fs.d.ts",
         "../node_modules/@types/node/ts3.2/fs.d.ts",
@@ -1628,17 +1628,17 @@
         "../src/structures.ts",
         "../src/types.ts"
       ],
-      "../src/aggregationTallyOperatorFilter.ts": [
+      "../src/aggregationtallyoperatorfilter.ts": [
         "../node_modules/@types/graceful-fs/index.d.ts",
         "../node_modules/@types/node/fs.d.ts",
         "../node_modules/@types/node/ts3.2/fs.d.ts",
         "../node_modules/@types/node/ts3.2/util.d.ts",
         "../node_modules/@types/node/util.d.ts",
-        "../src/aggregationTallyFilterArgument.ts",
+        "../src/aggregationtallyfilterargument.ts",
         "../src/structures.ts",
         "../src/types.ts"
       ],
-      "../src/aggregationTallyOperatorReducer.ts": [
+      "../src/aggregationtallyoperatorreducer.ts": [
         "../node_modules/@types/graceful-fs/index.d.ts",
         "../node_modules/@types/node/fs.d.ts",
         "../node_modules/@types/node/ts3.2/fs.d.ts",
@@ -1647,14 +1647,14 @@
         "../src/structures.ts",
         "../src/types.ts"
       ],
-      "../src/aggregationTallyScript.ts": [
+      "../src/aggregationtallyscript.ts": [
         "../node_modules/@types/graceful-fs/index.d.ts",
         "../node_modules/@types/node/fs.d.ts",
         "../node_modules/@types/node/ts3.2/fs.d.ts",
         "../node_modules/@types/node/ts3.2/util.d.ts",
         "../node_modules/@types/node/util.d.ts",
-        "../src/aggregationTallyOperatorFilter.ts",
-        "../src/aggregationTallyOperatorReducer.ts",
+        "../src/aggregationtallyoperatorfilter.ts",
+        "../src/aggregationtallyoperatorreducer.ts",
         "../src/structures.ts",
         "../src/types.ts"
       ],
@@ -1706,7 +1706,7 @@
         "../node_modules/@types/node/ts3.2/fs.d.ts",
         "../node_modules/@types/node/ts3.2/util.d.ts",
         "../node_modules/@types/node/util.d.ts",
-        "../src/aggregationTallyScript.ts",
+        "../src/aggregationtallyscript.ts",
         "../src/argument.ts",
         "../src/operator.ts",
         "../src/script.ts",
@@ -1752,10 +1752,10 @@
         "../node_modules/@types/node/ts3.2/fs.d.ts",
         "../node_modules/@types/node/ts3.2/util.d.ts",
         "../node_modules/@types/node/util.d.ts",
-        "../src/aggregationTallyFilterArgument.ts",
-        "../src/aggregationTallyOperatorFilter.ts",
-        "../src/aggregationTallyOperatorReducer.ts",
-        "../src/aggregationTallyScript.ts",
+        "../src/aggregationtallyfilterargument.ts",
+        "../src/aggregationtallyoperatorfilter.ts",
+        "../src/aggregationtallyoperatorreducer.ts",
+        "../src/aggregationtallyscript.ts",
         "../src/argument.ts",
         "../src/operator.ts",
         "../src/script.ts",
@@ -1889,16 +1889,16 @@
         "../node_modules/@types/node/ts3.2/util.d.ts",
         "../node_modules/@types/node/util.d.ts"
       ],
-      "../node_modules/@types/jest/node_modules/jest-diff/build/cleanupSemantic.d.ts": [
+      "../node_modules/@types/jest/node_modules/jest-diff/build/cleanupsemantic.d.ts": [
         "../node_modules/@types/graceful-fs/index.d.ts",
         "../node_modules/@types/node/fs.d.ts",
         "../node_modules/@types/node/ts3.2/fs.d.ts",
         "../node_modules/@types/node/ts3.2/util.d.ts",
         "../node_modules/@types/node/util.d.ts"
       ],
-      "../node_modules/@types/jest/node_modules/jest-diff/build/diffLines.d.ts": [
+      "../node_modules/@types/jest/node_modules/jest-diff/build/difflines.d.ts": [
         "../node_modules/@types/graceful-fs/index.d.ts",
-        "../node_modules/@types/jest/node_modules/jest-diff/build/cleanupSemantic.d.ts",
+        "../node_modules/@types/jest/node_modules/jest-diff/build/cleanupsemantic.d.ts",
         "../node_modules/@types/jest/node_modules/jest-diff/build/types.d.ts",
         "../node_modules/@types/node/fs.d.ts",
         "../node_modules/@types/node/ts3.2/fs.d.ts",
@@ -1907,18 +1907,18 @@
       ],
       "../node_modules/@types/jest/node_modules/jest-diff/build/index.d.ts": [
         "../node_modules/@types/graceful-fs/index.d.ts",
-        "../node_modules/@types/jest/node_modules/jest-diff/build/cleanupSemantic.d.ts",
-        "../node_modules/@types/jest/node_modules/jest-diff/build/diffLines.d.ts",
-        "../node_modules/@types/jest/node_modules/jest-diff/build/printDiffs.d.ts",
+        "../node_modules/@types/jest/node_modules/jest-diff/build/cleanupsemantic.d.ts",
+        "../node_modules/@types/jest/node_modules/jest-diff/build/difflines.d.ts",
+        "../node_modules/@types/jest/node_modules/jest-diff/build/printdiffs.d.ts",
         "../node_modules/@types/jest/node_modules/jest-diff/build/types.d.ts",
         "../node_modules/@types/node/fs.d.ts",
         "../node_modules/@types/node/ts3.2/fs.d.ts",
         "../node_modules/@types/node/ts3.2/util.d.ts",
         "../node_modules/@types/node/util.d.ts"
       ],
-      "../node_modules/@types/jest/node_modules/jest-diff/build/printDiffs.d.ts": [
+      "../node_modules/@types/jest/node_modules/jest-diff/build/printdiffs.d.ts": [
         "../node_modules/@types/graceful-fs/index.d.ts",
-        "../node_modules/@types/jest/node_modules/jest-diff/build/cleanupSemantic.d.ts",
+        "../node_modules/@types/jest/node_modules/jest-diff/build/cleanupsemantic.d.ts",
         "../node_modules/@types/jest/node_modules/jest-diff/build/types.d.ts",
         "../node_modules/@types/node/fs.d.ts",
         "../node_modules/@types/node/ts3.2/fs.d.ts",
@@ -2721,22 +2721,22 @@
         "../node_modules/@types/node/ts3.2/util.d.ts",
         "../node_modules/@types/node/util.d.ts"
       ],
-      "../src/aggregationTallyFilterArgument.ts": [
+      "../src/aggregationtallyfilterargument.ts": [
         "../src/structures.ts",
         "../src/types.ts"
       ],
-      "../src/aggregationTallyOperatorFilter.ts": [
-        "../src/aggregationTallyFilterArgument.ts",
+      "../src/aggregationtallyoperatorfilter.ts": [
+        "../src/aggregationtallyfilterargument.ts",
         "../src/structures.ts",
         "../src/types.ts"
       ],
-      "../src/aggregationTallyOperatorReducer.ts": [
+      "../src/aggregationtallyoperatorreducer.ts": [
         "../src/structures.ts",
         "../src/types.ts"
       ],
-      "../src/aggregationTallyScript.ts": [
-        "../src/aggregationTallyOperatorFilter.ts",
-        "../src/aggregationTallyOperatorReducer.ts",
+      "../src/aggregationtallyscript.ts": [
+        "../src/aggregationtallyoperatorfilter.ts",
+        "../src/aggregationtallyoperatorreducer.ts",
         "../src/structures.ts",
         "../src/types.ts"
       ],
@@ -2760,7 +2760,7 @@
         "../src/types.ts"
       ],
       "../src/radon.ts": [
-        "../src/aggregationTallyScript.ts",
+        "../src/aggregationtallyscript.ts",
         "../src/source.ts",
         "../src/structures.ts",
         "../src/types.ts"
@@ -2779,10 +2779,10 @@
         "../src/types.ts"
       ],
       "../src/types.ts": [
-        "../src/aggregationTallyFilterArgument.ts",
-        "../src/aggregationTallyOperatorFilter.ts",
-        "../src/aggregationTallyOperatorReducer.ts",
-        "../src/aggregationTallyScript.ts",
+        "../src/aggregationtallyfilterargument.ts",
+        "../src/aggregationtallyoperatorfilter.ts",
+        "../src/aggregationtallyoperatorreducer.ts",
+        "../src/aggregationtallyscript.ts",
         "../src/argument.ts",
         "../src/operator.ts",
         "../src/script.ts",
@@ -2806,10 +2806,10 @@
       "../node_modules/@types/istanbul-lib-report/index.d.ts",
       "../node_modules/@types/istanbul-reports/index.d.ts",
       "../node_modules/@types/jest/index.d.ts",
-      "../node_modules/@types/jest/node_modules/jest-diff/build/cleanupSemantic.d.ts",
-      "../node_modules/@types/jest/node_modules/jest-diff/build/diffLines.d.ts",
+      "../node_modules/@types/jest/node_modules/jest-diff/build/cleanupsemantic.d.ts",
+      "../node_modules/@types/jest/node_modules/jest-diff/build/difflines.d.ts",
       "../node_modules/@types/jest/node_modules/jest-diff/build/index.d.ts",
-      "../node_modules/@types/jest/node_modules/jest-diff/build/printDiffs.d.ts",
+      "../node_modules/@types/jest/node_modules/jest-diff/build/printdiffs.d.ts",
       "../node_modules/@types/jest/node_modules/jest-diff/build/types.d.ts",
       "../node_modules/@types/jest/node_modules/pretty-format/build/index.d.ts",
       "../node_modules/@types/jest/node_modules/pretty-format/build/types.d.ts",
@@ -2909,10 +2909,10 @@
       "../node_modules/typescript/lib/lib.es2020.symbol.wellknown.d.ts",
       "../node_modules/typescript/lib/lib.es5.d.ts",
       "../node_modules/typescript/lib/lib.esnext.intl.d.ts",
-      "../src/aggregationTallyFilterArgument.ts",
-      "../src/aggregationTallyOperatorFilter.ts",
-      "../src/aggregationTallyOperatorReducer.ts",
-      "../src/aggregationTallyScript.ts",
+      "../src/aggregationtallyfilterargument.ts",
+      "../src/aggregationtallyoperatorfilter.ts",
+      "../src/aggregationtallyoperatorreducer.ts",
+      "../src/aggregationtallyscript.ts",
       "../src/argument.ts",
       "../src/constants.ts",
       "../src/index.ts",
