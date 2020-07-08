@@ -12,9 +12,10 @@ import {
   OutputType,
   Filter,
   Reducer,
+  OperatorName,
   Type,
 } from './types'
-import { markupOptions } from './structures'
+import { markupOptions,  } from './structures'
 import { Operator } from './operator'
 
 // check if contains the same elements
@@ -67,6 +68,10 @@ export function getEnumNames(e: any): Array<any> {
 
 export function getEnumValues(e: any): Array<any> {
   return Object.values(e)
+}
+
+export function getOperatorCodeFromOperatorName(name: OperatorName): OperatorCode {
+  return (OperatorCode[name as any] as unknown) as OperatorCode
 }
 
 export function getMarkupInputTypeFromArgumentType(argumentType: MirArgumentType): MarkupInputType {

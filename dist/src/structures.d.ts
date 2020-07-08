@@ -120,10 +120,7 @@ export declare const aTReducerMarkupOptions: () => {
     outputType: OutputType;
 }[];
 export declare const allMarkupOptions: {
-    hierarchicalType: string;
     label: string;
-    markupType: string;
-    outputType: OutputType;
 }[];
 export declare const markupOptions: {
     [key: string]: Array<any>;

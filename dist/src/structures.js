@@ -371,7 +371,7 @@ exports.operatorInfos = (_l = {},
                 type: types_1.MirArgumentType.Integer,
             },
         ],
-        outputType: types_1.OutputType.Same,
+        outputType: types_1.OutputType.Array,
         description: function (min, max) {
             return "Take the elements from the input Array between positions " + min + " and " + max + ", and discard all the rest";
         },
@@ -1161,7 +1161,7 @@ exports.aTReducerMarkupOptions = function () {
         return generateOption(filter, types_1.OutputType.FilterOutput);
     });
 };
-exports.allMarkupOptions = removeRepeated(__spread(exports.primitiveMarkupOptions.array, exports.primitiveMarkupOptions.arrayBoolean, exports.primitiveMarkupOptions.arrayArray, exports.primitiveMarkupOptions.arrayBytes, exports.primitiveMarkupOptions.arrayFloat, exports.primitiveMarkupOptions.arrayInteger, exports.primitiveMarkupOptions.arrayMap, exports.primitiveMarkupOptions.arrayString, exports.primitiveMarkupOptions.boolean, exports.primitiveMarkupOptions.bytes, exports.primitiveMarkupOptions.filterOutput, exports.primitiveMarkupOptions.float, exports.primitiveMarkupOptions.string, exports.primitiveMarkupOptions.map, exports.primitiveMarkupOptions.integer));
+exports.allMarkupOptions = utils_1.removeRepeatedOptions(__spread(exports.primitiveMarkupOptions.array, exports.primitiveMarkupOptions.arrayBoolean, exports.primitiveMarkupOptions.arrayArray, exports.primitiveMarkupOptions.arrayBytes, exports.primitiveMarkupOptions.arrayFloat, exports.primitiveMarkupOptions.arrayInteger, exports.primitiveMarkupOptions.arrayMap, exports.primitiveMarkupOptions.arrayString, exports.primitiveMarkupOptions.boolean, exports.primitiveMarkupOptions.bytes, exports.primitiveMarkupOptions.filterOutput, exports.primitiveMarkupOptions.float, exports.primitiveMarkupOptions.string, exports.primitiveMarkupOptions.map, exports.primitiveMarkupOptions.integer));
 exports.markupOptions = (_m = {},
     _m[types_1.OutputType.Array] = __spread(exports.primitiveMarkupOptions.array),
     _m[types_1.OutputType.ArrayArray] = __spread(exports.primitiveMarkupOptions.arrayArray),
@@ -1182,6 +1182,3 @@ exports.markupOptions = (_m = {},
     _m[types_1.OutputType.String] = __spread(exports.primitiveMarkupOptions.string),
     _m[types_1.OutputType.SubscriptOutput] = exports.allMarkupOptions,
     _m);
-function removeRepeated(array) {
-    return array.filter(function (item, index, self) { return index === self.indexOf(item); });
-}

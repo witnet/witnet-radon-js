@@ -342,7 +342,7 @@ export const operatorInfos: OperatorInfos = {
         type: MirArgumentType.Integer,
       },
     ],
-    outputType: OutputType.Same,
+    outputType: OutputType.Array,
     description: (min, max) =>
       `Take the elements from the input Array between positions ${min} and ${max}, and discard all the rest`,
   },
@@ -1103,7 +1103,7 @@ export const aTReducerMarkupOptions = () =>
     generateOption(filter, OutputType.FilterOutput)
   )
 
-export const allMarkupOptions = removeRepeated([
+export const allMarkupOptions = removeRepeatedOptions([
   ...primitiveMarkupOptions.array,
   ...primitiveMarkupOptions.arrayBoolean,
   ...primitiveMarkupOptions.arrayArray,
@@ -1149,6 +1149,9 @@ export const markupOptions: { [key: string]: Array<any> } = {
   [OutputType.SubscriptOutput]: allMarkupOptions,
 }
 
-function removeRepeated<T>(array: Array<T>) {
-  return array.filter((item: T, index: number, self: Array<T>) => index === self.indexOf(item))
+export function removeRepeatedOptions(array: Array<{ label: string }>) {
+  return array
+    .filter((item: { label: string }, index: number, self: Array<{ label: string }>) => 
+      index === self.findIndex((t) => (t.label === item.label))
+    )
 }
