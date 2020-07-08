@@ -3,9 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.isStringType = exports.isMapType = exports.isIntegerType = exports.isFloatType = exports.isBytesType = exports.isBooleanType = exports.isArrayType = exports.getMirOperatorInfo = exports.getDefaultMirOperatorByType = exports.getDefaultMirArgumentByType = exports.getArgumentInfoType = exports.getMarkupInputTypeFromArgumentType = exports.getEnumValues = exports.getEnumNames = exports.formatJs = exports.fromOutputTypeToType = exports.areValidConsecutiveOperators = exports.areSoftEqualArrays = void 0;
-var standalone_1 = __importDefault(require("prettier/standalone"));
-var parser_babel_1 = __importDefault(require("prettier/parser-babel"));
+exports.removeRepeatedOptions = exports.isStringType = exports.isMapType = exports.isIntegerType = exports.isFloatType = exports.isBytesType = exports.isBooleanType = exports.isArrayType = exports.getMirOperatorInfo = exports.getDefaultMirOperatorByType = exports.getDefaultMirArgumentByType = exports.getArgumentInfoType = exports.getOperatorCodeFromOperatorName = exports.getMarkupInputTypeFromArgumentType = exports.getEnumValues = exports.getEnumNames = exports.fromOutputTypeToType = exports.areValidConsecutiveOperators = exports.areSoftEqualArrays = void 0;
 var types_1 = require("./types");
 var structures_1 = require("./structures");
 // check if contains the same elements
@@ -172,3 +170,10 @@ function isStringType(type) {
     return type === types_1.OutputType.String;
 }
 exports.isStringType = isStringType;
+function removeRepeatedOptions(array) {
+    return array
+        .filter(function (item, index, self) {
+        return index === self.findIndex(function (t) { return (t.label === item.label); });
+    });
+}
+exports.removeRepeatedOptions = removeRepeatedOptions;
