@@ -1,6 +1,6 @@
 import { Operator } from '../../src/operator'
 import { OperatorCode, OutputType, MirOperator } from '../../src/types'
-import { Cache, markupOptions, allMarkupOptions, operatorInfos, } from '../../src/structures'
+import { Cache, markupOptions, allMarkupOptions, operatorInfos } from '../../src/structures'
 
 describe('Operator methods', () => {
   describe('getJs', () => {
@@ -526,13 +526,15 @@ describe('Operator methods', () => {
     })
 
     describe('from operator name', () => {
-        it('array', () => {
+      it('array', () => {
         const cache = new Cache()
         const emitMock = jest.fn()
         const operatorName = 'ArrayFilter'
-        const operator = new Operator(cache, 0, OutputType.Array, OperatorCode[operatorName], { emit: emitMock })
+        const operator = new Operator(cache, 0, OutputType.Array, OperatorCode[operatorName], {
+          emit: emitMock,
+        })
         const newOperatorCode = OperatorCode.ArrayCount
-        const newOperatorName =  'ArrayCount'
+        const newOperatorName = 'ArrayCount'
 
         operator.update(newOperatorName as keyof typeof OperatorCode)
 
@@ -546,9 +548,11 @@ describe('Operator methods', () => {
         const cache = new Cache()
         const emitMock = jest.fn()
         const operatorName = 'BooleanMatch'
-        const operator = new Operator(cache, 0, OutputType.Boolean, OperatorCode[operatorName], { emit: emitMock })
+        const operator = new Operator(cache, 0, OutputType.Boolean, OperatorCode[operatorName], {
+          emit: emitMock,
+        })
         const newOperatorCode = OperatorCode.BooleanAsString
-        const newOperatorName =  'BooleanAsString'
+        const newOperatorName = 'BooleanAsString'
 
         operator.update(newOperatorName)
 
@@ -562,9 +566,11 @@ describe('Operator methods', () => {
         const cache = new Cache()
         const emitMock = jest.fn()
         const operatorName = 'BytesAsString'
-        const operator = new Operator(cache, 0, OutputType.Bytes, OperatorCode[operatorName], { emit: emitMock })
+        const operator = new Operator(cache, 0, OutputType.Bytes, OperatorCode[operatorName], {
+          emit: emitMock,
+        })
         const newOperatorCode = OperatorCode.BytesHash
-        const newOperatorName =  'BytesHash'
+        const newOperatorName = 'BytesHash'
 
         operator.update(newOperatorName)
 
@@ -577,9 +583,11 @@ describe('Operator methods', () => {
         const cache = new Cache()
         const emitMock = jest.fn()
         const operatorName = 'IntegerAsString'
-        const operator = new Operator(cache, 0, OutputType.Integer, OperatorCode[operatorName], { emit: emitMock })
+        const operator = new Operator(cache, 0, OutputType.Integer, OperatorCode[operatorName], {
+          emit: emitMock,
+        })
         const newOperatorCode = OperatorCode.IntegerSum
-        const newOperatorName =  'IntegerSum'
+        const newOperatorName = 'IntegerSum'
 
         operator.update(newOperatorName)
 
@@ -592,9 +600,11 @@ describe('Operator methods', () => {
         const cache = new Cache()
         const emitMock = jest.fn()
         const operatorName = 'FloatAbsolute'
-        const operator = new Operator(cache, 0, OutputType.Float, OperatorCode[operatorName], { emit: emitMock })
+        const operator = new Operator(cache, 0, OutputType.Float, OperatorCode[operatorName], {
+          emit: emitMock,
+        })
         const newOperatorCode = OperatorCode.FloatCeiling
-        const newOperatorName =  'FloatCeiling'
+        const newOperatorName = 'FloatCeiling'
 
         operator.update(newOperatorName)
 
@@ -608,9 +618,11 @@ describe('Operator methods', () => {
         const cache = new Cache()
         const emitMock = jest.fn()
         const operatorName = 'MapGetString'
-        const operator = new Operator(cache, 0, OutputType.Map, OperatorCode[operatorName], { emit: emitMock })
+        const operator = new Operator(cache, 0, OutputType.Map, OperatorCode[operatorName], {
+          emit: emitMock,
+        })
         const newOperatorCode = OperatorCode.MapEntries
-        const newOperatorName =  'MapEntries'
+        const newOperatorName = 'MapEntries'
 
         operator.update(newOperatorName)
 
@@ -624,9 +636,11 @@ describe('Operator methods', () => {
         const cache = new Cache()
         const emitMock = jest.fn()
         const operatorName = 'StringMatch'
-        const operator = new Operator(cache, 0, OutputType.String, OperatorCode[operatorName], { emit: emitMock })
+        const operator = new Operator(cache, 0, OutputType.String, OperatorCode[operatorName], {
+          emit: emitMock,
+        })
         const newOperatorCode = OperatorCode.StringLength
-        const newOperatorName =  'StringLength'
+        const newOperatorName = 'StringLength'
 
         operator.update(newOperatorName)
 

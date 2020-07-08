@@ -61,6 +61,7 @@ var Filter;
     Filter[Filter["notDeviationStandard"] = 133] = "notDeviationStandard";
     Filter[Filter["notTop"] = 134] = "notTop";
     Filter[Filter["notBottom"] = 135] = "notBottom";
+    Filter[Filter["custom"] = 255] = "custom";
 })(Filter = exports.Filter || (exports.Filter = {}));
 var OutputType;
 (function (OutputType) {

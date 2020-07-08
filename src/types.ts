@@ -87,6 +87,7 @@ export enum Filter {
   notDeviationStandard = 0x85,
   notTop = 0x86,
   notBottom = 0x87,
+  custom = 0xff,
 }
 
 export enum OutputType {
@@ -308,6 +309,7 @@ export type MirArgument =
   | [Filter, number]
   | [Filter, string]
   | [Filter, boolean]
+  | [Filter, MirScript]
   | MirScript
   | Reducer
 

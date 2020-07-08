@@ -21,9 +21,4 @@ export declare function isFloatType(type: OutputType): boolean;
 export declare function isIntegerType(type: OutputType): boolean;
 export declare function isMapType(type: OutputType): boolean;
 export declare function isStringType(type: OutputType): boolean;
-export declare function removeRepeatedOptions(array: Array<{
-    label: string;
-}>): {
-    label: string;
-}[];
 //# sourceMappingURL=utils.d.ts.map

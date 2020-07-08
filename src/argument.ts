@@ -49,8 +49,13 @@ export class Argument {
     ) {
       this.argument = null
     } else if (this.argumentInfo.type === MirArgumentType.FilterFunction) {
-      if (this.subscript) {
-        this.argument = new Script(this.cache, argument as MirScript)
+      // Check if it's custom filter to know if contains a subscript or a filter function
+      if (Array.isArray(argument) && Array.isArray(argument[1])) {
+        this.argument = new Argument(
+          this.cache,
+          { name: 'by', optional: false, type: MirArgumentType.Subscript },
+          (argument as [Filter, MirScript])[1]
+        )
       } else {
         this.argument = new Argument(
           this.cache,
@@ -71,28 +76,27 @@ export class Argument {
     }
   }
 
-  public getJs(): string | number{
+  public getJs(): string | number {
     const type = this.argumentInfo.type
 
-      if (type === MirArgumentType.Boolean) {
-        return this.value as string
-      } else if (type === MirArgumentType.FilterFunction) {
-        // FIXME: how filter argument is represented
-        return JSON.stringify(this.value)
-      } else if (type === MirArgumentType.Float) {
-        return this.value as number
-      } else if (type === MirArgumentType.Integer) {
-        return this.value as number
-      } else if (type === MirArgumentType.ReducerFunction) {
-        // FIXME: how filter argument is represented
-        return Reducer[this.value as Reducer]
-      } else if (type === MirArgumentType.String) {
-        return JSON.stringify(this.value)
-      } else if (type === MirArgumentType.Subscript) {
-        return `new Script()${(this.argument as Script).getJs()}`
-      } else {
-        return JSON.stringify(this.value)
-      }
+    if (type === MirArgumentType.Boolean) {
+      return this.value as string
+    } else if (type === MirArgumentType.FilterFunction) {
+      return (this.argument as Script).getJs()
+    } else if (type === MirArgumentType.Float) {
+      return this.value as number
+    } else if (type === MirArgumentType.Integer) {
+      return this.value as number
+    } else if (type === MirArgumentType.ReducerFunction) {
+      // FIXME: how filter argument is represented
+      return Reducer[this.value as Reducer]
+    } else if (type === MirArgumentType.String) {
+      return JSON.stringify(this.value)
+    } else if (type === MirArgumentType.Subscript) {
+      return `new Script()${(this.argument as Script).getJs()}`
+    } else {
+      return JSON.stringify(this.value)
+    }
   }
 
   public getMarkup(): MarkupArgument {
@@ -105,7 +109,7 @@ export class Argument {
         value: this.value as string | number | boolean,
         type: getMarkupInputTypeFromArgumentType(this.argumentInfo.type),
       } as MarkupInput
-    } else if (this.argumentType === MarkupArgumentType.SelectFilter && !this.subscript) {
+    } else if (this.argumentType === MarkupArgumentType.SelectFilter) {
       const args = this.argument ? [this.argument.getMarkup()] : []
       return {
         hierarchicalType: MarkupHierarchicalType.Argument,
@@ -117,12 +121,12 @@ export class Argument {
         selected: {
           arguments: args,
           hierarchicalType: MarkupHierarchicalType.SelectedOperatorOption,
-          label: generateFilterArgumentOptions()[0].label,
+          label: Filter[(this.value as [Filter, number | boolean])[0]],
           outputType: generateFilterArgumentOptions()[0].outputType,
           markupType: MarkupType.Option,
         },
       } as MarkupSelect
-    } else if (this.argumentType === MarkupArgumentType.Subscript || this.subscript) {
+    } else if (this.argumentType === MarkupArgumentType.Subscript) {
       return {
         id: this.id,
         label: this.argumentInfo.name,
@@ -143,7 +147,7 @@ export class Argument {
         selected: {
           arguments: [],
           hierarchicalType: MarkupHierarchicalType.SelectedOperatorOption,
-          label: generateReducerArgumentOptions()[0].label,
+          label: Reducer[this.value as Reducer],
           outputType: generateReducerArgumentOptions()[0].outputType,
           markupType: MarkupType.Option,
         },
@@ -153,10 +157,14 @@ export class Argument {
 
   public getMir(): MirArgument {
     if (this.argumentType === MarkupArgumentType.SelectFilter) {
-      return [
-        (this.value as [Filter, number | string | boolean])[0],
-        (this.argument as Argument).getMir(),
-      ] as MirArgument
+      if (Array.isArray(this.value) && this.value[0] === Filter.custom) {
+        return (this.argument as Argument).getMir()
+      } else {
+        return [
+          (this.value as [Filter, number | string | boolean])[0],
+          (this.argument as Argument).getMir(),
+        ] as MirArgument
+      }
     } else if (this.argumentType === MarkupArgumentType.Subscript) {
       return (this.argument as Script).getMir()
     } else {

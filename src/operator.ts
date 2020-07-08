@@ -11,14 +11,14 @@ import {
   OperatorCode,
   OperatorInfo,
   OutputType,
+  MirArgumentType,
+  Filter,
 } from './types'
 import { Cache, operatorInfos, markupOptions, allMarkupOptions } from './structures'
-import {
-  getDefaultMirArgumentByType,
-  getMirOperatorInfo,
-} from './utils'
+import { getDefaultMirArgumentByType, getMirOperatorInfo } from './utils'
 import { Argument } from './argument'
 import { DEFAULT_OPERATOR, DEFAULT_INPUT_TYPE } from './constants'
+import { MirScript } from './types'
 
 export class Operator {
   public arguments: Array<Argument>
@@ -48,17 +48,27 @@ export class Operator {
     this.operatorInfo = operatorInfos[code]
     this.mirArguments = args
     this.inputType = inputType || DEFAULT_INPUT_TYPE
-    this.arguments = args.map(
-      (x, index: number) => new Argument(cache, this.operatorInfo.arguments[index], x)
-    )
+    if (code === OperatorCode.ArrayFilter && Array.isArray(args[0])) {
+      // is array filter operator and contains subscript
+      const filterArgumentInfo: ArgumentInfo = {
+        name: 'function',
+        optional: false,
+        type: MirArgumentType.FilterFunction,
+      }
+      this.arguments = [
+        new Argument(cache, filterArgumentInfo, [Filter.custom, args[0] as MirScript]),
+      ]
+    } else {
+      this.arguments = args.map(
+        (x, index: number) => new Argument(cache, this.operatorInfo.arguments[index], x)
+      )
+    }
     this.scriptId = scriptId
   }
 
   public getJs(): string {
     const operatorName = this.operatorInfo.name
-    const args = this.arguments
-      .map((arg: Argument) => arg.getJs())
-      .join(',')
+    const args = this.arguments.map((arg: Argument) => arg.getJs()).join(',')
 
     return `.${operatorName}(${args})`
   }
@@ -95,10 +105,11 @@ export class Operator {
   }
 
   public update(value: keyof typeof OperatorCode | OperatorCode) {
-    const operatorCode: OperatorCode = typeof value === 'number'
-      ? value
-      // Use operatorCode as reverse mapping
-      : OperatorCode[value]
+    const operatorCode: OperatorCode =
+      typeof value === 'number'
+        ? value
+        : // Use operatorCode as reverse mapping
+          OperatorCode[value]
     const operatorInfo = operatorInfos[operatorCode]
     const defaultOperatorArguments = operatorInfo.arguments.map((argument: ArgumentInfo) =>
       getDefaultMirArgumentByType(argument.type)

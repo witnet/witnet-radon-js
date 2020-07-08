@@ -21,7 +21,7 @@ var __spread = (this && this.__spread) || function () {
 };
 var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k, _l, _m;
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.markupOptions = exports.allMarkupOptions = exports.aTReducerMarkupOptions = exports.aTFilterMarkupOptions = exports.primitiveMarkupOptions = exports.Cache = exports.operatorInfos = exports.aggregationTallyReducerDescriptions = exports.aggregationTallyFilterDescriptions = exports.typeSystem = void 0;
+exports.removeRepeatedOptions = exports.markupOptions = exports.allMarkupOptions = exports.aTReducerMarkupOptions = exports.aTFilterMarkupOptions = exports.primitiveMarkupOptions = exports.Cache = exports.operatorInfos = exports.aggregationTallyReducerDescriptions = exports.aggregationTallyFilterDescriptions = exports.typeSystem = void 0;
 var types_1 = require("./types");
 var utils_1 = require("./utils");
 exports.typeSystem = (_a = {},
@@ -489,7 +489,18 @@ exports.operatorInfos = (_l = {},
     _l[types_1.OperatorCode.IntegerMatch] = {
         type: types_1.Type.Integer,
         name: types_1.IntegerOperatorName.Match,
-        arguments: [],
+        arguments: [
+            {
+                name: 'categories',
+                optional: false,
+                type: types_1.MirArgumentType.String,
+            },
+            {
+                name: 'default',
+                optional: false,
+                type: types_1.MirArgumentType.Boolean,
+            },
+        ],
         outputType: types_1.OutputType.MatchOutput,
         description: function (subscript) {
             if (subscript === void 0) { subscript = 'subscript'; }
@@ -938,7 +949,18 @@ exports.operatorInfos = (_l = {},
     _l[types_1.OperatorCode.StringMatch] = {
         type: types_1.Type.String,
         name: types_1.StringOperatorName.Match,
-        arguments: [],
+        arguments: [
+            {
+                name: 'categories',
+                optional: false,
+                type: types_1.MirArgumentType.String,
+            },
+            {
+                name: 'default',
+                optional: false,
+                type: types_1.MirArgumentType.Boolean,
+            },
+        ],
         outputType: types_1.OutputType.MatchOutput,
         description: function (subscript) {
             if (subscript === void 0) { subscript = 'subscript'; }
@@ -1161,7 +1183,7 @@ exports.aTReducerMarkupOptions = function () {
         return generateOption(filter, types_1.OutputType.FilterOutput);
     });
 };
-exports.allMarkupOptions = utils_1.removeRepeatedOptions(__spread(exports.primitiveMarkupOptions.array, exports.primitiveMarkupOptions.arrayBoolean, exports.primitiveMarkupOptions.arrayArray, exports.primitiveMarkupOptions.arrayBytes, exports.primitiveMarkupOptions.arrayFloat, exports.primitiveMarkupOptions.arrayInteger, exports.primitiveMarkupOptions.arrayMap, exports.primitiveMarkupOptions.arrayString, exports.primitiveMarkupOptions.boolean, exports.primitiveMarkupOptions.bytes, exports.primitiveMarkupOptions.filterOutput, exports.primitiveMarkupOptions.float, exports.primitiveMarkupOptions.string, exports.primitiveMarkupOptions.map, exports.primitiveMarkupOptions.integer));
+exports.allMarkupOptions = removeRepeatedOptions(__spread(exports.primitiveMarkupOptions.array, exports.primitiveMarkupOptions.arrayBoolean, exports.primitiveMarkupOptions.arrayArray, exports.primitiveMarkupOptions.arrayBytes, exports.primitiveMarkupOptions.arrayFloat, exports.primitiveMarkupOptions.arrayInteger, exports.primitiveMarkupOptions.arrayMap, exports.primitiveMarkupOptions.arrayString, exports.primitiveMarkupOptions.boolean, exports.primitiveMarkupOptions.bytes, exports.primitiveMarkupOptions.filterOutput, exports.primitiveMarkupOptions.float, exports.primitiveMarkupOptions.string, exports.primitiveMarkupOptions.map, exports.primitiveMarkupOptions.integer));
 exports.markupOptions = (_m = {},
     _m[types_1.OutputType.Array] = __spread(exports.primitiveMarkupOptions.array),
     _m[types_1.OutputType.ArrayArray] = __spread(exports.primitiveMarkupOptions.arrayArray),
@@ -1182,3 +1204,9 @@ exports.markupOptions = (_m = {},
     _m[types_1.OutputType.String] = __spread(exports.primitiveMarkupOptions.string),
     _m[types_1.OutputType.SubscriptOutput] = exports.allMarkupOptions,
     _m);
+function removeRepeatedOptions(array) {
+    return array.filter(function (item, index, self) {
+        return index === self.findIndex(function (t) { return t.label === item.label; });
+    });
+}
+exports.removeRepeatedOptions = removeRepeatedOptions;

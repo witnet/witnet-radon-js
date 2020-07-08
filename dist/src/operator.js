@@ -38,14 +38,25 @@ var Operator = /** @class */ (function () {
         this.operatorInfo = structures_1.operatorInfos[code];
         this.mirArguments = args;
         this.inputType = inputType || constants_1.DEFAULT_INPUT_TYPE;
-        this.arguments = args.map(function (x, index) { return new argument_1.Argument(cache, _this.operatorInfo.arguments[index], x); });
+        if (code === types_1.OperatorCode.ArrayFilter && Array.isArray(args[0])) {
+            // is array filter operator and contains subscript
+            var filterArgumentInfo = {
+                name: 'function',
+                optional: false,
+                type: types_1.MirArgumentType.FilterFunction,
+            };
+            this.arguments = [
+                new argument_1.Argument(cache, filterArgumentInfo, [types_1.Filter.custom, args[0]]),
+            ];
+        }
+        else {
+            this.arguments = args.map(function (x, index) { return new argument_1.Argument(cache, _this.operatorInfo.arguments[index], x); });
+        }
         this.scriptId = scriptId;
     }
     Operator.prototype.getJs = function () {
         var operatorName = this.operatorInfo.name;
-        var args = this.arguments
-            .map(function (arg) { return arg.getJs(); })
-            .join(',');
+        var args = this.arguments.map(function (arg) { return arg.getJs(); }).join(',');
         return "." + operatorName + "(" + args + ")";
     };
     Operator.prototype.getMarkup = function () {
@@ -78,8 +89,8 @@ var Operator = /** @class */ (function () {
         var _this = this;
         var operatorCode = typeof value === 'number'
             ? value
-            // Use operatorCode as reverse mapping
-            : types_1.OperatorCode[value];
+            : // Use operatorCode as reverse mapping
+                types_1.OperatorCode[value];
         var operatorInfo = structures_1.operatorInfos[operatorCode];
         var defaultOperatorArguments = operatorInfo.arguments.map(function (argument) {
             return utils_1.getDefaultMirArgumentByType(argument.type);

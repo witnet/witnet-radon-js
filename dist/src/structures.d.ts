@@ -125,4 +125,9 @@ export declare const allMarkupOptions: {
 export declare const markupOptions: {
     [key: string]: Array<any>;
 };
+export declare function removeRepeatedOptions(array: Array<{
+    label: string;
+}>): {
+    label: string;
+}[];
 //# sourceMappingURL=structures.d.ts.map

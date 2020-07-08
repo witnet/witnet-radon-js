@@ -452,7 +452,18 @@ export const operatorInfos: OperatorInfos = {
   [OperatorCode.IntegerMatch]: {
     type: Type.Integer,
     name: IntegerOperatorName.Match,
-    arguments: [],
+    arguments: [
+      {
+        name: 'categories',
+        optional: false,
+        type: MirArgumentType.String,
+      },
+      {
+        name: 'default',
+        optional: false,
+        type: MirArgumentType.Boolean,
+      },
+    ],
     outputType: OutputType.MatchOutput,
     description: (subscript: string = 'subscript') =>
       `Match the Integer input with ${subscript} and return the value asociated with it. Similar than a switch statement`,
@@ -870,7 +881,18 @@ export const operatorInfos: OperatorInfos = {
   [OperatorCode.StringMatch]: {
     type: Type.String,
     name: StringOperatorName.Match,
-    arguments: [],
+    arguments: [
+      {
+        name: 'categories',
+        optional: false,
+        type: MirArgumentType.String,
+      },
+      {
+        name: 'default',
+        optional: false,
+        type: MirArgumentType.Boolean,
+      },
+    ],
     outputType: OutputType.MatchOutput,
     description: (subscript: string = 'subscript') =>
       `Match the String input with ${subscript} and return the value asociated with it. Similar than a switch statement`,
@@ -1150,8 +1172,8 @@ export const markupOptions: { [key: string]: Array<any> } = {
 }
 
 export function removeRepeatedOptions(array: Array<{ label: string }>) {
-  return array
-    .filter((item: { label: string }, index: number, self: Array<{ label: string }>) => 
-      index === self.findIndex((t) => (t.label === item.label))
-    )
+  return array.filter(
+    (item: { label: string }, index: number, self: Array<{ label: string }>) =>
+      index === self.findIndex((t) => t.label === item.label)
+  )
 }

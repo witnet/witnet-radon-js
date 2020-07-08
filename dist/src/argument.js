@@ -21,8 +21,9 @@ var Argument = /** @class */ (function () {
             this.argument = null;
         }
         else if (this.argumentInfo.type === types_1.MirArgumentType.FilterFunction) {
-            if (this.subscript) {
-                this.argument = new script_1.Script(this.cache, argument);
+            // Check if it's custom filter to know if contains a subscript or a filter function
+            if (Array.isArray(argument) && Array.isArray(argument[1])) {
+                this.argument = new Argument(this.cache, { name: 'by', optional: false, type: types_1.MirArgumentType.Subscript }, argument[1]);
             }
             else {
                 this.argument = new Argument(this.cache, { name: 'by', optional: false, type: types_1.MirArgumentType.String }, argument[1]);
@@ -44,8 +45,7 @@ var Argument = /** @class */ (function () {
             return this.value;
         }
         else if (type === types_1.MirArgumentType.FilterFunction) {
-            // FIXME: how filter argument is represented
-            return JSON.stringify(this.value);
+            return this.argument.getJs();
         }
         else if (type === types_1.MirArgumentType.Float) {
             return this.value;
@@ -78,7 +78,7 @@ var Argument = /** @class */ (function () {
                 type: utils_1.getMarkupInputTypeFromArgumentType(this.argumentInfo.type),
             };
         }
-        else if (this.argumentType === types_1.MarkupArgumentType.SelectFilter && !this.subscript) {
+        else if (this.argumentType === types_1.MarkupArgumentType.SelectFilter) {
             var args = this.argument ? [this.argument.getMarkup()] : [];
             return {
                 hierarchicalType: types_1.MarkupHierarchicalType.Argument,
@@ -90,13 +90,13 @@ var Argument = /** @class */ (function () {
                 selected: {
                     arguments: args,
                     hierarchicalType: types_1.MarkupHierarchicalType.SelectedOperatorOption,
-                    label: generateFilterArgumentOptions()[0].label,
+                    label: types_1.Filter[this.value[0]],
                     outputType: generateFilterArgumentOptions()[0].outputType,
                     markupType: types_1.MarkupType.Option,
                 },
             };
         }
-        else if (this.argumentType === types_1.MarkupArgumentType.Subscript || this.subscript) {
+        else if (this.argumentType === types_1.MarkupArgumentType.Subscript) {
             return {
                 id: this.id,
                 label: this.argumentInfo.name,
@@ -118,7 +118,7 @@ var Argument = /** @class */ (function () {
                 selected: {
                     arguments: [],
                     hierarchicalType: types_1.MarkupHierarchicalType.SelectedOperatorOption,
-                    label: generateReducerArgumentOptions()[0].label,
+                    label: types_1.Reducer[this.value],
                     outputType: generateReducerArgumentOptions()[0].outputType,
                     markupType: types_1.MarkupType.Option,
                 },
@@ -127,10 +127,15 @@ var Argument = /** @class */ (function () {
     };
     Argument.prototype.getMir = function () {
         if (this.argumentType === types_1.MarkupArgumentType.SelectFilter) {
-            return [
-                this.value[0],
-                this.argument.getMir(),
-            ];
+            if (Array.isArray(this.value) && this.value[0] === types_1.Filter.custom) {
+                return this.argument.getMir();
+            }
+            else {
+                return [
+                    this.value[0],
+                    this.argument.getMir(),
+                ];
+            }
         }
         else if (this.argumentType === types_1.MarkupArgumentType.Subscript) {
             return this.argument.getMir();

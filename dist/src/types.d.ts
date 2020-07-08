@@ -70,7 +70,8 @@ export declare enum Filter {
     notDeviationRelative = 132,
     notDeviationStandard = 133,
     notTop = 134,
-    notBottom = 135
+    notBottom = 135,
+    custom = 255
 }
 export declare enum OutputType {
     Array = "array",
@@ -262,7 +263,7 @@ export declare enum MarkupArgumentType {
     SelectReduce = 2,
     Subscript = 3
 }
-export declare type MirArgument = string | number | boolean | [Filter, number] | [Filter, string] | [Filter, boolean] | MirScript | Reducer;
+export declare type MirArgument = string | number | boolean | [Filter, number] | [Filter, string] | [Filter, boolean] | [Filter, MirScript] | MirScript | Reducer;
 export declare type MirAggregationTallyFilterOperator = AggregationTallyFilter | [AggregationTallyFilter, number] | [AggregationTallyFilter, string] | [AggregationTallyFilter, boolean];
 export declare type MirOperator = OperatorCode | [OperatorCode, MirArgument] | [OperatorCode, MirArgument, MirArgument];
 export declare enum AggregationTallyFilter {
