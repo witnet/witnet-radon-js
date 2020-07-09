@@ -1,5 +1,6 @@
 import { Argument, generateReducerArgumentOptions } from '../../src/argument'
 import { Cache, operatorInfos } from '../../src/structures'
+import { DEFAULT_OPERATOR } from '../../src/constants'
 import {
   OutputType,
   OperatorCode,
@@ -92,6 +93,210 @@ describe('Argument methods', () => {
             options: [
               {
                 hierarchicalType: 'operatorOption',
+                label: 'ArrayCount',
+                markupType: 'option',
+                outputType: 'integer',
+              },
+              {
+                hierarchicalType: 'operatorOption',
+                label: 'ArrayFilter',
+                markupType: 'option',
+                outputType: 'same',
+              },
+              {
+                hierarchicalType: 'operatorOption',
+                label: 'ArrayFlatten',
+                markupType: 'option',
+                outputType: 'array',
+              },
+              {
+                hierarchicalType: 'operatorOption',
+                label: 'ArrayGetArray',
+                markupType: 'option',
+                outputType: 'array',
+              },
+              {
+                hierarchicalType: 'operatorOption',
+                label: 'ArrayGetBoolean',
+                markupType: 'option',
+                outputType: 'boolean',
+              },
+              {
+                hierarchicalType: 'operatorOption',
+                label: 'ArrayGetBytes',
+                markupType: 'option',
+                outputType: 'bytes',
+              },
+              {
+                hierarchicalType: 'operatorOption',
+                label: 'ArrayGetFloat',
+                markupType: 'option',
+                outputType: 'float',
+              },
+              {
+                hierarchicalType: 'operatorOption',
+                label: 'ArrayGetInteger',
+                markupType: 'option',
+                outputType: 'integer',
+              },
+              {
+                hierarchicalType: 'operatorOption',
+                label: 'ArrayGetMap',
+                markupType: 'option',
+                outputType: 'map',
+              },
+              {
+                hierarchicalType: 'operatorOption',
+                label: 'ArrayGetString',
+                markupType: 'option',
+                outputType: 'string',
+              },
+              {
+                hierarchicalType: 'operatorOption',
+                label: 'ArrayMap',
+                markupType: 'option',
+                outputType: 'arrayMap',
+              },
+              {
+                hierarchicalType: 'operatorOption',
+                label: 'ArrayReduce',
+                markupType: 'option',
+                outputType: 'inner',
+              },
+              {
+                hierarchicalType: 'operatorOption',
+                label: 'ArraySome',
+                markupType: 'option',
+                outputType: 'filterOutput',
+              },
+              {
+                hierarchicalType: 'operatorOption',
+                label: 'ArraySort',
+                markupType: 'option',
+                outputType: 'same',
+              },
+              {
+                hierarchicalType: 'operatorOption',
+                label: 'ArrayTake',
+                markupType: 'option',
+                outputType: 'array',
+              },
+              {
+                hierarchicalType: 'operatorOption',
+                label: 'BooleanAsString',
+                markupType: 'option',
+                outputType: 'string',
+              },
+              {
+                hierarchicalType: 'operatorOption',
+                label: 'BooleanMatch',
+                markupType: 'option',
+                outputType: 'matchOutput',
+              },
+              {
+                hierarchicalType: 'operatorOption',
+                label: 'BooleanNegate',
+                markupType: 'option',
+                outputType: 'boolean',
+              },
+              {
+                hierarchicalType: 'operatorOption',
+                label: 'BytesAsString',
+                markupType: 'option',
+                outputType: 'string',
+              },
+              {
+                hierarchicalType: 'operatorOption',
+                label: 'BytesHash',
+                markupType: 'option',
+                outputType: 'bytes',
+              },
+              {
+                hierarchicalType: 'operatorOption',
+                label: 'FloatAbsolute',
+                markupType: 'option',
+                outputType: 'float',
+              },
+              {
+                hierarchicalType: 'operatorOption',
+                label: 'FloatAsString',
+                markupType: 'option',
+                outputType: 'string',
+              },
+              {
+                hierarchicalType: 'operatorOption',
+                label: 'FloatCeiling',
+                markupType: 'option',
+                outputType: 'integer',
+              },
+              {
+                hierarchicalType: 'operatorOption',
+                label: 'FloatGraterThan',
+                markupType: 'option',
+                outputType: 'boolean',
+              },
+              {
+                hierarchicalType: 'operatorOption',
+                label: 'FloatFloor',
+                markupType: 'option',
+                outputType: 'integer',
+              },
+              {
+                hierarchicalType: 'operatorOption',
+                label: 'FloatLessThan',
+                markupType: 'option',
+                outputType: 'boolean',
+              },
+              {
+                hierarchicalType: 'operatorOption',
+                label: 'FloatModulo',
+                markupType: 'option',
+                outputType: 'float',
+              },
+              {
+                hierarchicalType: 'operatorOption',
+                label: 'FloatMultiply',
+                markupType: 'option',
+                outputType: 'float',
+              },
+              {
+                hierarchicalType: 'operatorOption',
+                label: 'FloatNegate',
+                markupType: 'option',
+                outputType: 'float',
+              },
+              {
+                hierarchicalType: 'operatorOption',
+                label: 'FloatPower',
+                markupType: 'option',
+                outputType: 'float',
+              },
+              {
+                hierarchicalType: 'operatorOption',
+                label: 'FloatReciprocal',
+                markupType: 'option',
+                outputType: 'float',
+              },
+              {
+                hierarchicalType: 'operatorOption',
+                label: 'FloatRound',
+                markupType: 'option',
+                outputType: 'integer',
+              },
+              {
+                hierarchicalType: 'operatorOption',
+                label: 'Floatsum',
+                markupType: 'option',
+                outputType: 'float',
+              },
+              {
+                hierarchicalType: 'operatorOption',
+                label: 'FloatTruncate',
+                markupType: 'option',
+                outputType: 'integer',
+              },
+              {
+                hierarchicalType: 'operatorOption',
                 label: 'StringAsBoolean',
                 markupType: 'option',
                 outputType: 'boolean',
@@ -156,12 +361,178 @@ describe('Argument methods', () => {
                 markupType: 'option',
                 outputType: 'string',
               },
+              {
+                hierarchicalType: 'operatorOption',
+                label: 'MapEntries',
+                markupType: 'option',
+                outputType: 'bytes',
+              },
+              {
+                hierarchicalType: 'operatorOption',
+                label: 'MapGetArray',
+                markupType: 'option',
+                outputType: 'array',
+              },
+              {
+                hierarchicalType: 'operatorOption',
+                label: 'MapGetBoolean',
+                markupType: 'option',
+                outputType: 'boolean',
+              },
+              {
+                hierarchicalType: 'operatorOption',
+                label: 'MapGetBytes',
+                markupType: 'option',
+                outputType: 'bytes',
+              },
+              {
+                hierarchicalType: 'operatorOption',
+                label: 'MapGetFloat',
+                markupType: 'option',
+                outputType: 'float',
+              },
+              {
+                hierarchicalType: 'operatorOption',
+                label: 'MapGetInteger',
+                markupType: 'option',
+                outputType: 'integer',
+              },
+              {
+                hierarchicalType: 'operatorOption',
+                label: 'MapGetMap',
+                markupType: 'option',
+                outputType: 'map',
+              },
+              {
+                hierarchicalType: 'operatorOption',
+                label: 'MapGetString',
+                markupType: 'option',
+                outputType: 'string',
+              },
+              {
+                hierarchicalType: 'operatorOption',
+                label: 'MapKeys',
+                markupType: 'option',
+                outputType: 'arrayString',
+              },
+              {
+                hierarchicalType: 'operatorOption',
+                label: 'MapValuesArray',
+                markupType: 'option',
+                outputType: 'arrayArray',
+              },
+              {
+                hierarchicalType: 'operatorOption',
+                label: 'MapValuesBoolean',
+                markupType: 'option',
+                outputType: 'arrayBoolean',
+              },
+              {
+                hierarchicalType: 'operatorOption',
+                label: 'MapValuesBytes',
+                markupType: 'option',
+                outputType: 'arrayBytes',
+              },
+              {
+                hierarchicalType: 'operatorOption',
+                label: 'MapValuesFloat',
+                markupType: 'option',
+                outputType: 'arrayFloat',
+              },
+              {
+                hierarchicalType: 'operatorOption',
+                label: 'MapValuesInteger',
+                markupType: 'option',
+                outputType: 'arrayInteger',
+              },
+              {
+                hierarchicalType: 'operatorOption',
+                label: 'MapValuesMap',
+                markupType: 'option',
+                outputType: 'arrayMap',
+              },
+              {
+                hierarchicalType: 'operatorOption',
+                label: 'MapValuesString',
+                markupType: 'option',
+                outputType: 'arrayString',
+              },
+              {
+                hierarchicalType: 'operatorOption',
+                label: 'IntegerAbsolute',
+                markupType: 'option',
+                outputType: 'integer',
+              },
+              {
+                hierarchicalType: 'operatorOption',
+                label: 'IntegerAsFloat',
+                markupType: 'option',
+                outputType: 'float',
+              },
+              {
+                hierarchicalType: 'operatorOption',
+                label: 'IntegerAsString',
+                markupType: 'option',
+                outputType: 'string',
+              },
+              {
+                hierarchicalType: 'operatorOption',
+                label: 'IntegerGreaterThan',
+                markupType: 'option',
+                outputType: 'boolean',
+              },
+              {
+                hierarchicalType: 'operatorOption',
+                label: 'IntegerLessThan',
+                markupType: 'option',
+                outputType: 'boolean',
+              },
+              {
+                hierarchicalType: 'operatorOption',
+                label: 'IntegerMatch',
+                markupType: 'option',
+                outputType: 'matchOutput',
+              },
+              {
+                hierarchicalType: 'operatorOption',
+                label: 'IntegerModulo',
+                markupType: 'option',
+                outputType: 'integer',
+              },
+              {
+                hierarchicalType: 'operatorOption',
+                label: 'IntegerMultiply',
+                markupType: 'option',
+                outputType: 'integer',
+              },
+              {
+                hierarchicalType: 'operatorOption',
+                label: 'IntegerNegate',
+                markupType: 'option',
+                outputType: 'integer',
+              },
+              {
+                hierarchicalType: 'operatorOption',
+                label: 'IntegerPower',
+                markupType: 'option',
+                outputType: 'integer',
+              },
+              {
+                hierarchicalType: 'operatorOption',
+                label: 'IntegerReciprocal',
+                markupType: 'option',
+                outputType: 'float',
+              },
+              {
+                hierarchicalType: 'operatorOption',
+                label: 'IntegerSum',
+                markupType: 'option',
+                outputType: 'integer',
+              },
             ],
             outputType: 'string',
             scriptId: 2,
             selected: {
-              description:
-                'Access to the “symbol” key of the input Map, and manage the value as String',
               arguments: [
                 {
                   hierarchicalType: 'argument',
@@ -176,6 +547,8 @@ describe('Argument methods', () => {
               label: 'getString',
               markupType: 'option',
               outputType: 'string',
+              description:
+                'Access to the “symbol” key of the input Map, and manage the value as String',
             },
           },
           {
@@ -254,12 +627,12 @@ describe('Argument methods', () => {
             outputType: 'string',
             scriptId: 2,
             selected: {
-              description: 'Convert to lowercase the input String, and manage the value as String',
               arguments: [],
               hierarchicalType: 'selectedOperatorOption',
               label: 'toLowerCase',
               markupType: 'option',
               outputType: 'string',
+              description: 'Convert to lowercase the input String, and manage the value as String',
             },
           },
         ],
@@ -566,6 +939,210 @@ describe('Argument methods', () => {
                   options: [
                     {
                       hierarchicalType: 'operatorOption',
+                      label: 'ArrayCount',
+                      markupType: 'option',
+                      outputType: 'integer',
+                    },
+                    {
+                      hierarchicalType: 'operatorOption',
+                      label: 'ArrayFilter',
+                      markupType: 'option',
+                      outputType: 'same',
+                    },
+                    {
+                      hierarchicalType: 'operatorOption',
+                      label: 'ArrayFlatten',
+                      markupType: 'option',
+                      outputType: 'array',
+                    },
+                    {
+                      hierarchicalType: 'operatorOption',
+                      label: 'ArrayGetArray',
+                      markupType: 'option',
+                      outputType: 'array',
+                    },
+                    {
+                      hierarchicalType: 'operatorOption',
+                      label: 'ArrayGetBoolean',
+                      markupType: 'option',
+                      outputType: 'boolean',
+                    },
+                    {
+                      hierarchicalType: 'operatorOption',
+                      label: 'ArrayGetBytes',
+                      markupType: 'option',
+                      outputType: 'bytes',
+                    },
+                    {
+                      hierarchicalType: 'operatorOption',
+                      label: 'ArrayGetFloat',
+                      markupType: 'option',
+                      outputType: 'float',
+                    },
+                    {
+                      hierarchicalType: 'operatorOption',
+                      label: 'ArrayGetInteger',
+                      markupType: 'option',
+                      outputType: 'integer',
+                    },
+                    {
+                      hierarchicalType: 'operatorOption',
+                      label: 'ArrayGetMap',
+                      markupType: 'option',
+                      outputType: 'map',
+                    },
+                    {
+                      hierarchicalType: 'operatorOption',
+                      label: 'ArrayGetString',
+                      markupType: 'option',
+                      outputType: 'string',
+                    },
+                    {
+                      hierarchicalType: 'operatorOption',
+                      label: 'ArrayMap',
+                      markupType: 'option',
+                      outputType: 'arrayMap',
+                    },
+                    {
+                      hierarchicalType: 'operatorOption',
+                      label: 'ArrayReduce',
+                      markupType: 'option',
+                      outputType: 'inner',
+                    },
+                    {
+                      hierarchicalType: 'operatorOption',
+                      label: 'ArraySome',
+                      markupType: 'option',
+                      outputType: 'filterOutput',
+                    },
+                    {
+                      hierarchicalType: 'operatorOption',
+                      label: 'ArraySort',
+                      markupType: 'option',
+                      outputType: 'same',
+                    },
+                    {
+                      hierarchicalType: 'operatorOption',
+                      label: 'ArrayTake',
+                      markupType: 'option',
+                      outputType: 'array',
+                    },
+                    {
+                      hierarchicalType: 'operatorOption',
+                      label: 'BooleanAsString',
+                      markupType: 'option',
+                      outputType: 'string',
+                    },
+                    {
+                      hierarchicalType: 'operatorOption',
+                      label: 'BooleanMatch',
+                      markupType: 'option',
+                      outputType: 'matchOutput',
+                    },
+                    {
+                      hierarchicalType: 'operatorOption',
+                      label: 'BooleanNegate',
+                      markupType: 'option',
+                      outputType: 'boolean',
+                    },
+                    {
+                      hierarchicalType: 'operatorOption',
+                      label: 'BytesAsString',
+                      markupType: 'option',
+                      outputType: 'string',
+                    },
+                    {
+                      hierarchicalType: 'operatorOption',
+                      label: 'BytesHash',
+                      markupType: 'option',
+                      outputType: 'bytes',
+                    },
+                    {
+                      hierarchicalType: 'operatorOption',
+                      label: 'FloatAbsolute',
+                      markupType: 'option',
+                      outputType: 'float',
+                    },
+                    {
+                      hierarchicalType: 'operatorOption',
+                      label: 'FloatAsString',
+                      markupType: 'option',
+                      outputType: 'string',
+                    },
+                    {
+                      hierarchicalType: 'operatorOption',
+                      label: 'FloatCeiling',
+                      markupType: 'option',
+                      outputType: 'integer',
+                    },
+                    {
+                      hierarchicalType: 'operatorOption',
+                      label: 'FloatGraterThan',
+                      markupType: 'option',
+                      outputType: 'boolean',
+                    },
+                    {
+                      hierarchicalType: 'operatorOption',
+                      label: 'FloatFloor',
+                      markupType: 'option',
+                      outputType: 'integer',
+                    },
+                    {
+                      hierarchicalType: 'operatorOption',
+                      label: 'FloatLessThan',
+                      markupType: 'option',
+                      outputType: 'boolean',
+                    },
+                    {
+                      hierarchicalType: 'operatorOption',
+                      label: 'FloatModulo',
+                      markupType: 'option',
+                      outputType: 'float',
+                    },
+                    {
+                      hierarchicalType: 'operatorOption',
+                      label: 'FloatMultiply',
+                      markupType: 'option',
+                      outputType: 'float',
+                    },
+                    {
+                      hierarchicalType: 'operatorOption',
+                      label: 'FloatNegate',
+                      markupType: 'option',
+                      outputType: 'float',
+                    },
+                    {
+                      hierarchicalType: 'operatorOption',
+                      label: 'FloatPower',
+                      markupType: 'option',
+                      outputType: 'float',
+                    },
+                    {
+                      hierarchicalType: 'operatorOption',
+                      label: 'FloatReciprocal',
+                      markupType: 'option',
+                      outputType: 'float',
+                    },
+                    {
+                      hierarchicalType: 'operatorOption',
+                      label: 'FloatRound',
+                      markupType: 'option',
+                      outputType: 'integer',
+                    },
+                    {
+                      hierarchicalType: 'operatorOption',
+                      label: 'Floatsum',
+                      markupType: 'option',
+                      outputType: 'float',
+                    },
+                    {
+                      hierarchicalType: 'operatorOption',
+                      label: 'FloatTruncate',
+                      markupType: 'option',
+                      outputType: 'integer',
+                    },
+                    {
+                      hierarchicalType: 'operatorOption',
                       label: 'StringAsBoolean',
                       markupType: 'option',
                       outputType: 'boolean',
@@ -629,6 +1206,174 @@ describe('Argument methods', () => {
                       label: 'StringToUpperCase',
                       markupType: 'option',
                       outputType: 'string',
+                    },
+                    {
+                      hierarchicalType: 'operatorOption',
+                      label: 'MapEntries',
+                      markupType: 'option',
+                      outputType: 'bytes',
+                    },
+                    {
+                      hierarchicalType: 'operatorOption',
+                      label: 'MapGetArray',
+                      markupType: 'option',
+                      outputType: 'array',
+                    },
+                    {
+                      hierarchicalType: 'operatorOption',
+                      label: 'MapGetBoolean',
+                      markupType: 'option',
+                      outputType: 'boolean',
+                    },
+                    {
+                      hierarchicalType: 'operatorOption',
+                      label: 'MapGetBytes',
+                      markupType: 'option',
+                      outputType: 'bytes',
+                    },
+                    {
+                      hierarchicalType: 'operatorOption',
+                      label: 'MapGetFloat',
+                      markupType: 'option',
+                      outputType: 'float',
+                    },
+                    {
+                      hierarchicalType: 'operatorOption',
+                      label: 'MapGetInteger',
+                      markupType: 'option',
+                      outputType: 'integer',
+                    },
+                    {
+                      hierarchicalType: 'operatorOption',
+                      label: 'MapGetMap',
+                      markupType: 'option',
+                      outputType: 'map',
+                    },
+                    {
+                      hierarchicalType: 'operatorOption',
+                      label: 'MapGetString',
+                      markupType: 'option',
+                      outputType: 'string',
+                    },
+                    {
+                      hierarchicalType: 'operatorOption',
+                      label: 'MapKeys',
+                      markupType: 'option',
+                      outputType: 'arrayString',
+                    },
+                    {
+                      hierarchicalType: 'operatorOption',
+                      label: 'MapValuesArray',
+                      markupType: 'option',
+                      outputType: 'arrayArray',
+                    },
+                    {
+                      hierarchicalType: 'operatorOption',
+                      label: 'MapValuesBoolean',
+                      markupType: 'option',
+                      outputType: 'arrayBoolean',
+                    },
+                    {
+                      hierarchicalType: 'operatorOption',
+                      label: 'MapValuesBytes',
+                      markupType: 'option',
+                      outputType: 'arrayBytes',
+                    },
+                    {
+                      hierarchicalType: 'operatorOption',
+                      label: 'MapValuesFloat',
+                      markupType: 'option',
+                      outputType: 'arrayFloat',
+                    },
+                    {
+                      hierarchicalType: 'operatorOption',
+                      label: 'MapValuesInteger',
+                      markupType: 'option',
+                      outputType: 'arrayInteger',
+                    },
+                    {
+                      hierarchicalType: 'operatorOption',
+                      label: 'MapValuesMap',
+                      markupType: 'option',
+                      outputType: 'arrayMap',
+                    },
+                    {
+                      hierarchicalType: 'operatorOption',
+                      label: 'MapValuesString',
+                      markupType: 'option',
+                      outputType: 'arrayString',
+                    },
+                    {
+                      hierarchicalType: 'operatorOption',
+                      label: 'IntegerAbsolute',
+                      markupType: 'option',
+                      outputType: 'integer',
+                    },
+                    {
+                      hierarchicalType: 'operatorOption',
+                      label: 'IntegerAsFloat',
+                      markupType: 'option',
+                      outputType: 'float',
+                    },
+                    {
+                      hierarchicalType: 'operatorOption',
+                      label: 'IntegerAsString',
+                      markupType: 'option',
+                      outputType: 'string',
+                    },
+                    {
+                      hierarchicalType: 'operatorOption',
+                      label: 'IntegerGreaterThan',
+                      markupType: 'option',
+                      outputType: 'boolean',
+                    },
+                    {
+                      hierarchicalType: 'operatorOption',
+                      label: 'IntegerLessThan',
+                      markupType: 'option',
+                      outputType: 'boolean',
+                    },
+                    {
+                      hierarchicalType: 'operatorOption',
+                      label: 'IntegerMatch',
+                      markupType: 'option',
+                      outputType: 'matchOutput',
+                    },
+                    {
+                      hierarchicalType: 'operatorOption',
+                      label: 'IntegerModulo',
+                      markupType: 'option',
+                      outputType: 'integer',
+                    },
+                    {
+                      hierarchicalType: 'operatorOption',
+                      label: 'IntegerMultiply',
+                      markupType: 'option',
+                      outputType: 'integer',
+                    },
+                    {
+                      hierarchicalType: 'operatorOption',
+                      label: 'IntegerNegate',
+                      markupType: 'option',
+                      outputType: 'integer',
+                    },
+                    {
+                      hierarchicalType: 'operatorOption',
+                      label: 'IntegerPower',
+                      markupType: 'option',
+                      outputType: 'integer',
+                    },
+                    {
+                      hierarchicalType: 'operatorOption',
+                      label: 'IntegerReciprocal',
+                      markupType: 'option',
+                      outputType: 'float',
+                    },
+                    {
+                      hierarchicalType: 'operatorOption',
+                      label: 'IntegerSum',
+                      markupType: 'option',
+                      outputType: 'integer',
                     },
                   ],
                   outputType: 'string',
@@ -916,7 +1661,6 @@ describe('Argument methods', () => {
       const cache = new Cache()
       const argument = new Argument(cache, argumentInfo, operator[1])
       const result = argument.getMir()
-
       expect(result).toStrictEqual(operator[1])
     })
 
@@ -982,6 +1726,37 @@ describe('Argument methods', () => {
       const argument = new Argument(cache, argumentInfo, [Filter.lessThan, 5])
       argument.update('bottom')
       expect(argument.value).toStrictEqual([Filter.bottom, 5])
+    })
+
+    it('filter function from subscript argument to input argument', () => {
+      const cache = new Cache()
+      const argumentInfo = {
+        name: 'function',
+        optional: false,
+        type: MirArgumentType.FilterFunction,
+      }
+      const argument = new Argument(cache, argumentInfo, [
+        Filter.custom,
+        [DEFAULT_OPERATOR],
+      ])
+      argument.update('bottom')
+      const result = (argument.argument as Argument).argumentInfo.type
+      const expected = MirArgumentType.String
+      expect(result).toBe(expected)
+    })
+
+    it('filter function with subscript', () => {
+      const cache = new Cache()
+      const argumentInfo = {
+        name: 'function',
+        optional: false,
+        type: MirArgumentType.FilterFunction,
+      }
+      const argument = new Argument(cache, argumentInfo, [Filter.lessThan, 5])
+      argument.update('custom')
+      const result = (argument.argument as Argument).argumentInfo.type
+      const expected = MirArgumentType.Subscript
+      expect(result).toStrictEqual(expected)
     })
 
     it('reducer function', () => {

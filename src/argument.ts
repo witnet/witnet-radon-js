@@ -15,6 +15,7 @@ import {
   OutputType,
   Reducer,
 } from './types'
+import { DEFAULT_OPERATOR } from './constants'
 import { Cache } from './structures'
 import { getArgumentInfoType, getEnumNames, getMarkupInputTypeFromArgumentType } from './utils'
 import { Script } from './script'
@@ -26,21 +27,14 @@ export class Argument {
   public cache: Cache
   public id: number
   public value: MirArgument | undefined
-  public subscript: boolean
 
   // TODO: find a better way to discriminate whether the argument is a subscript
-  constructor(
-    cache: Cache,
-    argumentInfo: ArgumentInfo,
-    argument?: MirArgument,
-    subscript: boolean = false
-  ) {
+  constructor(cache: Cache, argumentInfo: ArgumentInfo, argument?: MirArgument) {
     this.argumentType = getArgumentInfoType(argumentInfo)
     this.id = cache.insert(this).id
     this.argumentInfo = argumentInfo
     this.cache = cache
     this.value = argument
-    this.subscript = subscript
     if (
       this.argumentInfo.type === MirArgumentType.Boolean ||
       this.argumentInfo.type === MirArgumentType.Float ||
@@ -70,7 +64,7 @@ export class Argument {
         argument as Reducer
       )
     } else if (this.argumentInfo.type === MirArgumentType.Subscript) {
-      this.argument = new Script(this.cache, argument as MirScript)
+      this.argument = new Script(this.cache, argument as MirScript, OutputType.SubscriptOutput)
     } else {
       this.argument = null
     }
@@ -174,9 +168,26 @@ export class Argument {
 
   public update(value: string | number | boolean | Filter) {
     if (this.argumentType === MarkupArgumentType.SelectFilter) {
-      ;(this.value as [Filter, number] | [Filter, string] | [Filter, boolean])[0] = (Filter[
-        value as number
-      ] as unknown) as Filter
+      if (value === 'custom' && (this.value as [Filter, MirScript])[0] !== Filter['custom']) {
+        // the current argument is an input argument and the new value is a subscript argument
+        this.value = [(Filter[value] as unknown) as Filter, [DEFAULT_OPERATOR]]
+        this.argument = new Argument(
+          this.cache,
+          { name: 'by', optional: false, type: MirArgumentType.Subscript },
+          (this.value as [Filter, MirScript])[1]
+        )
+      } else if (value !== 'custom' && (this.value as [Filter, MirScript])[0] === Filter['custom']) {
+        // the current argument is a subscript argument and the new value is an input argument
+        (this.value as MirArgument) = [Filter[value as keyof typeof Filter], '']
+        this.argument = new Argument(
+          this.cache,
+          { name: 'by', optional: false, type: MirArgumentType.String },
+          ''
+        )
+      } else if (value !== 'custom' && (this.value as [Filter, MirScript])[0] !== Filter['custom']){
+        // the current argument is an input argument and the new value is also an input argument
+        (this.value as [Filter, MirArgument])[0] = Filter[value as keyof typeof Filter]
+      }
     } else {
       this.value = value
     }

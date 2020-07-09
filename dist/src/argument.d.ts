@@ -8,8 +8,7 @@ export declare class Argument {
     cache: Cache;
     id: number;
     value: MirArgument | undefined;
-    subscript: boolean;
-    constructor(cache: Cache, argumentInfo: ArgumentInfo, argument?: MirArgument, subscript?: boolean);
+    constructor(cache: Cache, argumentInfo: ArgumentInfo, argument?: MirArgument);
     getJs(): string | number;
     getMarkup(): MarkupArgument;
     getMir(): MirArgument;
