@@ -111,6 +111,7 @@ export class Argument {
       } as MarkupInput
     } else if (this.argumentType === MarkupArgumentType.SelectFilter) {
       const args = this.argument ? [this.argument.getMarkup()] : []
+      console.log('args---->', args)
       return {
         hierarchicalType: MarkupHierarchicalType.Argument,
         id: this.id,
