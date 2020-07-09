@@ -2,6 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.generateReducerArgumentOptions = exports.generateFilterArgumentOptions = exports.Argument = void 0;
 var types_1 = require("./types");
+var constants_1 = require("./constants");
 var utils_1 = require("./utils");
 var script_1 = require("./script");
 var Argument = /** @class */ (function () {
@@ -146,8 +147,15 @@ var Argument = /** @class */ (function () {
     };
     Argument.prototype.update = function (value) {
         if (this.argumentType === types_1.MarkupArgumentType.SelectFilter) {
-            ;
-            this.value[0] = types_1.Filter[value];
+            if (value === 'custom' && this.value !== types_1.Filter['custom']) {
+                this.value = [types_1.Filter[value], [constants_1.DEFAULT_OPERATOR]];
+                this.argument = new Argument(this.cache, { name: 'by', optional: false, type: types_1.MirArgumentType.Subscript }, this.value[1], true);
+            }
+            else {
+                ;
+                this.value[0] = types_1.Filter[value];
+                this.argument = new Argument(this.cache, { name: 'by', optional: false, type: types_1.MirArgumentType.String }, this.value[1]);
+            }
         }
         else {
             this.value = value;

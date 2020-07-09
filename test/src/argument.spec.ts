@@ -1,5 +1,6 @@
 import { Argument, generateReducerArgumentOptions } from '../../src/argument'
 import { Cache, operatorInfos } from '../../src/structures'
+import { DEFAULT_OPERATOR } from '../../src/constants'
 import {
   OutputType,
   OperatorCode,
@@ -982,6 +983,34 @@ describe('Argument methods', () => {
       const argument = new Argument(cache, argumentInfo, [Filter.lessThan, 5])
       argument.update('bottom')
       expect(argument.value).toStrictEqual([Filter.bottom, 5])
+    })
+
+    it('filter function from subscript argument to input argument', () => {
+      const cache = new Cache()
+      const argumentInfo = {
+        name: 'function',
+        optional: false,
+        type: MirArgumentType.FilterFunction,
+      }
+      const argument = new Argument(cache, argumentInfo, [Filter.custom, [DEFAULT_OPERATOR]])
+      argument.update('bottom')
+      const result = (argument.argument as Argument).argumentInfo.type
+      const expected = MirArgumentType.String
+      expect(result).toStrictEqual(expected)
+    })
+
+    it('filter function with subscript', () => {
+      const cache = new Cache()
+      const argumentInfo = {
+        name: 'function',
+        optional: false,
+        type: MirArgumentType.FilterFunction,
+      }
+      const argument = new Argument(cache, argumentInfo, [Filter.lessThan, 5])
+      argument.update('custom')
+      const result = (argument.argument as Argument).argumentInfo.type
+      const expected = MirArgumentType.Subscript
+      expect(result).toStrictEqual(expected)
     })
 
     it('reducer function', () => {

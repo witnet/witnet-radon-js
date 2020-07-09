@@ -15,6 +15,7 @@ import {
   OutputType,
   Reducer,
 } from './types'
+import { DEFAULT_OPERATOR } from './constants'
 import { Cache } from './structures'
 import { getArgumentInfoType, getEnumNames, getMarkupInputTypeFromArgumentType } from './utils'
 import { Script } from './script'
@@ -26,21 +27,18 @@ export class Argument {
   public cache: Cache
   public id: number
   public value: MirArgument | undefined
-  public subscript: boolean
 
   // TODO: find a better way to discriminate whether the argument is a subscript
   constructor(
     cache: Cache,
     argumentInfo: ArgumentInfo,
     argument?: MirArgument,
-    subscript: boolean = false
   ) {
     this.argumentType = getArgumentInfoType(argumentInfo)
     this.id = cache.insert(this).id
     this.argumentInfo = argumentInfo
     this.cache = cache
     this.value = argument
-    this.subscript = subscript
     if (
       this.argumentInfo.type === MirArgumentType.Boolean ||
       this.argumentInfo.type === MirArgumentType.Float ||
@@ -111,7 +109,6 @@ export class Argument {
       } as MarkupInput
     } else if (this.argumentType === MarkupArgumentType.SelectFilter) {
       const args = this.argument ? [this.argument.getMarkup()] : []
-      console.log('args---->', args)
       return {
         hierarchicalType: MarkupHierarchicalType.Argument,
         id: this.id,
@@ -175,9 +172,23 @@ export class Argument {
 
   public update(value: string | number | boolean | Filter) {
     if (this.argumentType === MarkupArgumentType.SelectFilter) {
-      ;(this.value as [Filter, number] | [Filter, string] | [Filter, boolean])[0] = (Filter[
-        value as number
-      ] as unknown) as Filter
+      if (value === 'custom' && this.value !== Filter['custom']) {
+        this.value = [(Filter[value] as unknown) as Filter, [DEFAULT_OPERATOR]]
+        this.argument = new Argument(
+          this.cache,
+          { name: 'by', optional: false, type: MirArgumentType.Subscript },
+          (this.value as [Filter, MirScript])[1],
+        )
+      } else {
+        ;(this.value as [Filter, number] | [Filter, string] | [Filter, boolean])[0] = (Filter[
+          value as number
+        ] as unknown) as Filter
+        this.argument = new Argument(
+          this.cache,
+          { name: 'by', optional: false, type: MirArgumentType.String },
+          (this.value as [Filter, boolean | string | number])[1]
+        )
+      }
     } else {
       this.value = value
     }
