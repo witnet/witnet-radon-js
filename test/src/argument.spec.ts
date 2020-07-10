@@ -1,6 +1,6 @@
 import { Argument, generateReducerArgumentOptions } from '../../src/argument'
 import { Cache, operatorInfos } from '../../src/structures'
-import { DEFAULT_OPERATOR } from '../../src/constants'
+import { DEFAULT_SUBSCRIPT_OPERATOR } from '../../src/constants'
 import {
   OutputType,
   OperatorCode,
@@ -992,7 +992,7 @@ describe('Argument methods', () => {
         optional: false,
         type: MirArgumentType.FilterFunction,
       }
-      const argument = new Argument(cache, argumentInfo, [Filter.custom, [DEFAULT_OPERATOR]])
+      const argument = new Argument(cache, argumentInfo, [Filter.custom, [DEFAULT_SUBSCRIPT_OPERATOR]])
       argument.update('bottom')
       const result = (argument.argument as Argument).argumentInfo.type
       const expected = MirArgumentType.String

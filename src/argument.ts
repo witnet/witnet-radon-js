@@ -15,7 +15,7 @@ import {
   OutputType,
   Reducer,
 } from './types'
-import { DEFAULT_OPERATOR } from './constants'
+import { DEFAULT_SUBSCRIPT_OPERATOR } from './constants'
 import { Cache } from './structures'
 import { getArgumentInfoType, getEnumNames, getMarkupInputTypeFromArgumentType } from './utils'
 import { Script } from './script'
@@ -68,7 +68,7 @@ export class Argument {
         argument as Reducer
       )
     } else if (this.argumentInfo.type === MirArgumentType.Subscript) {
-      this.argument = new Script(this.cache, argument as MirScript)
+      this.argument = new Script(this.cache, argument as MirScript, OutputType.SubscriptOutput)
     } else {
       this.argument = null
     }
@@ -173,7 +173,7 @@ export class Argument {
   public update(value: string | number | boolean | Filter) {
     if (this.argumentType === MarkupArgumentType.SelectFilter) {
       if (value === 'custom' && this.value !== Filter['custom']) {
-        this.value = [(Filter[value] as unknown) as Filter, [DEFAULT_OPERATOR]]
+        this.value = [(Filter[value] as unknown) as Filter, [DEFAULT_SUBSCRIPT_OPERATOR]]
         this.argument = new Argument(
           this.cache,
           { name: 'by', optional: false, type: MirArgumentType.Subscript },

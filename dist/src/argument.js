@@ -7,14 +7,12 @@ var utils_1 = require("./utils");
 var script_1 = require("./script");
 var Argument = /** @class */ (function () {
     // TODO: find a better way to discriminate whether the argument is a subscript
-    function Argument(cache, argumentInfo, argument, subscript) {
-        if (subscript === void 0) { subscript = false; }
+    function Argument(cache, argumentInfo, argument) {
         this.argumentType = utils_1.getArgumentInfoType(argumentInfo);
         this.id = cache.insert(this).id;
         this.argumentInfo = argumentInfo;
         this.cache = cache;
         this.value = argument;
-        this.subscript = subscript;
         if (this.argumentInfo.type === types_1.MirArgumentType.Boolean ||
             this.argumentInfo.type === types_1.MirArgumentType.Float ||
             this.argumentInfo.type === types_1.MirArgumentType.Integer ||
@@ -34,7 +32,7 @@ var Argument = /** @class */ (function () {
             this.argument = new Argument(this.cache, { name: 'by', optional: false, type: types_1.MirArgumentType.String }, argument);
         }
         else if (this.argumentInfo.type === types_1.MirArgumentType.Subscript) {
-            this.argument = new script_1.Script(this.cache, argument);
+            this.argument = new script_1.Script(this.cache, argument, types_1.OutputType.SubscriptOutput);
         }
         else {
             this.argument = null;
@@ -148,8 +146,8 @@ var Argument = /** @class */ (function () {
     Argument.prototype.update = function (value) {
         if (this.argumentType === types_1.MarkupArgumentType.SelectFilter) {
             if (value === 'custom' && this.value !== types_1.Filter['custom']) {
-                this.value = [types_1.Filter[value], [constants_1.DEFAULT_OPERATOR]];
-                this.argument = new Argument(this.cache, { name: 'by', optional: false, type: types_1.MirArgumentType.Subscript }, this.value[1], true);
+                this.value = [types_1.Filter[value], [constants_1.DEFAULT_SUBSCRIPT_OPERATOR]];
+                this.argument = new Argument(this.cache, { name: 'by', optional: false, type: types_1.MirArgumentType.Subscript }, this.value[1]);
             }
             else {
                 ;
