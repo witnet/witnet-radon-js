@@ -3288,14 +3288,14 @@ describe('Radon', () => {
         retrieve: [
           {
             kind: 'HTTP-GET',
-            script: [119, [102, 'data'], [101, 'closing_price']],
+            script: [119, [102, 'data'], [100, 'closing_price']],
             contentType: 'JSON API',
             url: 'https://api.bithumb.com/public/ticker/BTC',
           },
           {
             contentType: 'JSON API',
             kind: 'HTTP-GET',
-            script: [119, [101, 'price']],
+            script: [119, [100, 'price']],
             url:
               'https://api.coinpaprika.com/v1/price-converter?base_currency_id=btc-bitcoin&quote_currency_id=krw-south-korea-won&amount=1',
           },
@@ -3314,8 +3314,8 @@ describe('Radon', () => {
                 ],
               ],
               [
-                27, //map
-                [[0x65, 'price']],
+                26, //map
+                [[0x64, 'price']],
               ],
               [
                 23, // get
@@ -3339,39 +3339,39 @@ describe('Radon', () => {
       const expected = formatJsTest(
         `import * as Witnet from \"witnet-requests\"
         const request = new Witnet.Request()
-        const source_0 = new Witnet.Source(\"https://api.bithumb.com/public/ticker/BTC\")  
-          .parseJSONMap()  
-          .getMap(\"data\")  
+        const source_0 = new Witnet.Source(\"https://api.bithumb.com/public/ticker/BTC\")
+          .parseJSONMap()
+          .getMap(\"data\")
           .getFloat(\"closing_price\")
         const source_1 = new Witnet
-          .Source(  \"https://api.coinpaprika.com/v1/price-converter?base_currency_id=btc-bitcoin&quote_currency_id=krw-south-korea-won&amount=1\")  
-          .parseJSONMap()  
+          .Source(  \"https://api.coinpaprika.com/v1/price-converter?base_currency_id=btc-bitcoin&quote_currency_id=krw-south-korea-won&amount=1\")
+          .parseJSONMap()
           .getFloat(\"price\")
         const source_2 = new Witnet
-          .Source(  \"https://billboard.service.cryptowat.ch/assets?quote=krw&limit=1&sort=volume\")  
-          .parseJSONMap()  
-          .getMap(\"result\")  
-          .getArray(\"rows\")  
+          .Source(  \"https://billboard.service.cryptowat.ch/assets?quote=krw&limit=1&sort=volume\")
+          .parseJSONMap()
+          .getMap(\"result\")
+          .getArray(\"rows\")
           .filter(new Script()
           .getString(\"symbol\")
-          .match(\"{btc: true}\", false))  
+          .match(\"{btc: true}\", false))
           .map(new Script()
-          .getFloat(\"price\"))  
+          .getFloat(\"price\"))
           .getFloat(0)
         const aggregator = new Witnet
           .aggregator({  filters: [],  reducer: Witnet.Types.REDUCERS.mode,})
         const tally = new Witnet
           .tally({  filters: [],  reducer: Witnet.Types.REDUCERS.mode,})
         const request = new Witnet
-          .Request()  
-          .addSource(source_0)  
-          .addSource(source_1)  
-          .addSource(source_2)  
-          .setAggregator(aggregator) // Set the aggregator function   
-          .setTally(tally) // Set the tally function   
-          .setQuorum(4, 70) // Set witness count 
-          .setFees(10, 1, 1, 1) // Set economic incentives 
-          .schedule(0) // Make this request immediately solvable 
+          .Request()
+          .addSource(source_0)
+          .addSource(source_1)
+          .addSource(source_2)
+          .setAggregator(aggregator) // Set the aggregator function
+          .setTally(tally) // Set the tally function
+          .setQuorum(4, 70) // Set witness count
+          .setFees(10, 1, 1, 1) // Set economic incentives
+          .schedule(0) // Make this request immediately solvable
           export { request as default }`
       )
 
