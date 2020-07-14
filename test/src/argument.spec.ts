@@ -13,6 +13,7 @@ import {
   Reducer,
   MirScript,
 } from '../../src/types'
+import { formatJsTest } from '../utils'
 
 const reducerOptions = generateReducerArgumentOptions()
 
@@ -52,20 +53,23 @@ describe('Argument methods', () => {
       expect(result).toStrictEqual(expected)
     })
 
-    it('boolean', () => {
-      const operator: MirOperator = [OperatorCode.ArraySort, '', true]
-      const argumentInfo: ArgumentInfo = operatorInfos[operator[0]].arguments[1]
+    it('with map input', () => {
+      const operator: MirOperator = [OperatorCode.StringMatch, { BTC: true }, true]
+      const argumentInfo: ArgumentInfo = operatorInfos[operator[0]].arguments[0]
       const cache = new Cache()
-      const argument = new Argument(cache, argumentInfo, operator[2])
+      const argument = new Argument(cache, argumentInfo, operator[1])
       const result = argument.getMarkup()
       const expected = {
         hierarchicalType: 'argument',
         id: 1,
-        label: 'ascending',
+        label: 'categories',
         markupType: 'input',
-        value: true,
-        type: 'boolean',
+        type: 'map',
+        value: {
+          BTC: true,
+        },
       }
+
       expect(result).toStrictEqual(expected)
     })
 
@@ -1565,7 +1569,7 @@ describe('Argument methods', () => {
                         label: 'categories',
                         markupType: 'input',
                         value: '{ "btc": true }',
-                        type: 'string',
+                        type: 'map',
                       },
                       {
                         hierarchicalType: 'argument',
@@ -1683,6 +1687,92 @@ describe('Argument methods', () => {
 
       expect(result).toStrictEqual(expected)
     })
+
+    it('with map input', () => {
+      const operator: MirOperator = [OperatorCode.StringMatch, { BTC: true }, true]
+      const argumentInfo: ArgumentInfo = operatorInfos[operator[0]].arguments[0]
+      const cache = new Cache()
+      const argument = new Argument(cache, argumentInfo, operator[1])
+      const result = argument.getMir()
+
+      expect(result).toStrictEqual(operator[1])
+    })
+  })
+
+  describe('getJs', () => {
+    it('string', () => {
+      const argumentInfo: ArgumentInfo = operatorInfos[OperatorCode.MapGetMap].arguments[0]
+      const cache: Cache = new Cache()
+      const argument = new Argument(cache, argumentInfo, 'bpi')
+      const result = argument.getJs()
+      const expected = '"bpi"'
+
+      expect(result).toStrictEqual(expected)
+    })
+
+    it('float', () => {
+      const argumentInfo: ArgumentInfo = operatorInfos[OperatorCode.FloatGraterThan].arguments[0]
+      const cache = new Cache()
+      const argument = new Argument(cache, argumentInfo, 1.1)
+      const result = argument.getJs()
+      const expected = 1.1
+
+      expect(result).toStrictEqual(expected)
+    })
+
+    it('boolean', () => {
+      const argumentInfo: ArgumentInfo = operatorInfos[OperatorCode.ArraySort].arguments[1]
+      const cache = new Cache()
+      const argument = new Argument(cache, argumentInfo, true)
+      const result = argument.getJs()
+      const expected = true
+
+      expect(result).toStrictEqual(expected)
+    })
+
+    it('subscript', () => {
+      const argumentInfo = operatorInfos[OperatorCode.ArrayMap].arguments[0]
+      const operator: MirOperator = [
+        OperatorCode.ArrayMap,
+        [[OperatorCode.MapGetString, 'symbol'], OperatorCode.StringToLowerCase],
+      ]
+      const cache = new Cache()
+      const argument = new Argument(cache, argumentInfo, operator[1])
+      const result = formatJsTest(`${argument.getJs()}`)
+      const expected = formatJsTest('new Script().getString("symbol").toLowerCase()')
+
+      expect(result).toStrictEqual(expected)
+    })
+
+    it('filter', () => {
+      const argumentInfo = operatorInfos[OperatorCode.ArraySome].arguments[0]
+      const cache = new Cache()
+      const argument = new Argument(cache, argumentInfo, [0x00, 1])
+      const result = argument.getJs()
+      const expected = '1'
+
+      expect(result).toStrictEqual(expected)
+    })
+
+    it('reducer', () => {
+      const argumentInfo = operatorInfos[OperatorCode.ArrayReduce].arguments[0]
+      const cache = new Cache()
+      const argument = new Argument(cache, argumentInfo, 0x00)
+      const result = argument.getJs()
+      const expected = 'min'
+
+      expect(result).toStrictEqual(expected)
+    })
+
+    it('with map input', () => {
+      const operator: MirOperator = [OperatorCode.StringMatch, { BTC: true }, true]
+      const argumentInfo: ArgumentInfo = operatorInfos[operator[0]].arguments[0]
+      const cache = new Cache()
+      const argument = new Argument(cache, argumentInfo, operator[1])
+      const result = argument.getJs()
+
+      expect(result).toStrictEqual('{"BTC":true}')
+    })
   })
 
   describe('update', () => {
@@ -1735,10 +1825,7 @@ describe('Argument methods', () => {
         optional: false,
         type: MirArgumentType.FilterFunction,
       }
-      const argument = new Argument(cache, argumentInfo, [
-        Filter.custom,
-        [DEFAULT_OPERATOR],
-      ])
+      const argument = new Argument(cache, argumentInfo, [Filter.custom, [DEFAULT_OPERATOR]])
       argument.update('bottom')
       const result = (argument.argument as Argument).argumentInfo.type
       const expected = MirArgumentType.String
@@ -1812,6 +1899,17 @@ describe('Argument methods', () => {
       argument.update(newValue)
 
       expect(argument.value).toBe(newValue)
+    })
+
+    it('map input', () => {
+      const cache = new Cache()
+      const operator: MirOperator = [OperatorCode.StringMatch, { BTC: true }, true]
+      const argumentInfo: ArgumentInfo = operatorInfos[operator[0]].arguments[0]
+      const argument = new Argument(cache, argumentInfo, operator[1])
+      const newValue = { ETH: false }
+      argument.update(newValue)
+
+      expect(argument.value).toStrictEqual(newValue)
     })
   })
 })

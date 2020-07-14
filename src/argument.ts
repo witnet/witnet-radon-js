@@ -166,27 +166,33 @@ export class Argument {
     }
   }
 
-  public update(value: string | number | boolean | Filter) {
+  public update(value: string | number | boolean | Filter | Object) {
     if (this.argumentType === MarkupArgumentType.SelectFilter) {
       if (value === 'custom' && (this.value as [Filter, MirScript])[0] !== Filter['custom']) {
         // the current argument is an input argument and the new value is a subscript argument
-        this.value = [(Filter[value] as unknown) as Filter, [DEFAULT_OPERATOR]]
+        this.value = [Filter[value as keyof typeof Filter], [DEFAULT_OPERATOR]]
         this.argument = new Argument(
           this.cache,
           { name: 'by', optional: false, type: MirArgumentType.Subscript },
           (this.value as [Filter, MirScript])[1]
         )
-      } else if (value !== 'custom' && (this.value as [Filter, MirScript])[0] === Filter['custom']) {
+      } else if (
+        value !== 'custom' &&
+        (this.value as [Filter, MirScript])[0] === Filter['custom']
+      ) {
         // the current argument is a subscript argument and the new value is an input argument
-        (this.value as MirArgument) = [Filter[value as keyof typeof Filter], '']
+        ;(this.value as MirArgument) = [Filter[value as keyof typeof Filter], '']
         this.argument = new Argument(
           this.cache,
           { name: 'by', optional: false, type: MirArgumentType.String },
           ''
         )
-      } else if (value !== 'custom' && (this.value as [Filter, MirScript])[0] !== Filter['custom']){
+      } else if (
+        value !== 'custom' &&
+        (this.value as [Filter, MirScript])[0] !== Filter['custom']
+      ) {
         // the current argument is an input argument and the new value is also an input argument
-        (this.value as [Filter, MirArgument])[0] = Filter[value as keyof typeof Filter]
+        ;(this.value as [Filter, MirArgument])[0] = Filter[value as keyof typeof Filter]
       }
     } else {
       this.value = value

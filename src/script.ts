@@ -23,7 +23,6 @@ export class Script {
     script.reduce((acc, item) => {
       let op = new Operator(cache, this.scriptId, acc, item, this.onChildrenEvent())
       this.operators.push(op)
-
       // If the `outputType` is `same` (a pseudo-type), return the input type
       // so the available methods can be guessed correctly.
       if (op.operatorInfo.outputType === 'same') {
@@ -83,8 +82,12 @@ export class Script {
   }
 
   public getOutputType(): OutputType {
-    const lastOperator = this.getLastOperator()
-    return lastOperator ? lastOperator.operatorInfo.outputType : this.firstType
+    return this.getLastOperator()
+      ? this.operators.reduce((acc, operator) => {
+          let outputType = operator.operatorInfo.outputType
+          return outputType === OutputType.Same ? acc : outputType
+        }, this.firstType)
+      : this.firstType
   }
 
   public onChildrenEvent() {

@@ -75,7 +75,6 @@ export class Operator {
 
   public getMarkup(): MarkupOperator {
     const args = this.arguments.map((argument) => argument.getMarkup())
-
     return {
       hierarchicalType: MarkupHierarchicalType.Operator,
       id: this.id,
@@ -118,9 +117,9 @@ export class Operator {
     this.code = operatorCode
     this.operatorInfo = operatorInfo
     this.mirArguments = defaultOperatorArguments
-    this.arguments = defaultOperatorArguments.map(
-      (x, index: number) => new Argument(this.cache, this.operatorInfo.arguments[index], x)
-    )
+    this.arguments = defaultOperatorArguments.map((x, index: number) => {
+      return new Argument(this.cache, this.operatorInfo.arguments[index], x)
+    })
     this.eventEmitter.emit({
       name: EventName.Update,
       data: { operator: { id: this.id, scriptId: this.scriptId } },

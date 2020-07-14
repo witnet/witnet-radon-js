@@ -14,6 +14,7 @@ import {
   Reducer,
   Type,
 } from './types'
+import { DEFAULT_OPERATOR } from './constants'
 import { markupOptions } from './structures'
 import { Operator } from './operator'
 
@@ -74,6 +75,8 @@ export function getMarkupInputTypeFromArgumentType(argumentType: MirArgumentType
     return MarkupInputType.Number
   } else if (argumentType === MirArgumentType.Boolean) {
     return MarkupInputType.Boolean
+  } else if (argumentType === MirArgumentType.Map) {
+    return MarkupInputType.Map
   } else {
     return MarkupInputType.String
   }
@@ -106,7 +109,9 @@ export function getDefaultMirArgumentByType(type: MirArgumentType): MirArgument 
     case MirArgumentType.String:
       return ''
     case MirArgumentType.Subscript:
-      return ''
+      return [DEFAULT_OPERATOR]
+    case MirArgumentType.Map:
+      return {}
   }
 }
 

@@ -12,7 +12,7 @@ export declare class Argument {
     getJs(): string | number;
     getMarkup(): MarkupArgument;
     getMir(): MirArgument;
-    update(value: string | number | boolean | Filter): void;
+    update(value: string | number | boolean | Filter | Object): void;
 }
 export declare function generateFilterArgumentOptions(): Array<MarkupOption>;
 export declare function generateReducerArgumentOptions(): Array<MarkupOption>;

@@ -209,7 +209,7 @@ describe('Radon', () => {
                       label: 'categories',
                       markupType: 'input',
                       value: '',
-                      type: 'string',
+                      type: 'map',
                     },
                     {
                       hierarchicalType: 'argument',
@@ -287,7 +287,7 @@ describe('Radon', () => {
                       label: 'categories',
                       markupType: 'input',
                       value: '',
-                      type: 'string',
+                      type: 'map',
                     },
                     {
                       hierarchicalType: 'argument',
@@ -1925,7 +1925,7 @@ describe('Radon', () => {
                                       label: 'categories',
                                       markupType: 'input',
                                       value: '{ "BTC": true, "ETH": true }',
-                                      type: 'string',
+                                      type: 'map',
                                     },
                                     {
                                       hierarchicalType: 'argument',
@@ -3324,7 +3324,7 @@ describe('Radon', () => {
                       label: 'categories',
                       markupType: 'input',
                       value: '',
-                      type: 'string',
+                      type: 'map',
                     },
                     {
                       hierarchicalType: 'argument',

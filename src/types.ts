@@ -124,6 +124,7 @@ export enum MarkupInputType {
   Number = 'number',
   Boolean = 'boolean',
   String = 'string',
+  Map = 'map',
 }
 
 export type MarkupOption = {
@@ -293,6 +294,7 @@ export enum MirArgumentType {
   Float,
   String,
   Boolean,
+  Map,
 }
 
 export enum MarkupArgumentType {
@@ -312,6 +314,7 @@ export type MirArgument =
   | [Filter, MirScript]
   | MirScript
   | Reducer
+  | Object
 
 export type MirAggregationTallyFilterOperator =
   | AggregationTallyFilter
