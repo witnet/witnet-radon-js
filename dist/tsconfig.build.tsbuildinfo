@@ -207,7 +207,7 @@
         "affectsGlobalScope": false
       },
       "../src/script.ts": {
-        "version": "c3d206150725bc3a5b356df7d620664209d2c59863d4f386d3c6783cfcb4f493",
+        "version": "c2bdd08beeae20af7319584f78a2fc865cb3ba3257a0a1d2e70e57354ccdbb9d",
         "signature": "37ce10cbcdae65c2054ee64234091f61bc482d0f5c92c78e3698c6d99e9914e5",
         "affectsGlobalScope": false
       },
@@ -217,17 +217,17 @@
         "affectsGlobalScope": false
       },
       "../src/operator.ts": {
-        "version": "92fd97d3ee1b8614ab8b65a7c1a57611637e142bf27ff9a00308f8380c3c71db",
+        "version": "5857ffcbf4cf175cb8a305d3b6a9d477059562e7eafa2920dd78917d966ebfd6",
         "signature": "4cf17756e58a08306d05179b7b1dc3e7fe1d64d8d7ad79035a275cc7b22c38e3",
         "affectsGlobalScope": false
       },
       "../src/utils.ts": {
-        "version": "d6f9f395ddd18b988f31626144f3d4d71d84120754b324557d67ecb5f98e5672",
+        "version": "2d38b39371aa1a854e8feac99bb8d44eb21f1251b5782532c4af41faff14a972",
         "signature": "8511956b7cc76a8ab6b99fe6328ac63dd767d36b45b7f04648c2ab90a727ea96",
         "affectsGlobalScope": false
       },
       "../src/structures.ts": {
-        "version": "e86e169367f0ca9745fc6a269bc8d468bcecbc465201b4bb1d7b0ea7233093e7",
+        "version": "a2ff0245c7a73bd1eca8e2ca697ed493ea66d91b26d374b3a0c5c10099416756",
         "signature": "d1c5f356fca63567be098aec28934afd036196dc7c45aab6223b0a255f124fe2",
         "affectsGlobalScope": false
       },
@@ -252,8 +252,8 @@
         "affectsGlobalScope": false
       },
       "../src/types.ts": {
-        "version": "e0dab37dde031094cba2eb78470adff35da677b872bc488e56a6968edda48cda",
-        "signature": "cd876c9188b71b68093746f942ee61258aa28c3e699af4e36e823af68da2a360",
+        "version": "6b38031d50b4a21d1b4b83e0c85df979572aeecc9c63661044e966437524ef70",
+        "signature": "d86aab7a10493c635b501aa98ec7129682fd5e200555ff2419d126c547776bc2",
         "affectsGlobalScope": false
       },
       "../src/aggregationtallyfilterargument.ts": {
@@ -2293,6 +2293,7 @@
         "../node_modules/@types/node/util.d.ts",
         "../node_modules/@types/prettier/parser-babel.d.ts",
         "../node_modules/@types/prettier/standalone.d.ts",
+        "../src/constants.ts",
         "../src/operator.ts",
         "../src/structures.ts",
         "../src/types.ts"

@@ -390,7 +390,7 @@ exports.operatorInfos = (_l = {},
             {
                 name: 'categories',
                 optional: false,
-                type: types_1.MirArgumentType.String,
+                type: types_1.MirArgumentType.Map,
             },
             {
                 name: 'default',
@@ -493,7 +493,7 @@ exports.operatorInfos = (_l = {},
             {
                 name: 'categories',
                 optional: false,
-                type: types_1.MirArgumentType.String,
+                type: types_1.MirArgumentType.Map,
             },
             {
                 name: 'default',
@@ -953,7 +953,7 @@ exports.operatorInfos = (_l = {},
             {
                 name: 'categories',
                 optional: false,
-                type: types_1.MirArgumentType.String,
+                type: types_1.MirArgumentType.Map,
             },
             {
                 name: 'default',

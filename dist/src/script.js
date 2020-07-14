@@ -64,8 +64,9 @@ var Script = /** @class */ (function () {
         return this.operators.map(function (operator) { return operator.getMir(); });
     };
     Script.prototype.getOutputType = function () {
-        var lastOperator = this.getLastOperator();
-        return lastOperator ? lastOperator.operatorInfo.outputType : this.firstType;
+        return this.getLastOperator() ? this.operators.reduce(function (acc, operator) {
+            return operator.operatorInfo.outputType === types_1.OutputType.Same ? acc : operator.operatorInfo.outputType;
+        }, this.firstType) : this.firstType;
     };
     Script.prototype.onChildrenEvent = function () {
         var _this = this;

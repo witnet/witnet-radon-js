@@ -360,7 +360,7 @@ export const operatorInfos: OperatorInfos = {
       {
         name: 'categories',
         optional: false,
-        type: MirArgumentType.String,
+        type: MirArgumentType.Map,
       },
       {
         name: 'default',
@@ -456,7 +456,7 @@ export const operatorInfos: OperatorInfos = {
       {
         name: 'categories',
         optional: false,
-        type: MirArgumentType.String,
+        type: MirArgumentType.Map,
       },
       {
         name: 'default',
@@ -885,7 +885,7 @@ export const operatorInfos: OperatorInfos = {
       {
         name: 'categories',
         optional: false,
-        type: MirArgumentType.String,
+        type: MirArgumentType.Map,
       },
       {
         name: 'default',

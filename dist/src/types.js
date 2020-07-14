@@ -98,6 +98,7 @@ var MarkupInputType;
     MarkupInputType["Number"] = "number";
     MarkupInputType["Boolean"] = "boolean";
     MarkupInputType["String"] = "string";
+    MarkupInputType["Map"] = "map";
 })(MarkupInputType = exports.MarkupInputType || (exports.MarkupInputType = {}));
 var MarkupType;
 (function (MarkupType) {
@@ -191,6 +192,7 @@ var MirArgumentType;
     MirArgumentType[MirArgumentType["Float"] = 4] = "Float";
     MirArgumentType[MirArgumentType["String"] = 5] = "String";
     MirArgumentType[MirArgumentType["Boolean"] = 6] = "Boolean";
+    MirArgumentType[MirArgumentType["Map"] = 7] = "Map";
 })(MirArgumentType = exports.MirArgumentType || (exports.MirArgumentType = {}));
 var MarkupArgumentType;
 (function (MarkupArgumentType) {

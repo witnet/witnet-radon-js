@@ -7,6 +7,7 @@ exports.isStringType = exports.isMapType = exports.isIntegerType = exports.isFlo
 var standalone_1 = __importDefault(require("prettier/standalone"));
 var parser_babel_1 = __importDefault(require("prettier/parser-babel"));
 var types_1 = require("./types");
+var constants_1 = require("./constants");
 var structures_1 = require("./structures");
 // check if contains the same elements
 function areSoftEqualArrays(arr1, arr2) {
@@ -73,6 +74,9 @@ function getMarkupInputTypeFromArgumentType(argumentType) {
     else if (argumentType === types_1.MirArgumentType.Boolean) {
         return types_1.MarkupInputType.Boolean;
     }
+    else if (argumentType === types_1.MirArgumentType.Map) {
+        return types_1.MarkupInputType.Map;
+    }
     else {
         return types_1.MarkupInputType.String;
     }
@@ -108,6 +112,9 @@ function getDefaultMirArgumentByType(type) {
         case types_1.MirArgumentType.String:
             return '';
         case types_1.MirArgumentType.Subscript:
+            return [constants_1.DEFAULT_OPERATOR];
+        //TODO: Return empty object
+        case types_1.MirArgumentType.Map:
             return '';
     }
 }

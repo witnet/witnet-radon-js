@@ -99,7 +99,9 @@ var Operator = /** @class */ (function () {
         this.code = operatorCode;
         this.operatorInfo = operatorInfo;
         this.mirArguments = defaultOperatorArguments;
-        this.arguments = defaultOperatorArguments.map(function (x, index) { return new argument_1.Argument(_this.cache, _this.operatorInfo.arguments[index], x); });
+        this.arguments = defaultOperatorArguments.map(function (x, index) {
+            return new argument_1.Argument(_this.cache, _this.operatorInfo.arguments[index], x);
+        });
         this.eventEmitter.emit({
             name: types_1.EventName.Update,
             data: { operator: { id: this.id, scriptId: this.scriptId } },

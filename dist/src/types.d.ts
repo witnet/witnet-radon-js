@@ -104,7 +104,8 @@ export declare enum MarkupHierarchicalType {
 export declare enum MarkupInputType {
     Number = "number",
     Boolean = "boolean",
-    String = "string"
+    String = "string",
+    Map = "map"
 }
 export declare type MarkupOption = {
     hierarchicalType: MarkupHierarchicalType.OperatorOption;
@@ -255,7 +256,8 @@ export declare enum MirArgumentType {
     ReducerFunction = 3,
     Float = 4,
     String = 5,
-    Boolean = 6
+    Boolean = 6,
+    Map = 7
 }
 export declare enum MarkupArgumentType {
     Input = 0,

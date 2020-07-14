@@ -1565,7 +1565,7 @@ describe('Argument methods', () => {
                         label: 'categories',
                         markupType: 'input',
                         value: '{ "btc": true }',
-                        type: 'string',
+                        type: 'map',
                       },
                       {
                         hierarchicalType: 'argument',
