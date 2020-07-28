@@ -109,7 +109,7 @@ export declare enum MarkupInputType {
 }
 export declare type MarkupOption = {
     hierarchicalType: MarkupHierarchicalType.OperatorOption;
-    label: string;
+    label: string | boolean;
     markupType: MarkupType.Option;
     outputType: OutputType | Array<OutputType>;
 };
@@ -261,9 +261,10 @@ export declare enum MirArgumentType {
 }
 export declare enum MarkupArgumentType {
     Input = 0,
-    SelectFilter = 1,
-    SelectReduce = 2,
-    Subscript = 3
+    SelectBoolean = 1,
+    SelectFilter = 2,
+    SelectReduce = 3,
+    Subscript = 4
 }
 export declare type MirArgument = string | number | boolean | [Filter, number] | [Filter, string] | [Filter, boolean] | [Filter, MirScript] | MirScript | Reducer | Object;
 export declare type MirAggregationTallyFilterOperator = AggregationTallyFilter | [AggregationTallyFilter, number] | [AggregationTallyFilter, string] | [AggregationTallyFilter, boolean];

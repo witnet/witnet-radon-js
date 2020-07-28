@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.generateReducerArgumentOptions = exports.generateFilterArgumentOptions = exports.Argument = void 0;
+exports.generateReducerArgumentOptions = exports.generateBooleanArgumentOptions = exports.generateFilterArgumentOptions = exports.Argument = void 0;
 var types_1 = require("./types");
 var constants_1 = require("./constants");
 var utils_1 = require("./utils");
@@ -77,6 +77,23 @@ var Argument = /** @class */ (function () {
                 type: utils_1.getMarkupInputTypeFromArgumentType(this.argumentInfo.type),
             };
         }
+        else if (this.argumentType === types_1.MarkupArgumentType.SelectBoolean) {
+            return {
+                hierarchicalType: types_1.MarkupHierarchicalType.Argument,
+                id: this.id,
+                label: this.argumentInfo.name,
+                markupType: types_1.MarkupType.Select,
+                options: generateBooleanArgumentOptions(),
+                outputType: types_1.OutputType.Boolean,
+                selected: {
+                    arguments: [],
+                    hierarchicalType: types_1.MarkupHierarchicalType.SelectedOperatorOption,
+                    label: this.value,
+                    outputType: generateBooleanArgumentOptions()[0].outputType,
+                    markupType: types_1.MarkupType.Option,
+                },
+            };
+        }
         else if (this.argumentType === types_1.MarkupArgumentType.SelectFilter) {
             var args = this.argument ? [this.argument.getMarkup()] : [];
             return {
@@ -150,13 +167,17 @@ var Argument = /** @class */ (function () {
                 this.value = [types_1.Filter[value], [constants_1.DEFAULT_OPERATOR]];
                 this.argument = new Argument(this.cache, { name: 'by', optional: false, type: types_1.MirArgumentType.Subscript }, this.value[1]);
             }
-            else if (value !== 'custom' && this.value[0] === types_1.Filter['custom']) {
+            else if (value !== 'custom' &&
+                this.value[0] === types_1.Filter['custom']) {
                 // the current argument is a subscript argument and the new value is an input argument
+                ;
                 this.value = [types_1.Filter[value], ''];
                 this.argument = new Argument(this.cache, { name: 'by', optional: false, type: types_1.MirArgumentType.String }, '');
             }
-            else if (value !== 'custom' && this.value[0] !== types_1.Filter['custom']) {
+            else if (value !== 'custom' &&
+                this.value[0] !== types_1.Filter['custom']) {
                 // the current argument is an input argument and the new value is also an input argument
+                ;
                 this.value[0] = types_1.Filter[value];
             }
         }
@@ -179,6 +200,24 @@ function generateFilterArgumentOptions() {
     return markupOptions;
 }
 exports.generateFilterArgumentOptions = generateFilterArgumentOptions;
+function generateBooleanArgumentOptions() {
+    var markupOptions = [
+        {
+            label: true,
+            hierarchicalType: types_1.MarkupHierarchicalType.OperatorOption,
+            markupType: types_1.MarkupType.Option,
+            outputType: types_1.OutputType.Boolean,
+        },
+        {
+            label: false,
+            hierarchicalType: types_1.MarkupHierarchicalType.OperatorOption,
+            markupType: types_1.MarkupType.Option,
+            outputType: types_1.OutputType.Boolean,
+        },
+    ];
+    return markupOptions;
+}
+exports.generateBooleanArgumentOptions = generateBooleanArgumentOptions;
 function generateReducerArgumentOptions() {
     var markupOptions = utils_1.getEnumNames(types_1.Reducer).map(function (name) {
         return {

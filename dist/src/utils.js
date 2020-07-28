@@ -92,6 +92,9 @@ function getArgumentInfoType(info) {
     else if (info.type === types_1.MirArgumentType.Subscript) {
         return types_1.MarkupArgumentType.Subscript;
     }
+    else if (info.type === types_1.MirArgumentType.Boolean) {
+        return types_1.MarkupArgumentType.SelectBoolean;
+    }
     else {
         return types_1.MarkupArgumentType.Input;
     }
