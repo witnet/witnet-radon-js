@@ -70,11 +70,11 @@ export class Argument {
     }
   }
 
-  public getJs(): string | number {
+  public getJs(): string | number | boolean {
     const type = this.argumentInfo.type
 
     if (type === MirArgumentType.Boolean) {
-      return this.value as string
+      return this.value as boolean
     } else if (type === MirArgumentType.FilterFunction) {
       return (this.argument as Script).getJs()
     } else if (type === MirArgumentType.Float) {
@@ -100,9 +100,25 @@ export class Argument {
         id: this.id,
         label: this.argumentInfo.name,
         markupType: MarkupType.Input,
-        value: this.value as string | number | boolean,
+        value: this.value as string | number,
         type: getMarkupInputTypeFromArgumentType(this.argumentInfo.type),
       } as MarkupInput
+    } else if (this.argumentType === MarkupArgumentType.SelectBoolean) {
+      return {
+        hierarchicalType: MarkupHierarchicalType.Argument,
+        id: this.id,
+        label: this.argumentInfo.name,
+        markupType: MarkupType.Select,
+        options: generateBooleanArgumentOptions(),
+        outputType: OutputType.Boolean,
+        selected: {
+          arguments: [],
+          hierarchicalType: MarkupHierarchicalType.SelectedOperatorOption,
+          label: this.value,
+          outputType: generateBooleanArgumentOptions()[0].outputType,
+          markupType: MarkupType.Option,
+        },
+      } as MarkupSelect
     } else if (this.argumentType === MarkupArgumentType.SelectFilter) {
       const args = this.argument ? [this.argument.getMarkup()] : []
       return {
@@ -209,6 +225,17 @@ export function generateFilterArgumentOptions(): Array<MarkupOption> {
       outputType: OutputType.FilterOutput,
     }
   })
+
+  return markupOptions
+}
+
+export function generateBooleanArgumentOptions(): Array<MarkupOption> {
+  const markupOptions: Array<MarkupOption> = [true, false].map(label => ({
+    label,
+    hierarchicalType: MarkupHierarchicalType.OperatorOption,
+    markupType: MarkupType.Option,
+    outputType: OutputType.Boolean,
+  }))
 
   return markupOptions
 }

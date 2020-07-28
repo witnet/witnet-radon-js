@@ -129,7 +129,7 @@ export enum MarkupInputType {
 
 export type MarkupOption = {
   hierarchicalType: MarkupHierarchicalType.OperatorOption
-  label: string
+  label: string | boolean
   markupType: MarkupType.Option
   outputType: OutputType | Array<OutputType>
 }
@@ -299,6 +299,7 @@ export enum MirArgumentType {
 
 export enum MarkupArgumentType {
   Input,
+  SelectBoolean,
   SelectFilter,
   SelectReduce,
   Subscript,

@@ -89,6 +89,8 @@ export function getArgumentInfoType(info: ArgumentInfo): MarkupArgumentType {
     return MarkupArgumentType.SelectReduce
   } else if (info.type === MirArgumentType.Subscript) {
     return MarkupArgumentType.Subscript
+  } else if (info.type === MirArgumentType.Boolean) {
+    return MarkupArgumentType.SelectBoolean
   } else {
     return MarkupArgumentType.Input
   }

@@ -9,11 +9,12 @@ export declare class Argument {
     id: number;
     value: MirArgument | undefined;
     constructor(cache: Cache, argumentInfo: ArgumentInfo, argument?: MirArgument);
-    getJs(): string | number;
+    getJs(): string | number | boolean;
     getMarkup(): MarkupArgument;
     getMir(): MirArgument;
     update(value: string | number | boolean | Filter | Object): void;
 }
 export declare function generateFilterArgumentOptions(): Array<MarkupOption>;
+export declare function generateBooleanArgumentOptions(): Array<MarkupOption>;
 export declare function generateReducerArgumentOptions(): Array<MarkupOption>;
 //# sourceMappingURL=argument.d.ts.map

@@ -197,9 +197,10 @@ var MirArgumentType;
 var MarkupArgumentType;
 (function (MarkupArgumentType) {
     MarkupArgumentType[MarkupArgumentType["Input"] = 0] = "Input";
-    MarkupArgumentType[MarkupArgumentType["SelectFilter"] = 1] = "SelectFilter";
-    MarkupArgumentType[MarkupArgumentType["SelectReduce"] = 2] = "SelectReduce";
-    MarkupArgumentType[MarkupArgumentType["Subscript"] = 3] = "Subscript";
+    MarkupArgumentType[MarkupArgumentType["SelectBoolean"] = 1] = "SelectBoolean";
+    MarkupArgumentType[MarkupArgumentType["SelectFilter"] = 2] = "SelectFilter";
+    MarkupArgumentType[MarkupArgumentType["SelectReduce"] = 3] = "SelectReduce";
+    MarkupArgumentType[MarkupArgumentType["Subscript"] = 4] = "Subscript";
 })(MarkupArgumentType = exports.MarkupArgumentType || (exports.MarkupArgumentType = {}));
 var AggregationTallyFilter;
 (function (AggregationTallyFilter) {
