@@ -27,7 +27,7 @@ describe('Radon', () => {
     expect(radon.getMarkup().retrieve[0].script).toStrictEqual([])
     radon.addOperator(2)
 
-    expect(radon.getMarkup().retrieve[0].script[0].options[7].label).toBe('StringParseJsonMap')
+    expect(radon.getMarkup().retrieve[0].script[0].options[6].label).toBe('StringParseJsonMap')
 
     // Update operator with stringparsejsonmap option
     radon.update(7, 'StringParseJsonMap')
@@ -35,7 +35,7 @@ describe('Radon', () => {
     // Add operator in first source
     radon.addOperator(2)
 
-    expect(radon.getMarkup().retrieve[0].script[1].options[1].label).toBe('MapGetArray')
+    expect(radon.getMarkup().retrieve[0].script[1].options[1].label).toBe('MapGetBoolean')
 
     radon.update(8, 'MapGetArray')
 
@@ -132,7 +132,7 @@ describe('Radon', () => {
     expect(radon.getMarkup().retrieve[0].script).toStrictEqual([])
     radon.addOperator(2)
 
-    expect(radon.getMarkup().retrieve[0].script[0].options[7].label).toBe('StringParseJsonMap')
+    expect(radon.getMarkup().retrieve[0].script[0].options[6].label).toBe('StringParseJsonMap')
 
     // Update operator with stringparsejsonmap option
     radon.update(7, 'StringParseJsonMap')
@@ -140,7 +140,7 @@ describe('Radon', () => {
     // Add operator in first source
     radon.addOperator(2)
 
-    expect(radon.getMarkup().retrieve[0].script[1].options[1].label).toBe('MapGetArray')
+    expect(radon.getMarkup().retrieve[0].script[1].options[1].label).toBe('MapGetBoolean')
 
     radon.update(8, 'MapGetBoolean')
 
@@ -149,9 +149,5 @@ describe('Radon', () => {
     radon.update(10, 'BooleanNegate')
 
     expect(radon.getMarkup().retrieve[0].script[2].label).toBe('negate')
-
-    radon.update(8, 'MapValuesBytes')
-
-    expect(radon.getMarkup().retrieve[0].script[2]).toBe(undefined)
   })
 })

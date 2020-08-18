@@ -28,7 +28,7 @@ exports.typeSystem = (_a = {},
     _a[types_1.Type.Array] = (_b = {},
         _b[types_1.ArrayOperatorName.Count] = [types_1.OperatorCode.ArrayCount, types_1.OutputType.Integer],
         _b[types_1.ArrayOperatorName.Filter] = [types_1.OperatorCode.ArrayFilter, types_1.OutputType.Same],
-        _b[types_1.ArrayOperatorName.Flatten] = [types_1.OperatorCode.ArrayFlatten, types_1.OutputType.Array],
+        //[ArrayOperatorName.Flatten]: [OperatorCode.ArrayFlatten, OutputType.Array],
         _b[types_1.ArrayOperatorName.GetArray] = [types_1.OperatorCode.ArrayGetArray, types_1.OutputType.Array],
         _b[types_1.ArrayOperatorName.GetBoolean] = [types_1.OperatorCode.ArrayGetBoolean, types_1.OutputType.Boolean],
         _b[types_1.ArrayOperatorName.GetBytes] = [types_1.OperatorCode.ArrayGetBytes, types_1.OutputType.Bytes],
@@ -38,13 +38,12 @@ exports.typeSystem = (_a = {},
         _b[types_1.ArrayOperatorName.GetString] = [types_1.OperatorCode.ArrayGetString, types_1.OutputType.String],
         _b[types_1.ArrayOperatorName.Map] = [types_1.OperatorCode.ArrayMap, types_1.OutputType.ArrayMap],
         _b[types_1.ArrayOperatorName.Reduce] = [types_1.OperatorCode.ArrayReduce, types_1.OutputType.Inner],
-        _b[types_1.ArrayOperatorName.Some] = [types_1.OperatorCode.ArraySome, types_1.OutputType.FilterOutput],
+        //[ArrayOperatorName.Some]: [OperatorCode.ArraySome, OutputType.FilterOutput],
         _b[types_1.ArrayOperatorName.Sort] = [types_1.OperatorCode.ArraySort, types_1.OutputType.Same],
-        _b[types_1.ArrayOperatorName.Take] = [types_1.OperatorCode.ArrayTake, types_1.OutputType.Array],
         _b),
     _a[types_1.Type.Boolean] = (_c = {},
         _c[types_1.BooleanOperatorName.AsString] = [types_1.OperatorCode.BooleanAsString, types_1.OutputType.String],
-        _c[types_1.BooleanOperatorName.Match] = [types_1.OperatorCode.BooleanMatch, types_1.OutputType.MatchOutput],
+        //[BooleanOperatorName.Match]: [OperatorCode.BooleanMatch, OutputType.MatchOutput],
         _c[types_1.BooleanOperatorName.Negate] = [types_1.OperatorCode.BooleanNegate, types_1.OutputType.Boolean],
         _c),
     _a[types_1.Type.Bytes] = (_d = {},
@@ -62,27 +61,25 @@ exports.typeSystem = (_a = {},
         _e[types_1.IntegerOperatorName.Multiply] = [types_1.OperatorCode.IntegerMultiply, types_1.OutputType.Integer],
         _e[types_1.IntegerOperatorName.Negate] = [types_1.OperatorCode.IntegerNegate, types_1.OutputType.Integer],
         _e[types_1.IntegerOperatorName.Power] = [types_1.OperatorCode.IntegerPower, types_1.OutputType.Integer],
-        _e[types_1.IntegerOperatorName.Reciprocal] = [types_1.OperatorCode.IntegerReciprocal, types_1.OutputType.Float],
-        _e[types_1.IntegerOperatorName.Sum] = [types_1.OperatorCode.IntegerSum, types_1.OutputType.Integer],
         _e),
     _a[types_1.Type.Float] = (_f = {},
         _f[types_1.FloatOperatorName.Absolute] = [types_1.OperatorCode.FloatAbsolute, types_1.OutputType.Float],
         _f[types_1.FloatOperatorName.AsString] = [types_1.OperatorCode.FloatAsString, types_1.OutputType.String],
         _f[types_1.FloatOperatorName.Ceiling] = [types_1.OperatorCode.FloatCeiling, types_1.OutputType.Integer],
-        _f[types_1.FloatOperatorName.GreaterThan] = [types_1.OperatorCode.FloatGraterThan, types_1.OutputType.Boolean],
+        _f[types_1.FloatOperatorName.GreaterThan] = [types_1.OperatorCode.FloatGreaterThan, types_1.OutputType.Boolean],
         _f[types_1.FloatOperatorName.Floor] = [types_1.OperatorCode.FloatFloor, types_1.OutputType.Integer],
         _f[types_1.FloatOperatorName.LessThan] = [types_1.OperatorCode.FloatLessThan, types_1.OutputType.Boolean],
         _f[types_1.FloatOperatorName.Modulo] = [types_1.OperatorCode.FloatModulo, types_1.OutputType.Float],
         _f[types_1.FloatOperatorName.Multiply] = [types_1.OperatorCode.FloatMultiply, types_1.OutputType.Float],
         _f[types_1.FloatOperatorName.Negate] = [types_1.OperatorCode.FloatNegate, types_1.OutputType.Float],
         _f[types_1.FloatOperatorName.Power] = [types_1.OperatorCode.FloatPower, types_1.OutputType.Float],
-        _f[types_1.FloatOperatorName.Reciprocal] = [types_1.OperatorCode.FloatReciprocal, types_1.OutputType.Float],
+        //[FloatOperatorName.Reciprocal]: [OperatorCode.FloatReciprocal, OutputType.Float],
         _f[types_1.FloatOperatorName.Round] = [types_1.OperatorCode.FloatRound, types_1.OutputType.Integer],
-        _f[types_1.FloatOperatorName.Sum] = [types_1.OperatorCode.Floatsum, types_1.OutputType.Float],
+        //[FloatOperatorName.Sum]: [OperatorCode.Floatsum, OutputType.Float],
         _f[types_1.FloatOperatorName.Truncate] = [types_1.OperatorCode.FloatTruncate, types_1.OutputType.Integer],
         _f),
     _a[types_1.Type.Map] = (_g = {},
-        _g[types_1.MapOperatorName.Entries] = [types_1.OperatorCode.MapEntries, types_1.OutputType.Bytes],
+        //[MapOperatorName.Entries]: [OperatorCode.MapEntries, OutputType.Bytes],
         _g[types_1.MapOperatorName.GetArray] = [types_1.OperatorCode.MapGetArray, types_1.OutputType.Array],
         _g[types_1.MapOperatorName.GetBoolean] = [types_1.OperatorCode.MapGetBoolean, types_1.OutputType.Boolean],
         _g[types_1.MapOperatorName.GetBytes] = [types_1.OperatorCode.MapGetBytes, types_1.OutputType.Bytes],
@@ -92,23 +89,17 @@ exports.typeSystem = (_a = {},
         _g[types_1.MapOperatorName.GetString] = [types_1.OperatorCode.MapGetString, types_1.OutputType.String],
         _g[types_1.MapOperatorName.Keys] = [types_1.OperatorCode.MapKeys, types_1.OutputType.ArrayString],
         _g[types_1.MapOperatorName.valuesArray] = [types_1.OperatorCode.MapValuesArray, types_1.OutputType.ArrayArray],
-        _g[types_1.MapOperatorName.valuesBoolean] = [types_1.OperatorCode.MapValuesBoolean, types_1.OutputType.ArrayBoolean],
-        _g[types_1.MapOperatorName.valuesBytes] = [types_1.OperatorCode.MapValuesBytes, types_1.OutputType.ArrayBytes],
-        _g[types_1.MapOperatorName.valuesFloat] = [types_1.OperatorCode.MapValuesFloat, types_1.OutputType.ArrayFloat],
-        _g[types_1.MapOperatorName.valuesInteger] = [types_1.OperatorCode.MapValuesInteger, types_1.OutputType.ArrayInteger],
-        _g[types_1.MapOperatorName.valuesMap] = [types_1.OperatorCode.MapValuesMap, types_1.OutputType.ArrayMap],
-        _g[types_1.MapOperatorName.valuesString] = [types_1.OperatorCode.MapValuesString, types_1.OutputType.ArrayString],
         _g),
     _a[types_1.Type.String] = (_h = {},
         _h[types_1.StringOperatorName.AsBoolean] = [types_1.OperatorCode.StringAsBoolean, types_1.OutputType.Boolean],
-        _h[types_1.StringOperatorName.AsBytes] = [types_1.OperatorCode.StringAsBytes, types_1.OutputType.Bytes],
+        //[StringOperatorName.AsBytes]: [OperatorCode.StringAsBytes, OutputType.Bytes],
         _h[types_1.StringOperatorName.AsFloat] = [types_1.OperatorCode.StringAsFloat, types_1.OutputType.Float],
         _h[types_1.StringOperatorName.AsInteger] = [types_1.OperatorCode.StringAsInteger, types_1.OutputType.Integer],
         _h[types_1.StringOperatorName.Length] = [types_1.OperatorCode.StringLength, types_1.OutputType.Integer],
         _h[types_1.StringOperatorName.Match] = [types_1.OperatorCode.StringMatch, types_1.OutputType.MatchOutput],
         _h[types_1.StringOperatorName.ParseJsonArray] = [types_1.OperatorCode.StringParseJsonArray, types_1.OutputType.Array],
         _h[types_1.StringOperatorName.ParseJsonMap] = [types_1.OperatorCode.StringParseJsonMap, types_1.OutputType.Map],
-        _h[types_1.StringOperatorName.ParseXml] = [types_1.OperatorCode.StringParseXML, types_1.OutputType.Map],
+        //[StringOperatorName.ParseXml]: [OperatorCode.StringParseXML, OutputType.Map],
         _h[types_1.StringOperatorName.ToLowerCase] = [types_1.OperatorCode.StringToLowerCase, types_1.OutputType.String],
         _h[types_1.StringOperatorName.ToUpperCase] = [types_1.OperatorCode.StringToUpperCase, types_1.OutputType.String],
         _h),
@@ -177,22 +168,20 @@ exports.operatorInfos = (_l = {},
             return i18n.t('operator_info_description.array.filter', { filter: filter });
         }; },
     },
-    _l[types_1.OperatorCode.ArrayFlatten] = {
-        type: types_1.Type.Array,
-        name: types_1.ArrayOperatorName.Flatten,
-        arguments: [
-            {
-                name: 'depth',
-                optional: true,
-                type: types_1.MirArgumentType.Integer,
-            },
-        ],
-        outputType: types_1.OutputType.Inner,
-        description: function (i18n) { return function (depth) {
-            if (depth === void 0) { depth = 'depth'; }
-            return i18n.t('operator_info_description.array.flatten', { depth: depth });
-        }; },
-    },
+    /*[OperatorCode.ArrayFlatten]: {
+      type: Type.Array,
+      name: ArrayOperatorName.Flatten,
+      arguments: [
+        {
+          name: 'depth',
+          optional: true,
+          type: MirArgumentType.Integer,
+        },
+      ],
+      outputType: OutputType.Inner,
+      description: (i18n: I18n) => (depth: string = 'depth') =>
+        i18n.t('operator_info_description.array.flatten', { depth }),
+    },*/
     _l[types_1.OperatorCode.ArrayGetArray] = {
         type: types_1.Type.Array,
         name: types_1.ArrayOperatorName.GetArray,
@@ -318,22 +307,20 @@ exports.operatorInfos = (_l = {},
             return i18n.t('operator_info_description.array.reduce', { outputType: outputType, reducer: reducer });
         }; },
     },
-    _l[types_1.OperatorCode.ArraySome] = {
-        type: types_1.Type.Array,
-        name: types_1.ArrayOperatorName.Some,
-        arguments: [
-            {
-                name: 'function',
-                optional: false,
-                type: types_1.MirArgumentType.FilterFunction,
-            },
-        ],
-        outputType: types_1.OutputType.Boolean,
-        description: function (i18n) { return function (filter) {
-            if (filter === void 0) { filter = 'filter'; }
-            return i18n.t('operator_info_description.array.some', { filter: filter });
-        }; },
-    },
+    /*[OperatorCode.ArraySome]: {
+      type: Type.Array,
+      name: ArrayOperatorName.Some,
+      arguments: [
+        {
+          name: 'function',
+          optional: false,
+          type: MirArgumentType.FilterFunction,
+        },
+      ],
+      outputType: OutputType.Boolean,
+      description: (i18n: I18n) => (filter: string = 'filter') =>
+        i18n.t('operator_info_description.array.some', { filter }),
+    },*/
     _l[types_1.OperatorCode.ArraySort] = {
         type: types_1.Type.Array,
         name: types_1.ArrayOperatorName.Sort,
@@ -355,22 +342,21 @@ exports.operatorInfos = (_l = {},
             return i18n.t('operator_info_description.array.sort', { order: order });
         }; },
     },
-    _l[types_1.OperatorCode.ArrayTake] = {
-        type: types_1.Type.Array,
-        name: types_1.ArrayOperatorName.Take,
-        arguments: [
-            { name: 'min', optional: true, type: types_1.MirArgumentType.Integer },
-            {
-                name: 'max',
-                optional: true,
-                type: types_1.MirArgumentType.Integer,
-            },
-        ],
-        outputType: types_1.OutputType.Array,
-        description: function (i18n) { return function (min, max) {
-            return i18n.t('operator_info_description.array.take', { min: min, max: max });
-        }; },
-    },
+    /*[OperatorCode.ArrayTake]: {
+      type: Type.Array,
+      name: ArrayOperatorName.Take,
+      arguments: [
+        { name: 'min', optional: true, type: MirArgumentType.Integer },
+        {
+          name: 'max',
+          optional: true,
+          type: MirArgumentType.Integer,
+        },
+      ],
+      outputType: OutputType.Array,
+      description: (i18n: I18n) => (min, max) =>
+        i18n.t('operator_info_description.array.take', { min, max }),
+    },*/
     _l[types_1.OperatorCode.BooleanAsString] = {
         type: types_1.Type.Boolean,
         name: types_1.BooleanOperatorName.AsString,
@@ -378,27 +364,25 @@ exports.operatorInfos = (_l = {},
         outputType: types_1.OutputType.String,
         description: function (i18n) { return function () { return descriptions.cast(i18n)('Boolean', 'String'); }; },
     },
-    _l[types_1.OperatorCode.BooleanMatch] = {
-        type: types_1.Type.Boolean,
-        name: types_1.BooleanOperatorName.Match,
-        arguments: [
-            {
-                name: 'categories',
-                optional: false,
-                type: types_1.MirArgumentType.Map,
-            },
-            {
-                name: 'default',
-                optional: false,
-                type: types_1.MirArgumentType.Boolean,
-            },
-        ],
-        outputType: types_1.OutputType.MatchOutput,
-        description: function (i18n) { return function (subscript) {
-            if (subscript === void 0) { subscript = 'subscript'; }
-            return i18n.t('operator_info_description.boolean.match', { subscript: subscript });
-        }; },
-    },
+    /*[OperatorCode.BooleanMatch]: {
+      type: Type.Boolean,
+      name: BooleanOperatorName.Match,
+      arguments: [
+        {
+          name: 'categories',
+          optional: false,
+          type: MirArgumentType.Map,
+        },
+        {
+          name: 'default',
+          optional: false,
+          type: MirArgumentType.Boolean,
+        },
+      ],
+      outputType: OutputType.MatchOutput,
+      description: (i18n: I18n) => (subscript: string = 'subscript') =>
+        i18n.t('operator_info_description.boolean.match', { subscript }),
+    },*/
     _l[types_1.OperatorCode.BooleanNegate] = {
         type: types_1.Type.Boolean,
         name: types_1.BooleanOperatorName.Negate,
@@ -555,29 +539,27 @@ exports.operatorInfos = (_l = {},
             return i18n.t('operator_info_description.integer.power', { exponent: exponent });
         }; },
     },
-    _l[types_1.OperatorCode.IntegerReciprocal] = {
-        type: types_1.Type.Integer,
-        name: types_1.IntegerOperatorName.Reciprocal,
-        arguments: [],
-        outputType: types_1.OutputType.Float,
-        description: function (i18n) { return function () { return i18n.t('operator_info_description.integer.reciprocal'); }; },
-    },
-    _l[types_1.OperatorCode.IntegerSum] = {
-        type: types_1.Type.Integer,
-        name: types_1.IntegerOperatorName.Sum,
-        arguments: [
-            {
-                name: 'addend',
-                optional: false,
-                type: types_1.MirArgumentType.Integer,
-            },
-        ],
-        outputType: types_1.OutputType.Integer,
-        description: function (i18n) { return function (addend) {
-            if (addend === void 0) { addend = 'addend'; }
-            return i18n.t('operator_info_description.integer.sum', { addend: addend });
-        }; },
-    },
+    /*[OperatorCode.IntegerReciprocal]: {
+      type: Type.Integer,
+      name: IntegerOperatorName.Reciprocal,
+      arguments: [],
+      outputType: OutputType.Float,
+      description: (i18n: I18n) => () => i18n.t('operator_info_description.integer.reciprocal'),
+    },*/
+    /*[OperatorCode.IntegerSum]: {
+      type: Type.Integer,
+      name: IntegerOperatorName.Sum,
+      arguments: [
+        {
+          name: 'addend',
+          optional: false,
+          type: MirArgumentType.Integer,
+        },
+      ],
+      outputType: OutputType.Integer,
+      description: (i18n: I18n) => (addend: string = 'addend') =>
+        i18n.t('operator_info_description.integer.sum', { addend }),
+    },*/
     _l[types_1.OperatorCode.FloatAbsolute] = {
         type: types_1.Type.Float,
         name: types_1.IntegerOperatorName.Absolute,
@@ -605,7 +587,7 @@ exports.operatorInfos = (_l = {},
         outputType: types_1.OutputType.Integer,
         description: function (i18n) { return function () { return i18n.t('operator_info_description.float.celling'); }; },
     },
-    _l[types_1.OperatorCode.FloatGraterThan] = {
+    _l[types_1.OperatorCode.FloatGreaterThan] = {
         type: types_1.Type.Float,
         name: types_1.FloatOperatorName.GreaterThan,
         arguments: [
@@ -699,13 +681,13 @@ exports.operatorInfos = (_l = {},
             return i18n.t('operator_info_description.float.power', { exponent: exponent });
         }; },
     },
-    _l[types_1.OperatorCode.FloatReciprocal] = {
-        type: types_1.Type.Float,
-        name: types_1.FloatOperatorName.Reciprocal,
-        arguments: [],
-        outputType: types_1.OutputType.Float,
-        description: function (i18n) { return function () { return i18n.t('operator_info_description.float.reciprocal'); }; },
-    },
+    /*[OperatorCode.FloatReciprocal]: {
+      type: Type.Float,
+      name: FloatOperatorName.Reciprocal,
+      arguments: [],
+      outputType: OutputType.Float,
+      description: (i18n: I18n) => () => i18n.t('operator_info_description.float.reciprocal'),
+    },*/
     _l[types_1.OperatorCode.FloatRound] = {
         type: types_1.Type.Float,
         name: types_1.FloatOperatorName.Round,
@@ -713,22 +695,20 @@ exports.operatorInfos = (_l = {},
         outputType: types_1.OutputType.Integer,
         description: function (i18n) { return function () { return i18n.t('operator_info_description.float.round'); }; },
     },
-    _l[types_1.OperatorCode.Floatsum] = {
-        type: types_1.Type.Float,
-        name: types_1.FloatOperatorName.Sum,
-        arguments: [
-            {
-                name: 'addend',
-                optional: false,
-                type: types_1.MirArgumentType.Float,
-            },
-        ],
-        outputType: types_1.OutputType.Float,
-        description: function (i18n) { return function (addend) {
-            if (addend === void 0) { addend = 'addend'; }
-            return i18n.t('operator_info_description.float.sum', { addend: addend });
-        }; },
-    },
+    /*[OperatorCode.Floatsum]: {
+      type: Type.Float,
+      name: FloatOperatorName.Sum,
+      arguments: [
+        {
+          name: 'addend',
+          optional: false,
+          type: MirArgumentType.Float,
+        },
+      ],
+      outputType: OutputType.Float,
+      description: (i18n: I18n) => (addend: string = 'addend') =>
+        i18n.t('operator_info_description.float.sum', { addend }),
+    },*/
     _l[types_1.OperatorCode.FloatTruncate] = {
         type: types_1.Type.Float,
         name: types_1.FloatOperatorName.Truncate,
@@ -736,13 +716,13 @@ exports.operatorInfos = (_l = {},
         outputType: types_1.OutputType.Integer,
         description: function (i18n) { return function () { return i18n.t('operator_info_description.float.truncate'); }; },
     },
-    _l[types_1.OperatorCode.MapEntries] = {
-        type: types_1.Type.Map,
-        name: types_1.MapOperatorName.Entries,
-        arguments: [],
-        outputType: types_1.OutputType.Array,
-        description: function (i18n) { return function () { return i18n.t('operator_info_description.map.entries'); }; },
-    },
+    /*[OperatorCode.MapEntries]: {
+      type: Type.Map,
+      name: MapOperatorName.Entries,
+      arguments: [],
+      outputType: OutputType.Array,
+      description: (i18n: I18n) => () => i18n.t('operator_info_description.map.entries'),
+    },*/
     _l[types_1.OperatorCode.MapGetArray] = {
         type: types_1.Type.Map,
         name: types_1.MapOperatorName.GetArray,
@@ -848,48 +828,48 @@ exports.operatorInfos = (_l = {},
         outputType: types_1.OutputType.ArrayArray,
         description: function (i18n) { return function () { return descriptions.mapValues(i18n)('Array'); }; },
     },
-    _l[types_1.OperatorCode.MapValuesBoolean] = {
-        type: types_1.Type.Map,
-        name: types_1.MapOperatorName.valuesBoolean,
-        arguments: [],
-        outputType: types_1.OutputType.ArrayBoolean,
-        description: function (i18n) { return function () { return descriptions.mapValues(i18n)('Boolean'); }; },
-    },
-    _l[types_1.OperatorCode.MapValuesBytes] = {
-        type: types_1.Type.Map,
-        name: types_1.MapOperatorName.valuesBytes,
-        arguments: [],
-        outputType: types_1.OutputType.ArrayBytes,
-        description: function (i18n) { return function () { return descriptions.mapValues(i18n)('Bytes'); }; },
-    },
-    _l[types_1.OperatorCode.MapValuesInteger] = {
-        type: types_1.Type.Map,
-        name: types_1.MapOperatorName.valuesInteger,
-        arguments: [],
-        outputType: types_1.OutputType.ArrayInteger,
-        description: function (i18n) { return function () { return descriptions.mapValues(i18n)('Integer'); }; },
-    },
-    _l[types_1.OperatorCode.MapValuesFloat] = {
-        type: types_1.Type.Map,
-        name: types_1.MapOperatorName.valuesFloat,
-        arguments: [],
-        outputType: types_1.OutputType.ArrayFloat,
-        description: function (i18n) { return function () { return descriptions.mapValues(i18n)('Float'); }; },
-    },
-    _l[types_1.OperatorCode.MapValuesMap] = {
-        type: types_1.Type.Map,
-        name: types_1.MapOperatorName.valuesMap,
-        arguments: [],
-        outputType: types_1.OutputType.ArrayMap,
-        description: function (i18n) { return function () { return descriptions.mapValues(i18n)('Map'); }; },
-    },
-    _l[types_1.OperatorCode.MapValuesString] = {
-        type: types_1.Type.Map,
-        name: types_1.MapOperatorName.valuesString,
-        arguments: [],
-        outputType: types_1.OutputType.ArrayString,
-        description: function (i18n) { return function () { return descriptions.mapValues(i18n)('String'); }; },
-    },
+    /*[OperatorCode.MapValuesBoolean]: {
+      type: Type.Map,
+      name: MapOperatorName.valuesBoolean,
+      arguments: [],
+      outputType: OutputType.ArrayBoolean,
+      description: (i18n: I18n) => () => descriptions.mapValues(i18n)('Boolean'),
+    },*/
+    /*[OperatorCode.MapValuesBytes]: {
+      type: Type.Map,
+      name: MapOperatorName.valuesBytes,
+      arguments: [],
+      outputType: OutputType.ArrayBytes,
+      description: (i18n: I18n) => () => descriptions.mapValues(i18n)('Bytes'),
+    },*/
+    /*[OperatorCode.MapValuesInteger]: {
+      type: Type.Map,
+      name: MapOperatorName.valuesInteger,
+      arguments: [],
+      outputType: OutputType.ArrayInteger,
+      description: (i18n: I18n) => () => descriptions.mapValues(i18n)('Integer'),
+    },*/
+    /*[OperatorCode.MapValuesFloat]: {
+      type: Type.Map,
+      name: MapOperatorName.valuesFloat,
+      arguments: [],
+      outputType: OutputType.ArrayFloat,
+      description: (i18n: I18n) => () => descriptions.mapValues(i18n)('Float'),
+    },*/
+    /*[OperatorCode.MapValuesMap]: {
+      type: Type.Map,
+      name: MapOperatorName.valuesMap,
+      arguments: [],
+      outputType: OutputType.ArrayMap,
+      description: (i18n: I18n) => () => descriptions.mapValues(i18n)('Map'),
+    },*/
+    /*[OperatorCode.MapValuesString]: {
+      type: Type.Map,
+      name: MapOperatorName.valuesString,
+      arguments: [],
+      outputType: OutputType.ArrayString,
+      description: (i18n: I18n) => () => descriptions.mapValues(i18n)('String'),
+    },*/
     _l[types_1.OperatorCode.StringAsBoolean] = {
         type: types_1.Type.String,
         name: types_1.StringOperatorName.AsBoolean,
@@ -897,13 +877,13 @@ exports.operatorInfos = (_l = {},
         outputType: types_1.OutputType.Boolean,
         description: function (i18n) { return function () { return descriptions.cast(i18n)('String', 'Boolean'); }; },
     },
-    _l[types_1.OperatorCode.StringAsBytes] = {
-        type: types_1.Type.String,
-        name: types_1.StringOperatorName.AsBytes,
-        arguments: [],
-        outputType: types_1.OutputType.Bytes,
-        description: function (i18n) { return function () { return descriptions.cast(i18n)('String', 'Bytes'); }; },
-    },
+    /*[OperatorCode.StringAsBytes]: {
+      type: Type.String,
+      name: StringOperatorName.AsBytes,
+      arguments: [],
+      outputType: OutputType.Bytes,
+      description: (i18n: I18n) => () => descriptions.cast(i18n)('String', 'Bytes'),
+    },*/
     _l[types_1.OperatorCode.StringAsFloat] = {
         type: types_1.Type.String,
         name: types_1.StringOperatorName.AsFloat,
@@ -960,13 +940,13 @@ exports.operatorInfos = (_l = {},
         outputType: types_1.OutputType.Map,
         description: function (i18n) { return function () { return i18n.t('operator_info_description.string.parse_json_map'); }; },
     },
-    _l[types_1.OperatorCode.StringParseXML] = {
-        type: types_1.Type.String,
-        name: types_1.StringOperatorName.ParseXml,
-        arguments: [],
-        outputType: types_1.OutputType.Map,
-        description: function (i18n) { return function () { return i18n.t('operator_info_description.string.parse_xml'); }; },
-    },
+    /*[OperatorCode.StringParseXML]: {
+      type: Type.String,
+      name: StringOperatorName.ParseXml,
+      arguments: [],
+      outputType: OutputType.Map,
+      description: (i18n: I18n) => () => i18n.t('operator_info_description.string.parse_xml'),
+    },*/
     _l[types_1.OperatorCode.StringToLowerCase] = {
         type: types_1.Type.String,
         name: types_1.StringOperatorName.ToLowerCase,
@@ -1018,112 +998,105 @@ exports.primitiveMarkupOptions = {
     arrayBoolean: [
         { label: 'ArrayCount', outputType: 'integer' },
         { label: 'ArrayFilter', outputType: 'arrayBoolean' },
-        { label: 'ArrayFlatten', outputType: 'arrayBoolean' },
+        //{ label: 'ArrayFlatten', outputType: 'arrayBoolean' },
         { label: 'ArrayGetArray', outputType: 'arrayBoolean' },
         { label: 'ArrayGetBoolean', outputType: 'boolean' },
         { label: 'ArrayGetBytes', outputType: 'bytes' },
         { label: 'ArrayGetString', outputType: 'string' },
         { label: 'ArrayMap', outputType: 'arrayMap' },
         { label: 'ArrayReduce', outputType: 'boolean' },
-        { label: 'ArraySome', outputType: 'arrayBoolean' },
+        //{ label: 'ArraySome', outputType: 'arrayBoolean' },
         { label: 'ArraySort', outputType: 'arrayBoolean' },
-        { label: 'ArrayTake', outputType: 'arrayBoolean' },
     ].map(function (x) {
         return generateOption(x.label, x.outputType);
     }),
     arrayArray: [
         { label: 'ArrayCount', outputType: 'integer' },
         { label: 'ArrayFilter', outputType: 'arrayArray' },
-        { label: 'ArrayFlatten', outputType: 'arrayArray' },
+        //{ label: 'ArrayFlatten', outputType: 'arrayArray' },
         { label: 'ArrayGetArray', outputType: 'arrayArray' },
         { label: 'ArrayGetBoolean', outputType: 'boolean' },
         { label: 'ArrayGetBytes', outputType: 'bytes' },
         { label: 'ArrayGetString', outputType: 'string' },
         { label: 'ArrayMap', outputType: 'arrayMap' },
         { label: 'ArrayReduce', outputType: '' },
-        { label: 'ArraySome', outputType: 'arrayArray' },
+        //{ label: 'ArraySome', outputType: 'arrayArray' },
         { label: 'ArraySort', outputType: 'arrayArray' },
-        { label: 'ArrayTake', outputType: 'arrayArray' },
     ].map(function (x) {
         return generateOption(x.label, x.outputType);
     }),
     arrayBytes: [
         { label: 'ArrayCount', outputType: 'integer' },
         { label: 'ArrayFilter', outputType: 'arrayBytes' },
-        { label: 'ArrayFlatten', outputType: 'arrayBytes' },
+        //{ label: 'ArrayFlatten', outputType: 'arrayBytes' },
         { label: 'ArrayGetArray', outputType: 'arrayBytes' },
         { label: 'ArrayGetBoolean', outputType: 'boolean' },
         { label: 'ArrayGetBytes', outputType: 'bytes' },
         { label: 'ArrayGetString', outputType: 'string' },
         { label: 'ArrayMap', outputType: 'arrayMap' },
         { label: 'ArrayReduce', outputType: 'bytes' },
-        { label: 'ArraySome', outputType: 'arrayBytes' },
+        //{ label: 'ArraySome', outputType: 'arrayBytes' },
         { label: 'ArraySort', outputType: 'arrayBytes' },
-        { label: 'ArrayTake', outputType: 'arrayBytes' },
     ].map(function (x) {
         return generateOption(x.label, x.outputType);
     }),
     arrayFloat: [
         { label: 'ArrayCount', outputType: 'integer' },
         { label: 'ArrayFilter', outputType: 'arrayFloat' },
-        { label: 'ArrayFlatten', outputType: 'arrayFloat' },
+        //{ label: 'ArrayFlatten', outputType: 'arrayFloat' },
         { label: 'ArrayGetArray', outputType: 'arrayFloat' },
         { label: 'ArrayGetBoolean', outputType: 'boolean' },
         { label: 'ArrayGetBytes', outputType: 'bytes' },
         { label: 'ArrayGetString', outputType: 'string' },
         { label: 'ArrayMap', outputType: 'arrayMap' },
         { label: 'ArrayReduce', outputType: 'float' },
-        { label: 'ArraySome', outputType: 'arrayFloat' },
+        //{ label: 'ArraySome', outputType: 'arrayFloat' },
         { label: 'ArraySort', outputType: 'arrayFloat' },
-        { label: 'ArrayTake', outputType: 'arrayFloat' },
     ].map(function (x) {
         return generateOption(x.label, x.outputType);
     }),
     arrayInteger: [
         { label: 'ArrayCount', outputType: 'integer' },
         { label: 'ArrayFilter', outputType: 'arrayInteger' },
-        { label: 'ArrayFlatten', outputType: 'arrayInteger' },
+        //{ label: 'ArrayFlatten', outputType: 'arrayInteger' },
         { label: 'ArrayGetArray', outputType: 'arrayInteger' },
         { label: 'ArrayGetBoolean', outputType: 'boolean' },
         { label: 'ArrayGetBytes', outputType: 'bytes' },
         { label: 'ArrayGetString', outputType: 'string' },
         { label: 'ArrayMap', outputType: 'arrayMap' },
         { label: 'ArrayReduce', outputType: 'integer' },
-        { label: 'ArraySome', outputType: 'arrayInteger' },
+        //{ label: 'ArraySome', outputType: 'arrayInteger' },
         { label: 'ArraySort', outputType: 'arrayInteger' },
-        { label: 'ArrayTake', outputType: 'arrayInteger' },
     ].map(function (x) {
         return generateOption(x.label, x.outputType);
     }),
     arrayMap: [
         { label: 'ArrayCount', outputType: 'integer' },
         { label: 'ArrayFilter', outputType: 'arrayMap' },
-        { label: 'ArrayFlatten', outputType: 'arrayMap' },
+        //{ label: 'ArrayFlatten', outputType: 'arrayMap' },
         { label: 'ArrayGetArray', outputType: 'arrayMap' },
         { label: 'ArrayGetBoolean', outputType: 'boolean' },
         { label: 'ArrayGetBytes', outputType: 'bytes' },
         { label: 'ArrayGetString', outputType: 'string' },
         { label: 'ArrayMap', outputType: 'arrayMap' },
         { label: 'ArrayReduce', outputType: 'map' },
-        { label: 'ArraySome', outputType: 'arrayMap' },
+        //{ label: 'ArraySome', outputType: 'arrayMap' },
         { label: 'ArraySort', outputType: 'arrayMap' },
-        { label: 'ArrayTake', outputType: 'arrayMap' },
     ].map(function (x) {
         return generateOption(x.label, x.outputType);
     }),
     arrayString: [
         { label: 'ArrayCount', outputType: 'integer' },
         { label: 'ArrayFilter', outputType: 'arrayString' },
-        { label: 'ArrayFlatten', outputType: 'arrayString' },
+        //{ label: 'ArrayFlatten', outputType: 'arrayString' },
         { label: 'ArrayGetArray', outputType: 'arrayString' },
         { label: 'ArrayGetBoolean', outputType: 'boolean' },
         { label: 'ArrayGetBytes', outputType: 'bytes' },
         { label: 'ArrayGetString', outputType: 'string' },
         { label: 'ArrayMap', outputType: 'arrayMap' },
         { label: 'ArrayReduce', outputType: 'string' },
-        { label: 'ArraySome', outputType: 'arrayString' },
+        //{ label: 'ArraySome', outputType: 'arrayString' },
         { label: 'ArraySort', outputType: 'arrayString' },
-        { label: 'ArrayTake', outputType: 'arrayString' },
     ].map(function (x) {
         return generateOption(x.label, x.outputType);
     }),

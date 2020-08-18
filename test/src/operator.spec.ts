@@ -151,12 +151,6 @@ describe('Operator methods', () => {
           },
           {
             hierarchicalType: 'operatorOption',
-            label: 'ArrayFlatten',
-            markupType: 'option',
-            outputType: 'array',
-          },
-          {
-            hierarchicalType: 'operatorOption',
             label: 'ArrayGetArray',
             markupType: 'option',
             outputType: 'array',
@@ -211,33 +205,15 @@ describe('Operator methods', () => {
           },
           {
             hierarchicalType: 'operatorOption',
-            label: 'ArraySome',
-            markupType: 'option',
-            outputType: 'filterOutput',
-          },
-          {
-            hierarchicalType: 'operatorOption',
             label: 'ArraySort',
             markupType: 'option',
             outputType: 'same',
           },
           {
             hierarchicalType: 'operatorOption',
-            label: 'ArrayTake',
-            markupType: 'option',
-            outputType: 'array',
-          },
-          {
-            hierarchicalType: 'operatorOption',
             label: 'BooleanAsString',
             markupType: 'option',
             outputType: 'string',
-          },
-          {
-            hierarchicalType: 'operatorOption',
-            label: 'BooleanMatch',
-            markupType: 'option',
-            outputType: 'matchOutput',
           },
           {
             hierarchicalType: 'operatorOption',
@@ -277,7 +253,7 @@ describe('Operator methods', () => {
           },
           {
             hierarchicalType: 'operatorOption',
-            label: 'FloatGraterThan',
+            label: 'FloatGreaterThan',
             markupType: 'option',
             outputType: 'boolean',
           },
@@ -319,21 +295,9 @@ describe('Operator methods', () => {
           },
           {
             hierarchicalType: 'operatorOption',
-            label: 'FloatReciprocal',
-            markupType: 'option',
-            outputType: 'float',
-          },
-          {
-            hierarchicalType: 'operatorOption',
             label: 'FloatRound',
             markupType: 'option',
             outputType: 'integer',
-          },
-          {
-            hierarchicalType: 'operatorOption',
-            label: 'Floatsum',
-            markupType: 'option',
-            outputType: 'float',
           },
           {
             hierarchicalType: 'operatorOption',
@@ -346,12 +310,6 @@ describe('Operator methods', () => {
             label: 'StringAsBoolean',
             markupType: 'option',
             outputType: 'boolean',
-          },
-          {
-            hierarchicalType: 'operatorOption',
-            label: 'StringAsBytes',
-            markupType: 'option',
-            outputType: 'bytes',
           },
           {
             hierarchicalType: 'operatorOption',
@@ -391,12 +349,6 @@ describe('Operator methods', () => {
           },
           {
             hierarchicalType: 'operatorOption',
-            label: 'StringParseXML',
-            markupType: 'option',
-            outputType: 'map',
-          },
-          {
-            hierarchicalType: 'operatorOption',
             label: 'StringToLowerCase',
             markupType: 'option',
             outputType: 'string',
@@ -406,12 +358,6 @@ describe('Operator methods', () => {
             label: 'StringToUpperCase',
             markupType: 'option',
             outputType: 'string',
-          },
-          {
-            hierarchicalType: 'operatorOption',
-            label: 'MapEntries',
-            markupType: 'option',
-            outputType: 'bytes',
           },
           {
             hierarchicalType: 'operatorOption',
@@ -466,42 +412,6 @@ describe('Operator methods', () => {
             label: 'MapValuesArray',
             markupType: 'option',
             outputType: 'arrayArray',
-          },
-          {
-            hierarchicalType: 'operatorOption',
-            label: 'MapValuesBoolean',
-            markupType: 'option',
-            outputType: 'arrayBoolean',
-          },
-          {
-            hierarchicalType: 'operatorOption',
-            label: 'MapValuesBytes',
-            markupType: 'option',
-            outputType: 'arrayBytes',
-          },
-          {
-            hierarchicalType: 'operatorOption',
-            label: 'MapValuesFloat',
-            markupType: 'option',
-            outputType: 'arrayFloat',
-          },
-          {
-            hierarchicalType: 'operatorOption',
-            label: 'MapValuesInteger',
-            markupType: 'option',
-            outputType: 'arrayInteger',
-          },
-          {
-            hierarchicalType: 'operatorOption',
-            label: 'MapValuesMap',
-            markupType: 'option',
-            outputType: 'arrayMap',
-          },
-          {
-            hierarchicalType: 'operatorOption',
-            label: 'MapValuesString',
-            markupType: 'option',
-            outputType: 'arrayString',
           },
           {
             hierarchicalType: 'operatorOption',
@@ -563,18 +473,6 @@ describe('Operator methods', () => {
             markupType: 'option',
             outputType: 'integer',
           },
-          {
-            hierarchicalType: 'operatorOption',
-            label: 'IntegerReciprocal',
-            markupType: 'option',
-            outputType: 'float',
-          },
-          {
-            hierarchicalType: 'operatorOption',
-            label: 'IntegerSum',
-            markupType: 'option',
-            outputType: 'integer',
-          },
         ],
         outputType: 'subscriptOutput',
         scriptId: 0,
@@ -604,12 +502,6 @@ describe('Operator methods', () => {
                       label: 'ArrayFilter',
                       markupType: 'option',
                       outputType: 'same',
-                    },
-                    {
-                      hierarchicalType: 'operatorOption',
-                      label: 'ArrayFlatten',
-                      markupType: 'option',
-                      outputType: 'array',
                     },
                     {
                       hierarchicalType: 'operatorOption',
@@ -667,33 +559,15 @@ describe('Operator methods', () => {
                     },
                     {
                       hierarchicalType: 'operatorOption',
-                      label: 'ArraySome',
-                      markupType: 'option',
-                      outputType: 'filterOutput',
-                    },
-                    {
-                      hierarchicalType: 'operatorOption',
                       label: 'ArraySort',
                       markupType: 'option',
                       outputType: 'same',
                     },
                     {
                       hierarchicalType: 'operatorOption',
-                      label: 'ArrayTake',
-                      markupType: 'option',
-                      outputType: 'array',
-                    },
-                    {
-                      hierarchicalType: 'operatorOption',
                       label: 'BooleanAsString',
                       markupType: 'option',
                       outputType: 'string',
-                    },
-                    {
-                      hierarchicalType: 'operatorOption',
-                      label: 'BooleanMatch',
-                      markupType: 'option',
-                      outputType: 'matchOutput',
                     },
                     {
                       hierarchicalType: 'operatorOption',
@@ -733,7 +607,7 @@ describe('Operator methods', () => {
                     },
                     {
                       hierarchicalType: 'operatorOption',
-                      label: 'FloatGraterThan',
+                      label: 'FloatGreaterThan',
                       markupType: 'option',
                       outputType: 'boolean',
                     },
@@ -775,21 +649,9 @@ describe('Operator methods', () => {
                     },
                     {
                       hierarchicalType: 'operatorOption',
-                      label: 'FloatReciprocal',
-                      markupType: 'option',
-                      outputType: 'float',
-                    },
-                    {
-                      hierarchicalType: 'operatorOption',
                       label: 'FloatRound',
                       markupType: 'option',
                       outputType: 'integer',
-                    },
-                    {
-                      hierarchicalType: 'operatorOption',
-                      label: 'Floatsum',
-                      markupType: 'option',
-                      outputType: 'float',
                     },
                     {
                       hierarchicalType: 'operatorOption',
@@ -802,12 +664,6 @@ describe('Operator methods', () => {
                       label: 'StringAsBoolean',
                       markupType: 'option',
                       outputType: 'boolean',
-                    },
-                    {
-                      hierarchicalType: 'operatorOption',
-                      label: 'StringAsBytes',
-                      markupType: 'option',
-                      outputType: 'bytes',
                     },
                     {
                       hierarchicalType: 'operatorOption',
@@ -847,12 +703,6 @@ describe('Operator methods', () => {
                     },
                     {
                       hierarchicalType: 'operatorOption',
-                      label: 'StringParseXML',
-                      markupType: 'option',
-                      outputType: 'map',
-                    },
-                    {
-                      hierarchicalType: 'operatorOption',
                       label: 'StringToLowerCase',
                       markupType: 'option',
                       outputType: 'string',
@@ -862,12 +712,6 @@ describe('Operator methods', () => {
                       label: 'StringToUpperCase',
                       markupType: 'option',
                       outputType: 'string',
-                    },
-                    {
-                      hierarchicalType: 'operatorOption',
-                      label: 'MapEntries',
-                      markupType: 'option',
-                      outputType: 'bytes',
                     },
                     {
                       hierarchicalType: 'operatorOption',
@@ -922,42 +766,6 @@ describe('Operator methods', () => {
                       label: 'MapValuesArray',
                       markupType: 'option',
                       outputType: 'arrayArray',
-                    },
-                    {
-                      hierarchicalType: 'operatorOption',
-                      label: 'MapValuesBoolean',
-                      markupType: 'option',
-                      outputType: 'arrayBoolean',
-                    },
-                    {
-                      hierarchicalType: 'operatorOption',
-                      label: 'MapValuesBytes',
-                      markupType: 'option',
-                      outputType: 'arrayBytes',
-                    },
-                    {
-                      hierarchicalType: 'operatorOption',
-                      label: 'MapValuesFloat',
-                      markupType: 'option',
-                      outputType: 'arrayFloat',
-                    },
-                    {
-                      hierarchicalType: 'operatorOption',
-                      label: 'MapValuesInteger',
-                      markupType: 'option',
-                      outputType: 'arrayInteger',
-                    },
-                    {
-                      hierarchicalType: 'operatorOption',
-                      label: 'MapValuesMap',
-                      markupType: 'option',
-                      outputType: 'arrayMap',
-                    },
-                    {
-                      hierarchicalType: 'operatorOption',
-                      label: 'MapValuesString',
-                      markupType: 'option',
-                      outputType: 'arrayString',
                     },
                     {
                       hierarchicalType: 'operatorOption',
@@ -1016,18 +824,6 @@ describe('Operator methods', () => {
                     {
                       hierarchicalType: 'operatorOption',
                       label: 'IntegerPower',
-                      markupType: 'option',
-                      outputType: 'integer',
-                    },
-                    {
-                      hierarchicalType: 'operatorOption',
-                      label: 'IntegerReciprocal',
-                      markupType: 'option',
-                      outputType: 'float',
-                    },
-                    {
-                      hierarchicalType: 'operatorOption',
-                      label: 'IntegerSum',
                       markupType: 'option',
                       outputType: 'integer',
                     },
@@ -1362,7 +1158,7 @@ describe('Operator methods', () => {
         const context: Context = { cache: new Cache(), i18n: new I18n() }
         const emitMock = jest.fn()
         const operator = new Operator(context, 0, null, null, { emit: emitMock })
-        const newOperatorCode = OperatorCode.BooleanMatch
+        const newOperatorCode = OperatorCode.BooleanAsString
 
         expect(operator.default).toBe(true)
 
@@ -1380,7 +1176,7 @@ describe('Operator methods', () => {
         const emitMock = jest.fn()
         const op = OperatorCode.ArrayCount
         const operator = new Operator(context, 0, OutputType.Array, op, { emit: emitMock })
-        const newOperatorCode = OperatorCode.BooleanMatch
+        const newOperatorCode = OperatorCode.BooleanAsString
 
         operator.update(newOperatorCode)
 
@@ -1393,7 +1189,7 @@ describe('Operator methods', () => {
       it('boolean', () => {
         const context: Context = { cache: new Cache(), i18n: new I18n() }
         const emitMock = jest.fn()
-        const op = OperatorCode.BooleanMatch
+        const op = OperatorCode.BooleanAsString
         const operator = new Operator(context, 0, OutputType.Boolean, op, { emit: emitMock })
         const newOperatorCode = OperatorCode.ArrayCount
 
@@ -1425,7 +1221,7 @@ describe('Operator methods', () => {
         const emitMock = jest.fn()
         const op = OperatorCode.IntegerAsString
         const operator = new Operator(context, 0, OutputType.Integer, op, { emit: emitMock })
-        const newOperatorCode = OperatorCode.FloatGraterThan
+        const newOperatorCode = OperatorCode.FloatGreaterThan
 
         operator.update(newOperatorCode)
 
@@ -1503,12 +1299,12 @@ describe('Operator methods', () => {
       it('boolean', () => {
         const context: Context = { cache: new Cache(), i18n: new I18n() }
         const emitMock = jest.fn()
-        const operatorName = 'BooleanMatch'
+        const operatorName = 'BooleanAsString'
         const operator = new Operator(context, 0, OutputType.Boolean, OperatorCode[operatorName], {
           emit: emitMock,
         })
-        const newOperatorCode = OperatorCode.BooleanAsString
-        const newOperatorName = 'BooleanAsString'
+        const newOperatorCode = OperatorCode.BooleanNegate
+        const newOperatorName = 'BooleanNegate'
 
         operator.update(newOperatorName)
 
@@ -1542,8 +1338,8 @@ describe('Operator methods', () => {
         const operator = new Operator(context, 0, OutputType.Integer, OperatorCode[operatorName], {
           emit: emitMock,
         })
-        const newOperatorCode = OperatorCode.IntegerSum
-        const newOperatorName = 'IntegerSum'
+        const newOperatorCode = OperatorCode.IntegerAbsolute
+        const newOperatorName = 'IntegerAbsolute'
 
         operator.update(newOperatorName)
 
@@ -1577,8 +1373,8 @@ describe('Operator methods', () => {
         const operator = new Operator(context, 0, OutputType.Map, OperatorCode[operatorName], {
           emit: emitMock,
         })
-        const newOperatorCode = OperatorCode.MapEntries
-        const newOperatorName = 'MapEntries'
+        const newOperatorCode = OperatorCode.MapGetArray
+        const newOperatorName = 'MapGetArray'
 
         operator.update(newOperatorName)
 

@@ -30,37 +30,38 @@ var Type;
 })(Type = exports.Type || (exports.Type = {}));
 var Reducer;
 (function (Reducer) {
-    Reducer[Reducer["min"] = 0] = "min";
-    Reducer[Reducer["max"] = 1] = "max";
+    //min = 0x00,
+    //max = 0x01,
     Reducer[Reducer["mode"] = 2] = "mode";
     Reducer[Reducer["averageMean"] = 3] = "averageMean";
-    Reducer[Reducer["averageMeanWeighted"] = 4] = "averageMeanWeighted";
-    Reducer[Reducer["averageMedian"] = 5] = "averageMedian";
-    Reducer[Reducer["averageMedianWeighted"] = 6] = "averageMedianWeighted";
+    //averageMeanWeighted = 0x04,
+    //averageMedian = 0x05,
+    //averageMedianWeighted = 0x06,
     Reducer[Reducer["deviationStandard"] = 7] = "deviationStandard";
-    Reducer[Reducer["deviationAverage"] = 8] = "deviationAverage";
-    Reducer[Reducer["deviationMedian"] = 9] = "deviationMedian";
-    Reducer[Reducer["deviationMaximum"] = 10] = "deviationMaximum";
+    //deviationAverage = 0x08,
+    //deviationMedian = 0x09,
+    //deviationMaximum = 0x0a,
 })(Reducer = exports.Reducer || (exports.Reducer = {}));
 var Filter;
 (function (Filter) {
-    Filter[Filter["greaterThan"] = 0] = "greaterThan";
-    Filter[Filter["lessThan"] = 1] = "lessThan";
-    Filter[Filter["equals"] = 2] = "equals";
-    Filter[Filter["deviationAbsolute"] = 3] = "deviationAbsolute";
-    Filter[Filter["deviationRelative"] = 4] = "deviationRelative";
+    //greaterThan = 0x00,
+    //lessThan = 0x01,
+    //equals = 0x02,
+    //deviationAbsolute = 0x03,
+    //deviationRelative = 0x04,
     Filter[Filter["deviationStandard"] = 5] = "deviationStandard";
-    Filter[Filter["top"] = 6] = "top";
-    Filter[Filter["bottom"] = 7] = "bottom";
+    //top = 0x06,
+    //bottom = 0x07,
     Filter[Filter["mode"] = 8] = "mode";
-    Filter[Filter["lessOrEqualThan"] = 128] = "lessOrEqualThan";
-    Filter[Filter["greaterOrEqualThan"] = 129] = "greaterOrEqualThan";
-    Filter[Filter["notEquals"] = 130] = "notEquals";
-    Filter[Filter["notDeviationAbsolute"] = 131] = "notDeviationAbsolute";
-    Filter[Filter["notDeviationRelative"] = 132] = "notDeviationRelative";
-    Filter[Filter["notDeviationStandard"] = 133] = "notDeviationStandard";
-    Filter[Filter["notTop"] = 134] = "notTop";
-    Filter[Filter["notBottom"] = 135] = "notBottom";
+    //lessOrEqualThan = 0x80,
+    //greaterOrEqualThan = 0x81,
+    //notEquals = 0x82,
+    //notDeviationAbsolute = 0x83,
+    //notDeviationRelative = 0x84,
+    //notDeviationStandard = 0x85,
+    //notTop = 0x86,
+    //notBottom = 0x87,
+    //notMode = 0x88,
     Filter[Filter["custom"] = 255] = "custom";
 })(Filter = exports.Filter || (exports.Filter = {}));
 var OutputType;
@@ -111,7 +112,7 @@ var OperatorCode;
 (function (OperatorCode) {
     OperatorCode[OperatorCode["ArrayCount"] = 16] = "ArrayCount";
     OperatorCode[OperatorCode["ArrayFilter"] = 17] = "ArrayFilter";
-    OperatorCode[OperatorCode["ArrayFlatten"] = 18] = "ArrayFlatten";
+    //ArrayFlatten = 0x12,
     OperatorCode[OperatorCode["ArrayGetArray"] = 19] = "ArrayGetArray";
     OperatorCode[OperatorCode["ArrayGetBoolean"] = 20] = "ArrayGetBoolean";
     OperatorCode[OperatorCode["ArrayGetBytes"] = 21] = "ArrayGetBytes";
@@ -121,14 +122,15 @@ var OperatorCode;
     OperatorCode[OperatorCode["ArrayGetString"] = 25] = "ArrayGetString";
     OperatorCode[OperatorCode["ArrayMap"] = 26] = "ArrayMap";
     OperatorCode[OperatorCode["ArrayReduce"] = 27] = "ArrayReduce";
-    OperatorCode[OperatorCode["ArraySome"] = 28] = "ArraySome";
+    //ArraySome = 0x1c,
     OperatorCode[OperatorCode["ArraySort"] = 29] = "ArraySort";
-    OperatorCode[OperatorCode["ArrayTake"] = 30] = "ArrayTake";
+    //ArrayTake = 0x1e,
     OperatorCode[OperatorCode["BooleanAsString"] = 32] = "BooleanAsString";
-    OperatorCode[OperatorCode["BooleanMatch"] = 33] = "BooleanMatch";
+    //BooleanMatch = 0x21,
     OperatorCode[OperatorCode["BooleanNegate"] = 34] = "BooleanNegate";
     OperatorCode[OperatorCode["BytesAsString"] = 48] = "BytesAsString";
     OperatorCode[OperatorCode["BytesHash"] = 49] = "BytesHash";
+    //BytesLength = 0x32,
     OperatorCode[OperatorCode["IntegerAbsolute"] = 64] = "IntegerAbsolute";
     OperatorCode[OperatorCode["IntegerAsFloat"] = 65] = "IntegerAsFloat";
     OperatorCode[OperatorCode["IntegerAsString"] = 66] = "IntegerAsString";
@@ -139,23 +141,23 @@ var OperatorCode;
     OperatorCode[OperatorCode["IntegerMultiply"] = 71] = "IntegerMultiply";
     OperatorCode[OperatorCode["IntegerNegate"] = 72] = "IntegerNegate";
     OperatorCode[OperatorCode["IntegerPower"] = 73] = "IntegerPower";
-    OperatorCode[OperatorCode["IntegerReciprocal"] = 74] = "IntegerReciprocal";
-    OperatorCode[OperatorCode["IntegerSum"] = 75] = "IntegerSum";
+    //IntegerReciprocal = 0x4a,
+    //IntegerSum = 0x4b,
     OperatorCode[OperatorCode["FloatAbsolute"] = 80] = "FloatAbsolute";
     OperatorCode[OperatorCode["FloatAsString"] = 81] = "FloatAsString";
     OperatorCode[OperatorCode["FloatCeiling"] = 82] = "FloatCeiling";
-    OperatorCode[OperatorCode["FloatGraterThan"] = 83] = "FloatGraterThan";
     OperatorCode[OperatorCode["FloatFloor"] = 84] = "FloatFloor";
+    OperatorCode[OperatorCode["FloatGreaterThan"] = 83] = "FloatGreaterThan";
     OperatorCode[OperatorCode["FloatLessThan"] = 85] = "FloatLessThan";
     OperatorCode[OperatorCode["FloatModulo"] = 86] = "FloatModulo";
     OperatorCode[OperatorCode["FloatMultiply"] = 87] = "FloatMultiply";
     OperatorCode[OperatorCode["FloatNegate"] = 88] = "FloatNegate";
     OperatorCode[OperatorCode["FloatPower"] = 89] = "FloatPower";
-    OperatorCode[OperatorCode["FloatReciprocal"] = 90] = "FloatReciprocal";
+    //FloatReciprocal = 0x5a,
     OperatorCode[OperatorCode["FloatRound"] = 91] = "FloatRound";
-    OperatorCode[OperatorCode["Floatsum"] = 92] = "Floatsum";
+    //Floatsum = 0x5c,
     OperatorCode[OperatorCode["FloatTruncate"] = 93] = "FloatTruncate";
-    OperatorCode[OperatorCode["MapEntries"] = 96] = "MapEntries";
+    //MapEntries = 0x60,
     OperatorCode[OperatorCode["MapGetArray"] = 97] = "MapGetArray";
     OperatorCode[OperatorCode["MapGetBoolean"] = 98] = "MapGetBoolean";
     OperatorCode[OperatorCode["MapGetBytes"] = 99] = "MapGetBytes";
@@ -165,21 +167,21 @@ var OperatorCode;
     OperatorCode[OperatorCode["MapGetString"] = 103] = "MapGetString";
     OperatorCode[OperatorCode["MapKeys"] = 104] = "MapKeys";
     OperatorCode[OperatorCode["MapValuesArray"] = 105] = "MapValuesArray";
-    OperatorCode[OperatorCode["MapValuesBoolean"] = 106] = "MapValuesBoolean";
-    OperatorCode[OperatorCode["MapValuesBytes"] = 107] = "MapValuesBytes";
-    OperatorCode[OperatorCode["MapValuesFloat"] = 108] = "MapValuesFloat";
-    OperatorCode[OperatorCode["MapValuesInteger"] = 109] = "MapValuesInteger";
-    OperatorCode[OperatorCode["MapValuesMap"] = 110] = "MapValuesMap";
-    OperatorCode[OperatorCode["MapValuesString"] = 111] = "MapValuesString";
+    //MapValuesBoolean = 0x6a,
+    //MapValuesBytes = 0x6b,
+    //MapValuesFloat = 0x6c,
+    //MapValuesInteger = 0x6d,
+    //MapValuesMap = 0x6e,
+    //MapValuesString = 0x6f,
     OperatorCode[OperatorCode["StringAsBoolean"] = 112] = "StringAsBoolean";
-    OperatorCode[OperatorCode["StringAsBytes"] = 113] = "StringAsBytes";
+    //StringAsBytes = 0x71,
     OperatorCode[OperatorCode["StringAsFloat"] = 114] = "StringAsFloat";
     OperatorCode[OperatorCode["StringAsInteger"] = 115] = "StringAsInteger";
     OperatorCode[OperatorCode["StringLength"] = 116] = "StringLength";
     OperatorCode[OperatorCode["StringMatch"] = 117] = "StringMatch";
     OperatorCode[OperatorCode["StringParseJsonArray"] = 118] = "StringParseJsonArray";
     OperatorCode[OperatorCode["StringParseJsonMap"] = 119] = "StringParseJsonMap";
-    OperatorCode[OperatorCode["StringParseXML"] = 120] = "StringParseXML";
+    //StringParseXML = 0x78,
     OperatorCode[OperatorCode["StringToLowerCase"] = 121] = "StringToLowerCase";
     OperatorCode[OperatorCode["StringToUpperCase"] = 122] = "StringToUpperCase";
 })(OperatorCode = exports.OperatorCode || (exports.OperatorCode = {}));
@@ -217,7 +219,7 @@ var ArrayOperatorName;
 (function (ArrayOperatorName) {
     ArrayOperatorName["Count"] = "count";
     ArrayOperatorName["Filter"] = "filter";
-    ArrayOperatorName["Flatten"] = "flatten";
+    //Flatten = 'flatten',
     ArrayOperatorName["GetArray"] = "getArray";
     ArrayOperatorName["GetBoolean"] = "getBoolean";
     ArrayOperatorName["GetBytes"] = "getBytes";
@@ -227,15 +229,15 @@ var ArrayOperatorName;
     ArrayOperatorName["GetString"] = "getString";
     ArrayOperatorName["Map"] = "map";
     ArrayOperatorName["Reduce"] = "reduce";
-    ArrayOperatorName["Some"] = "some";
+    //Some = 'some',
     ArrayOperatorName["Sort"] = "sort";
-    ArrayOperatorName["Take"] = "take";
+    //Take = 'take',
 })(ArrayOperatorName = exports.ArrayOperatorName || (exports.ArrayOperatorName = {}));
 var BooleanOperatorName;
 (function (BooleanOperatorName) {
     BooleanOperatorName["AsString"] = "asString";
     BooleanOperatorName["Negate"] = "negate";
-    BooleanOperatorName["Match"] = "match";
+    //Match = 'match',
 })(BooleanOperatorName = exports.BooleanOperatorName || (exports.BooleanOperatorName = {}));
 var BytesOperatorName;
 (function (BytesOperatorName) {
@@ -254,8 +256,8 @@ var IntegerOperatorName;
     IntegerOperatorName["Multiply"] = "multiply";
     IntegerOperatorName["Negate"] = "negate";
     IntegerOperatorName["Power"] = "power";
-    IntegerOperatorName["Reciprocal"] = "reciprocal";
-    IntegerOperatorName["Sum"] = "sum";
+    //Reciprocal = 'reciprocal',
+    //Sum = 'sum',
 })(IntegerOperatorName = exports.IntegerOperatorName || (exports.IntegerOperatorName = {}));
 var FloatOperatorName;
 (function (FloatOperatorName) {
@@ -269,14 +271,14 @@ var FloatOperatorName;
     FloatOperatorName["Multiply"] = "multiply";
     FloatOperatorName["Negate"] = "negate";
     FloatOperatorName["Power"] = "power";
-    FloatOperatorName["Reciprocal"] = "reciprocal";
+    //Reciprocal = 'reciprocal',
     FloatOperatorName["Round"] = "round";
-    FloatOperatorName["Sum"] = "sum";
+    //Sum = 'sum',
     FloatOperatorName["Truncate"] = "truncate";
 })(FloatOperatorName = exports.FloatOperatorName || (exports.FloatOperatorName = {}));
 var MapOperatorName;
 (function (MapOperatorName) {
-    MapOperatorName["Entries"] = "entries";
+    //Entries = 'entries',
     MapOperatorName["GetArray"] = "getArray";
     MapOperatorName["GetBoolean"] = "getBoolean";
     MapOperatorName["GetBytes"] = "getBytes";
@@ -286,24 +288,24 @@ var MapOperatorName;
     MapOperatorName["GetString"] = "getString";
     MapOperatorName["Keys"] = "keys";
     MapOperatorName["valuesArray"] = "valuesAsArray";
-    MapOperatorName["valuesBoolean"] = "valuesAsBoolean";
-    MapOperatorName["valuesBytes"] = "valuesAsBytes";
-    MapOperatorName["valuesInteger"] = "valuesAsInteger";
-    MapOperatorName["valuesFloat"] = "valuesAsFloat";
-    MapOperatorName["valuesMap"] = "valuesAsMap";
-    MapOperatorName["valuesString"] = "valuesAsString";
+    //valuesBoolean = 'valuesAsBoolean',
+    //valuesBytes = 'valuesAsBytes',
+    //valuesInteger = 'valuesAsInteger',
+    //valuesFloat = 'valuesAsFloat',
+    //valuesMap = 'valuesAsMap',
+    //valuesString = 'valuesAsString',
 })(MapOperatorName = exports.MapOperatorName || (exports.MapOperatorName = {}));
 var StringOperatorName;
 (function (StringOperatorName) {
     StringOperatorName["AsBoolean"] = "asBoolean";
-    StringOperatorName["AsBytes"] = "asBytes";
+    //AsBytes = 'asBytes',
     StringOperatorName["AsFloat"] = "asFloat";
     StringOperatorName["AsInteger"] = "asInteger";
     StringOperatorName["Length"] = "length";
     StringOperatorName["Match"] = "match";
     StringOperatorName["ParseJsonArray"] = "parseJSONArray";
     StringOperatorName["ParseJsonMap"] = "parseJSONMap";
-    StringOperatorName["ParseXml"] = "parseXML";
+    //ParseXml = 'parseXML',
     StringOperatorName["ToLowerCase"] = "toLowerCase";
     StringOperatorName["ToUpperCase"] = "toUpperCase";
 })(StringOperatorName = exports.StringOperatorName || (exports.StringOperatorName = {}));

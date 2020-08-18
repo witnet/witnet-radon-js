@@ -101,7 +101,7 @@ export function getDefaultMirArgumentByType(type: MirArgumentType): MirArgument 
     case MirArgumentType.Boolean:
       return true
     case MirArgumentType.FilterFunction:
-      return [Filter.lessThan, 0]
+      return [Filter.deviationStandard, 1.1]
     case MirArgumentType.Float:
       return 0.0
     case MirArgumentType.Integer:
@@ -123,7 +123,7 @@ export function getDefaultMirOperatorByType(type: Type): MirOperator {
     case Type.Array:
       return OperatorCode.ArrayCount
     case Type.Boolean:
-      return [OperatorCode.BooleanMatch, '', true]
+      return OperatorCode.BooleanAsString
     case Type.Bytes:
       return OperatorCode.BytesAsString
     case Type.Float:
@@ -131,7 +131,7 @@ export function getDefaultMirOperatorByType(type: Type): MirOperator {
     case Type.Integer:
       return OperatorCode.IntegerAbsolute
     case Type.Map:
-      return OperatorCode.MapEntries
+      return OperatorCode.MapGetArray
     case Type.String:
       return OperatorCode.StringAsBoolean
   }

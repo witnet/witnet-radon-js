@@ -25,7 +25,7 @@ export const typeSystem: TypeSystem = {
   [Type.Array]: {
     [ArrayOperatorName.Count]: [OperatorCode.ArrayCount, OutputType.Integer],
     [ArrayOperatorName.Filter]: [OperatorCode.ArrayFilter, OutputType.Same],
-    [ArrayOperatorName.Flatten]: [OperatorCode.ArrayFlatten, OutputType.Array],
+    //[ArrayOperatorName.Flatten]: [OperatorCode.ArrayFlatten, OutputType.Array],
     [ArrayOperatorName.GetArray]: [OperatorCode.ArrayGetArray, OutputType.Array],
     [ArrayOperatorName.GetBoolean]: [OperatorCode.ArrayGetBoolean, OutputType.Boolean],
     [ArrayOperatorName.GetBytes]: [OperatorCode.ArrayGetBytes, OutputType.Bytes],
@@ -35,13 +35,13 @@ export const typeSystem: TypeSystem = {
     [ArrayOperatorName.GetString]: [OperatorCode.ArrayGetString, OutputType.String],
     [ArrayOperatorName.Map]: [OperatorCode.ArrayMap, OutputType.ArrayMap],
     [ArrayOperatorName.Reduce]: [OperatorCode.ArrayReduce, OutputType.Inner],
-    [ArrayOperatorName.Some]: [OperatorCode.ArraySome, OutputType.FilterOutput],
+    //[ArrayOperatorName.Some]: [OperatorCode.ArraySome, OutputType.FilterOutput],
     [ArrayOperatorName.Sort]: [OperatorCode.ArraySort, OutputType.Same],
-    [ArrayOperatorName.Take]: [OperatorCode.ArrayTake, OutputType.Array],
+    //[ArrayOperatorName.Take]: [OperatorCode.ArrayTake, OutputType.Array],
   },
   [Type.Boolean]: {
     [BooleanOperatorName.AsString]: [OperatorCode.BooleanAsString, OutputType.String],
-    [BooleanOperatorName.Match]: [OperatorCode.BooleanMatch, OutputType.MatchOutput],
+    //[BooleanOperatorName.Match]: [OperatorCode.BooleanMatch, OutputType.MatchOutput],
     [BooleanOperatorName.Negate]: [OperatorCode.BooleanNegate, OutputType.Boolean],
   },
   [Type.Bytes]: {
@@ -59,27 +59,27 @@ export const typeSystem: TypeSystem = {
     [IntegerOperatorName.Multiply]: [OperatorCode.IntegerMultiply, OutputType.Integer],
     [IntegerOperatorName.Negate]: [OperatorCode.IntegerNegate, OutputType.Integer],
     [IntegerOperatorName.Power]: [OperatorCode.IntegerPower, OutputType.Integer],
-    [IntegerOperatorName.Reciprocal]: [OperatorCode.IntegerReciprocal, OutputType.Float],
-    [IntegerOperatorName.Sum]: [OperatorCode.IntegerSum, OutputType.Integer],
+    //[IntegerOperatorName.Reciprocal]: [OperatorCode.IntegerReciprocal, OutputType.Float],
+    //[IntegerOperatorName.Sum]: [OperatorCode.IntegerSum, OutputType.Integer],
   },
   [Type.Float]: {
     [FloatOperatorName.Absolute]: [OperatorCode.FloatAbsolute, OutputType.Float],
     [FloatOperatorName.AsString]: [OperatorCode.FloatAsString, OutputType.String],
     [FloatOperatorName.Ceiling]: [OperatorCode.FloatCeiling, OutputType.Integer],
-    [FloatOperatorName.GreaterThan]: [OperatorCode.FloatGraterThan, OutputType.Boolean],
+    [FloatOperatorName.GreaterThan]: [OperatorCode.FloatGreaterThan, OutputType.Boolean],
     [FloatOperatorName.Floor]: [OperatorCode.FloatFloor, OutputType.Integer],
     [FloatOperatorName.LessThan]: [OperatorCode.FloatLessThan, OutputType.Boolean],
     [FloatOperatorName.Modulo]: [OperatorCode.FloatModulo, OutputType.Float],
     [FloatOperatorName.Multiply]: [OperatorCode.FloatMultiply, OutputType.Float],
     [FloatOperatorName.Negate]: [OperatorCode.FloatNegate, OutputType.Float],
     [FloatOperatorName.Power]: [OperatorCode.FloatPower, OutputType.Float],
-    [FloatOperatorName.Reciprocal]: [OperatorCode.FloatReciprocal, OutputType.Float],
+    //[FloatOperatorName.Reciprocal]: [OperatorCode.FloatReciprocal, OutputType.Float],
     [FloatOperatorName.Round]: [OperatorCode.FloatRound, OutputType.Integer],
-    [FloatOperatorName.Sum]: [OperatorCode.Floatsum, OutputType.Float],
+    //[FloatOperatorName.Sum]: [OperatorCode.Floatsum, OutputType.Float],
     [FloatOperatorName.Truncate]: [OperatorCode.FloatTruncate, OutputType.Integer],
   },
   [Type.Map]: {
-    [MapOperatorName.Entries]: [OperatorCode.MapEntries, OutputType.Bytes],
+    //[MapOperatorName.Entries]: [OperatorCode.MapEntries, OutputType.Bytes],
     [MapOperatorName.GetArray]: [OperatorCode.MapGetArray, OutputType.Array],
     [MapOperatorName.GetBoolean]: [OperatorCode.MapGetBoolean, OutputType.Boolean],
     [MapOperatorName.GetBytes]: [OperatorCode.MapGetBytes, OutputType.Bytes],
@@ -89,23 +89,23 @@ export const typeSystem: TypeSystem = {
     [MapOperatorName.GetString]: [OperatorCode.MapGetString, OutputType.String],
     [MapOperatorName.Keys]: [OperatorCode.MapKeys, OutputType.ArrayString],
     [MapOperatorName.valuesArray]: [OperatorCode.MapValuesArray, OutputType.ArrayArray],
-    [MapOperatorName.valuesBoolean]: [OperatorCode.MapValuesBoolean, OutputType.ArrayBoolean],
-    [MapOperatorName.valuesBytes]: [OperatorCode.MapValuesBytes, OutputType.ArrayBytes],
-    [MapOperatorName.valuesFloat]: [OperatorCode.MapValuesFloat, OutputType.ArrayFloat],
-    [MapOperatorName.valuesInteger]: [OperatorCode.MapValuesInteger, OutputType.ArrayInteger],
-    [MapOperatorName.valuesMap]: [OperatorCode.MapValuesMap, OutputType.ArrayMap],
-    [MapOperatorName.valuesString]: [OperatorCode.MapValuesString, OutputType.ArrayString],
+    //[MapOperatorName.valuesBoolean]: [OperatorCode.MapValuesBoolean, OutputType.ArrayBoolean],
+    //[MapOperatorName.valuesBytes]: [OperatorCode.MapValuesBytes, OutputType.ArrayBytes],
+    //[MapOperatorName.valuesFloat]: [OperatorCode.MapValuesFloat, OutputType.ArrayFloat],
+    //[MapOperatorName.valuesInteger]: [OperatorCode.MapValuesInteger, OutputType.ArrayInteger],
+    //[MapOperatorName.valuesMap]: [OperatorCode.MapValuesMap, OutputType.ArrayMap],
+    //[MapOperatorName.valuesString]: [OperatorCode.MapValuesString, OutputType.ArrayString],
   },
   [Type.String]: {
     [StringOperatorName.AsBoolean]: [OperatorCode.StringAsBoolean, OutputType.Boolean],
-    [StringOperatorName.AsBytes]: [OperatorCode.StringAsBytes, OutputType.Bytes],
+    //[StringOperatorName.AsBytes]: [OperatorCode.StringAsBytes, OutputType.Bytes],
     [StringOperatorName.AsFloat]: [OperatorCode.StringAsFloat, OutputType.Float],
     [StringOperatorName.AsInteger]: [OperatorCode.StringAsInteger, OutputType.Integer],
     [StringOperatorName.Length]: [OperatorCode.StringLength, OutputType.Integer],
     [StringOperatorName.Match]: [OperatorCode.StringMatch, OutputType.MatchOutput],
     [StringOperatorName.ParseJsonArray]: [OperatorCode.StringParseJsonArray, OutputType.Array],
     [StringOperatorName.ParseJsonMap]: [OperatorCode.StringParseJsonMap, OutputType.Map],
-    [StringOperatorName.ParseXml]: [OperatorCode.StringParseXML, OutputType.Map],
+    //[StringOperatorName.ParseXml]: [OperatorCode.StringParseXML, OutputType.Map],
     [StringOperatorName.ToLowerCase]: [OperatorCode.StringToLowerCase, OutputType.String],
     [StringOperatorName.ToUpperCase]: [OperatorCode.StringToUpperCase, OutputType.String],
   },
@@ -163,7 +163,7 @@ export const operatorInfos: OperatorInfos = {
     description: (i18n: I18n) => (filter: string = 'filter') =>
       i18n.t('operator_info_description.array.filter', { filter }),
   },
-  [OperatorCode.ArrayFlatten]: {
+  /*[OperatorCode.ArrayFlatten]: {
     type: Type.Array,
     name: ArrayOperatorName.Flatten,
     arguments: [
@@ -176,7 +176,7 @@ export const operatorInfos: OperatorInfos = {
     outputType: OutputType.Inner,
     description: (i18n: I18n) => (depth: string = 'depth') =>
       i18n.t('operator_info_description.array.flatten', { depth }),
-  },
+  },*/
   [OperatorCode.ArrayGetArray]: {
     type: Type.Array,
     name: ArrayOperatorName.GetArray,
@@ -298,7 +298,7 @@ export const operatorInfos: OperatorInfos = {
     description: (i18n: I18n) => (outputType: string = 'outputType', reducer: string = 'reducer') =>
       i18n.t('operator_info_description.array.reduce', { outputType, reducer }),
   },
-  [OperatorCode.ArraySome]: {
+  /*[OperatorCode.ArraySome]: {
     type: Type.Array,
     name: ArrayOperatorName.Some,
     arguments: [
@@ -311,7 +311,7 @@ export const operatorInfos: OperatorInfos = {
     outputType: OutputType.Boolean,
     description: (i18n: I18n) => (filter: string = 'filter') =>
       i18n.t('operator_info_description.array.some', { filter }),
-  },
+  },*/
   [OperatorCode.ArraySort]: {
     type: Type.Array,
     name: ArrayOperatorName.Sort,
@@ -331,7 +331,7 @@ export const operatorInfos: OperatorInfos = {
     description: (i18n: I18n) => (order: string = 'order') =>
       i18n.t('operator_info_description.array.sort', { order }),
   },
-  [OperatorCode.ArrayTake]: {
+  /*[OperatorCode.ArrayTake]: {
     type: Type.Array,
     name: ArrayOperatorName.Take,
     arguments: [
@@ -345,7 +345,7 @@ export const operatorInfos: OperatorInfos = {
     outputType: OutputType.Array,
     description: (i18n: I18n) => (min, max) =>
       i18n.t('operator_info_description.array.take', { min, max }),
-  },
+  },*/
   [OperatorCode.BooleanAsString]: {
     type: Type.Boolean,
     name: BooleanOperatorName.AsString,
@@ -353,7 +353,7 @@ export const operatorInfos: OperatorInfos = {
     outputType: OutputType.String,
     description: (i18n: I18n) => () => descriptions.cast(i18n)('Boolean', 'String'),
   },
-  [OperatorCode.BooleanMatch]: {
+  /*[OperatorCode.BooleanMatch]: {
     type: Type.Boolean,
     name: BooleanOperatorName.Match,
     arguments: [
@@ -371,7 +371,7 @@ export const operatorInfos: OperatorInfos = {
     outputType: OutputType.MatchOutput,
     description: (i18n: I18n) => (subscript: string = 'subscript') =>
       i18n.t('operator_info_description.boolean.match', { subscript }),
-  },
+  },*/
   [OperatorCode.BooleanNegate]: {
     type: Type.Boolean,
     name: BooleanOperatorName.Negate,
@@ -516,14 +516,14 @@ export const operatorInfos: OperatorInfos = {
     description: (i18n: I18n) => (exponent: string = 'exponent') =>
       i18n.t('operator_info_description.integer.power', { exponent }),
   },
-  [OperatorCode.IntegerReciprocal]: {
+  /*[OperatorCode.IntegerReciprocal]: {
     type: Type.Integer,
     name: IntegerOperatorName.Reciprocal,
     arguments: [],
     outputType: OutputType.Float,
     description: (i18n: I18n) => () => i18n.t('operator_info_description.integer.reciprocal'),
-  },
-  [OperatorCode.IntegerSum]: {
+  },*/
+  /*[OperatorCode.IntegerSum]: {
     type: Type.Integer,
     name: IntegerOperatorName.Sum,
     arguments: [
@@ -536,7 +536,7 @@ export const operatorInfos: OperatorInfos = {
     outputType: OutputType.Integer,
     description: (i18n: I18n) => (addend: string = 'addend') =>
       i18n.t('operator_info_description.integer.sum', { addend }),
-  },
+  },*/
   [OperatorCode.FloatAbsolute]: {
     type: Type.Float,
     name: IntegerOperatorName.Absolute,
@@ -564,7 +564,7 @@ export const operatorInfos: OperatorInfos = {
     outputType: OutputType.Integer,
     description: (i18n: I18n) => () => i18n.t('operator_info_description.float.celling'),
   },
-  [OperatorCode.FloatGraterThan]: {
+  [OperatorCode.FloatGreaterThan]: {
     type: Type.Float,
     name: FloatOperatorName.GreaterThan,
     arguments: [
@@ -648,13 +648,13 @@ export const operatorInfos: OperatorInfos = {
     description: (i18n: I18n) => (exponent: string = 'exponent') =>
       i18n.t('operator_info_description.float.power', { exponent }),
   },
-  [OperatorCode.FloatReciprocal]: {
+  /*[OperatorCode.FloatReciprocal]: {
     type: Type.Float,
     name: FloatOperatorName.Reciprocal,
     arguments: [],
     outputType: OutputType.Float,
     description: (i18n: I18n) => () => i18n.t('operator_info_description.float.reciprocal'),
-  },
+  },*/
   [OperatorCode.FloatRound]: {
     type: Type.Float,
     name: FloatOperatorName.Round,
@@ -662,7 +662,7 @@ export const operatorInfos: OperatorInfos = {
     outputType: OutputType.Integer,
     description: (i18n: I18n) => () => i18n.t('operator_info_description.float.round'),
   },
-  [OperatorCode.Floatsum]: {
+  /*[OperatorCode.Floatsum]: {
     type: Type.Float,
     name: FloatOperatorName.Sum,
     arguments: [
@@ -675,7 +675,7 @@ export const operatorInfos: OperatorInfos = {
     outputType: OutputType.Float,
     description: (i18n: I18n) => (addend: string = 'addend') =>
       i18n.t('operator_info_description.float.sum', { addend }),
-  },
+  },*/
   [OperatorCode.FloatTruncate]: {
     type: Type.Float,
     name: FloatOperatorName.Truncate,
@@ -683,13 +683,13 @@ export const operatorInfos: OperatorInfos = {
     outputType: OutputType.Integer,
     description: (i18n: I18n) => () => i18n.t('operator_info_description.float.truncate'),
   },
-  [OperatorCode.MapEntries]: {
+  /*[OperatorCode.MapEntries]: {
     type: Type.Map,
     name: MapOperatorName.Entries,
     arguments: [],
     outputType: OutputType.Array,
     description: (i18n: I18n) => () => i18n.t('operator_info_description.map.entries'),
-  },
+  },*/
   [OperatorCode.MapGetArray]: {
     type: Type.Map,
     name: MapOperatorName.GetArray,
@@ -795,48 +795,48 @@ export const operatorInfos: OperatorInfos = {
     outputType: OutputType.ArrayArray,
     description: (i18n: I18n) => () => descriptions.mapValues(i18n)('Array'),
   },
-  [OperatorCode.MapValuesBoolean]: {
+  /*[OperatorCode.MapValuesBoolean]: {
     type: Type.Map,
     name: MapOperatorName.valuesBoolean,
     arguments: [],
     outputType: OutputType.ArrayBoolean,
     description: (i18n: I18n) => () => descriptions.mapValues(i18n)('Boolean'),
-  },
-  [OperatorCode.MapValuesBytes]: {
+  },*/
+  /*[OperatorCode.MapValuesBytes]: {
     type: Type.Map,
     name: MapOperatorName.valuesBytes,
     arguments: [],
     outputType: OutputType.ArrayBytes,
     description: (i18n: I18n) => () => descriptions.mapValues(i18n)('Bytes'),
-  },
-  [OperatorCode.MapValuesInteger]: {
+  },*/
+  /*[OperatorCode.MapValuesInteger]: {
     type: Type.Map,
     name: MapOperatorName.valuesInteger,
     arguments: [],
     outputType: OutputType.ArrayInteger,
     description: (i18n: I18n) => () => descriptions.mapValues(i18n)('Integer'),
-  },
-  [OperatorCode.MapValuesFloat]: {
+  },*/
+  /*[OperatorCode.MapValuesFloat]: {
     type: Type.Map,
     name: MapOperatorName.valuesFloat,
     arguments: [],
     outputType: OutputType.ArrayFloat,
     description: (i18n: I18n) => () => descriptions.mapValues(i18n)('Float'),
-  },
-  [OperatorCode.MapValuesMap]: {
+  },*/
+  /*[OperatorCode.MapValuesMap]: {
     type: Type.Map,
     name: MapOperatorName.valuesMap,
     arguments: [],
     outputType: OutputType.ArrayMap,
     description: (i18n: I18n) => () => descriptions.mapValues(i18n)('Map'),
-  },
-  [OperatorCode.MapValuesString]: {
+  },*/
+  /*[OperatorCode.MapValuesString]: {
     type: Type.Map,
     name: MapOperatorName.valuesString,
     arguments: [],
     outputType: OutputType.ArrayString,
     description: (i18n: I18n) => () => descriptions.mapValues(i18n)('String'),
-  },
+  },*/
   [OperatorCode.StringAsBoolean]: {
     type: Type.String,
     name: StringOperatorName.AsBoolean,
@@ -844,13 +844,13 @@ export const operatorInfos: OperatorInfos = {
     outputType: OutputType.Boolean,
     description: (i18n: I18n) => () => descriptions.cast(i18n)('String', 'Boolean'),
   },
-  [OperatorCode.StringAsBytes]: {
+  /*[OperatorCode.StringAsBytes]: {
     type: Type.String,
     name: StringOperatorName.AsBytes,
     arguments: [],
     outputType: OutputType.Bytes,
     description: (i18n: I18n) => () => descriptions.cast(i18n)('String', 'Bytes'),
-  },
+  },*/
   [OperatorCode.StringAsFloat]: {
     type: Type.String,
     name: StringOperatorName.AsFloat,
@@ -905,13 +905,13 @@ export const operatorInfos: OperatorInfos = {
     outputType: OutputType.Map,
     description: (i18n: I18n) => () => i18n.t('operator_info_description.string.parse_json_map'),
   },
-  [OperatorCode.StringParseXML]: {
+  /*[OperatorCode.StringParseXML]: {
     type: Type.String,
     name: StringOperatorName.ParseXml,
     arguments: [],
     outputType: OutputType.Map,
     description: (i18n: I18n) => () => i18n.t('operator_info_description.string.parse_xml'),
-  },
+  },*/
   [OperatorCode.StringToLowerCase]: {
     type: Type.String,
     name: StringOperatorName.ToLowerCase,
@@ -973,96 +973,96 @@ export const primitiveMarkupOptions = {
   arrayBoolean: [
     { label: 'ArrayCount', outputType: 'integer' },
     { label: 'ArrayFilter', outputType: 'arrayBoolean' },
-    { label: 'ArrayFlatten', outputType: 'arrayBoolean' },
+    //{ label: 'ArrayFlatten', outputType: 'arrayBoolean' },
     { label: 'ArrayGetArray', outputType: 'arrayBoolean' },
     { label: 'ArrayGetBoolean', outputType: 'boolean' },
     { label: 'ArrayGetBytes', outputType: 'bytes' },
     { label: 'ArrayGetString', outputType: 'string' },
     { label: 'ArrayMap', outputType: 'arrayMap' },
     { label: 'ArrayReduce', outputType: 'boolean' },
-    { label: 'ArraySome', outputType: 'arrayBoolean' },
+    //{ label: 'ArraySome', outputType: 'arrayBoolean' },
     { label: 'ArraySort', outputType: 'arrayBoolean' },
-    { label: 'ArrayTake', outputType: 'arrayBoolean' },
+    //{ label: 'ArrayTake', outputType: 'arrayBoolean' },
   ].map((x) => {
     return generateOption(x.label, x.outputType as OutputType)
   }),
   arrayArray: [
     { label: 'ArrayCount', outputType: 'integer' },
     { label: 'ArrayFilter', outputType: 'arrayArray' },
-    { label: 'ArrayFlatten', outputType: 'arrayArray' },
+    //{ label: 'ArrayFlatten', outputType: 'arrayArray' },
     { label: 'ArrayGetArray', outputType: 'arrayArray' },
     { label: 'ArrayGetBoolean', outputType: 'boolean' },
     { label: 'ArrayGetBytes', outputType: 'bytes' },
     { label: 'ArrayGetString', outputType: 'string' },
     { label: 'ArrayMap', outputType: 'arrayMap' },
     { label: 'ArrayReduce', outputType: '' },
-    { label: 'ArraySome', outputType: 'arrayArray' },
+    //{ label: 'ArraySome', outputType: 'arrayArray' },
     { label: 'ArraySort', outputType: 'arrayArray' },
-    { label: 'ArrayTake', outputType: 'arrayArray' },
+    //{ label: 'ArrayTake', outputType: 'arrayArray' },
   ].map((x) => {
     return generateOption(x.label, x.outputType as OutputType)
   }),
   arrayBytes: [
     { label: 'ArrayCount', outputType: 'integer' },
     { label: 'ArrayFilter', outputType: 'arrayBytes' },
-    { label: 'ArrayFlatten', outputType: 'arrayBytes' },
+    //{ label: 'ArrayFlatten', outputType: 'arrayBytes' },
     { label: 'ArrayGetArray', outputType: 'arrayBytes' },
     { label: 'ArrayGetBoolean', outputType: 'boolean' },
     { label: 'ArrayGetBytes', outputType: 'bytes' },
     { label: 'ArrayGetString', outputType: 'string' },
     { label: 'ArrayMap', outputType: 'arrayMap' },
     { label: 'ArrayReduce', outputType: 'bytes' },
-    { label: 'ArraySome', outputType: 'arrayBytes' },
+    //{ label: 'ArraySome', outputType: 'arrayBytes' },
     { label: 'ArraySort', outputType: 'arrayBytes' },
-    { label: 'ArrayTake', outputType: 'arrayBytes' },
+    //{ label: 'ArrayTake', outputType: 'arrayBytes' },
   ].map((x) => {
     return generateOption(x.label, x.outputType as OutputType)
   }),
   arrayFloat: [
     { label: 'ArrayCount', outputType: 'integer' },
     { label: 'ArrayFilter', outputType: 'arrayFloat' },
-    { label: 'ArrayFlatten', outputType: 'arrayFloat' },
+    //{ label: 'ArrayFlatten', outputType: 'arrayFloat' },
     { label: 'ArrayGetArray', outputType: 'arrayFloat' },
     { label: 'ArrayGetBoolean', outputType: 'boolean' },
     { label: 'ArrayGetBytes', outputType: 'bytes' },
     { label: 'ArrayGetString', outputType: 'string' },
     { label: 'ArrayMap', outputType: 'arrayMap' },
     { label: 'ArrayReduce', outputType: 'float' },
-    { label: 'ArraySome', outputType: 'arrayFloat' },
+    //{ label: 'ArraySome', outputType: 'arrayFloat' },
     { label: 'ArraySort', outputType: 'arrayFloat' },
-    { label: 'ArrayTake', outputType: 'arrayFloat' },
+    //{ label: 'ArrayTake', outputType: 'arrayFloat' },
   ].map((x) => {
     return generateOption(x.label, x.outputType as OutputType)
   }),
   arrayInteger: [
     { label: 'ArrayCount', outputType: 'integer' },
     { label: 'ArrayFilter', outputType: 'arrayInteger' },
-    { label: 'ArrayFlatten', outputType: 'arrayInteger' },
+    //{ label: 'ArrayFlatten', outputType: 'arrayInteger' },
     { label: 'ArrayGetArray', outputType: 'arrayInteger' },
     { label: 'ArrayGetBoolean', outputType: 'boolean' },
     { label: 'ArrayGetBytes', outputType: 'bytes' },
     { label: 'ArrayGetString', outputType: 'string' },
     { label: 'ArrayMap', outputType: 'arrayMap' },
     { label: 'ArrayReduce', outputType: 'integer' },
-    { label: 'ArraySome', outputType: 'arrayInteger' },
+    //{ label: 'ArraySome', outputType: 'arrayInteger' },
     { label: 'ArraySort', outputType: 'arrayInteger' },
-    { label: 'ArrayTake', outputType: 'arrayInteger' },
+    //{ label: 'ArrayTake', outputType: 'arrayInteger' },
   ].map((x) => {
     return generateOption(x.label, x.outputType as OutputType)
   }),
   arrayMap: [
     { label: 'ArrayCount', outputType: 'integer' },
     { label: 'ArrayFilter', outputType: 'arrayMap' },
-    { label: 'ArrayFlatten', outputType: 'arrayMap' },
+    //{ label: 'ArrayFlatten', outputType: 'arrayMap' },
     { label: 'ArrayGetArray', outputType: 'arrayMap' },
     { label: 'ArrayGetBoolean', outputType: 'boolean' },
     { label: 'ArrayGetBytes', outputType: 'bytes' },
     { label: 'ArrayGetString', outputType: 'string' },
     { label: 'ArrayMap', outputType: 'arrayMap' },
     { label: 'ArrayReduce', outputType: 'map' },
-    { label: 'ArraySome', outputType: 'arrayMap' },
+    //{ label: 'ArraySome', outputType: 'arrayMap' },
     { label: 'ArraySort', outputType: 'arrayMap' },
-    { label: 'ArrayTake', outputType: 'arrayMap' },
+    //{ label: 'ArrayTake', outputType: 'arrayMap' },
   ].map((x) => {
     return generateOption(x.label, x.outputType as OutputType)
   }),
@@ -1070,16 +1070,16 @@ export const primitiveMarkupOptions = {
   arrayString: [
     { label: 'ArrayCount', outputType: 'integer' },
     { label: 'ArrayFilter', outputType: 'arrayString' },
-    { label: 'ArrayFlatten', outputType: 'arrayString' },
+    //{ label: 'ArrayFlatten', outputType: 'arrayString' },
     { label: 'ArrayGetArray', outputType: 'arrayString' },
     { label: 'ArrayGetBoolean', outputType: 'boolean' },
     { label: 'ArrayGetBytes', outputType: 'bytes' },
     { label: 'ArrayGetString', outputType: 'string' },
     { label: 'ArrayMap', outputType: 'arrayMap' },
     { label: 'ArrayReduce', outputType: 'string' },
-    { label: 'ArraySome', outputType: 'arrayString' },
+    //{ label: 'ArraySome', outputType: 'arrayString' },
     { label: 'ArraySort', outputType: 'arrayString' },
-    { label: 'ArrayTake', outputType: 'arrayString' },
+    //{ label: 'ArrayTake', outputType: 'arrayString' },
   ].map((x) => {
     return generateOption(x.label, x.outputType as OutputType)
   }),

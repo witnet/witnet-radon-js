@@ -1,7 +1,7 @@
 import { MirScript, OperatorCode, OutputType } from '../../src/types'
 import { Script } from '../../src/script'
 import { Operator } from '../../src/operator'
-import { DEFAULT_SCRIPT_FIRST_TYPE, DEFAULT_OPERATOR } from '../../src/constants'
+import { DEFAULT_SCRIPT_FIRST_TYPE } from '../../src/constants'
 import { Cache, markupOptions } from '../../src/structures'
 import { removeBreakLine } from '../utils'
 import { I18n } from '../../src/i18n'
@@ -16,22 +16,24 @@ describe('Script methods', () => {
       script.addOperator()
 
       expect(script.operators[script.operators.length - 1].code).toStrictEqual(
-        OperatorCode.BooleanMatch
+        OperatorCode.BooleanAsString
       )
     })
     it('last type is a pseudotype', () => {
-      const mirScript: MirScript = [OperatorCode.StringAsBoolean, OperatorCode.BooleanMatch]
+      const mirScript: MirScript = [OperatorCode.StringAsBoolean, OperatorCode.BooleanAsString]
       const context = { cache: new Cache(), i18n: new I18n() }
       const script = new Script(context, mirScript)
       script.addOperator()
 
-      expect(script.operators[script.operators.length - 1].code).toStrictEqual(DEFAULT_OPERATOR)
+      expect(script.operators[script.operators.length - 1].code).toStrictEqual(
+        OperatorCode.StringAsBoolean
+      )
     })
   })
 
   describe('deleteOperator method', () => {
     it('deletes operator by id', () => {
-      const mirScript: MirScript = [OperatorCode.StringAsBoolean, OperatorCode.BooleanMatch]
+      const mirScript: MirScript = [OperatorCode.StringAsBoolean, OperatorCode.BooleanAsString]
       const context = { cache: new Cache(), i18n: new I18n() }
       const script = new Script(context, mirScript)
       const firstOperatorId = script.operators[0].id
@@ -55,13 +57,13 @@ describe('Script methods', () => {
       const mirScript: MirScript = [
         OperatorCode.StringAsBoolean,
         OperatorCode.BooleanNegate,
-        [OperatorCode.BooleanMatch, '', true],
+        OperatorCode.BooleanAsString,
       ]
       const context = { cache: new Cache(), i18n: new I18n() }
       const script = new Script(context, mirScript)
       const result = script.getLastOperator()
-      const expectedCode = 33
-      const expectedArguments: any = ['', true]
+      const expectedCode = 32
+      const expectedArguments: any = []
 
       expect((result as Operator).code).toStrictEqual(expectedCode)
       expect((result as Operator).mirArguments).toStrictEqual(expectedArguments)
@@ -96,12 +98,12 @@ describe('Script methods', () => {
       const mirScript: MirScript = [
         OperatorCode.StringAsBoolean,
         OperatorCode.BooleanNegate,
-        OperatorCode.BooleanMatch,
+        OperatorCode.BooleanAsString,
       ]
 
       const script = new Script(context, mirScript)
       const result = removeBreakLine(script.getJs())
-      const expected: any = removeBreakLine(`.asBoolean().negate().match()`)
+      const expected: any = removeBreakLine(`.asBoolean().negate().asString()`)
 
       expect(result).toStrictEqual(expected)
     })
@@ -153,7 +155,7 @@ describe('Script methods', () => {
       const mirScript: MirScript = [
         OperatorCode.StringAsBoolean,
         OperatorCode.BooleanNegate,
-        OperatorCode.BooleanMatch,
+        OperatorCode.BooleanAsString,
       ]
 
       const script = new Script(context, mirScript)
@@ -198,18 +200,17 @@ describe('Script methods', () => {
           hierarchicalType: 'operator',
           id: 4,
           scriptId: 1,
-          label: 'match',
+          label: 'asString',
           markupType: 'select',
           options: markupOptions.boolean,
-          outputType: 'matchOutput',
+          outputType: 'string',
           selected: {
-            description:
-              'Match the Boolean input with "subscript" and return the value associated with it. Similar than a switch statement',
+            description: 'Cast the Boolean input into String',
             arguments: [],
             hierarchicalType: 'selectedOperatorOption',
-            label: 'match',
+            label: 'asString',
             markupType: 'option',
-            outputType: 'matchOutput',
+            outputType: 'string',
           },
         },
       ]
@@ -246,7 +247,7 @@ describe('Script methods', () => {
       const mirScript: MirScript = [
         OperatorCode.StringAsBoolean,
         OperatorCode.BooleanNegate,
-        [OperatorCode.BooleanMatch, ''],
+        OperatorCode.BooleanAsString,
       ]
 
       const script = new Script(context, mirScript)
@@ -284,9 +285,9 @@ describe('Script methods', () => {
 
     const script = new Script(context, mirScript)
 
-    script.push([OperatorCode.BooleanMatch, '', true])
-    const expectedCode = 33
-    const expectedArguments: any = ['', true]
+    script.push(OperatorCode.BooleanAsString)
+    const expectedCode = 32
+    const expectedArguments: any = []
 
     expect(script.operators[script.operators.length - 1].code).toStrictEqual(expectedCode)
     expect(script.operators[script.operators.length - 1].mirArguments).toStrictEqual(

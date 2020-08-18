@@ -105,7 +105,7 @@ function getDefaultMirArgumentByType(type) {
         case types_1.MirArgumentType.Boolean:
             return true;
         case types_1.MirArgumentType.FilterFunction:
-            return [types_1.Filter.lessThan, 0];
+            return [types_1.Filter.deviationStandard, 1.1];
         case types_1.MirArgumentType.Float:
             return 0.0;
         case types_1.MirArgumentType.Integer:
@@ -127,7 +127,7 @@ function getDefaultMirOperatorByType(type) {
         case types_1.Type.Array:
             return types_1.OperatorCode.ArrayCount;
         case types_1.Type.Boolean:
-            return [types_1.OperatorCode.BooleanMatch, '', true];
+            return types_1.OperatorCode.BooleanAsString;
         case types_1.Type.Bytes:
             return types_1.OperatorCode.BytesAsString;
         case types_1.Type.Float:
@@ -135,7 +135,7 @@ function getDefaultMirOperatorByType(type) {
         case types_1.Type.Integer:
             return types_1.OperatorCode.IntegerAbsolute;
         case types_1.Type.Map:
-            return types_1.OperatorCode.MapEntries;
+            return types_1.OperatorCode.MapGetArray;
         case types_1.Type.String:
             return types_1.OperatorCode.StringAsBoolean;
     }

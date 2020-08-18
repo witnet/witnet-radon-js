@@ -28,7 +28,7 @@ describe('Source', () => {
       const mirScript: MirScript = [
         OperatorCode.StringAsBoolean,
         OperatorCode.BooleanNegate,
-        OperatorCode.BooleanMatch,
+        OperatorCode.BooleanAsString,
       ]
 
       const mirSource = {
@@ -40,7 +40,7 @@ describe('Source', () => {
 
       const result = formatJsTest(new Source(context, mirSource).getJs(0))
 
-      const expected = 'const source_0 = new Witnet.Source("url").asBoolean().negate().match()'
+      const expected = 'const source_0 = new Witnet.Source("url").asBoolean().negate().asString()'
 
       expect(result).toStrictEqual(expected)
     })
@@ -75,7 +75,7 @@ describe('Source', () => {
       const mirScript: MirScript = [
         OperatorCode.StringAsBoolean,
         OperatorCode.BooleanNegate,
-        OperatorCode.BooleanMatch,
+        OperatorCode.BooleanAsString,
       ]
 
       const mirSource = {
@@ -131,18 +131,17 @@ describe('Source', () => {
             hierarchicalType: 'operator',
             id: 5,
             scriptId: 2,
-            label: 'match',
+            label: 'asString',
             markupType: 'select',
             options: markupOptions.boolean,
-            outputType: 'matchOutput',
+            outputType: 'string',
             selected: {
-              description:
-                'Match the Boolean input with "subscript" and return the value associated with it. Similar than a switch statement',
+              description: 'Cast the Boolean input into String',
               arguments: [],
               hierarchicalType: 'selectedOperatorOption',
-              label: 'match',
+              label: 'asString',
               markupType: 'option',
-              outputType: 'matchOutput',
+              outputType: 'string',
             },
           },
         ],
@@ -177,7 +176,7 @@ describe('Source', () => {
       const mirScript: MirScript = [
         OperatorCode.StringAsBoolean,
         OperatorCode.BooleanNegate,
-        [OperatorCode.BooleanMatch, ''],
+        OperatorCode.BooleanAsString,
       ]
 
       const mirSource = {

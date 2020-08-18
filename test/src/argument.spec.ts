@@ -39,7 +39,7 @@ describe('Argument methods', () => {
     })
 
     it('float', () => {
-      const operator: MirOperator = [OperatorCode.FloatGraterThan, 1.1]
+      const operator: MirOperator = [OperatorCode.FloatGreaterThan, 1.1]
       const argumentInfo: ArgumentInfo = operatorInfos[operator[0]].arguments[0]
       const context: Context = { cache: new Cache(), i18n: new I18n() }
       const argument = new Argument(context, argumentInfo, operator[1])
@@ -112,12 +112,6 @@ describe('Argument methods', () => {
               },
               {
                 hierarchicalType: 'operatorOption',
-                label: 'ArrayFlatten',
-                markupType: 'option',
-                outputType: 'array',
-              },
-              {
-                hierarchicalType: 'operatorOption',
                 label: 'ArrayGetArray',
                 markupType: 'option',
                 outputType: 'array',
@@ -172,33 +166,15 @@ describe('Argument methods', () => {
               },
               {
                 hierarchicalType: 'operatorOption',
-                label: 'ArraySome',
-                markupType: 'option',
-                outputType: 'filterOutput',
-              },
-              {
-                hierarchicalType: 'operatorOption',
                 label: 'ArraySort',
                 markupType: 'option',
                 outputType: 'same',
               },
               {
                 hierarchicalType: 'operatorOption',
-                label: 'ArrayTake',
-                markupType: 'option',
-                outputType: 'array',
-              },
-              {
-                hierarchicalType: 'operatorOption',
                 label: 'BooleanAsString',
                 markupType: 'option',
                 outputType: 'string',
-              },
-              {
-                hierarchicalType: 'operatorOption',
-                label: 'BooleanMatch',
-                markupType: 'option',
-                outputType: 'matchOutput',
               },
               {
                 hierarchicalType: 'operatorOption',
@@ -238,7 +214,7 @@ describe('Argument methods', () => {
               },
               {
                 hierarchicalType: 'operatorOption',
-                label: 'FloatGraterThan',
+                label: 'FloatGreaterThan',
                 markupType: 'option',
                 outputType: 'boolean',
               },
@@ -280,21 +256,9 @@ describe('Argument methods', () => {
               },
               {
                 hierarchicalType: 'operatorOption',
-                label: 'FloatReciprocal',
-                markupType: 'option',
-                outputType: 'float',
-              },
-              {
-                hierarchicalType: 'operatorOption',
                 label: 'FloatRound',
                 markupType: 'option',
                 outputType: 'integer',
-              },
-              {
-                hierarchicalType: 'operatorOption',
-                label: 'Floatsum',
-                markupType: 'option',
-                outputType: 'float',
               },
               {
                 hierarchicalType: 'operatorOption',
@@ -307,12 +271,6 @@ describe('Argument methods', () => {
                 label: 'StringAsBoolean',
                 markupType: 'option',
                 outputType: 'boolean',
-              },
-              {
-                hierarchicalType: 'operatorOption',
-                label: 'StringAsBytes',
-                markupType: 'option',
-                outputType: 'bytes',
               },
               {
                 hierarchicalType: 'operatorOption',
@@ -352,12 +310,6 @@ describe('Argument methods', () => {
               },
               {
                 hierarchicalType: 'operatorOption',
-                label: 'StringParseXML',
-                markupType: 'option',
-                outputType: 'map',
-              },
-              {
-                hierarchicalType: 'operatorOption',
                 label: 'StringToLowerCase',
                 markupType: 'option',
                 outputType: 'string',
@@ -367,12 +319,6 @@ describe('Argument methods', () => {
                 label: 'StringToUpperCase',
                 markupType: 'option',
                 outputType: 'string',
-              },
-              {
-                hierarchicalType: 'operatorOption',
-                label: 'MapEntries',
-                markupType: 'option',
-                outputType: 'bytes',
               },
               {
                 hierarchicalType: 'operatorOption',
@@ -427,42 +373,6 @@ describe('Argument methods', () => {
                 label: 'MapValuesArray',
                 markupType: 'option',
                 outputType: 'arrayArray',
-              },
-              {
-                hierarchicalType: 'operatorOption',
-                label: 'MapValuesBoolean',
-                markupType: 'option',
-                outputType: 'arrayBoolean',
-              },
-              {
-                hierarchicalType: 'operatorOption',
-                label: 'MapValuesBytes',
-                markupType: 'option',
-                outputType: 'arrayBytes',
-              },
-              {
-                hierarchicalType: 'operatorOption',
-                label: 'MapValuesFloat',
-                markupType: 'option',
-                outputType: 'arrayFloat',
-              },
-              {
-                hierarchicalType: 'operatorOption',
-                label: 'MapValuesInteger',
-                markupType: 'option',
-                outputType: 'arrayInteger',
-              },
-              {
-                hierarchicalType: 'operatorOption',
-                label: 'MapValuesMap',
-                markupType: 'option',
-                outputType: 'arrayMap',
-              },
-              {
-                hierarchicalType: 'operatorOption',
-                label: 'MapValuesString',
-                markupType: 'option',
-                outputType: 'arrayString',
               },
               {
                 hierarchicalType: 'operatorOption',
@@ -524,18 +434,6 @@ describe('Argument methods', () => {
                 markupType: 'option',
                 outputType: 'integer',
               },
-              {
-                hierarchicalType: 'operatorOption',
-                label: 'IntegerReciprocal',
-                markupType: 'option',
-                outputType: 'float',
-              },
-              {
-                hierarchicalType: 'operatorOption',
-                label: 'IntegerSum',
-                markupType: 'option',
-                outputType: 'integer',
-              },
             ],
             outputType: 'string',
             scriptId: 2,
@@ -569,12 +467,6 @@ describe('Argument methods', () => {
                 label: 'StringAsBoolean',
                 markupType: 'option',
                 outputType: 'boolean',
-              },
-              {
-                hierarchicalType: 'operatorOption',
-                label: 'StringAsBytes',
-                markupType: 'option',
-                outputType: 'bytes',
               },
               {
                 hierarchicalType: 'operatorOption',
@@ -614,12 +506,6 @@ describe('Argument methods', () => {
               },
               {
                 hierarchicalType: 'operatorOption',
-                label: 'StringParseXML',
-                markupType: 'option',
-                outputType: 'map',
-              },
-              {
-                hierarchicalType: 'operatorOption',
                 label: 'StringToLowerCase',
                 markupType: 'option',
                 outputType: 'string',
@@ -649,7 +535,7 @@ describe('Argument methods', () => {
     })
 
     it('filter', () => {
-      const operator: MirOperator = [OperatorCode.ArraySome, 0x03, 1]
+      const operator: MirOperator = [OperatorCode.ArrayFilter, 0x05, 1]
       const argumentInfo = operatorInfos[operator[0]].arguments[0]
       const context: Context = { cache: new Cache(), i18n: new I18n() }
       const argument = new Argument(context, argumentInfo, [operator[1], operator[2]] as [
@@ -664,103 +550,13 @@ describe('Argument methods', () => {
         markupType: 'select',
         options: [
           {
-            label: 'greaterThan',
-            hierarchicalType: 'operatorOption',
-            markupType: 'option',
-            outputType: 'filterOutput',
-          },
-          {
-            label: 'lessThan',
-            hierarchicalType: 'operatorOption',
-            markupType: 'option',
-            outputType: 'filterOutput',
-          },
-          {
-            label: 'equals',
-            hierarchicalType: 'operatorOption',
-            markupType: 'option',
-            outputType: 'filterOutput',
-          },
-          {
-            label: 'deviationAbsolute',
-            hierarchicalType: 'operatorOption',
-            markupType: 'option',
-            outputType: 'filterOutput',
-          },
-          {
-            label: 'deviationRelative',
-            hierarchicalType: 'operatorOption',
-            markupType: 'option',
-            outputType: 'filterOutput',
-          },
-          {
             label: 'deviationStandard',
             hierarchicalType: 'operatorOption',
             markupType: 'option',
             outputType: 'filterOutput',
           },
           {
-            label: 'top',
-            hierarchicalType: 'operatorOption',
-            markupType: 'option',
-            outputType: 'filterOutput',
-          },
-          {
-            label: 'bottom',
-            hierarchicalType: 'operatorOption',
-            markupType: 'option',
-            outputType: 'filterOutput',
-          },
-          {
             label: 'mode',
-            hierarchicalType: 'operatorOption',
-            markupType: 'option',
-            outputType: 'filterOutput',
-          },
-          {
-            label: 'lessOrEqualThan',
-            hierarchicalType: 'operatorOption',
-            markupType: 'option',
-            outputType: 'filterOutput',
-          },
-          {
-            label: 'greaterOrEqualThan',
-            hierarchicalType: 'operatorOption',
-            markupType: 'option',
-            outputType: 'filterOutput',
-          },
-          {
-            label: 'notEquals',
-            hierarchicalType: 'operatorOption',
-            markupType: 'option',
-            outputType: 'filterOutput',
-          },
-          {
-            label: 'notDeviationAbsolute',
-            hierarchicalType: 'operatorOption',
-            markupType: 'option',
-            outputType: 'filterOutput',
-          },
-          {
-            label: 'notDeviationRelative',
-            hierarchicalType: 'operatorOption',
-            markupType: 'option',
-            outputType: 'filterOutput',
-          },
-          {
-            label: 'notDeviationStandard',
-            hierarchicalType: 'operatorOption',
-            markupType: 'option',
-            outputType: 'filterOutput',
-          },
-          {
-            label: 'notTop',
-            hierarchicalType: 'operatorOption',
-            markupType: 'option',
-            outputType: 'filterOutput',
-          },
-          {
-            label: 'notBottom',
             hierarchicalType: 'operatorOption',
             markupType: 'option',
             outputType: 'filterOutput',
@@ -785,7 +581,7 @@ describe('Argument methods', () => {
             },
           ],
           hierarchicalType: 'selectedOperatorOption',
-          label: 'deviationAbsolute',
+          label: 'deviationStandard',
           outputType: 'filterOutput',
           markupType: 'option',
         },
@@ -820,103 +616,13 @@ describe('Argument methods', () => {
         markupType: 'select',
         options: [
           {
-            label: 'greaterThan',
-            hierarchicalType: 'operatorOption',
-            markupType: 'option',
-            outputType: 'filterOutput',
-          },
-          {
-            label: 'lessThan',
-            hierarchicalType: 'operatorOption',
-            markupType: 'option',
-            outputType: 'filterOutput',
-          },
-          {
-            label: 'equals',
-            hierarchicalType: 'operatorOption',
-            markupType: 'option',
-            outputType: 'filterOutput',
-          },
-          {
-            label: 'deviationAbsolute',
-            hierarchicalType: 'operatorOption',
-            markupType: 'option',
-            outputType: 'filterOutput',
-          },
-          {
-            label: 'deviationRelative',
-            hierarchicalType: 'operatorOption',
-            markupType: 'option',
-            outputType: 'filterOutput',
-          },
-          {
             label: 'deviationStandard',
             hierarchicalType: 'operatorOption',
             markupType: 'option',
             outputType: 'filterOutput',
           },
           {
-            label: 'top',
-            hierarchicalType: 'operatorOption',
-            markupType: 'option',
-            outputType: 'filterOutput',
-          },
-          {
-            label: 'bottom',
-            hierarchicalType: 'operatorOption',
-            markupType: 'option',
-            outputType: 'filterOutput',
-          },
-          {
             label: 'mode',
-            hierarchicalType: 'operatorOption',
-            markupType: 'option',
-            outputType: 'filterOutput',
-          },
-          {
-            label: 'lessOrEqualThan',
-            hierarchicalType: 'operatorOption',
-            markupType: 'option',
-            outputType: 'filterOutput',
-          },
-          {
-            label: 'greaterOrEqualThan',
-            hierarchicalType: 'operatorOption',
-            markupType: 'option',
-            outputType: 'filterOutput',
-          },
-          {
-            label: 'notEquals',
-            hierarchicalType: 'operatorOption',
-            markupType: 'option',
-            outputType: 'filterOutput',
-          },
-          {
-            label: 'notDeviationAbsolute',
-            hierarchicalType: 'operatorOption',
-            markupType: 'option',
-            outputType: 'filterOutput',
-          },
-          {
-            label: 'notDeviationRelative',
-            hierarchicalType: 'operatorOption',
-            markupType: 'option',
-            outputType: 'filterOutput',
-          },
-          {
-            label: 'notDeviationStandard',
-            hierarchicalType: 'operatorOption',
-            markupType: 'option',
-            outputType: 'filterOutput',
-          },
-          {
-            label: 'notTop',
-            hierarchicalType: 'operatorOption',
-            markupType: 'option',
-            outputType: 'filterOutput',
-          },
-          {
-            label: 'notBottom',
             hierarchicalType: 'operatorOption',
             markupType: 'option',
             outputType: 'filterOutput',
@@ -955,12 +661,6 @@ describe('Argument methods', () => {
                       label: 'ArrayFilter',
                       markupType: 'option',
                       outputType: 'same',
-                    },
-                    {
-                      hierarchicalType: 'operatorOption',
-                      label: 'ArrayFlatten',
-                      markupType: 'option',
-                      outputType: 'array',
                     },
                     {
                       hierarchicalType: 'operatorOption',
@@ -1018,33 +718,15 @@ describe('Argument methods', () => {
                     },
                     {
                       hierarchicalType: 'operatorOption',
-                      label: 'ArraySome',
-                      markupType: 'option',
-                      outputType: 'filterOutput',
-                    },
-                    {
-                      hierarchicalType: 'operatorOption',
                       label: 'ArraySort',
                       markupType: 'option',
                       outputType: 'same',
                     },
                     {
                       hierarchicalType: 'operatorOption',
-                      label: 'ArrayTake',
-                      markupType: 'option',
-                      outputType: 'array',
-                    },
-                    {
-                      hierarchicalType: 'operatorOption',
                       label: 'BooleanAsString',
                       markupType: 'option',
                       outputType: 'string',
-                    },
-                    {
-                      hierarchicalType: 'operatorOption',
-                      label: 'BooleanMatch',
-                      markupType: 'option',
-                      outputType: 'matchOutput',
                     },
                     {
                       hierarchicalType: 'operatorOption',
@@ -1084,7 +766,7 @@ describe('Argument methods', () => {
                     },
                     {
                       hierarchicalType: 'operatorOption',
-                      label: 'FloatGraterThan',
+                      label: 'FloatGreaterThan',
                       markupType: 'option',
                       outputType: 'boolean',
                     },
@@ -1126,21 +808,9 @@ describe('Argument methods', () => {
                     },
                     {
                       hierarchicalType: 'operatorOption',
-                      label: 'FloatReciprocal',
-                      markupType: 'option',
-                      outputType: 'float',
-                    },
-                    {
-                      hierarchicalType: 'operatorOption',
                       label: 'FloatRound',
                       markupType: 'option',
                       outputType: 'integer',
-                    },
-                    {
-                      hierarchicalType: 'operatorOption',
-                      label: 'Floatsum',
-                      markupType: 'option',
-                      outputType: 'float',
                     },
                     {
                       hierarchicalType: 'operatorOption',
@@ -1153,12 +823,6 @@ describe('Argument methods', () => {
                       label: 'StringAsBoolean',
                       markupType: 'option',
                       outputType: 'boolean',
-                    },
-                    {
-                      hierarchicalType: 'operatorOption',
-                      label: 'StringAsBytes',
-                      markupType: 'option',
-                      outputType: 'bytes',
                     },
                     {
                       hierarchicalType: 'operatorOption',
@@ -1198,12 +862,6 @@ describe('Argument methods', () => {
                     },
                     {
                       hierarchicalType: 'operatorOption',
-                      label: 'StringParseXML',
-                      markupType: 'option',
-                      outputType: 'map',
-                    },
-                    {
-                      hierarchicalType: 'operatorOption',
                       label: 'StringToLowerCase',
                       markupType: 'option',
                       outputType: 'string',
@@ -1213,12 +871,6 @@ describe('Argument methods', () => {
                       label: 'StringToUpperCase',
                       markupType: 'option',
                       outputType: 'string',
-                    },
-                    {
-                      hierarchicalType: 'operatorOption',
-                      label: 'MapEntries',
-                      markupType: 'option',
-                      outputType: 'bytes',
                     },
                     {
                       hierarchicalType: 'operatorOption',
@@ -1273,42 +925,6 @@ describe('Argument methods', () => {
                       label: 'MapValuesArray',
                       markupType: 'option',
                       outputType: 'arrayArray',
-                    },
-                    {
-                      hierarchicalType: 'operatorOption',
-                      label: 'MapValuesBoolean',
-                      markupType: 'option',
-                      outputType: 'arrayBoolean',
-                    },
-                    {
-                      hierarchicalType: 'operatorOption',
-                      label: 'MapValuesBytes',
-                      markupType: 'option',
-                      outputType: 'arrayBytes',
-                    },
-                    {
-                      hierarchicalType: 'operatorOption',
-                      label: 'MapValuesFloat',
-                      markupType: 'option',
-                      outputType: 'arrayFloat',
-                    },
-                    {
-                      hierarchicalType: 'operatorOption',
-                      label: 'MapValuesInteger',
-                      markupType: 'option',
-                      outputType: 'arrayInteger',
-                    },
-                    {
-                      hierarchicalType: 'operatorOption',
-                      label: 'MapValuesMap',
-                      markupType: 'option',
-                      outputType: 'arrayMap',
-                    },
-                    {
-                      hierarchicalType: 'operatorOption',
-                      label: 'MapValuesString',
-                      markupType: 'option',
-                      outputType: 'arrayString',
                     },
                     {
                       hierarchicalType: 'operatorOption',
@@ -1370,18 +986,6 @@ describe('Argument methods', () => {
                       markupType: 'option',
                       outputType: 'integer',
                     },
-                    {
-                      hierarchicalType: 'operatorOption',
-                      label: 'IntegerReciprocal',
-                      markupType: 'option',
-                      outputType: 'float',
-                    },
-                    {
-                      hierarchicalType: 'operatorOption',
-                      label: 'IntegerSum',
-                      markupType: 'option',
-                      outputType: 'integer',
-                    },
                   ],
                   outputType: 'string',
                   scriptId: 3,
@@ -1418,12 +1022,6 @@ describe('Argument methods', () => {
                     },
                     {
                       hierarchicalType: 'operatorOption',
-                      label: 'StringAsBytes',
-                      markupType: 'option',
-                      outputType: 'bytes',
-                    },
-                    {
-                      hierarchicalType: 'operatorOption',
                       label: 'StringAsFloat',
                       markupType: 'option',
                       outputType: 'float',
@@ -1455,12 +1053,6 @@ describe('Argument methods', () => {
                     {
                       hierarchicalType: 'operatorOption',
                       label: 'StringParseJsonMap',
-                      markupType: 'option',
-                      outputType: 'map',
-                    },
-                    {
-                      hierarchicalType: 'operatorOption',
-                      label: 'StringParseXML',
                       markupType: 'option',
                       outputType: 'map',
                     },
@@ -1503,12 +1095,6 @@ describe('Argument methods', () => {
                     },
                     {
                       hierarchicalType: 'operatorOption',
-                      label: 'StringAsBytes',
-                      markupType: 'option',
-                      outputType: 'bytes',
-                    },
-                    {
-                      hierarchicalType: 'operatorOption',
                       label: 'StringAsFloat',
                       markupType: 'option',
                       outputType: 'float',
@@ -1540,12 +1126,6 @@ describe('Argument methods', () => {
                     {
                       hierarchicalType: 'operatorOption',
                       label: 'StringParseJsonMap',
-                      markupType: 'option',
-                      outputType: 'map',
-                    },
-                    {
-                      hierarchicalType: 'operatorOption',
-                      label: 'StringParseXML',
                       markupType: 'option',
                       outputType: 'map',
                     },
@@ -1624,7 +1204,7 @@ describe('Argument methods', () => {
     })
 
     it('reducer', () => {
-      const operator: MirOperator = [OperatorCode.ArrayReduce, 0x00]
+      const operator: MirOperator = [OperatorCode.ArrayReduce, 0x02]
       const argumentInfo = operatorInfos[operator[0]].arguments[0]
       const context: Context = { cache: new Cache(), i18n: new I18n() }
       const argument = new Argument(context, argumentInfo, operator[1])
@@ -1639,7 +1219,7 @@ describe('Argument methods', () => {
         selected: {
           arguments: [],
           hierarchicalType: MarkupHierarchicalType.SelectedOperatorOption,
-          label: 'min',
+          label: 'mode',
           markupType: MarkupType.Option,
           outputType: OutputType.ReducerOutput,
         },
@@ -1660,7 +1240,7 @@ describe('Argument methods', () => {
     })
 
     it('float', () => {
-      const argumentInfo: ArgumentInfo = operatorInfos[OperatorCode.FloatGraterThan].arguments[0]
+      const argumentInfo: ArgumentInfo = operatorInfos[OperatorCode.FloatGreaterThan].arguments[0]
       const context: Context = { cache: new Cache(), i18n: new I18n() }
       const argument = new Argument(context, argumentInfo, 1.1)
       const result = argument.getMir()
@@ -1692,7 +1272,7 @@ describe('Argument methods', () => {
     })
 
     it('filter', () => {
-      const argumentInfo = operatorInfos[OperatorCode.ArraySome].arguments[0]
+      const argumentInfo = operatorInfos[OperatorCode.ArrayFilter].arguments[0]
       const context: Context = { cache: new Cache(), i18n: new I18n() }
       const argument = new Argument(context, argumentInfo, [0x00, 1])
       const result = argument.getMir()
@@ -1747,7 +1327,7 @@ describe('Argument methods', () => {
     })
 
     it('float', () => {
-      const argumentInfo: ArgumentInfo = operatorInfos[OperatorCode.FloatGraterThan].arguments[0]
+      const argumentInfo: ArgumentInfo = operatorInfos[OperatorCode.FloatGreaterThan].arguments[0]
       const context: Context = { cache: new Cache(), i18n: new I18n() }
       const argument = new Argument(context, argumentInfo, 1.1)
       const result = argument.getJs()
@@ -1781,7 +1361,7 @@ describe('Argument methods', () => {
     })
 
     it('filter', () => {
-      const argumentInfo = operatorInfos[OperatorCode.ArraySome].arguments[0]
+      const argumentInfo = operatorInfos[OperatorCode.ArrayFilter].arguments[0]
       const context: Context = { cache: new Cache(), i18n: new I18n() }
       const argument = new Argument(context, argumentInfo, [0x00, 1])
       const result = argument.getJs()
@@ -1793,9 +1373,9 @@ describe('Argument methods', () => {
     it('reducer', () => {
       const argumentInfo = operatorInfos[OperatorCode.ArrayReduce].arguments[0]
       const context: Context = { cache: new Cache(), i18n: new I18n() }
-      const argument = new Argument(context, argumentInfo, 0x00)
+      const argument = new Argument(context, argumentInfo, 0x02)
       const result = argument.getJs()
-      const expected = 'min'
+      const expected = 'mode'
 
       expect(result).toStrictEqual(expected)
     })
@@ -1849,9 +1429,9 @@ describe('Argument methods', () => {
         optional: false,
         type: MirArgumentType.FilterFunction,
       }
-      const argument = new Argument(context, argumentInfo, [Filter.lessThan, 5])
-      argument.update('bottom')
-      expect(argument.value).toStrictEqual([Filter.bottom, 5])
+      const argument = new Argument(context, argumentInfo, [Filter.deviationStandard, 5])
+      argument.update('mode')
+      expect(argument.value).toStrictEqual([Filter.mode, 5])
     })
 
     it('filter function from subscript argument to input argument', () => {
@@ -1875,7 +1455,7 @@ describe('Argument methods', () => {
         optional: false,
         type: MirArgumentType.FilterFunction,
       }
-      const argument = new Argument(context, argumentInfo, [Filter.lessThan, 5])
+      const argument = new Argument(context, argumentInfo, [Filter.deviationStandard, 5])
       argument.update('custom')
       const result = (argument.argument as Argument).argumentInfo.type
       const expected = MirArgumentType.Subscript
@@ -1890,7 +1470,7 @@ describe('Argument methods', () => {
         type: MirArgumentType.ReducerFunction,
       }
 
-      const argument = new Argument(context, argumentInfo, Reducer.averageMeanWeighted)
+      const argument = new Argument(context, argumentInfo, Reducer.averageMean)
       const newValue: Reducer = Reducer.averageMean
       argument.update(newValue)
 
