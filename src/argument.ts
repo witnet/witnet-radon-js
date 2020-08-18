@@ -1,3 +1,5 @@
+import json5 from 'json5'
+
 import {
   ArgumentInfo,
   Filter,
@@ -178,7 +180,17 @@ export class Argument {
     } else if (this.argumentType === MarkupArgumentType.Subscript) {
       return (this.argument as Script).getMir()
     } else {
-      return this.value as MirArgument
+      if (this.argumentInfo.type === MirArgumentType.Map) {
+        try {
+          return json5.parse(this.value as string)
+        } catch (e) {
+          console.warn(`Error parsing ${this.value} in argument with id: ${this.id}. The value is returned as string.`)
+
+          return this.value as string
+        }
+      } else {
+        return this.value as MirArgument
+      }
     }
   }
 

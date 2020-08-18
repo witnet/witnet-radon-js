@@ -1,6 +1,10 @@
 "use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.generateReducerArgumentOptions = exports.generateBooleanArgumentOptions = exports.generateFilterArgumentOptions = exports.Argument = void 0;
+var json5_1 = __importDefault(require("json5"));
 var types_1 = require("./types");
 var constants_1 = require("./constants");
 var utils_1 = require("./utils");
@@ -157,7 +161,18 @@ var Argument = /** @class */ (function () {
             return this.argument.getMir();
         }
         else {
-            return this.value;
+            if (this.argumentInfo.type === types_1.MirArgumentType.Map) {
+                try {
+                    return json5_1.default.parse(this.value);
+                }
+                catch (e) {
+                    console.warn("Error parsing " + this.value + " in argument with id: " + this.id + ". The value is returned as string.");
+                    return this.value;
+                }
+            }
+            else {
+                return this.value;
+            }
         }
     };
     Argument.prototype.update = function (value) {

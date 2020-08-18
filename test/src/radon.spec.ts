@@ -4239,7 +4239,7 @@ describe('Radon', () => {
                 OperatorCode.ArrayFilter,
                 [
                   [OperatorCode.MapGetArray, 'symbol'],
-                  [OperatorCode.StringMatch, '{ "BTC": true, "ETH": true }'],
+                  [OperatorCode.StringMatch, { "BTC": true, "ETH": true }],
                 ],
               ],
               [OperatorCode.ArraySort, [[OperatorCode.MapGetString, 'symbol']]],

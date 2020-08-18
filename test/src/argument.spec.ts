@@ -1708,14 +1708,27 @@ describe('Argument methods', () => {
       expect(result).toStrictEqual(expected)
     })
 
-    it('with map input', () => {
-      const operator: MirOperator = [OperatorCode.StringMatch, { BTC: true }, true]
-      const argumentInfo: ArgumentInfo = operatorInfos[operator[0]].arguments[0]
-      const cache = new Cache()
-      const argument = new Argument(cache, argumentInfo, operator[1])
-      const result = argument.getMir()
+    describe('with map input', () => {
+      it('with well formatted map', () => {
+        const operator: MirOperator = [OperatorCode.StringMatch, '{ BTC: true }', true]
+        const argumentInfo: ArgumentInfo = operatorInfos[operator[0]].arguments[0]
+        const cache = new Cache()
+        const argument = new Argument(cache, argumentInfo, operator[1])
+        const result = argument.getMir()
 
-      expect(result).toStrictEqual(operator[1])
+        expect(result).toStrictEqual({ BTC: true })
+      })
+
+      it('with malformed map', () => {
+        // this test will show a warn log
+        const operator: MirOperator = [OperatorCode.StringMatch, '{abc', true]
+        const argumentInfo: ArgumentInfo = operatorInfos[operator[0]].arguments[0]
+        const cache = new Cache()
+        const argument = new Argument(cache, argumentInfo, operator[1])
+        const result = argument.getMir()
+
+        expect(result).toStrictEqual('{abc')
+      })
     })
   })
 

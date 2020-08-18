@@ -206,13 +206,18 @@
         "signature": "fca18eef4edf799683982c933b65f129f42ad83cffbbbb58d338a8e22bfb04bf",
         "affectsGlobalScope": false
       },
+      "../node_modules/@types/json5/index.d.ts": {
+        "version": "ee3d17a4078efd05485de79671ff28f0d61792c58948290584a5c7277be3c883",
+        "signature": "ee3d17a4078efd05485de79671ff28f0d61792c58948290584a5c7277be3c883",
+        "affectsGlobalScope": false
+      },
       "../src/script.ts": {
         "version": "fd9d748d5ee3ba804a62f18fdf7b41ff5a9d2f19087de13042ecaf97e0c5eba3",
         "signature": "37ce10cbcdae65c2054ee64234091f61bc482d0f5c92c78e3698c6d99e9914e5",
         "affectsGlobalScope": false
       },
       "../src/argument.ts": {
-        "version": "055fbedd586f5a832fa4e20e27ea0bbe16f2c3bb699ad2ba8d7bb9b49345bb97",
+        "version": "0db682ffacf3b954e1dbca398005d19ebced261c7ea0c362b00f286c0337b74e",
         "signature": "74cac321f581f15af379f0ebc47e311eac0f21fa0b5042cdf589a85918ee7919",
         "affectsGlobalScope": false
       },
@@ -891,6 +896,15 @@
       "../node_modules/@types/jest/ts3.2/index.d.ts": [
         "../node_modules/@types/graceful-fs/index.d.ts",
         "../node_modules/@types/jest/index.d.ts",
+        "../node_modules/@types/node/fs.d.ts",
+        "../node_modules/@types/node/process.d.ts",
+        "../node_modules/@types/node/ts3.2/fs.d.ts",
+        "../node_modules/@types/node/ts3.2/process.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts",
+        "../node_modules/@types/node/util.d.ts"
+      ],
+      "../node_modules/@types/json5/index.d.ts": [
+        "../node_modules/@types/graceful-fs/index.d.ts",
         "../node_modules/@types/node/fs.d.ts",
         "../node_modules/@types/node/process.d.ts",
         "../node_modules/@types/node/ts3.2/fs.d.ts",
@@ -1908,6 +1922,7 @@
       ],
       "../src/argument.ts": [
         "../node_modules/@types/graceful-fs/index.d.ts",
+        "../node_modules/@types/json5/index.d.ts",
         "../node_modules/@types/node/fs.d.ts",
         "../node_modules/@types/node/process.d.ts",
         "../node_modules/@types/node/ts3.2/fs.d.ts",
@@ -2296,6 +2311,15 @@
         "../node_modules/@types/node/fs.d.ts",
         "../node_modules/@types/node/process.d.ts",
         "../node_modules/@types/node/ts3.2/buffer.d.ts",
+        "../node_modules/@types/node/ts3.2/fs.d.ts",
+        "../node_modules/@types/node/ts3.2/process.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts",
+        "../node_modules/@types/node/util.d.ts"
+      ],
+      "../node_modules/@types/json5/index.d.ts": [
+        "../node_modules/@types/graceful-fs/index.d.ts",
+        "../node_modules/@types/node/fs.d.ts",
+        "../node_modules/@types/node/process.d.ts",
         "../node_modules/@types/node/ts3.2/fs.d.ts",
         "../node_modules/@types/node/ts3.2/process.d.ts",
         "../node_modules/@types/node/ts3.2/util.d.ts",
@@ -3524,6 +3548,7 @@
       "../node_modules/@types/jest/node_modules/pretty-format/build/index.d.ts",
       "../node_modules/@types/jest/node_modules/pretty-format/build/types.d.ts",
       "../node_modules/@types/jest/ts3.2/index.d.ts",
+      "../node_modules/@types/json5/index.d.ts",
       "../node_modules/@types/node/async_hooks.d.ts",
       "../node_modules/@types/node/base.d.ts",
       "../node_modules/@types/node/buffer.d.ts",
