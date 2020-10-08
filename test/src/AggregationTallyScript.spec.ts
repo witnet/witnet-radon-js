@@ -7,7 +7,7 @@ describe('AggregationTallyScript', () => {
   describe('addOperator', () => {
     it('without empty filters', () => {
       const mirScript: MirAggregationTallyScript = {
-        filters: [[AggregationTallyFilter.deviationAbsolute, 3]],
+        filters: [[AggregationTallyFilter.deviationStandard, 3]],
         reducer: 0x02,
       }
       const cache = new Cache()
@@ -15,7 +15,7 @@ describe('AggregationTallyScript', () => {
       script.addOperator()
       const expected = 2
       expect(script.filters.length).toStrictEqual(expected)
-      expect(script.filters[1].code).toStrictEqual(AggregationTallyFilter.deviationAbsolute)
+      expect(script.filters[1].code).toStrictEqual(AggregationTallyFilter.deviationStandard)
     })
 
     it('with empty filters', () => {
@@ -28,14 +28,14 @@ describe('AggregationTallyScript', () => {
       script.addOperator()
       const expected = 1
       expect(script.filters.length).toStrictEqual(expected)
-      expect(script.filters[0].code).toStrictEqual(AggregationTallyFilter.deviationAbsolute)
+      expect(script.filters[0].code).toStrictEqual(AggregationTallyFilter.deviationStandard)
     })
   })
 
   describe('deleteOperator', () => {
     it('without repeated filters', () => {
       const mirScript: MirAggregationTallyScript = {
-        filters: [[AggregationTallyFilter.deviationAbsolute, 3], AggregationTallyFilter.mode],
+        filters: [[AggregationTallyFilter.deviationStandard, 3], AggregationTallyFilter.mode],
         reducer: 0x02,
       }
       const cache = new Cache()
@@ -49,9 +49,9 @@ describe('AggregationTallyScript', () => {
     it('with repeated filters', () => {
       const mirScript: MirAggregationTallyScript = {
         filters: [
-          [AggregationTallyFilter.deviationAbsolute, 3],
+          [AggregationTallyFilter.deviationStandard, 3],
           AggregationTallyFilter.mode,
-          [AggregationTallyFilter.deviationAbsolute, 3],
+          [AggregationTallyFilter.deviationStandard, 3],
         ],
         reducer: 0x02,
       }
@@ -59,7 +59,7 @@ describe('AggregationTallyScript', () => {
       const script = new AggregationTallyScript(cache, mirScript)
       script.deleteOperator(script.filters[2].id)
 
-      expect(script.filters[0].code).toStrictEqual(AggregationTallyFilter.deviationAbsolute)
+      expect(script.filters[0].code).toStrictEqual(AggregationTallyFilter.deviationStandard)
       expect(script.filters[1].code).toStrictEqual(AggregationTallyFilter.mode)
       expect(script.filters[2]).toBeUndefined()
     })
@@ -86,7 +86,7 @@ describe('AggregationTallyScript', () => {
 
     it(' with non-empty filters', () => {
       const mirScript: MirAggregationTallyScript = {
-        filters: [[AggregationTallyFilter.deviationAbsolute, 3]],
+        filters: [[AggregationTallyFilter.deviationStandard, 3]],
         reducer: 0x02,
       }
       const cache = new Cache()
@@ -95,7 +95,7 @@ describe('AggregationTallyScript', () => {
       const result = formatJsTest(script.getJs('aggregator'))
       const expected = formatJsTest(`const aggregator = new Witnet.aggregator({
         filters: [
-          [Witnet.Types.FILTERS.deviationAbsolute, 3]
+          [Witnet.Types.FILTERS.deviationStandard, 3]
         ],
           reducer: Witnet.Types.REDUCERS.mode,
         })`)
@@ -136,19 +136,7 @@ describe('AggregationTallyScript', () => {
             },
             {
               hierarchicalType: 'operatorOption',
-              label: 'averageMeanWeighted',
-              markupType: 'option',
-              outputType: 'filterOutput',
-            },
-            {
-              hierarchicalType: 'operatorOption',
-              label: 'averageMedian',
-              markupType: 'option',
-              outputType: 'filterOutput',
-            },
-            {
-              hierarchicalType: 'operatorOption',
-              label: 'averageMedianWeighted',
+              label: 'deviationStandard',
               markupType: 'option',
               outputType: 'filterOutput',
             },
@@ -156,8 +144,8 @@ describe('AggregationTallyScript', () => {
           outputType: 'filterOutput',
           scriptId: 1,
           selected: {
-            description: 'Compute the mode of the values',
             arguments: [],
+            description: 'Compute the mode of the values',
             hierarchicalType: 'selectedOperatorOption',
             label: 'mode',
             markupType: 'option',
@@ -165,12 +153,13 @@ describe('AggregationTallyScript', () => {
           },
         },
       }
+
       expect(result).toStrictEqual(expected)
     })
 
     it(' with non-empty filters', () => {
       const mirScript: MirAggregationTallyScript = {
-        filters: [[AggregationTallyFilter.deviationAbsolute, 3]],
+        filters: [[AggregationTallyFilter.deviationStandard, 3]],
         reducer: 0x02,
       }
       const cache = new Cache()
@@ -182,21 +171,9 @@ describe('AggregationTallyScript', () => {
           {
             hierarchicalType: 'operator',
             id: 2,
-            label: 'deviationAbsolute',
+            label: 'deviationStandard',
             markupType: 'select',
             options: [
-              {
-                hierarchicalType: 'operatorOption',
-                label: 'deviationAbsolute',
-                markupType: 'option',
-                outputType: 'filterOutput',
-              },
-              {
-                hierarchicalType: 'operatorOption',
-                label: 'deviationRelative',
-                markupType: 'option',
-                outputType: 'filterOutput',
-              },
               {
                 hierarchicalType: 'operatorOption',
                 label: 'deviationStandard',
@@ -223,9 +200,9 @@ describe('AggregationTallyScript', () => {
                 },
               ],
               description:
-                'Discard any result that is more than by times the absolute deviation times away from the average. Long story short: remove outliers',
+                'Discard any result that is more than ${number} times the standard deviation times away from the average. Long story short: remove outliers',
               hierarchicalType: 'selectedOperatorOption',
-              label: 'deviationAbsolute',
+              label: 'deviationStandard',
               markupType: 'option',
               outputType: 'filterOutput',
             },
@@ -251,19 +228,7 @@ describe('AggregationTallyScript', () => {
             },
             {
               hierarchicalType: 'operatorOption',
-              label: 'averageMeanWeighted',
-              markupType: 'option',
-              outputType: 'filterOutput',
-            },
-            {
-              hierarchicalType: 'operatorOption',
-              label: 'averageMedian',
-              markupType: 'option',
-              outputType: 'filterOutput',
-            },
-            {
-              hierarchicalType: 'operatorOption',
-              label: 'averageMedianWeighted',
+              label: 'deviationStandard',
               markupType: 'option',
               outputType: 'filterOutput',
             },
@@ -271,8 +236,8 @@ describe('AggregationTallyScript', () => {
           outputType: 'filterOutput',
           scriptId: 1,
           selected: {
-            description: 'Compute the mode of the values',
             arguments: [],
+            description: 'Compute the mode of the values',
             hierarchicalType: 'selectedOperatorOption',
             label: 'mode',
             markupType: 'option',
@@ -280,6 +245,7 @@ describe('AggregationTallyScript', () => {
           },
         },
       }
+
       expect(result).toStrictEqual(expected)
     })
   })
@@ -287,7 +253,7 @@ describe('AggregationTallyScript', () => {
   describe('getMir', () => {
     it('with non-empty-filters', () => {
       const mirScript: MirAggregationTallyScript = {
-        filters: [[AggregationTallyFilter.deviationAbsolute, 3]],
+        filters: [[AggregationTallyFilter.deviationStandard, 3]],
         reducer: 0x02,
       }
       const cache = new Cache()
@@ -299,7 +265,7 @@ describe('AggregationTallyScript', () => {
 
     it('with empty filters', () => {
       const mirScript: MirAggregationTallyScript = {
-        filters: [[AggregationTallyFilter.deviationAbsolute, 3]],
+        filters: [[AggregationTallyFilter.deviationStandard, 3]],
         reducer: 0x02,
       }
       const cache = new Cache()
@@ -313,13 +279,13 @@ describe('AggregationTallyScript', () => {
   describe('push', () => {
     it('without empty filters', () => {
       const mirScript: MirAggregationTallyScript = {
-        filters: [[AggregationTallyFilter.deviationAbsolute, 3]],
+        filters: [[AggregationTallyFilter.deviationStandard, 3]],
         reducer: 0x02,
       }
       const cache = new Cache()
       const script = new AggregationTallyScript(cache, mirScript)
-      script.push(AggregationTallyFilter.deviationAbsolute as AggregationTallyFilter)
-      const expected = AggregationTallyFilter.deviationAbsolute
+      script.push(AggregationTallyFilter.deviationStandard as AggregationTallyFilter)
+      const expected = AggregationTallyFilter.deviationStandard
       expect(script.filters[1].code).toStrictEqual(expected)
     })
 
@@ -330,8 +296,8 @@ describe('AggregationTallyScript', () => {
       }
       const cache = new Cache()
       const script = new AggregationTallyScript(cache, mirScript)
-      script.push(AggregationTallyFilter.deviationAbsolute as AggregationTallyFilter)
-      const expected = AggregationTallyFilter.deviationAbsolute
+      script.push(AggregationTallyFilter.deviationStandard as AggregationTallyFilter)
+      const expected = AggregationTallyFilter.deviationStandard
       expect(script.filters[0].code).toStrictEqual(expected)
     })
   })

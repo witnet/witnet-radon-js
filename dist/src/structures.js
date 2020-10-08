@@ -133,14 +133,6 @@ var descriptions = {
     },
 };
 exports.aggregationTallyFilterDescriptions = (_j = {},
-    _j[types_1.AggregationTallyFilter.deviationAbsolute] = function (number) {
-        if (number === void 0) { number = 'number'; }
-        return "Discard any result that is more than " + number + " times the absolute deviation times away from the average. Long story short: remove outliers";
-    },
-    _j[types_1.AggregationTallyFilter.deviationRelative] = function (number) {
-        if (number === void 0) { number = 'number'; }
-        return "Discard any result that is more than " + number + " times the relative deviation times away from the average. Long story short: remove outliers";
-    },
     _j[types_1.AggregationTallyFilter.deviationStandard] = function () {
         return 'Discard any result that is more than ${number} times the standard deviation times away from the average. Long story short: remove outliers';
     },
@@ -151,13 +143,7 @@ exports.aggregationTallyFilterDescriptions = (_j = {},
 exports.aggregationTallyReducerDescriptions = (_k = {},
     _k[types_1.AggregationTallyReducer.mode] = function () { return 'Compute the mode of the values'; },
     _k[types_1.AggregationTallyReducer.averageMean] = function () { return 'Compute the average mean of the values'; },
-    _k[types_1.AggregationTallyReducer.averageMeanWeighted] = function () {
-        return 'Compute the average mean weighted with weight ${w} of the values';
-    },
-    _k[types_1.AggregationTallyReducer.averageMedian] = function () { return 'Compute the average median of the values'; },
-    _k[types_1.AggregationTallyReducer.averageMedianWeighted] = function () {
-        return 'Compute the average median weighted with weight ${w} of the values';
-    },
+    _k[types_1.AggregationTallyReducer.deviationStandard] = function () { return 'Compute the standard deviation of the values'; },
     _k);
 // FIXME(#21): update match operators information
 exports.operatorInfos = (_l = {},

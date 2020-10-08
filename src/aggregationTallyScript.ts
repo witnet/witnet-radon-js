@@ -28,7 +28,7 @@ export class AggregationTallyScript {
     this.filters.push(
       new AggregationTallyOperatorFilter(
         this.cache,
-        [AggregationTallyFilter.deviationAbsolute, 1],
+        [AggregationTallyFilter.deviationStandard, 1],
         this.scriptId
       )
     )

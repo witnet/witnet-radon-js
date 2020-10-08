@@ -270,17 +270,13 @@ export declare type MirArgument = string | number | boolean | [Filter, number] |
 export declare type MirAggregationTallyFilterOperator = AggregationTallyFilter | [AggregationTallyFilter, number] | [AggregationTallyFilter, string] | [AggregationTallyFilter, boolean];
 export declare type MirOperator = OperatorCode | [OperatorCode, MirArgument] | [OperatorCode, MirArgument, MirArgument];
 export declare enum AggregationTallyFilter {
-    deviationAbsolute = 3,
-    deviationRelative = 4,
     deviationStandard = 5,
     mode = 8
 }
 export declare enum AggregationTallyReducer {
     mode = 2,
     averageMean = 3,
-    averageMeanWeighted = 4,
-    averageMedian = 5,
-    averageMedianWeighted = 6
+    deviationStandard = 5
 }
 export declare type MirScript = Array<MirOperator>;
 export declare type MirAggregationTallyScript = {

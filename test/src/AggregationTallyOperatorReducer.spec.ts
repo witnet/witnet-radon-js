@@ -42,19 +42,7 @@ describe('AggregationTallyOperatorReducer', () => {
         },
         {
           hierarchicalType: 'operatorOption',
-          label: 'averageMeanWeighted',
-          markupType: 'option',
-          outputType: 'filterOutput',
-        },
-        {
-          hierarchicalType: 'operatorOption',
-          label: 'averageMedian',
-          markupType: 'option',
-          outputType: 'filterOutput',
-        },
-        {
-          hierarchicalType: 'operatorOption',
-          label: 'averageMedianWeighted',
+          label: 'deviationStandard',
           markupType: 'option',
           outputType: 'filterOutput',
         },

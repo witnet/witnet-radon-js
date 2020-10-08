@@ -123,10 +123,6 @@ const descriptions = {
 }
 
 export const aggregationTallyFilterDescriptions: AggregationTallyFilterDescriptions = {
-  [AggregationTallyFilter.deviationAbsolute]: (number: string = 'number') =>
-    `Discard any result that is more than ${number} times the absolute deviation times away from the average. Long story short: remove outliers`,
-  [AggregationTallyFilter.deviationRelative]: (number: string = 'number') =>
-    `Discard any result that is more than ${number} times the relative deviation times away from the average. Long story short: remove outliers`,
   [AggregationTallyFilter.deviationStandard]: () =>
     'Discard any result that is more than ${number} times the standard deviation times away from the average. Long story short: remove outliers',
   [AggregationTallyFilter.mode]: () =>
@@ -136,11 +132,7 @@ export const aggregationTallyFilterDescriptions: AggregationTallyFilterDescripti
 export const aggregationTallyReducerDescriptions: AggregationTallyReducerDescriptions = {
   [AggregationTallyReducer.mode]: () => 'Compute the mode of the values',
   [AggregationTallyReducer.averageMean]: () => 'Compute the average mean of the values',
-  [AggregationTallyReducer.averageMeanWeighted]: () =>
-    'Compute the average mean weighted with weight ${w} of the values',
-  [AggregationTallyReducer.averageMedian]: () => 'Compute the average median of the values',
-  [AggregationTallyReducer.averageMedianWeighted]: () =>
-    'Compute the average median weighted with weight ${w} of the values',
+  [AggregationTallyReducer.deviationStandard]: () => 'Compute the standard deviation of the values',
 }
 
 // FIXME(#21): update match operators information

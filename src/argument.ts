@@ -184,7 +184,9 @@ export class Argument {
         try {
           return json5.parse(this.value as string)
         } catch (e) {
-          console.warn(`Error parsing ${this.value} in argument with id: ${this.id}. The value is returned as string.`)
+          console.warn(
+            `Error parsing ${this.value} in argument with id: ${this.id}. The value is returned as string.`
+          )
 
           return this.value as string
         }
@@ -242,7 +244,7 @@ export function generateFilterArgumentOptions(): Array<MarkupOption> {
 }
 
 export function generateBooleanArgumentOptions(): Array<MarkupOption> {
-  const markupOptions: Array<MarkupOption> = [true, false].map(label => ({
+  const markupOptions: Array<MarkupOption> = [true, false].map((label) => ({
     label,
     hierarchicalType: MarkupHierarchicalType.OperatorOption,
     markupType: MarkupType.Option,

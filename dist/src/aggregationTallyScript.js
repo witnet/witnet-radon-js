@@ -14,7 +14,7 @@ var AggregationTallyScript = /** @class */ (function () {
         this.reducer = new aggregationTallyOperatorReducer_1.AggregationTallyOperatorReducer(cache, script.reducer, this.scriptId);
     }
     AggregationTallyScript.prototype.addOperator = function () {
-        this.filters.push(new aggregationTallyOperatorFilter_1.AggregationTallyOperatorFilter(this.cache, [types_1.AggregationTallyFilter.deviationAbsolute, 1], this.scriptId));
+        this.filters.push(new aggregationTallyOperatorFilter_1.AggregationTallyOperatorFilter(this.cache, [types_1.AggregationTallyFilter.deviationStandard, 1], this.scriptId));
     };
     // Remove the filter from the filter's list by id
     AggregationTallyScript.prototype.deleteOperator = function (operatorId) {

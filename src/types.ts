@@ -329,8 +329,6 @@ export type MirOperator =
   | [OperatorCode, MirArgument, MirArgument]
 
 export enum AggregationTallyFilter {
-  deviationAbsolute = 0x03,
-  deviationRelative = 0x04,
   deviationStandard = 0x05,
   mode = 0x08,
 }
@@ -338,9 +336,7 @@ export enum AggregationTallyFilter {
 export enum AggregationTallyReducer {
   mode = 0x02,
   averageMean = 0x03,
-  averageMeanWeighted = 0x04,
-  averageMedian = 0x05,
-  averageMedianWeighted = 0x06,
+  deviationStandard = 0x05,
 }
 
 export type MirScript = Array<MirOperator>

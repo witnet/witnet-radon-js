@@ -217,7 +217,7 @@
         "affectsGlobalScope": false
       },
       "../src/argument.ts": {
-        "version": "0db682ffacf3b954e1dbca398005d19ebced261c7ea0c362b00f286c0337b74e",
+        "version": "0c054eb05e5a0b94e360ae2810945a41ffee678ef61a4b1a919ded5010fa445a",
         "signature": "74cac321f581f15af379f0ebc47e311eac0f21fa0b5042cdf589a85918ee7919",
         "affectsGlobalScope": false
       },
@@ -232,7 +232,7 @@
         "affectsGlobalScope": false
       },
       "../src/structures.ts": {
-        "version": "a2ff0245c7a73bd1eca8e2ca697ed493ea66d91b26d374b3a0c5c10099416756",
+        "version": "b224908d8893832e3c99e88a2de725723ed232d9f6a2a144e950ab30059567df",
         "signature": "d1c5f356fca63567be098aec28934afd036196dc7c45aab6223b0a255f124fe2",
         "affectsGlobalScope": false
       },
@@ -247,7 +247,7 @@
         "affectsGlobalScope": false
       },
       "../src/aggregationTallyScript.ts": {
-        "version": "4c934b01b5075eca206f4a44bb24dea3b01acc5ad40cac44da01c156852d0d7b",
+        "version": "d09a3ae62648689cd4fe334871da8b4b7780f2659cc94c2aaa2709e14f120f63",
         "signature": "a054d2cd7eb3ac8b4129c605cb5494b724eecb4eb7f5a05a0474bef08e0de4d4",
         "affectsGlobalScope": false
       },
@@ -257,8 +257,8 @@
         "affectsGlobalScope": false
       },
       "../src/types.ts": {
-        "version": "5faa2e6f72103d0bb8109f667591117b29d58a78586d25410251c3afbe873295",
-        "signature": "db202e2944dd38d52ab8b2ceacbf183b59cc4ad93a1c36e12aead29ad6505bd1",
+        "version": "5dbd65407ed5b08b02a0c95c1649c80687e66cbba38a8dc2a37de062e3ce0d55",
+        "signature": "7515ef0a7fec0d840a7c0f6fa346561d9678d6ec8e32e0014ce285acb5128e96",
         "affectsGlobalScope": false
       },
       "../src/aggregationTallyFilterArgument.ts": {
@@ -3513,10 +3513,10 @@
         "../src/types.ts"
       ],
       "../src/types.ts": [
-        "../src/aggregationtallyfilterargument.ts",
-        "../src/aggregationtallyoperatorfilter.ts",
-        "../src/aggregationtallyoperatorreducer.ts",
-        "../src/aggregationtallyscript.ts",
+        "../src/aggregationTallyFilterArgument.ts",
+        "../src/aggregationTallyOperatorFilter.ts",
+        "../src/aggregationTallyOperatorReducer.ts",
+        "../src/aggregationTallyScript.ts",
         "../src/argument.ts",
         "../src/operator.ts",
         "../src/script.ts",

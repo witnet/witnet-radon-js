@@ -17,7 +17,7 @@ describe('AggregationTallyOperatorFilter', () => {
     })
     it('with argument', () => {
       const mirOperator: MirAggregationTallyFilterOperator = [
-        AggregationTallyFilter.deviationAbsolute,
+        AggregationTallyFilter.deviationStandard,
         3,
       ]
 
@@ -25,7 +25,7 @@ describe('AggregationTallyOperatorFilter', () => {
       const operator = new AggregationTallyOperatorFilter(cache, mirOperator, 0)
 
       const result = operator.getJs()
-      const expected = '[Witnet.Types.FILTERS.deviationAbsolute, 3]'
+      const expected = '[Witnet.Types.FILTERS.deviationStandard, 3]'
 
       expect(result).toStrictEqual(expected)
     })
@@ -45,18 +45,6 @@ describe('AggregationTallyOperatorFilter', () => {
         label: 'mode',
         markupType: 'select',
         options: [
-          {
-            hierarchicalType: 'operatorOption',
-            label: 'deviationAbsolute',
-            markupType: 'option',
-            outputType: 'filterOutput',
-          },
-          {
-            hierarchicalType: 'operatorOption',
-            label: 'deviationRelative',
-            markupType: 'option',
-            outputType: 'filterOutput',
-          },
           {
             hierarchicalType: 'operatorOption',
             label: 'deviationStandard',
@@ -88,7 +76,7 @@ describe('AggregationTallyOperatorFilter', () => {
 
     it('with argument', () => {
       const mirOperator: MirAggregationTallyFilterOperator = [
-        AggregationTallyFilter.deviationAbsolute,
+        AggregationTallyFilter.deviationStandard,
         3,
       ]
 
@@ -99,21 +87,9 @@ describe('AggregationTallyOperatorFilter', () => {
       const expected = {
         hierarchicalType: 'operator',
         id: 1,
-        label: 'deviationAbsolute',
+        label: 'deviationStandard',
         markupType: 'select',
         options: [
-          {
-            hierarchicalType: 'operatorOption',
-            label: 'deviationAbsolute',
-            markupType: 'option',
-            outputType: 'filterOutput',
-          },
-          {
-            hierarchicalType: 'operatorOption',
-            label: 'deviationRelative',
-            markupType: 'option',
-            outputType: 'filterOutput',
-          },
           {
             hierarchicalType: 'operatorOption',
             label: 'deviationStandard',
@@ -130,8 +106,6 @@ describe('AggregationTallyOperatorFilter', () => {
         outputType: 'filterOutput',
         scriptId: 0,
         selected: {
-          description:
-            'Discard any result that is more than by times the absolute deviation times away from the average. Long story short: remove outliers',
           arguments: [
             {
               hierarchicalType: 'argument',
@@ -141,8 +115,10 @@ describe('AggregationTallyOperatorFilter', () => {
               value: 3,
             },
           ],
+          description:
+            'Discard any result that is more than ${number} times the standard deviation times away from the average. Long story short: remove outliers',
           hierarchicalType: 'selectedOperatorOption',
-          label: 'deviationAbsolute',
+          label: 'deviationStandard',
           markupType: 'option',
           outputType: 'filterOutput',
         },
@@ -166,7 +142,7 @@ describe('AggregationTallyOperatorFilter', () => {
 
     it('with argument', () => {
       const mirOperator: MirAggregationTallyFilterOperator = [
-        AggregationTallyFilter.deviationAbsolute,
+        AggregationTallyFilter.deviationStandard,
         3,
       ]
 
@@ -185,15 +161,15 @@ describe('AggregationTallyOperatorFilter', () => {
       const cache = new Cache()
       const operator = new AggregationTallyOperatorFilter(cache, mirOperator, 0)
 
-      operator.update(AggregationTallyFilter.deviationAbsolute)
+      operator.update(AggregationTallyFilter.deviationStandard)
 
-      expect(operator.code).toStrictEqual(AggregationTallyFilter.deviationAbsolute)
+      expect(operator.code).toStrictEqual(AggregationTallyFilter.deviationStandard)
       expect(operator.argument).toBeTruthy()
     })
 
     it('with argument', () => {
       const mirOperator: MirAggregationTallyFilterOperator = [
-        AggregationTallyFilter.deviationAbsolute,
+        AggregationTallyFilter.deviationStandard,
         3,
       ]
 

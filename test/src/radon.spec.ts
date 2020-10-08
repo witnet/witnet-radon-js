@@ -36,11 +36,11 @@ describe('Radon', () => {
         },
       ],
       aggregate: {
-        filters: [AggregationTallyFilter.mode, [AggregationTallyFilter.deviationAbsolute, 3]],
+        filters: [AggregationTallyFilter.mode, [AggregationTallyFilter.deviationStandard, 3]],
         reducer: AggregationTallyReducer.mode,
       },
       tally: {
-        filters: [AggregationTallyFilter.mode, [AggregationTallyFilter.deviationAbsolute, 3]],
+        filters: [AggregationTallyFilter.mode, [AggregationTallyFilter.deviationStandard, 3]],
         reducer: AggregationTallyReducer.mode,
       },
     }
@@ -76,11 +76,11 @@ describe('Radon', () => {
         },
       ],
       aggregate: {
-        filters: [AggregationTallyFilter.mode, [AggregationTallyFilter.deviationAbsolute, 3]],
+        filters: [AggregationTallyFilter.mode, [AggregationTallyFilter.deviationStandard, 3]],
         reducer: AggregationTallyReducer.mode,
       },
       tally: {
-        filters: [AggregationTallyFilter.mode, [AggregationTallyFilter.deviationAbsolute, 3]],
+        filters: [AggregationTallyFilter.mode, [AggregationTallyFilter.deviationStandard, 3]],
         reducer: AggregationTallyReducer.mode,
       },
     }
@@ -115,11 +115,11 @@ describe('Radon', () => {
         },
       ],
       aggregate: {
-        filters: [AggregationTallyFilter.mode, [AggregationTallyFilter.deviationAbsolute, 3]],
+        filters: [AggregationTallyFilter.mode, [AggregationTallyFilter.deviationStandard, 3]],
         reducer: AggregationTallyReducer.mode,
       },
       tally: {
-        filters: [AggregationTallyFilter.mode, [AggregationTallyFilter.deviationAbsolute, 3]],
+        filters: [AggregationTallyFilter.mode, [AggregationTallyFilter.deviationStandard, 3]],
         reducer: AggregationTallyReducer.mode,
       },
     }
@@ -156,11 +156,11 @@ describe('Radon', () => {
           },
         ],
         aggregate: {
-          filters: [AggregationTallyFilter.mode, [AggregationTallyFilter.deviationAbsolute, 3]],
+          filters: [AggregationTallyFilter.mode, [AggregationTallyFilter.deviationStandard, 3]],
           reducer: AggregationTallyReducer.mode,
         },
         tally: {
-          filters: [AggregationTallyFilter.mode, [AggregationTallyFilter.deviationAbsolute, 3]],
+          filters: [AggregationTallyFilter.mode, [AggregationTallyFilter.deviationStandard, 3]],
           reducer: AggregationTallyReducer.mode,
         },
       }
@@ -168,205 +168,6 @@ describe('Radon', () => {
       const radon = new Radon(mirRequest)
       const result = radon.getMarkup()
       const expected = {
-        timelock: 0,
-        retrieve: [
-          {
-            kind: 'HTTP-GET',
-            url: 'source_1',
-            contentType: 'JSON API',
-            scriptId: 2,
-            script: [
-              {
-                hierarchicalType: 'operator',
-                id: 3,
-                label: 'asBoolean',
-                markupType: 'select',
-                options: markupOptions.string,
-                outputType: 'boolean',
-                scriptId: 2,
-                selected: {
-                  arguments: [],
-                  description: 'Cast the String input into Boolean',
-                  hierarchicalType: 'selectedOperatorOption',
-                  label: 'asBoolean',
-                  markupType: 'option',
-                  outputType: 'boolean',
-                },
-              },
-              {
-                hierarchicalType: 'operator',
-                id: 4,
-                scriptId: 2,
-                label: 'match',
-                markupType: 'select',
-                options: markupOptions.boolean,
-                outputType: 'matchOutput',
-                selected: {
-                  arguments: [
-                    {
-                      hierarchicalType: 'argument',
-                      id: 5,
-                      label: 'categories',
-                      markupType: 'input',
-                      value: '',
-                      type: 'map',
-                    },
-                    {
-                      hierarchicalType: 'argument',
-                      id: 6,
-                      label: 'default',
-                      markupType: 'select',
-                        options: [
-                        {
-                           hierarchicalType: "operatorOption",
-                           label: true,
-                           markupType: "option",
-                           outputType: "boolean",
-                         },
-                        {
-                          hierarchicalType: "operatorOption",
-                          label: false,
-                          markupType: "option",
-                          outputType: "boolean",
-                        },
-                      ],
-                      outputType: "boolean",
-                      selected: {
-                        arguments: [],
-                        hierarchicalType: "selectedOperatorOption",
-                        label: true,
-                        markupType: "option",
-                        outputType: "boolean",
-                      },
-                    },
-                  ],
-                  hierarchicalType: 'selectedOperatorOption',
-                  label: 'match',
-                  description:
-                    'Match the Boolean input with "" and return the value asociated with it. Similar than a switch statement',
-                  markupType: 'option',
-                  outputType: 'matchOutput',
-                },
-              },
-              {
-                hierarchicalType: 'operator',
-                id: 7,
-                label: 'length',
-                markupType: 'select',
-                options: markupOptions.matchOutput,
-                outputType: 'integer',
-                scriptId: 2,
-                selected: {
-                  arguments: [],
-                  hierarchicalType: 'selectedOperatorOption',
-                  label: 'length',
-                  description:
-                    'Count the number of elements of the input String, and mannage the values as Integer.',
-                  markupType: 'option',
-                  outputType: 'integer',
-                },
-              },
-            ],
-          },
-          {
-            kind: 'HTTP-GET',
-            url: 'source_2',
-            scriptId: 9,
-            contentType: 'JSON API',
-            script: [
-              {
-                hierarchicalType: 'operator',
-                id: 10,
-                scriptId: 9,
-                label: 'asBoolean',
-                markupType: 'select',
-                options: markupOptions.string,
-                outputType: 'boolean',
-                selected: {
-                  arguments: [],
-                  hierarchicalType: 'selectedOperatorOption',
-                  description: 'Cast the String input into Boolean',
-                  label: 'asBoolean',
-                  markupType: 'option',
-                  outputType: 'boolean',
-                },
-              },
-              {
-                hierarchicalType: 'operator',
-                id: 11,
-                scriptId: 9,
-                label: 'match',
-                markupType: 'select',
-                options: markupOptions.boolean,
-                outputType: 'matchOutput',
-                selected: {
-                  arguments: [
-                    {
-                      hierarchicalType: 'argument',
-                      id: 12,
-                      label: 'categories',
-                      markupType: 'input',
-                      value: '',
-                      type: 'map',
-                    },
-                    {
-                      hierarchicalType: 'argument',
-                      id: 13,
-                      label: 'default',
-                      markupType: 'select',
-                        options: [
-                        {
-                           hierarchicalType: "operatorOption",
-                           label: true,
-                           markupType: "option",
-                           outputType: "boolean",
-                         },
-                        {
-                          hierarchicalType: "operatorOption",
-                          label: false,
-                          markupType: "option",
-                          outputType: "boolean",
-                        },
-                      ],
-                      outputType: "boolean",
-                      selected: {
-                        arguments: [],
-                        hierarchicalType: "selectedOperatorOption",
-                        label: true,
-                        markupType: "option",
-                        outputType: "boolean",
-                      },
-                    },
-                  ],
-                  hierarchicalType: 'selectedOperatorOption',
-                  label: 'match',
-                  description:
-                    'Match the Boolean input with "" and return the value asociated with it. Similar than a switch statement',
-                  markupType: 'option',
-                  outputType: 'matchOutput',
-                },
-              },
-              {
-                hierarchicalType: 'operator',
-                id: 14,
-                scriptId: 9,
-                label: 'length',
-                markupType: 'select',
-                options: markupOptions.matchOutput,
-                outputType: 'integer',
-                selected: {
-                  arguments: [],
-                  hierarchicalType: 'selectedOperatorOption',
-                  label: 'length',
-                  description:
-                    'Count the number of elements of the input String, and mannage the values as Integer.',
-                  markupType: 'option',
-                  outputType: 'integer',
-                },
-              },
-            ],
-          },
-        ],
         aggregate: {
           filters: [
             {
@@ -375,18 +176,6 @@ describe('Radon', () => {
               label: 'mode',
               markupType: 'select',
               options: [
-                {
-                  hierarchicalType: 'operatorOption',
-                  label: 'deviationAbsolute',
-                  markupType: 'option',
-                  outputType: 'filterOutput',
-                },
-                {
-                  hierarchicalType: 'operatorOption',
-                  label: 'deviationRelative',
-                  markupType: 'option',
-                  outputType: 'filterOutput',
-                },
                 {
                   hierarchicalType: 'operatorOption',
                   label: 'deviationStandard',
@@ -404,10 +193,10 @@ describe('Radon', () => {
               scriptId: 15,
               selected: {
                 arguments: [],
-                hierarchicalType: 'selectedOperatorOption',
-                label: 'mode',
                 description:
                   'Discard any result that is different from the mode. Long story short: remove outliers',
+                hierarchicalType: 'selectedOperatorOption',
+                label: 'mode',
                 markupType: 'option',
                 outputType: 'filterOutput',
               },
@@ -415,21 +204,9 @@ describe('Radon', () => {
             {
               hierarchicalType: 'operator',
               id: 17,
-              label: 'deviationAbsolute',
+              label: 'deviationStandard',
               markupType: 'select',
               options: [
-                {
-                  hierarchicalType: 'operatorOption',
-                  label: 'deviationAbsolute',
-                  markupType: 'option',
-                  outputType: 'filterOutput',
-                },
-                {
-                  hierarchicalType: 'operatorOption',
-                  label: 'deviationRelative',
-                  markupType: 'option',
-                  outputType: 'filterOutput',
-                },
                 {
                   hierarchicalType: 'operatorOption',
                   label: 'deviationStandard',
@@ -455,10 +232,10 @@ describe('Radon', () => {
                     value: 3,
                   },
                 ],
-                hierarchicalType: 'selectedOperatorOption',
-                label: 'deviationAbsolute',
                 description:
-                  'Discard any result that is more than by times the absolute deviation times away from the average. Long story short: remove outliers',
+                  'Discard any result that is more than ${number} times the standard deviation times away from the average. Long story short: remove outliers',
+                hierarchicalType: 'selectedOperatorOption',
+                label: 'deviationStandard',
                 markupType: 'option',
                 outputType: 'filterOutput',
               },
@@ -484,19 +261,7 @@ describe('Radon', () => {
               },
               {
                 hierarchicalType: 'operatorOption',
-                label: 'averageMeanWeighted',
-                markupType: 'option',
-                outputType: 'filterOutput',
-              },
-              {
-                hierarchicalType: 'operatorOption',
-                label: 'averageMedian',
-                markupType: 'option',
-                outputType: 'filterOutput',
-              },
-              {
-                hierarchicalType: 'operatorOption',
-                label: 'averageMedianWeighted',
+                label: 'deviationStandard',
                 markupType: 'option',
                 outputType: 'filterOutput',
               },
@@ -505,14 +270,1394 @@ describe('Radon', () => {
             scriptId: 15,
             selected: {
               arguments: [],
+              description: 'Compute the mode of the values',
               hierarchicalType: 'selectedOperatorOption',
               label: 'mode',
-              description: 'Compute the mode of the values',
               markupType: 'option',
               outputType: 'reducerOutput',
             },
           },
         },
+        retrieve: [
+          {
+            contentType: 'JSON API',
+            kind: 'HTTP-GET',
+            script: [
+              {
+                hierarchicalType: 'operator',
+                id: 3,
+                label: 'asBoolean',
+                markupType: 'select',
+                options: [
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'StringAsBoolean',
+                    markupType: 'option',
+                    outputType: 'boolean',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'StringAsBytes',
+                    markupType: 'option',
+                    outputType: 'bytes',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'StringAsFloat',
+                    markupType: 'option',
+                    outputType: 'float',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'StringAsInteger',
+                    markupType: 'option',
+                    outputType: 'integer',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'StringLength',
+                    markupType: 'option',
+                    outputType: 'integer',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'StringMatch',
+                    markupType: 'option',
+                    outputType: 'matchOutput',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'StringParseJsonArray',
+                    markupType: 'option',
+                    outputType: 'array',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'StringParseJsonMap',
+                    markupType: 'option',
+                    outputType: 'map',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'StringParseXML',
+                    markupType: 'option',
+                    outputType: 'map',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'StringToLowerCase',
+                    markupType: 'option',
+                    outputType: 'string',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'StringToUpperCase',
+                    markupType: 'option',
+                    outputType: 'string',
+                  },
+                ],
+                outputType: 'boolean',
+                scriptId: 2,
+                selected: {
+                  arguments: [],
+                  description: 'Cast the String input into Boolean',
+                  hierarchicalType: 'selectedOperatorOption',
+                  label: 'asBoolean',
+                  markupType: 'option',
+                  outputType: 'boolean',
+                },
+              },
+              {
+                hierarchicalType: 'operator',
+                id: 4,
+                label: 'match',
+                markupType: 'select',
+                options: [
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'BooleanAsString',
+                    markupType: 'option',
+                    outputType: 'string',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'BooleanMatch',
+                    markupType: 'option',
+                    outputType: 'matchOutput',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'BooleanNegate',
+                    markupType: 'option',
+                    outputType: 'boolean',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'StringAsBoolean',
+                    markupType: 'option',
+                    outputType: 'boolean',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'StringAsBytes',
+                    markupType: 'option',
+                    outputType: 'bytes',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'StringAsFloat',
+                    markupType: 'option',
+                    outputType: 'float',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'StringAsInteger',
+                    markupType: 'option',
+                    outputType: 'integer',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'StringLength',
+                    markupType: 'option',
+                    outputType: 'integer',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'StringMatch',
+                    markupType: 'option',
+                    outputType: 'matchOutput',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'StringParseJsonArray',
+                    markupType: 'option',
+                    outputType: 'array',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'StringParseJsonMap',
+                    markupType: 'option',
+                    outputType: 'map',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'StringParseXML',
+                    markupType: 'option',
+                    outputType: 'map',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'StringToLowerCase',
+                    markupType: 'option',
+                    outputType: 'string',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'StringToUpperCase',
+                    markupType: 'option',
+                    outputType: 'string',
+                  },
+                ],
+                outputType: 'matchOutput',
+                scriptId: 2,
+                selected: {
+                  arguments: [
+                    {
+                      hierarchicalType: 'argument',
+                      id: 5,
+                      label: 'categories',
+                      markupType: 'input',
+                      type: 'map',
+                      value: '',
+                    },
+                    {
+                      hierarchicalType: 'argument',
+                      id: 6,
+                      label: 'default',
+                      markupType: 'select',
+                      options: [
+                        {
+                          hierarchicalType: 'operatorOption',
+                          label: true,
+                          markupType: 'option',
+                          outputType: 'boolean',
+                        },
+                        {
+                          hierarchicalType: 'operatorOption',
+                          label: false,
+                          markupType: 'option',
+                          outputType: 'boolean',
+                        },
+                      ],
+                      outputType: 'boolean',
+                      selected: {
+                        arguments: [],
+                        hierarchicalType: 'selectedOperatorOption',
+                        label: true,
+                        markupType: 'option',
+                        outputType: 'boolean',
+                      },
+                    },
+                  ],
+                  description:
+                    'Match the Boolean input with "" and return the value asociated with it. Similar than a switch statement',
+                  hierarchicalType: 'selectedOperatorOption',
+                  label: 'match',
+                  markupType: 'option',
+                  outputType: 'matchOutput',
+                },
+              },
+              {
+                hierarchicalType: 'operator',
+                id: 7,
+                label: 'length',
+                markupType: 'select',
+                options: [
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'ArrayCount',
+                    markupType: 'option',
+                    outputType: 'integer',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'ArrayFilter',
+                    markupType: 'option',
+                    outputType: 'same',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'ArrayFlatten',
+                    markupType: 'option',
+                    outputType: 'array',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'ArrayGetArray',
+                    markupType: 'option',
+                    outputType: 'array',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'ArrayGetBoolean',
+                    markupType: 'option',
+                    outputType: 'boolean',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'ArrayGetBytes',
+                    markupType: 'option',
+                    outputType: 'bytes',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'ArrayGetFloat',
+                    markupType: 'option',
+                    outputType: 'float',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'ArrayGetInteger',
+                    markupType: 'option',
+                    outputType: 'integer',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'ArrayGetMap',
+                    markupType: 'option',
+                    outputType: 'map',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'ArrayGetString',
+                    markupType: 'option',
+                    outputType: 'string',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'ArrayMap',
+                    markupType: 'option',
+                    outputType: 'arrayMap',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'ArrayReduce',
+                    markupType: 'option',
+                    outputType: 'inner',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'ArraySome',
+                    markupType: 'option',
+                    outputType: 'filterOutput',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'ArraySort',
+                    markupType: 'option',
+                    outputType: 'same',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'ArrayTake',
+                    markupType: 'option',
+                    outputType: 'array',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'BooleanAsString',
+                    markupType: 'option',
+                    outputType: 'string',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'BooleanMatch',
+                    markupType: 'option',
+                    outputType: 'matchOutput',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'BooleanNegate',
+                    markupType: 'option',
+                    outputType: 'boolean',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'BytesAsString',
+                    markupType: 'option',
+                    outputType: 'string',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'BytesHash',
+                    markupType: 'option',
+                    outputType: 'bytes',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'FloatAbsolute',
+                    markupType: 'option',
+                    outputType: 'float',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'FloatAsString',
+                    markupType: 'option',
+                    outputType: 'string',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'FloatCeiling',
+                    markupType: 'option',
+                    outputType: 'integer',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'FloatGraterThan',
+                    markupType: 'option',
+                    outputType: 'boolean',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'FloatFloor',
+                    markupType: 'option',
+                    outputType: 'integer',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'FloatLessThan',
+                    markupType: 'option',
+                    outputType: 'boolean',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'FloatModulo',
+                    markupType: 'option',
+                    outputType: 'float',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'FloatMultiply',
+                    markupType: 'option',
+                    outputType: 'float',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'FloatNegate',
+                    markupType: 'option',
+                    outputType: 'float',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'FloatPower',
+                    markupType: 'option',
+                    outputType: 'float',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'FloatReciprocal',
+                    markupType: 'option',
+                    outputType: 'float',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'FloatRound',
+                    markupType: 'option',
+                    outputType: 'integer',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'Floatsum',
+                    markupType: 'option',
+                    outputType: 'float',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'FloatTruncate',
+                    markupType: 'option',
+                    outputType: 'integer',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'StringAsBoolean',
+                    markupType: 'option',
+                    outputType: 'boolean',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'StringAsBytes',
+                    markupType: 'option',
+                    outputType: 'bytes',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'StringAsFloat',
+                    markupType: 'option',
+                    outputType: 'float',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'StringAsInteger',
+                    markupType: 'option',
+                    outputType: 'integer',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'StringLength',
+                    markupType: 'option',
+                    outputType: 'integer',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'StringMatch',
+                    markupType: 'option',
+                    outputType: 'matchOutput',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'StringParseJsonArray',
+                    markupType: 'option',
+                    outputType: 'array',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'StringParseJsonMap',
+                    markupType: 'option',
+                    outputType: 'map',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'StringParseXML',
+                    markupType: 'option',
+                    outputType: 'map',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'StringToLowerCase',
+                    markupType: 'option',
+                    outputType: 'string',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'StringToUpperCase',
+                    markupType: 'option',
+                    outputType: 'string',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'MapEntries',
+                    markupType: 'option',
+                    outputType: 'bytes',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'MapGetArray',
+                    markupType: 'option',
+                    outputType: 'array',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'MapGetBoolean',
+                    markupType: 'option',
+                    outputType: 'boolean',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'MapGetBytes',
+                    markupType: 'option',
+                    outputType: 'bytes',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'MapGetFloat',
+                    markupType: 'option',
+                    outputType: 'float',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'MapGetInteger',
+                    markupType: 'option',
+                    outputType: 'integer',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'MapGetMap',
+                    markupType: 'option',
+                    outputType: 'map',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'MapGetString',
+                    markupType: 'option',
+                    outputType: 'string',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'MapKeys',
+                    markupType: 'option',
+                    outputType: 'arrayString',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'MapValuesArray',
+                    markupType: 'option',
+                    outputType: 'arrayArray',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'MapValuesBoolean',
+                    markupType: 'option',
+                    outputType: 'arrayBoolean',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'MapValuesBytes',
+                    markupType: 'option',
+                    outputType: 'arrayBytes',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'MapValuesFloat',
+                    markupType: 'option',
+                    outputType: 'arrayFloat',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'MapValuesInteger',
+                    markupType: 'option',
+                    outputType: 'arrayInteger',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'MapValuesMap',
+                    markupType: 'option',
+                    outputType: 'arrayMap',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'MapValuesString',
+                    markupType: 'option',
+                    outputType: 'arrayString',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'IntegerAbsolute',
+                    markupType: 'option',
+                    outputType: 'integer',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'IntegerAsFloat',
+                    markupType: 'option',
+                    outputType: 'float',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'IntegerAsString',
+                    markupType: 'option',
+                    outputType: 'string',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'IntegerGreaterThan',
+                    markupType: 'option',
+                    outputType: 'boolean',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'IntegerLessThan',
+                    markupType: 'option',
+                    outputType: 'boolean',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'IntegerMatch',
+                    markupType: 'option',
+                    outputType: 'matchOutput',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'IntegerModulo',
+                    markupType: 'option',
+                    outputType: 'integer',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'IntegerMultiply',
+                    markupType: 'option',
+                    outputType: 'integer',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'IntegerNegate',
+                    markupType: 'option',
+                    outputType: 'integer',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'IntegerPower',
+                    markupType: 'option',
+                    outputType: 'integer',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'IntegerReciprocal',
+                    markupType: 'option',
+                    outputType: 'float',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'IntegerSum',
+                    markupType: 'option',
+                    outputType: 'integer',
+                  },
+                ],
+                outputType: 'integer',
+                scriptId: 2,
+                selected: {
+                  arguments: [],
+                  description:
+                    'Count the number of elements of the input String, and mannage the values as Integer.',
+                  hierarchicalType: 'selectedOperatorOption',
+                  label: 'length',
+                  markupType: 'option',
+                  outputType: 'integer',
+                },
+              },
+            ],
+            scriptId: 2,
+            url: 'source_1',
+          },
+          {
+            contentType: 'JSON API',
+            kind: 'HTTP-GET',
+            script: [
+              {
+                hierarchicalType: 'operator',
+                id: 10,
+                label: 'asBoolean',
+                markupType: 'select',
+                options: [
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'StringAsBoolean',
+                    markupType: 'option',
+                    outputType: 'boolean',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'StringAsBytes',
+                    markupType: 'option',
+                    outputType: 'bytes',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'StringAsFloat',
+                    markupType: 'option',
+                    outputType: 'float',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'StringAsInteger',
+                    markupType: 'option',
+                    outputType: 'integer',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'StringLength',
+                    markupType: 'option',
+                    outputType: 'integer',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'StringMatch',
+                    markupType: 'option',
+                    outputType: 'matchOutput',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'StringParseJsonArray',
+                    markupType: 'option',
+                    outputType: 'array',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'StringParseJsonMap',
+                    markupType: 'option',
+                    outputType: 'map',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'StringParseXML',
+                    markupType: 'option',
+                    outputType: 'map',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'StringToLowerCase',
+                    markupType: 'option',
+                    outputType: 'string',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'StringToUpperCase',
+                    markupType: 'option',
+                    outputType: 'string',
+                  },
+                ],
+                outputType: 'boolean',
+                scriptId: 9,
+                selected: {
+                  arguments: [],
+                  description: 'Cast the String input into Boolean',
+                  hierarchicalType: 'selectedOperatorOption',
+                  label: 'asBoolean',
+                  markupType: 'option',
+                  outputType: 'boolean',
+                },
+              },
+              {
+                hierarchicalType: 'operator',
+                id: 11,
+                label: 'match',
+                markupType: 'select',
+                options: [
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'BooleanAsString',
+                    markupType: 'option',
+                    outputType: 'string',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'BooleanMatch',
+                    markupType: 'option',
+                    outputType: 'matchOutput',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'BooleanNegate',
+                    markupType: 'option',
+                    outputType: 'boolean',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'StringAsBoolean',
+                    markupType: 'option',
+                    outputType: 'boolean',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'StringAsBytes',
+                    markupType: 'option',
+                    outputType: 'bytes',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'StringAsFloat',
+                    markupType: 'option',
+                    outputType: 'float',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'StringAsInteger',
+                    markupType: 'option',
+                    outputType: 'integer',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'StringLength',
+                    markupType: 'option',
+                    outputType: 'integer',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'StringMatch',
+                    markupType: 'option',
+                    outputType: 'matchOutput',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'StringParseJsonArray',
+                    markupType: 'option',
+                    outputType: 'array',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'StringParseJsonMap',
+                    markupType: 'option',
+                    outputType: 'map',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'StringParseXML',
+                    markupType: 'option',
+                    outputType: 'map',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'StringToLowerCase',
+                    markupType: 'option',
+                    outputType: 'string',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'StringToUpperCase',
+                    markupType: 'option',
+                    outputType: 'string',
+                  },
+                ],
+                outputType: 'matchOutput',
+                scriptId: 9,
+                selected: {
+                  arguments: [
+                    {
+                      hierarchicalType: 'argument',
+                      id: 12,
+                      label: 'categories',
+                      markupType: 'input',
+                      type: 'map',
+                      value: '',
+                    },
+                    {
+                      hierarchicalType: 'argument',
+                      id: 13,
+                      label: 'default',
+                      markupType: 'select',
+                      options: [
+                        {
+                          hierarchicalType: 'operatorOption',
+                          label: true,
+                          markupType: 'option',
+                          outputType: 'boolean',
+                        },
+                        {
+                          hierarchicalType: 'operatorOption',
+                          label: false,
+                          markupType: 'option',
+                          outputType: 'boolean',
+                        },
+                      ],
+                      outputType: 'boolean',
+                      selected: {
+                        arguments: [],
+                        hierarchicalType: 'selectedOperatorOption',
+                        label: true,
+                        markupType: 'option',
+                        outputType: 'boolean',
+                      },
+                    },
+                  ],
+                  description:
+                    'Match the Boolean input with "" and return the value asociated with it. Similar than a switch statement',
+                  hierarchicalType: 'selectedOperatorOption',
+                  label: 'match',
+                  markupType: 'option',
+                  outputType: 'matchOutput',
+                },
+              },
+              {
+                hierarchicalType: 'operator',
+                id: 14,
+                label: 'length',
+                markupType: 'select',
+                options: [
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'ArrayCount',
+                    markupType: 'option',
+                    outputType: 'integer',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'ArrayFilter',
+                    markupType: 'option',
+                    outputType: 'same',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'ArrayFlatten',
+                    markupType: 'option',
+                    outputType: 'array',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'ArrayGetArray',
+                    markupType: 'option',
+                    outputType: 'array',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'ArrayGetBoolean',
+                    markupType: 'option',
+                    outputType: 'boolean',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'ArrayGetBytes',
+                    markupType: 'option',
+                    outputType: 'bytes',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'ArrayGetFloat',
+                    markupType: 'option',
+                    outputType: 'float',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'ArrayGetInteger',
+                    markupType: 'option',
+                    outputType: 'integer',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'ArrayGetMap',
+                    markupType: 'option',
+                    outputType: 'map',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'ArrayGetString',
+                    markupType: 'option',
+                    outputType: 'string',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'ArrayMap',
+                    markupType: 'option',
+                    outputType: 'arrayMap',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'ArrayReduce',
+                    markupType: 'option',
+                    outputType: 'inner',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'ArraySome',
+                    markupType: 'option',
+                    outputType: 'filterOutput',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'ArraySort',
+                    markupType: 'option',
+                    outputType: 'same',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'ArrayTake',
+                    markupType: 'option',
+                    outputType: 'array',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'BooleanAsString',
+                    markupType: 'option',
+                    outputType: 'string',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'BooleanMatch',
+                    markupType: 'option',
+                    outputType: 'matchOutput',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'BooleanNegate',
+                    markupType: 'option',
+                    outputType: 'boolean',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'BytesAsString',
+                    markupType: 'option',
+                    outputType: 'string',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'BytesHash',
+                    markupType: 'option',
+                    outputType: 'bytes',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'FloatAbsolute',
+                    markupType: 'option',
+                    outputType: 'float',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'FloatAsString',
+                    markupType: 'option',
+                    outputType: 'string',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'FloatCeiling',
+                    markupType: 'option',
+                    outputType: 'integer',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'FloatGraterThan',
+                    markupType: 'option',
+                    outputType: 'boolean',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'FloatFloor',
+                    markupType: 'option',
+                    outputType: 'integer',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'FloatLessThan',
+                    markupType: 'option',
+                    outputType: 'boolean',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'FloatModulo',
+                    markupType: 'option',
+                    outputType: 'float',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'FloatMultiply',
+                    markupType: 'option',
+                    outputType: 'float',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'FloatNegate',
+                    markupType: 'option',
+                    outputType: 'float',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'FloatPower',
+                    markupType: 'option',
+                    outputType: 'float',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'FloatReciprocal',
+                    markupType: 'option',
+                    outputType: 'float',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'FloatRound',
+                    markupType: 'option',
+                    outputType: 'integer',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'Floatsum',
+                    markupType: 'option',
+                    outputType: 'float',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'FloatTruncate',
+                    markupType: 'option',
+                    outputType: 'integer',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'StringAsBoolean',
+                    markupType: 'option',
+                    outputType: 'boolean',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'StringAsBytes',
+                    markupType: 'option',
+                    outputType: 'bytes',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'StringAsFloat',
+                    markupType: 'option',
+                    outputType: 'float',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'StringAsInteger',
+                    markupType: 'option',
+                    outputType: 'integer',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'StringLength',
+                    markupType: 'option',
+                    outputType: 'integer',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'StringMatch',
+                    markupType: 'option',
+                    outputType: 'matchOutput',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'StringParseJsonArray',
+                    markupType: 'option',
+                    outputType: 'array',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'StringParseJsonMap',
+                    markupType: 'option',
+                    outputType: 'map',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'StringParseXML',
+                    markupType: 'option',
+                    outputType: 'map',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'StringToLowerCase',
+                    markupType: 'option',
+                    outputType: 'string',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'StringToUpperCase',
+                    markupType: 'option',
+                    outputType: 'string',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'MapEntries',
+                    markupType: 'option',
+                    outputType: 'bytes',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'MapGetArray',
+                    markupType: 'option',
+                    outputType: 'array',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'MapGetBoolean',
+                    markupType: 'option',
+                    outputType: 'boolean',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'MapGetBytes',
+                    markupType: 'option',
+                    outputType: 'bytes',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'MapGetFloat',
+                    markupType: 'option',
+                    outputType: 'float',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'MapGetInteger',
+                    markupType: 'option',
+                    outputType: 'integer',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'MapGetMap',
+                    markupType: 'option',
+                    outputType: 'map',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'MapGetString',
+                    markupType: 'option',
+                    outputType: 'string',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'MapKeys',
+                    markupType: 'option',
+                    outputType: 'arrayString',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'MapValuesArray',
+                    markupType: 'option',
+                    outputType: 'arrayArray',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'MapValuesBoolean',
+                    markupType: 'option',
+                    outputType: 'arrayBoolean',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'MapValuesBytes',
+                    markupType: 'option',
+                    outputType: 'arrayBytes',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'MapValuesFloat',
+                    markupType: 'option',
+                    outputType: 'arrayFloat',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'MapValuesInteger',
+                    markupType: 'option',
+                    outputType: 'arrayInteger',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'MapValuesMap',
+                    markupType: 'option',
+                    outputType: 'arrayMap',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'MapValuesString',
+                    markupType: 'option',
+                    outputType: 'arrayString',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'IntegerAbsolute',
+                    markupType: 'option',
+                    outputType: 'integer',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'IntegerAsFloat',
+                    markupType: 'option',
+                    outputType: 'float',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'IntegerAsString',
+                    markupType: 'option',
+                    outputType: 'string',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'IntegerGreaterThan',
+                    markupType: 'option',
+                    outputType: 'boolean',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'IntegerLessThan',
+                    markupType: 'option',
+                    outputType: 'boolean',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'IntegerMatch',
+                    markupType: 'option',
+                    outputType: 'matchOutput',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'IntegerModulo',
+                    markupType: 'option',
+                    outputType: 'integer',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'IntegerMultiply',
+                    markupType: 'option',
+                    outputType: 'integer',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'IntegerNegate',
+                    markupType: 'option',
+                    outputType: 'integer',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'IntegerPower',
+                    markupType: 'option',
+                    outputType: 'integer',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'IntegerReciprocal',
+                    markupType: 'option',
+                    outputType: 'float',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'IntegerSum',
+                    markupType: 'option',
+                    outputType: 'integer',
+                  },
+                ],
+                outputType: 'integer',
+                scriptId: 9,
+                selected: {
+                  arguments: [],
+                  description:
+                    'Count the number of elements of the input String, and mannage the values as Integer.',
+                  hierarchicalType: 'selectedOperatorOption',
+                  label: 'length',
+                  markupType: 'option',
+                  outputType: 'integer',
+                },
+              },
+            ],
+            scriptId: 9,
+            url: 'source_2',
+          },
+        ],
         tally: {
           filters: [
             {
@@ -521,18 +1666,6 @@ describe('Radon', () => {
               label: 'mode',
               markupType: 'select',
               options: [
-                {
-                  hierarchicalType: 'operatorOption',
-                  label: 'deviationAbsolute',
-                  markupType: 'option',
-                  outputType: 'filterOutput',
-                },
-                {
-                  hierarchicalType: 'operatorOption',
-                  label: 'deviationRelative',
-                  markupType: 'option',
-                  outputType: 'filterOutput',
-                },
                 {
                   hierarchicalType: 'operatorOption',
                   label: 'deviationStandard',
@@ -550,10 +1683,10 @@ describe('Radon', () => {
               scriptId: 20,
               selected: {
                 arguments: [],
-                hierarchicalType: 'selectedOperatorOption',
-                label: 'mode',
                 description:
                   'Discard any result that is different from the mode. Long story short: remove outliers',
+                hierarchicalType: 'selectedOperatorOption',
+                label: 'mode',
                 markupType: 'option',
                 outputType: 'filterOutput',
               },
@@ -561,21 +1694,9 @@ describe('Radon', () => {
             {
               hierarchicalType: 'operator',
               id: 22,
-              label: 'deviationAbsolute',
+              label: 'deviationStandard',
               markupType: 'select',
               options: [
-                {
-                  hierarchicalType: 'operatorOption',
-                  label: 'deviationAbsolute',
-                  markupType: 'option',
-                  outputType: 'filterOutput',
-                },
-                {
-                  hierarchicalType: 'operatorOption',
-                  label: 'deviationRelative',
-                  markupType: 'option',
-                  outputType: 'filterOutput',
-                },
                 {
                   hierarchicalType: 'operatorOption',
                   label: 'deviationStandard',
@@ -592,8 +1713,6 @@ describe('Radon', () => {
               outputType: 'filterOutput',
               scriptId: 20,
               selected: {
-                description:
-                  'Discard any result that is more than by times the absolute deviation times away from the average. Long story short: remove outliers',
                 arguments: [
                   {
                     hierarchicalType: 'argument',
@@ -603,8 +1722,10 @@ describe('Radon', () => {
                     value: 3,
                   },
                 ],
+                description:
+                  'Discard any result that is more than ${number} times the standard deviation times away from the average. Long story short: remove outliers',
                 hierarchicalType: 'selectedOperatorOption',
-                label: 'deviationAbsolute',
+                label: 'deviationStandard',
                 markupType: 'option',
                 outputType: 'filterOutput',
               },
@@ -630,19 +1751,7 @@ describe('Radon', () => {
               },
               {
                 hierarchicalType: 'operatorOption',
-                label: 'averageMeanWeighted',
-                markupType: 'option',
-                outputType: 'filterOutput',
-              },
-              {
-                hierarchicalType: 'operatorOption',
-                label: 'averageMedian',
-                markupType: 'option',
-                outputType: 'filterOutput',
-              },
-              {
-                hierarchicalType: 'operatorOption',
-                label: 'averageMedianWeighted',
+                label: 'deviationStandard',
                 markupType: 'option',
                 outputType: 'filterOutput',
               },
@@ -650,8 +1759,8 @@ describe('Radon', () => {
             outputType: 'filterOutput',
             scriptId: 20,
             selected: {
-              description: 'Compute the mode of the values',
               arguments: [],
+              description: 'Compute the mode of the values',
               hierarchicalType: 'selectedOperatorOption',
               label: 'mode',
               markupType: 'option',
@@ -659,6 +1768,7 @@ describe('Radon', () => {
             },
           },
         },
+        timelock: 0,
       }
 
       expect(result).toStrictEqual(expected)
@@ -939,11 +2049,11 @@ describe('Radon', () => {
           },
         ],
         aggregate: {
-          filters: [AggregationTallyFilter.mode, [AggregationTallyFilter.deviationAbsolute, 3]],
+          filters: [AggregationTallyFilter.mode, [AggregationTallyFilter.deviationStandard, 3]],
           reducer: AggregationTallyReducer.mode,
         },
         tally: {
-          filters: [AggregationTallyFilter.mode, [AggregationTallyFilter.deviationAbsolute, 3]],
+          filters: [AggregationTallyFilter.mode, [AggregationTallyFilter.deviationStandard, 3]],
           reducer: AggregationTallyReducer.mode,
         },
       }
@@ -951,12 +2061,120 @@ describe('Radon', () => {
       const radon = new Radon(mirRequest)
       const result = radon.getMarkup()
       const expected = {
-        timelock: 0,
+        aggregate: {
+          filters: [
+            {
+              hierarchicalType: 'operator',
+              id: 33,
+              label: 'mode',
+              markupType: 'select',
+              options: [
+                {
+                  hierarchicalType: 'operatorOption',
+                  label: 'deviationStandard',
+                  markupType: 'option',
+                  outputType: 'filterOutput',
+                },
+                {
+                  hierarchicalType: 'operatorOption',
+                  label: 'mode',
+                  markupType: 'option',
+                  outputType: 'filterOutput',
+                },
+              ],
+              outputType: 'filterOutput',
+              scriptId: 32,
+              selected: {
+                arguments: [],
+                description:
+                  'Discard any result that is different from the mode. Long story short: remove outliers',
+                hierarchicalType: 'selectedOperatorOption',
+                label: 'mode',
+                markupType: 'option',
+                outputType: 'filterOutput',
+              },
+            },
+            {
+              hierarchicalType: 'operator',
+              id: 34,
+              label: 'deviationStandard',
+              markupType: 'select',
+              options: [
+                {
+                  hierarchicalType: 'operatorOption',
+                  label: 'deviationStandard',
+                  markupType: 'option',
+                  outputType: 'filterOutput',
+                },
+                {
+                  hierarchicalType: 'operatorOption',
+                  label: 'mode',
+                  markupType: 'option',
+                  outputType: 'filterOutput',
+                },
+              ],
+              outputType: 'filterOutput',
+              scriptId: 32,
+              selected: {
+                arguments: [
+                  {
+                    hierarchicalType: 'argument',
+                    id: 35,
+                    label: 'by',
+                    markupType: 'input',
+                    value: 3,
+                  },
+                ],
+                description:
+                  'Discard any result that is more than ${number} times the standard deviation times away from the average. Long story short: remove outliers',
+                hierarchicalType: 'selectedOperatorOption',
+                label: 'deviationStandard',
+                markupType: 'option',
+                outputType: 'filterOutput',
+              },
+            },
+          ],
+          reducer: {
+            hierarchicalType: 'operator',
+            id: 36,
+            label: 'mode',
+            markupType: 'select',
+            options: [
+              {
+                hierarchicalType: 'operatorOption',
+                label: 'mode',
+                markupType: 'option',
+                outputType: 'filterOutput',
+              },
+              {
+                hierarchicalType: 'operatorOption',
+                label: 'averageMean',
+                markupType: 'option',
+                outputType: 'filterOutput',
+              },
+              {
+                hierarchicalType: 'operatorOption',
+                label: 'deviationStandard',
+                markupType: 'option',
+                outputType: 'filterOutput',
+              },
+            ],
+            outputType: 'filterOutput',
+            scriptId: 32,
+            selected: {
+              arguments: [],
+              description: 'Compute the mode of the values',
+              hierarchicalType: 'selectedOperatorOption',
+              label: 'mode',
+              markupType: 'option',
+              outputType: 'reducerOutput',
+            },
+          },
+        },
         retrieve: [
           {
-            kind: 'HTTP-GET',
-            url: 'source_1',
             contentType: 'JSON API',
+            kind: 'HTTP-GET',
             script: [
               {
                 hierarchicalType: 'operator',
@@ -1035,11 +2253,11 @@ describe('Radon', () => {
                 scriptId: 2,
                 selected: {
                   arguments: [],
+                  description: 'Interpretate the input String as a JSON-encoded Map structure.',
                   hierarchicalType: 'selectedOperatorOption',
                   label: 'parseJSONMap',
                   markupType: 'option',
                   outputType: 'map',
-                  description: 'Interpretate the input String as a JSON-encoded Map structure.',
                 },
               },
               {
@@ -1154,16 +2372,16 @@ describe('Radon', () => {
                       id: 5,
                       label: 'key',
                       markupType: 'input',
-                      value: 'data',
                       type: 'string',
+                      value: 'data',
                     },
                   ],
+                  description:
+                    'Access to the “data” key of the input Map, and manage the value as Array',
                   hierarchicalType: 'selectedOperatorOption',
                   label: 'getArray',
                   markupType: 'option',
                   outputType: 'array',
-                  description:
-                    'Access to the “data” key of the input Map, and manage the value as Array',
                 },
               },
               {
@@ -1274,110 +2492,110 @@ describe('Radon', () => {
                       markupType: 'select',
                       options: [
                         {
+                          hierarchicalType: 'operatorOption',
                           label: 'greaterThan',
-                          hierarchicalType: 'operatorOption',
                           markupType: 'option',
                           outputType: 'filterOutput',
                         },
                         {
+                          hierarchicalType: 'operatorOption',
                           label: 'lessThan',
-                          hierarchicalType: 'operatorOption',
                           markupType: 'option',
                           outputType: 'filterOutput',
                         },
                         {
+                          hierarchicalType: 'operatorOption',
                           label: 'equals',
-                          hierarchicalType: 'operatorOption',
                           markupType: 'option',
                           outputType: 'filterOutput',
                         },
                         {
+                          hierarchicalType: 'operatorOption',
                           label: 'deviationAbsolute',
-                          hierarchicalType: 'operatorOption',
                           markupType: 'option',
                           outputType: 'filterOutput',
                         },
                         {
+                          hierarchicalType: 'operatorOption',
                           label: 'deviationRelative',
-                          hierarchicalType: 'operatorOption',
                           markupType: 'option',
                           outputType: 'filterOutput',
                         },
                         {
+                          hierarchicalType: 'operatorOption',
                           label: 'deviationStandard',
-                          hierarchicalType: 'operatorOption',
                           markupType: 'option',
                           outputType: 'filterOutput',
                         },
                         {
+                          hierarchicalType: 'operatorOption',
                           label: 'top',
-                          hierarchicalType: 'operatorOption',
                           markupType: 'option',
                           outputType: 'filterOutput',
                         },
                         {
+                          hierarchicalType: 'operatorOption',
                           label: 'bottom',
-                          hierarchicalType: 'operatorOption',
                           markupType: 'option',
                           outputType: 'filterOutput',
                         },
                         {
+                          hierarchicalType: 'operatorOption',
                           label: 'mode',
-                          hierarchicalType: 'operatorOption',
                           markupType: 'option',
                           outputType: 'filterOutput',
                         },
                         {
+                          hierarchicalType: 'operatorOption',
                           label: 'lessOrEqualThan',
-                          hierarchicalType: 'operatorOption',
                           markupType: 'option',
                           outputType: 'filterOutput',
                         },
                         {
+                          hierarchicalType: 'operatorOption',
                           label: 'greaterOrEqualThan',
-                          hierarchicalType: 'operatorOption',
                           markupType: 'option',
                           outputType: 'filterOutput',
                         },
                         {
+                          hierarchicalType: 'operatorOption',
                           label: 'notEquals',
-                          hierarchicalType: 'operatorOption',
                           markupType: 'option',
                           outputType: 'filterOutput',
                         },
                         {
+                          hierarchicalType: 'operatorOption',
                           label: 'notDeviationAbsolute',
-                          hierarchicalType: 'operatorOption',
                           markupType: 'option',
                           outputType: 'filterOutput',
                         },
                         {
+                          hierarchicalType: 'operatorOption',
                           label: 'notDeviationRelative',
-                          hierarchicalType: 'operatorOption',
                           markupType: 'option',
                           outputType: 'filterOutput',
                         },
                         {
+                          hierarchicalType: 'operatorOption',
                           label: 'notDeviationStandard',
-                          hierarchicalType: 'operatorOption',
                           markupType: 'option',
                           outputType: 'filterOutput',
                         },
                         {
+                          hierarchicalType: 'operatorOption',
                           label: 'notTop',
-                          hierarchicalType: 'operatorOption',
                           markupType: 'option',
                           outputType: 'filterOutput',
                         },
                         {
+                          hierarchicalType: 'operatorOption',
                           label: 'notBottom',
-                          hierarchicalType: 'operatorOption',
                           markupType: 'option',
                           outputType: 'filterOutput',
                         },
                         {
-                          label: 'custom',
                           hierarchicalType: 'operatorOption',
+                          label: 'custom',
                           markupType: 'option',
                           outputType: 'filterOutput',
                         },
@@ -1386,11 +2604,11 @@ describe('Radon', () => {
                       selected: {
                         arguments: [
                           {
+                            hierarchicalType: 'argument',
                             id: 8,
                             label: 'by',
                             markupType: 'script',
                             outputType: 'subscriptOutput',
-                            hierarchicalType: 'argument',
                             subscript: [
                               {
                                 hierarchicalType: 'operator',
@@ -1846,16 +3064,16 @@ describe('Radon', () => {
                                       id: 11,
                                       label: 'key',
                                       markupType: 'input',
-                                      value: 'symbol',
                                       type: 'string',
+                                      value: 'symbol',
                                     },
                                   ],
+                                  description:
+                                    'Access to the “symbol” key of the input Map, and manage the value as Array',
                                   hierarchicalType: 'selectedOperatorOption',
                                   label: 'getArray',
                                   markupType: 'option',
                                   outputType: 'array',
-                                  description:
-                                    'Access to the “symbol” key of the input Map, and manage the value as Array',
                                 },
                               },
                               {
@@ -1964,44 +3182,44 @@ describe('Radon', () => {
                                       id: 13,
                                       label: 'categories',
                                       markupType: 'input',
-                                      value: '{ "BTC": true, "ETH": true }',
                                       type: 'map',
+                                      value: '{ "BTC": true, "ETH": true }',
                                     },
                                     {
                                       hierarchicalType: 'argument',
                                       id: 14,
                                       label: 'default',
                                       markupType: 'select',
-                                        options: [
+                                      options: [
                                         {
-                                           hierarchicalType: "operatorOption",
-                                           label: true,
-                                           markupType: "option",
-                                           outputType: "boolean",
-                                         },
+                                          hierarchicalType: 'operatorOption',
+                                          label: true,
+                                          markupType: 'option',
+                                          outputType: 'boolean',
+                                        },
                                         {
-                                          hierarchicalType: "operatorOption",
+                                          hierarchicalType: 'operatorOption',
                                           label: false,
-                                          markupType: "option",
-                                          outputType: "boolean",
+                                          markupType: 'option',
+                                          outputType: 'boolean',
                                         },
                                       ],
-                                      outputType: "boolean",
+                                      outputType: 'boolean',
                                       selected: {
                                         arguments: [],
-                                        hierarchicalType: "selectedOperatorOption",
+                                        hierarchicalType: 'selectedOperatorOption',
                                         label: false,
-                                        markupType: "option",
-                                        outputType: "boolean",
+                                        markupType: 'option',
+                                        outputType: 'boolean',
                                       },
                                     },
                                   ],
+                                  description:
+                                    'Match the String input with { "BTC": true, "ETH": true } and return the value asociated with it. Similar than a switch statement',
                                   hierarchicalType: 'selectedOperatorOption',
                                   label: 'match',
                                   markupType: 'option',
                                   outputType: 'matchOutput',
-                                  description:
-                                    'Match the String input with { "BTC": true, "ETH": true } and return the value asociated with it. Similar than a switch statement',
                                 },
                               },
                             ],
@@ -2009,17 +3227,17 @@ describe('Radon', () => {
                         ],
                         hierarchicalType: 'selectedOperatorOption',
                         label: 'custom',
-                        outputType: 'filterOutput',
                         markupType: 'option',
+                        outputType: 'filterOutput',
                       },
                     },
                   ],
+                  description:
+                    'Discard the items in the inpuyt array that doesn\'t match the 255,97,symbol,117,{ "BTC": true, "ETH": true },false function',
                   hierarchicalType: 'selectedOperatorOption',
                   label: 'filter',
                   markupType: 'option',
                   outputType: 'same',
-                  description:
-                    'Discard the items in the inpuyt array that doesn\'t match the 255,97,symbol,117,{ "BTC": true, "ETH": true },false function',
                 },
               },
               {
@@ -2124,11 +3342,11 @@ describe('Radon', () => {
                 selected: {
                   arguments: [
                     {
+                      hierarchicalType: 'argument',
                       id: 16,
                       label: 'mapFunction',
                       markupType: 'script',
                       outputType: 'subscriptOutput',
-                      hierarchicalType: 'argument',
                       subscript: [
                         {
                           hierarchicalType: 'operator',
@@ -2584,26 +3802,26 @@ describe('Radon', () => {
                                 id: 19,
                                 label: 'key',
                                 markupType: 'input',
-                                value: 'symbol',
                                 type: 'string',
+                                value: 'symbol',
                               },
                             ],
+                            description:
+                              'Access to the “symbol” key of the input Map, and manage the value as String',
                             hierarchicalType: 'selectedOperatorOption',
                             label: 'getString',
                             markupType: 'option',
                             outputType: 'string',
-                            description:
-                              'Access to the “symbol” key of the input Map, and manage the value as String',
                           },
                         },
                       ],
                     },
                   ],
+                  description: 'Sort the input Array in 103,symbol order',
                   hierarchicalType: 'selectedOperatorOption',
                   label: 'sort',
                   markupType: 'option',
                   outputType: 'same',
-                  description: 'Sort the input Array in 103,symbol order',
                 },
               },
               {
@@ -2708,11 +3926,11 @@ describe('Radon', () => {
                 selected: {
                   arguments: [
                     {
+                      hierarchicalType: 'argument',
                       id: 21,
                       label: 'script',
                       markupType: 'script',
                       outputType: 'subscriptOutput',
-                      hierarchicalType: 'argument',
                       subscript: [
                         {
                           hierarchicalType: 'operator',
@@ -3168,36 +4386,36 @@ describe('Radon', () => {
                                 id: 24,
                                 label: 'key',
                                 markupType: 'input',
-                                value: 'changePercent24h',
                                 type: 'string',
+                                value: 'changePercent24h',
                               },
                             ],
+                            description:
+                              'Access to the “changePercent24h” key of the input Map, and manage the value as String',
                             hierarchicalType: 'selectedOperatorOption',
                             label: 'getString',
                             markupType: 'option',
                             outputType: 'string',
-                            description:
-                              'Access to the “changePercent24h” key of the input Map, and manage the value as String',
                           },
                         },
                       ],
                     },
                   ],
+                  description:
+                    'Apply the 103,changePercent24h script on all the elements of the input Array',
                   hierarchicalType: 'selectedOperatorOption',
                   label: 'map',
                   markupType: 'option',
                   outputType: 'subscriptOutput',
-                  description:
-                    'Apply the 103,changePercent24h script on all the elements of the input Array',
                 },
               },
             ],
             scriptId: 2,
+            url: 'source_1',
           },
           {
-            kind: 'HTTP-GET',
-            url: 'source_2',
             contentType: 'JSON API',
+            kind: 'HTTP-GET',
             script: [
               {
                 hierarchicalType: 'operator',
@@ -3276,11 +4494,11 @@ describe('Radon', () => {
                 scriptId: 26,
                 selected: {
                   arguments: [],
+                  description: 'Cast the String input into Boolean',
                   hierarchicalType: 'selectedOperatorOption',
                   label: 'asBoolean',
                   markupType: 'option',
                   outputType: 'boolean',
-                  description: 'Cast the String input into Boolean',
                 },
               },
               {
@@ -3383,44 +4601,44 @@ describe('Radon', () => {
                       id: 29,
                       label: 'categories',
                       markupType: 'input',
-                      value: '',
                       type: 'map',
+                      value: '',
                     },
                     {
                       hierarchicalType: 'argument',
                       id: 30,
                       label: 'default',
                       markupType: 'select',
-                        options: [
+                      options: [
                         {
-                           hierarchicalType: "operatorOption",
-                           label: true,
-                           markupType: "option",
-                           outputType: "boolean",
-                         },
+                          hierarchicalType: 'operatorOption',
+                          label: true,
+                          markupType: 'option',
+                          outputType: 'boolean',
+                        },
                         {
-                          hierarchicalType: "operatorOption",
+                          hierarchicalType: 'operatorOption',
                           label: false,
-                          markupType: "option",
-                          outputType: "boolean",
+                          markupType: 'option',
+                          outputType: 'boolean',
                         },
                       ],
-                      outputType: "boolean",
+                      outputType: 'boolean',
                       selected: {
                         arguments: [],
-                        hierarchicalType: "selectedOperatorOption",
+                        hierarchicalType: 'selectedOperatorOption',
                         label: true,
-                        markupType: "option",
-                        outputType: "boolean",
+                        markupType: 'option',
+                        outputType: 'boolean',
                       },
                     },
                   ],
+                  description:
+                    'Match the Boolean input with "" and return the value asociated with it. Similar than a switch statement',
                   hierarchicalType: 'selectedOperatorOption',
                   label: 'match',
                   markupType: 'option',
                   outputType: 'matchOutput',
-                  description:
-                    'Match the Boolean input with "" and return the value asociated with it. Similar than a switch statement',
                 },
               },
               {
@@ -3872,164 +5090,19 @@ describe('Radon', () => {
                 scriptId: 26,
                 selected: {
                   arguments: [],
+                  description:
+                    'Count the number of elements of the input String, and mannage the values as Integer.',
                   hierarchicalType: 'selectedOperatorOption',
                   label: 'length',
                   markupType: 'option',
                   outputType: 'integer',
-                  description:
-                    'Count the number of elements of the input String, and mannage the values as Integer.',
                 },
               },
             ],
             scriptId: 26,
+            url: 'source_2',
           },
         ],
-        aggregate: {
-          filters: [
-            {
-              hierarchicalType: 'operator',
-              id: 33,
-              label: 'mode',
-              markupType: 'select',
-              options: [
-                {
-                  hierarchicalType: 'operatorOption',
-                  label: 'deviationAbsolute',
-                  markupType: 'option',
-                  outputType: 'filterOutput',
-                },
-                {
-                  hierarchicalType: 'operatorOption',
-                  label: 'deviationRelative',
-                  markupType: 'option',
-                  outputType: 'filterOutput',
-                },
-                {
-                  hierarchicalType: 'operatorOption',
-                  label: 'deviationStandard',
-                  markupType: 'option',
-                  outputType: 'filterOutput',
-                },
-                {
-                  hierarchicalType: 'operatorOption',
-                  label: 'mode',
-                  markupType: 'option',
-                  outputType: 'filterOutput',
-                },
-              ],
-              outputType: 'filterOutput',
-              scriptId: 32,
-              selected: {
-                arguments: [],
-                hierarchicalType: 'selectedOperatorOption',
-                label: 'mode',
-                markupType: 'option',
-                outputType: 'filterOutput',
-                description:
-                  'Discard any result that is different from the mode. Long story short: remove outliers',
-              },
-            },
-            {
-              hierarchicalType: 'operator',
-              id: 34,
-              label: 'deviationAbsolute',
-              markupType: 'select',
-              options: [
-                {
-                  hierarchicalType: 'operatorOption',
-                  label: 'deviationAbsolute',
-                  markupType: 'option',
-                  outputType: 'filterOutput',
-                },
-                {
-                  hierarchicalType: 'operatorOption',
-                  label: 'deviationRelative',
-                  markupType: 'option',
-                  outputType: 'filterOutput',
-                },
-                {
-                  hierarchicalType: 'operatorOption',
-                  label: 'deviationStandard',
-                  markupType: 'option',
-                  outputType: 'filterOutput',
-                },
-                {
-                  hierarchicalType: 'operatorOption',
-                  label: 'mode',
-                  markupType: 'option',
-                  outputType: 'filterOutput',
-                },
-              ],
-              outputType: 'filterOutput',
-              scriptId: 32,
-              selected: {
-                arguments: [
-                  {
-                    hierarchicalType: 'argument',
-                    id: 35,
-                    label: 'by',
-                    markupType: 'input',
-                    value: 3,
-                  },
-                ],
-                hierarchicalType: 'selectedOperatorOption',
-                label: 'deviationAbsolute',
-                markupType: 'option',
-                outputType: 'filterOutput',
-                description:
-                  'Discard any result that is more than by times the absolute deviation times away from the average. Long story short: remove outliers',
-              },
-            },
-          ],
-          reducer: {
-            hierarchicalType: 'operator',
-            id: 36,
-            label: 'mode',
-            markupType: 'select',
-            options: [
-              {
-                hierarchicalType: 'operatorOption',
-                label: 'mode',
-                markupType: 'option',
-                outputType: 'filterOutput',
-              },
-              {
-                hierarchicalType: 'operatorOption',
-                label: 'averageMean',
-                markupType: 'option',
-                outputType: 'filterOutput',
-              },
-              {
-                hierarchicalType: 'operatorOption',
-                label: 'averageMeanWeighted',
-                markupType: 'option',
-                outputType: 'filterOutput',
-              },
-              {
-                hierarchicalType: 'operatorOption',
-                label: 'averageMedian',
-                markupType: 'option',
-                outputType: 'filterOutput',
-              },
-              {
-                hierarchicalType: 'operatorOption',
-                label: 'averageMedianWeighted',
-                markupType: 'option',
-                outputType: 'filterOutput',
-              },
-            ],
-            outputType: 'filterOutput',
-            scriptId: 32,
-            selected: {
-              arguments: [],
-              hierarchicalType: 'selectedOperatorOption',
-              label: 'mode',
-              markupType: 'option',
-              outputType: 'reducerOutput',
-              description: 'Compute the mode of the values',
-            },
-          },
-        },
         tally: {
           filters: [
             {
@@ -4038,18 +5111,6 @@ describe('Radon', () => {
               label: 'mode',
               markupType: 'select',
               options: [
-                {
-                  hierarchicalType: 'operatorOption',
-                  label: 'deviationAbsolute',
-                  markupType: 'option',
-                  outputType: 'filterOutput',
-                },
-                {
-                  hierarchicalType: 'operatorOption',
-                  label: 'deviationRelative',
-                  markupType: 'option',
-                  outputType: 'filterOutput',
-                },
                 {
                   hierarchicalType: 'operatorOption',
                   label: 'deviationStandard',
@@ -4067,32 +5128,20 @@ describe('Radon', () => {
               scriptId: 37,
               selected: {
                 arguments: [],
+                description:
+                  'Discard any result that is different from the mode. Long story short: remove outliers',
                 hierarchicalType: 'selectedOperatorOption',
                 label: 'mode',
                 markupType: 'option',
                 outputType: 'filterOutput',
-                description:
-                  'Discard any result that is different from the mode. Long story short: remove outliers',
               },
             },
             {
               hierarchicalType: 'operator',
               id: 39,
-              label: 'deviationAbsolute',
+              label: 'deviationStandard',
               markupType: 'select',
               options: [
-                {
-                  hierarchicalType: 'operatorOption',
-                  label: 'deviationAbsolute',
-                  markupType: 'option',
-                  outputType: 'filterOutput',
-                },
-                {
-                  hierarchicalType: 'operatorOption',
-                  label: 'deviationRelative',
-                  markupType: 'option',
-                  outputType: 'filterOutput',
-                },
                 {
                   hierarchicalType: 'operatorOption',
                   label: 'deviationStandard',
@@ -4118,12 +5167,12 @@ describe('Radon', () => {
                     value: 3,
                   },
                 ],
+                description:
+                  'Discard any result that is more than ${number} times the standard deviation times away from the average. Long story short: remove outliers',
                 hierarchicalType: 'selectedOperatorOption',
-                label: 'deviationAbsolute',
+                label: 'deviationStandard',
                 markupType: 'option',
                 outputType: 'filterOutput',
-                description:
-                  'Discard any result that is more than by times the absolute deviation times away from the average. Long story short: remove outliers',
               },
             },
           ],
@@ -4147,19 +5196,7 @@ describe('Radon', () => {
               },
               {
                 hierarchicalType: 'operatorOption',
-                label: 'averageMeanWeighted',
-                markupType: 'option',
-                outputType: 'filterOutput',
-              },
-              {
-                hierarchicalType: 'operatorOption',
-                label: 'averageMedian',
-                markupType: 'option',
-                outputType: 'filterOutput',
-              },
-              {
-                hierarchicalType: 'operatorOption',
-                label: 'averageMedianWeighted',
+                label: 'deviationStandard',
                 markupType: 'option',
                 outputType: 'filterOutput',
               },
@@ -4168,14 +5205,15 @@ describe('Radon', () => {
             scriptId: 37,
             selected: {
               arguments: [],
+              description: 'Compute the mode of the values',
               hierarchicalType: 'selectedOperatorOption',
               label: 'mode',
               markupType: 'option',
               outputType: 'reducerOutput',
-              description: 'Compute the mode of the values',
             },
           },
         },
+        timelock: 0,
       }
 
       expect(result).toStrictEqual(expected)
@@ -4209,11 +5247,11 @@ describe('Radon', () => {
           },
         ],
         aggregate: {
-          filters: [AggregationTallyFilter.mode, [AggregationTallyFilter.deviationAbsolute, 3]],
+          filters: [AggregationTallyFilter.mode, [AggregationTallyFilter.deviationStandard, 3]],
           reducer: AggregationTallyReducer.mode,
         },
         tally: {
-          filters: [AggregationTallyFilter.mode, [AggregationTallyFilter.deviationAbsolute, 3]],
+          filters: [AggregationTallyFilter.mode, [AggregationTallyFilter.deviationStandard, 3]],
           reducer: AggregationTallyReducer.mode,
         },
       }
@@ -4239,7 +5277,7 @@ describe('Radon', () => {
                 OperatorCode.ArrayFilter,
                 [
                   [OperatorCode.MapGetArray, 'symbol'],
-                  [OperatorCode.StringMatch, { "BTC": true, "ETH": true }],
+                  [OperatorCode.StringMatch, { BTC: true, ETH: true }],
                 ],
               ],
               [OperatorCode.ArraySort, [[OperatorCode.MapGetString, 'symbol']]],
@@ -4258,11 +5296,11 @@ describe('Radon', () => {
           },
         ],
         aggregate: {
-          filters: [AggregationTallyFilter.mode, [AggregationTallyFilter.deviationAbsolute, 3]],
+          filters: [AggregationTallyFilter.mode, [AggregationTallyFilter.deviationStandard, 3]],
           reducer: AggregationTallyReducer.mode,
         },
         tally: {
-          filters: [AggregationTallyFilter.mode, [AggregationTallyFilter.deviationAbsolute, 3]],
+          filters: [AggregationTallyFilter.mode, [AggregationTallyFilter.deviationStandard, 3]],
           reducer: AggregationTallyReducer.mode,
         },
       }
@@ -4302,11 +5340,11 @@ describe('Radon', () => {
           },
         ],
         aggregate: {
-          filters: [AggregationTallyFilter.mode, [AggregationTallyFilter.deviationAbsolute, 3]],
+          filters: [AggregationTallyFilter.mode, [AggregationTallyFilter.deviationStandard, 3]],
           reducer: AggregationTallyReducer.mode,
         },
         tally: {
-          filters: [AggregationTallyFilter.mode, [AggregationTallyFilter.deviationAbsolute, 3]],
+          filters: [AggregationTallyFilter.mode, [AggregationTallyFilter.deviationStandard, 3]],
           reducer: AggregationTallyReducer.mode,
         },
       }
@@ -4343,11 +5381,11 @@ describe('Radon', () => {
           },
         ],
         aggregate: {
-          filters: [AggregationTallyFilter.mode, [AggregationTallyFilter.deviationAbsolute, 3]],
+          filters: [AggregationTallyFilter.mode, [AggregationTallyFilter.deviationStandard, 3]],
           reducer: AggregationTallyReducer.mode,
         },
         tally: {
-          filters: [AggregationTallyFilter.mode, [AggregationTallyFilter.deviationAbsolute, 3]],
+          filters: [AggregationTallyFilter.mode, [AggregationTallyFilter.deviationStandard, 3]],
           reducer: AggregationTallyReducer.mode,
         },
       }
@@ -4386,11 +5424,11 @@ describe('Radon', () => {
           },
         ],
         aggregate: {
-          filters: [AggregationTallyFilter.mode, [AggregationTallyFilter.deviationAbsolute, 3]],
+          filters: [AggregationTallyFilter.mode, [AggregationTallyFilter.deviationStandard, 3]],
           reducer: AggregationTallyReducer.mode,
         },
         tally: {
-          filters: [AggregationTallyFilter.mode, [AggregationTallyFilter.deviationAbsolute, 3]],
+          filters: [AggregationTallyFilter.mode, [AggregationTallyFilter.deviationStandard, 3]],
           reducer: AggregationTallyReducer.mode,
         },
       }
@@ -4430,11 +5468,11 @@ describe('Radon', () => {
           },
         ],
         aggregate: {
-          filters: [AggregationTallyFilter.mode, [AggregationTallyFilter.deviationAbsolute, 3]],
+          filters: [AggregationTallyFilter.mode, [AggregationTallyFilter.deviationStandard, 3]],
           reducer: AggregationTallyReducer.mode,
         },
         tally: {
-          filters: [AggregationTallyFilter.mode, [AggregationTallyFilter.deviationAbsolute, 3]],
+          filters: [AggregationTallyFilter.mode, [AggregationTallyFilter.deviationStandard, 3]],
           reducer: AggregationTallyReducer.mode,
         },
       }
@@ -4454,13 +5492,13 @@ describe('Radon', () => {
           .length()
         const aggregator = new Witnet.aggregator({
           filters: [
-            Witnet.Types.FILTERS.mode[(Witnet.Types.FILTERS.deviationAbsolute, 3)],
+            Witnet.Types.FILTERS.mode[(Witnet.Types.FILTERS.deviationStandard, 3)],
           ],
           reducer: Witnet.Types.REDUCERS.mode,
         })
         const tally = new Witnet.tally({
           filters: [
-            Witnet.Types.FILTERS.mode[(Witnet.Types.FILTERS.deviationAbsolute, 3)],
+            Witnet.Types.FILTERS.mode[(Witnet.Types.FILTERS.deviationStandard, 3)],
           ],
           reducer: Witnet.Types.REDUCERS.mode,
         })
