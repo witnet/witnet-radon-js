@@ -276,7 +276,7 @@ export declare enum AggregationTallyFilter {
 export declare enum AggregationTallyReducer {
     mode = 2,
     averageMean = 3,
-    deviationStandard = 5
+    deviationStandard = 7
 }
 export declare type MirScript = Array<MirOperator>;
 export declare type MirAggregationTallyScript = {

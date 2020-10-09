@@ -257,8 +257,8 @@
         "affectsGlobalScope": false
       },
       "../src/types.ts": {
-        "version": "5dbd65407ed5b08b02a0c95c1649c80687e66cbba38a8dc2a37de062e3ce0d55",
-        "signature": "7515ef0a7fec0d840a7c0f6fa346561d9678d6ec8e32e0014ce285acb5128e96",
+        "version": "be6004bbf14635f59f371aaa4107fc2bf912b7e236bd8330b098a48205b977b6",
+        "signature": "7845b79debc862661569ab5cbb474772cc0007996bb4f02d76d6ce5595618cf6",
         "affectsGlobalScope": false
       },
       "../src/aggregationTallyFilterArgument.ts": {
@@ -3460,7 +3460,7 @@
         "../src/types.ts"
       ],
       "../src/aggregationTallyOperatorFilter.ts": [
-        "../src/aggregationTallyFilterArgument.ts",
+        "../src/Argument.ts",
         "../src/structures.ts",
         "../src/types.ts"
       ],

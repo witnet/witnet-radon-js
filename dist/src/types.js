@@ -211,7 +211,7 @@ var AggregationTallyReducer;
 (function (AggregationTallyReducer) {
     AggregationTallyReducer[AggregationTallyReducer["mode"] = 2] = "mode";
     AggregationTallyReducer[AggregationTallyReducer["averageMean"] = 3] = "averageMean";
-    AggregationTallyReducer[AggregationTallyReducer["deviationStandard"] = 5] = "deviationStandard";
+    AggregationTallyReducer[AggregationTallyReducer["deviationStandard"] = 7] = "deviationStandard";
 })(AggregationTallyReducer = exports.AggregationTallyReducer || (exports.AggregationTallyReducer = {}));
 var ArrayOperatorName;
 (function (ArrayOperatorName) {
