@@ -1,5 +1,13 @@
-import { Event, EventName, MarkupScript, MirOperator, MirScript, OutputType, Type } from './types'
-import { Cache } from './structures'
+import {
+  Event,
+  EventName,
+  MarkupScript,
+  MirOperator,
+  MirScript,
+  OutputType,
+  Type,
+  Context,
+} from './types'
 import { Operator } from './operator'
 import { DEFAULT_SCRIPT_FIRST_TYPE } from './constants'
 import {
@@ -9,19 +17,23 @@ import {
 } from './utils'
 
 export class Script {
-  public cache: Cache
+  public context: Context
   public operators: Array<Operator>
   public firstType: OutputType
   public scriptId: number
 
-  constructor(cache: Cache, script: MirScript, firstType: OutputType = DEFAULT_SCRIPT_FIRST_TYPE) {
-    this.cache = cache
+  constructor(
+    context: Context,
+    script: MirScript,
+    firstType: OutputType = DEFAULT_SCRIPT_FIRST_TYPE
+  ) {
+    this.context = context
     this.operators = []
     this.firstType = firstType
-    this.scriptId = cache.insert(this).id
+    this.scriptId = context.cache.insert(this).id
     // TODO: Refactor
     script.reduce((acc, item) => {
-      let op = new Operator(cache, this.scriptId, acc, item, this.onChildrenEvent())
+      let op = new Operator(context, this.scriptId, acc, item, this.onChildrenEvent())
       this.operators.push(op)
       // If the `outputType` is `same` (a pseudo-type), return the input type
       // so the available methods can be guessed correctly.
@@ -40,13 +52,13 @@ export class Script {
     if (type) {
       const operator: MirOperator = getDefaultMirOperatorByType(type)
       this.operators.push(
-        new Operator(this.cache, this.scriptId, lastOutputType, operator, this.onChildrenEvent())
+        new Operator(this.context, this.scriptId, lastOutputType, operator, this.onChildrenEvent())
       )
     } else {
       // TODO: search in operators the type for the regarding types:
       // SubscriptOutput, ReducerOutput, FilterOutput, MatchOutput, Same, Inner
       this.operators.push(
-        new Operator(this.cache, this.scriptId, lastOutputType, null, this.onChildrenEvent())
+        new Operator(this.context, this.scriptId, lastOutputType, null, this.onChildrenEvent())
       )
     }
   }
@@ -105,7 +117,7 @@ export class Script {
   public push(operator: MirOperator) {
     this.operators.push(
       new Operator(
-        this.cache,
+        this.context,
         this.scriptId,
         this.getOutputType(),
         operator,

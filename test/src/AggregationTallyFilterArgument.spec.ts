@@ -1,3 +1,4 @@
+import { I18n } from '../../src/i18n'
 import { AggregationTallyFilterArgument } from '../../src/aggregationTallyFilterArgument'
 import { Cache } from '../../src/structures'
 
@@ -5,8 +6,8 @@ describe('AggregationTallyFilterArgument', () => {
   it('getMarkup', () => {
     const mirArgument = 3
 
-    const cache = new Cache()
-    const operator = new AggregationTallyFilterArgument(cache, mirArgument)
+    const context = { cache: new Cache(), i18n: new I18n() }
+    const operator = new AggregationTallyFilterArgument(context, mirArgument)
 
     const result = operator.getMarkup()
     const expected = {
@@ -23,8 +24,8 @@ describe('AggregationTallyFilterArgument', () => {
   it('getMir', () => {
     const mirArgument = 3
 
-    const cache = new Cache()
-    const operator = new AggregationTallyFilterArgument(cache, mirArgument)
+    const context = { cache: new Cache(), i18n: new I18n() }
+    const operator = new AggregationTallyFilterArgument(context, mirArgument)
 
     const result = operator.getMir()
 
@@ -34,9 +35,9 @@ describe('AggregationTallyFilterArgument', () => {
   it('update', () => {
     const mirArgument = 3
 
-    const cache = new Cache()
+    const context = { cache: new Cache(), i18n: new I18n() }
 
-    const operator = new AggregationTallyFilterArgument(cache, mirArgument)
+    const operator = new AggregationTallyFilterArgument(context, mirArgument)
 
     operator.update(7)
 

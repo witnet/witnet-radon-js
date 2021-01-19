@@ -1,14 +1,13 @@
-import { ArgumentInfo, Filter, MarkupArgument, MarkupArgumentType, MarkupOption, MirArgument } from './types';
-import { Cache } from './structures';
+import { ArgumentInfo, Filter, MarkupArgument, MarkupArgumentType, MarkupOption, MirArgument, Context } from './types';
 import { Script } from './script';
 export declare class Argument {
     argument: Argument | Script | null;
     argumentInfo: ArgumentInfo;
     argumentType: MarkupArgumentType;
-    cache: Cache;
+    context: Context;
     id: number;
     value: MirArgument | undefined;
-    constructor(cache: Cache, argumentInfo: ArgumentInfo, argument?: MirArgument);
+    constructor(context: Context, argumentInfo: ArgumentInfo, argument?: MirArgument);
     getJs(): string | number | boolean;
     getMarkup(): MarkupArgument;
     getMir(): MirArgument;

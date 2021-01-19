@@ -14,15 +14,15 @@ import {
   MirArgumentType,
   Filter,
 } from './types'
-import { Cache, operatorInfos, markupOptions, allMarkupOptions } from './structures'
+import { operatorInfos, markupOptions, allMarkupOptions } from './structures'
 import { getDefaultMirArgumentByType, getMirOperatorInfo } from './utils'
 import { Argument } from './argument'
 import { DEFAULT_OPERATOR, DEFAULT_INPUT_TYPE } from './constants'
-import { MirScript } from './types'
+import { MirScript, Context } from './types'
 
 export class Operator {
   public arguments: Array<Argument>
-  public cache: Cache
+  public context: Context
   public code: OperatorCode
   public default: Boolean
   public eventEmitter: EventEmitter
@@ -33,7 +33,7 @@ export class Operator {
   public scriptId: number
 
   constructor(
-    cache: Cache,
+    context: Context,
     scriptId: number,
     inputType: OutputType | null,
     operator: MirOperator | null,
@@ -41,9 +41,9 @@ export class Operator {
   ) {
     const { code, args } = getMirOperatorInfo(operator || DEFAULT_OPERATOR)
     this.eventEmitter = eventEmitter
-    this.id = cache.insert(this).id
+    this.id = context.cache.insert(this).id
     this.default = !operator
-    this.cache = cache
+    this.context = context
     this.code = code
     this.operatorInfo = operatorInfos[code]
     this.mirArguments = args
@@ -56,11 +56,11 @@ export class Operator {
         type: MirArgumentType.FilterFunction,
       }
       this.arguments = [
-        new Argument(cache, filterArgumentInfo, [Filter.custom, args[0] as MirScript]),
+        new Argument(context, filterArgumentInfo, [Filter.custom, args[0] as MirScript]),
       ]
     } else {
       this.arguments = args.map(
-        (x, index: number) => new Argument(cache, this.operatorInfo.arguments[index], x)
+        (x, index: number) => new Argument(context, this.operatorInfo.arguments[index], x)
       )
     }
     this.scriptId = scriptId
@@ -75,6 +75,16 @@ export class Operator {
 
   public getMarkup(): MarkupOperator {
     const args = this.arguments.map((argument) => argument.getMarkup())
+    if (this.operatorInfo.name === 'map') {
+      console.log('descriptioni', this.operatorInfo)
+      console.log('descriptioni', this.operatorInfo.description(this.context.i18n)('', ''))
+      console.log(
+        'arguments',
+
+        this.arguments?.[0]?.value,
+        this.arguments?.[1]?.value
+      )
+    }
     return {
       hierarchicalType: MarkupHierarchicalType.Operator,
       id: this.id,
@@ -89,7 +99,7 @@ export class Operator {
         label: this.operatorInfo.name,
         markupType: MarkupType.Option,
         outputType: this.operatorInfo.outputType,
-        description: this.operatorInfo.description(
+        description: this.operatorInfo.description(this.context.i18n)(
           this.arguments?.[0]?.value,
           this.arguments?.[1]?.value
         ),
@@ -118,7 +128,7 @@ export class Operator {
     this.operatorInfo = operatorInfo
     this.mirArguments = defaultOperatorArguments
     this.arguments = defaultOperatorArguments.map((x, index: number) => {
-      return new Argument(this.cache, this.operatorInfo.arguments[index], x)
+      return new Argument(this.context, this.operatorInfo.arguments[index], x)
     })
     this.eventEmitter.emit({
       name: EventName.Update,

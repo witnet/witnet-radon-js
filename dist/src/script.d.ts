@@ -1,12 +1,11 @@
-import { Event, MarkupScript, MirOperator, MirScript, OutputType } from './types';
-import { Cache } from './structures';
+import { Event, MarkupScript, MirOperator, MirScript, OutputType, Context } from './types';
 import { Operator } from './operator';
 export declare class Script {
-    cache: Cache;
+    context: Context;
     operators: Array<Operator>;
     firstType: OutputType;
     scriptId: number;
-    constructor(cache: Cache, script: MirScript, firstType?: OutputType);
+    constructor(context: Context, script: MirScript, firstType?: OutputType);
     addOperator(): void;
     deleteOperator(operatorId: number): void;
     findIdx(operatorId: number): number;

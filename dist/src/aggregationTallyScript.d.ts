@@ -1,14 +1,13 @@
-import { AggregationTallyFilter, MarkupAggregationTallyScript, MirAggregationTallyScript } from './types';
-import { Cache } from './structures';
+import { AggregationTallyFilter, MarkupAggregationTallyScript, MirAggregationTallyScript, Context } from './types';
 import { AggregationTallyOperatorReducer } from './aggregationTallyOperatorReducer';
 import { AggregationTallyOperatorFilter } from './aggregationTallyOperatorFilter';
 export declare class AggregationTallyScript {
-    cache: Cache;
+    context: Context;
     filters: Array<AggregationTallyOperatorFilter>;
     mirScript: MirAggregationTallyScript;
     reducer: AggregationTallyOperatorReducer;
     scriptId: number;
-    constructor(cache: Cache, script: MirAggregationTallyScript);
+    constructor(context: Context, script: MirAggregationTallyScript);
     addOperator(): void;
     deleteOperator(operatorId: number): void;
     getJs(stage: 'aggregator' | 'tally'): string;

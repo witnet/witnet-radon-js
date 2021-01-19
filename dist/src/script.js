@@ -6,16 +6,16 @@ var operator_1 = require("./operator");
 var constants_1 = require("./constants");
 var utils_1 = require("./utils");
 var Script = /** @class */ (function () {
-    function Script(cache, script, firstType) {
+    function Script(context, script, firstType) {
         var _this = this;
         if (firstType === void 0) { firstType = constants_1.DEFAULT_SCRIPT_FIRST_TYPE; }
-        this.cache = cache;
+        this.context = context;
         this.operators = [];
         this.firstType = firstType;
-        this.scriptId = cache.insert(this).id;
+        this.scriptId = context.cache.insert(this).id;
         // TODO: Refactor
         script.reduce(function (acc, item) {
-            var op = new operator_1.Operator(cache, _this.scriptId, acc, item, _this.onChildrenEvent());
+            var op = new operator_1.Operator(context, _this.scriptId, acc, item, _this.onChildrenEvent());
             _this.operators.push(op);
             // If the `outputType` is `same` (a pseudo-type), return the input type
             // so the available methods can be guessed correctly.
@@ -32,12 +32,12 @@ var Script = /** @class */ (function () {
         var type = utils_1.fromOutputTypeToType(lastOutputType);
         if (type) {
             var operator = utils_1.getDefaultMirOperatorByType(type);
-            this.operators.push(new operator_1.Operator(this.cache, this.scriptId, lastOutputType, operator, this.onChildrenEvent()));
+            this.operators.push(new operator_1.Operator(this.context, this.scriptId, lastOutputType, operator, this.onChildrenEvent()));
         }
         else {
             // TODO: search in operators the type for the regarding types:
             // SubscriptOutput, ReducerOutput, FilterOutput, MatchOutput, Same, Inner
-            this.operators.push(new operator_1.Operator(this.cache, this.scriptId, lastOutputType, null, this.onChildrenEvent()));
+            this.operators.push(new operator_1.Operator(this.context, this.scriptId, lastOutputType, null, this.onChildrenEvent()));
         }
     };
     Script.prototype.deleteOperator = function (operatorId) {
@@ -84,7 +84,7 @@ var Script = /** @class */ (function () {
         };
     };
     Script.prototype.push = function (operator) {
-        this.operators.push(new operator_1.Operator(this.cache, this.scriptId, this.getOutputType(), operator, this.onChildrenEvent()));
+        this.operators.push(new operator_1.Operator(this.context, this.scriptId, this.getOutputType(), operator, this.onChildrenEvent()));
     };
     // TODO: Refactor this function to be readable
     Script.prototype.validateScript = function (index) {

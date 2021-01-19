@@ -114,36 +114,43 @@ exports.typeSystem = (_a = {},
         _h),
     _a);
 var descriptions = {
-    getKey: function (inputType, outputType) {
+    getKey: function (i18n) { return function (inputType, outputType) {
         if (inputType === void 0) { inputType = 'inputType'; }
         if (outputType === void 0) { outputType = 'outputType'; }
         return function (key) {
             if (key === void 0) { key = 'key'; }
-            return "Access to the \u201C" + key + "\u201D key of the input " + inputType + ", and manage the value as " + outputType;
+            return i18n.t('operator_info_description_getkey', { key: key, inputType: inputType, outputType: outputType });
         };
-    },
-    mapValues: function (type) {
+    }; },
+    mapValues: function (i18n) { return function (type) {
         if (type === void 0) { type = 'type'; }
-        return "Obtain a list with the values of the input Map, and manage the value as an Array of " + type;
-    },
-    cast: function (inputType, outputType) {
+        return i18n.t('operator_info_description_mapvalues', { type: type });
+    }; },
+    cast: function (i18n) { return function (inputType, outputType) {
         if (inputType === void 0) { inputType = 'inputType'; }
         if (outputType === void 0) { outputType = 'outputType'; }
-        return "Cast the " + inputType + " input into " + outputType;
-    },
+        return i18n.t('operator_info_description_cast', { outputType: outputType, inputType: inputType });
+    }; },
 };
 exports.aggregationTallyFilterDescriptions = (_j = {},
-    _j[types_1.AggregationTallyFilter.deviationStandard] = function () {
-        return 'Discard any result that is more than ${number} times the standard deviation times away from the average. Long story short: remove outliers';
-    },
-    _j[types_1.AggregationTallyFilter.mode] = function () {
-        return 'Discard any result that is different from the mode. Long story short: remove outliers';
-    },
+    _j[types_1.AggregationTallyFilter.deviationStandard] = function (i18n) { return function (number) {
+        if (number === void 0) { number = 'number'; }
+        return i18n.t('aggregation_tally_filter_description_deviation_standard', { number: number });
+    }; },
+    _j[types_1.AggregationTallyFilter.mode] = function (i18n) { return function () {
+        return i18n.t('aggregation_tally_filter_description_mode');
+    }; },
     _j);
 exports.aggregationTallyReducerDescriptions = (_k = {},
-    _k[types_1.AggregationTallyReducer.mode] = function () { return 'Compute the mode of the values'; },
-    _k[types_1.AggregationTallyReducer.averageMean] = function () { return 'Compute the average mean of the values'; },
-    _k[types_1.AggregationTallyReducer.deviationStandard] = function () { return 'Compute the standard deviation of the values'; },
+    _k[types_1.AggregationTallyReducer.mode] = function (i18n) { return function () {
+        return i18n.t('aggregation_tally_reducer_description_mode');
+    }; },
+    _k[types_1.AggregationTallyReducer.averageMean] = function (i18n) { return function () {
+        return i18n.t('aggregation_tally_reducer_description_averagemean');
+    }; },
+    _k[types_1.AggregationTallyReducer.deviationStandard] = function (i18n) { return function () {
+        return i18n.t('aggregation_tally_reducer_description_deviationstandard');
+    }; },
     _k);
 // FIXME(#21): update match operators information
 exports.operatorInfos = (_l = {},
@@ -152,7 +159,7 @@ exports.operatorInfos = (_l = {},
         name: types_1.ArrayOperatorName.Count,
         arguments: [],
         outputType: types_1.OutputType.Integer,
-        description: function () { return 'Count the number of elements in the input Array'; },
+        description: function (i18n) { return function () { return i18n.t('operator_info_description_array_count'); }; },
     },
     _l[types_1.OperatorCode.ArrayFilter] = {
         type: types_1.Type.Array,
@@ -165,10 +172,10 @@ exports.operatorInfos = (_l = {},
             },
         ],
         outputType: types_1.OutputType.Same,
-        description: function (filter) {
+        description: function (i18n) { return function (filter) {
             if (filter === void 0) { filter = 'filter'; }
-            return "Discard the items in the inpuyt array that doesn't match the " + filter + " function";
-        },
+            return i18n.t('operator_info_description_array_filter', { filter: filter });
+        }; },
     },
     _l[types_1.OperatorCode.ArrayFlatten] = {
         type: types_1.Type.Array,
@@ -181,10 +188,10 @@ exports.operatorInfos = (_l = {},
             },
         ],
         outputType: types_1.OutputType.Inner,
-        description: function (depth) {
+        description: function (i18n) { return function (depth) {
             if (depth === void 0) { depth = 'depth'; }
-            return "Remove " + depth + " level of nesting of the input Array.";
-        },
+            return i18n.t('operator_info_description_array_flatten', { depth: depth });
+        }; },
     },
     _l[types_1.OperatorCode.ArrayGetArray] = {
         type: types_1.Type.Array,
@@ -197,7 +204,7 @@ exports.operatorInfos = (_l = {},
             },
         ],
         outputType: types_1.OutputType.Array,
-        description: descriptions.getKey('Array', 'Array'),
+        description: function (i18n) { return descriptions.getKey(i18n)('Array', 'Array'); },
     },
     _l[types_1.OperatorCode.ArrayGetBoolean] = {
         type: types_1.Type.Boolean,
@@ -210,7 +217,7 @@ exports.operatorInfos = (_l = {},
             },
         ],
         outputType: types_1.OutputType.Boolean,
-        description: descriptions.getKey('Array', 'Boolean'),
+        description: function (i18n) { return descriptions.getKey(i18n)('Array', 'Boolean'); },
     },
     _l[types_1.OperatorCode.ArrayGetBytes] = {
         type: types_1.Type.Array,
@@ -223,7 +230,7 @@ exports.operatorInfos = (_l = {},
             },
         ],
         outputType: types_1.OutputType.Bytes,
-        description: descriptions.getKey('Array', 'Bytes'),
+        description: function (i18n) { return descriptions.getKey(i18n)('Array', 'Bytes'); },
     },
     _l[types_1.OperatorCode.ArrayGetInteger] = {
         type: types_1.Type.Array,
@@ -236,7 +243,7 @@ exports.operatorInfos = (_l = {},
             },
         ],
         outputType: types_1.OutputType.Integer,
-        description: descriptions.getKey('Array', 'Integer'),
+        description: function (i18n) { return descriptions.getKey(i18n)('Array', 'Integer'); },
     },
     _l[types_1.OperatorCode.ArrayGetFloat] = {
         type: types_1.Type.Array,
@@ -249,7 +256,7 @@ exports.operatorInfos = (_l = {},
             },
         ],
         outputType: types_1.OutputType.Boolean,
-        description: descriptions.getKey('Array', 'Float'),
+        description: function (i18n) { return descriptions.getKey(i18n)('Array', 'Float'); },
     },
     _l[types_1.OperatorCode.ArrayGetMap] = {
         type: types_1.Type.Array,
@@ -262,7 +269,9 @@ exports.operatorInfos = (_l = {},
             },
         ],
         outputType: types_1.OutputType.Map,
-        description: descriptions.getKey('Array', 'Map'),
+        description: function (i18n) {
+            return descriptions.getKey(i18n)('Array', 'Map');
+        },
     },
     _l[types_1.OperatorCode.ArrayGetString] = {
         type: types_1.Type.Array,
@@ -275,7 +284,7 @@ exports.operatorInfos = (_l = {},
             },
         ],
         outputType: types_1.OutputType.String,
-        description: descriptions.getKey('Array', 'String'),
+        description: function (i18n) { return descriptions.getKey(i18n)('Array', 'String'); },
     },
     _l[types_1.OperatorCode.ArrayMap] = {
         type: types_1.Type.Array,
@@ -288,9 +297,9 @@ exports.operatorInfos = (_l = {},
             },
         ],
         outputType: types_1.OutputType.SubscriptOutput,
-        description: function (subscript) {
-            return "Apply the " + subscript + " script on all the elements of the input Array";
-        },
+        description: function (i18n) { return function (subscript) {
+            return i18n.t('operator_info_description_array_map', { subscript: subscript });
+        }; },
     },
     _l[types_1.OperatorCode.ArrayReduce] = {
         type: types_1.Type.Array,
@@ -303,11 +312,11 @@ exports.operatorInfos = (_l = {},
             },
         ],
         outputType: types_1.OutputType.Inner,
-        description: function (outputType, reducer) {
+        description: function (i18n) { return function (outputType, reducer) {
             if (outputType === void 0) { outputType = 'outputType'; }
             if (reducer === void 0) { reducer = 'reducer'; }
-            return "Reduce all the items in the input Array into a single item of type " + outputType + " by applying the " + reducer + " reducer function";
-        },
+            return i18n.t('operator_info_description_array_reduce', { outputType: outputType, reducer: reducer });
+        }; },
     },
     _l[types_1.OperatorCode.ArraySome] = {
         type: types_1.Type.Array,
@@ -320,10 +329,10 @@ exports.operatorInfos = (_l = {},
             },
         ],
         outputType: types_1.OutputType.Boolean,
-        description: function (filter) {
+        description: function (i18n) { return function (filter) {
             if (filter === void 0) { filter = 'filter'; }
-            return "Tell whether at least one of the items in the input Array passes the condition defined by the " + filter + " filter function";
-        },
+            return i18n.t('operator_info_description_array_some', { filter: filter });
+        }; },
     },
     _l[types_1.OperatorCode.ArraySort] = {
         type: types_1.Type.Array,
@@ -341,10 +350,10 @@ exports.operatorInfos = (_l = {},
             },
         ],
         outputType: types_1.OutputType.Same,
-        description: function (order) {
+        description: function (i18n) { return function (order) {
             if (order === void 0) { order = 'order'; }
-            return "Sort the input Array in " + order + " order";
-        },
+            return i18n.t('operator_info_description_array_sort', { order: order });
+        }; },
     },
     _l[types_1.OperatorCode.ArrayTake] = {
         type: types_1.Type.Array,
@@ -358,16 +367,16 @@ exports.operatorInfos = (_l = {},
             },
         ],
         outputType: types_1.OutputType.Array,
-        description: function (min, max) {
-            return "Take the elements from the input Array between positions " + min + " and " + max + ", and discard all the rest";
-        },
+        description: function (i18n) { return function (min, max) {
+            return i18n.t('operator_info_description_array_take', { min: min, max: max });
+        }; },
     },
     _l[types_1.OperatorCode.BooleanAsString] = {
         type: types_1.Type.Boolean,
         name: types_1.BooleanOperatorName.AsString,
         arguments: [],
         outputType: types_1.OutputType.String,
-        description: function () { return descriptions.cast('Boolean', 'String'); },
+        description: function (i18n) { return function () { return descriptions.cast(i18n)('Boolean', 'String'); }; },
     },
     _l[types_1.OperatorCode.BooleanMatch] = {
         type: types_1.Type.Boolean,
@@ -385,47 +394,45 @@ exports.operatorInfos = (_l = {},
             },
         ],
         outputType: types_1.OutputType.MatchOutput,
-        description: function (subscript) {
+        description: function (i18n) { return function (subscript) {
             if (subscript === void 0) { subscript = 'subscript'; }
-            return "Match the Boolean input with \"" + subscript + "\" and return the value asociated with it. Similar than a switch statement";
-        },
+            return i18n.t('operator_info_description_boolean_match', { subscript: subscript });
+        }; },
     },
     _l[types_1.OperatorCode.BooleanNegate] = {
         type: types_1.Type.Boolean,
         name: types_1.BooleanOperatorName.Negate,
         arguments: [],
         outputType: types_1.OutputType.Boolean,
-        description: function () {
-            return 'Negate the input Boolean (make it True if it was False, or make it False if it was True)';
-        },
+        description: function (i18n) { return function () { return i18n.t('operator_info_description_boolean_negate'); }; },
     },
     _l[types_1.OperatorCode.BytesAsString] = {
         type: types_1.Type.Bytes,
         name: types_1.BytesOperatorName.AsString,
         arguments: [],
         outputType: types_1.OutputType.String,
-        description: function () { return descriptions.cast('Bytes', 'String'); },
+        description: function (i18n) { return function () { return descriptions.cast(i18n)('Bytes', 'String'); }; },
     },
     _l[types_1.OperatorCode.BytesHash] = {
         type: types_1.Type.Bytes,
         name: types_1.BytesOperatorName.Hash,
         arguments: [],
         outputType: types_1.OutputType.Bytes,
-        description: function () { return 'Compute the hash of the input Bytes'; },
+        description: function (i18n) { return function () { return i18n.t('operator_info_description_bytes_hash'); }; },
     },
     _l[types_1.OperatorCode.IntegerAbsolute] = {
         type: types_1.Type.Integer,
         name: types_1.IntegerOperatorName.Absolute,
         arguments: [],
         outputType: types_1.OutputType.Integer,
-        description: function () { return 'Calculate the absolute value of the input Integer'; },
+        description: function (i18n) { return function () { return i18n.t('operator_info_description_integer_absolute'); }; },
     },
     _l[types_1.OperatorCode.IntegerAsFloat] = {
         type: types_1.Type.Integer,
         name: types_1.IntegerOperatorName.AsFloat,
         arguments: [],
         outputType: types_1.OutputType.Float,
-        description: function () { return descriptions.cast('Integer', 'Float'); },
+        description: function (i18n) { return function () { return descriptions.cast(i18n)('Integer', 'Float'); }; },
     },
     _l[types_1.OperatorCode.IntegerAsString] = {
         type: types_1.Type.Integer,
@@ -438,7 +445,7 @@ exports.operatorInfos = (_l = {},
             },
         ],
         outputType: types_1.OutputType.String,
-        description: function () { return descriptions.cast('Integer', 'String'); },
+        description: function (i18n) { return function () { return descriptions.cast(i18n)('Integer', 'String'); }; },
     },
     _l[types_1.OperatorCode.IntegerGreaterThan] = {
         type: types_1.Type.Integer,
@@ -451,10 +458,10 @@ exports.operatorInfos = (_l = {},
             },
         ],
         outputType: types_1.OutputType.Boolean,
-        description: function (argument) {
+        description: function (i18n) { return function (argument) {
             if (argument === void 0) { argument = 'argument'; }
-            return "Check if the input Integer is greater than " + argument + " (output will be Boolean)";
-        },
+            return i18n.t('operator_info_description_integer_greaterthan', { argument: argument });
+        }; },
     },
     _l[types_1.OperatorCode.IntegerLessThan] = {
         type: types_1.Type.Integer,
@@ -467,10 +474,10 @@ exports.operatorInfos = (_l = {},
             },
         ],
         outputType: types_1.OutputType.Boolean,
-        description: function (argument) {
+        description: function (i18n) { return function (argument) {
             if (argument === void 0) { argument = 'argument'; }
-            return "Check if the input Integer is greater than " + argument + " (output will be Boolean)";
-        },
+            return i18n.t('operator_info_description_integer_lessthan', { argument: argument });
+        }; },
     },
     _l[types_1.OperatorCode.IntegerMatch] = {
         type: types_1.Type.Integer,
@@ -488,10 +495,10 @@ exports.operatorInfos = (_l = {},
             },
         ],
         outputType: types_1.OutputType.MatchOutput,
-        description: function (subscript) {
+        description: function (i18n) { return function (subscript) {
             if (subscript === void 0) { subscript = 'subscript'; }
-            return "Match the Integer input with " + subscript + " and return the value asociated with it. Similar than a switch statement";
-        },
+            return i18n.t('operator_info_description_integer_match', { subscript: subscript });
+        }; },
     },
     _l[types_1.OperatorCode.IntegerModulo] = {
         type: types_1.Type.Integer,
@@ -504,10 +511,10 @@ exports.operatorInfos = (_l = {},
             },
         ],
         outputType: types_1.OutputType.Integer,
-        description: function (argument) {
+        description: function (i18n) { return function (argument) {
             if (argument === void 0) { argument = 'argument'; }
-            return "Calculate the integer division of the input integer by " + argument;
-        },
+            return i18n.t('operator_info_description_integer_modulo', { argument: argument });
+        }; },
     },
     _l[types_1.OperatorCode.IntegerMultiply] = {
         type: types_1.Type.Integer,
@@ -520,17 +527,17 @@ exports.operatorInfos = (_l = {},
             },
         ],
         outputType: types_1.OutputType.Integer,
-        description: function (factor) {
+        description: function (i18n) { return function (factor) {
             if (factor === void 0) { factor = 'factor'; }
-            return "Multiply the input Integer by " + factor;
-        },
+            return i18n.t('operator_info_description_integer_multiply', { factor: factor });
+        }; },
     },
     _l[types_1.OperatorCode.IntegerNegate] = {
         type: types_1.Type.Integer,
         name: types_1.IntegerOperatorName.Negate,
         arguments: [],
         outputType: types_1.OutputType.Integer,
-        description: function () { return "Calculate the negative of the input Integer"; },
+        description: function (i18n) { return function () { return i18n.t('operator_info_description_integer_negate'); }; },
     },
     _l[types_1.OperatorCode.IntegerPower] = {
         type: types_1.Type.Integer,
@@ -543,19 +550,17 @@ exports.operatorInfos = (_l = {},
             },
         ],
         outputType: types_1.OutputType.Integer,
-        description: function (exponent) {
+        description: function (i18n) { return function (exponent) {
             if (exponent === void 0) { exponent = 'exponent'; }
-            return "Calculate the input Integer raised to the power of " + exponent;
-        },
+            return i18n.t('operator_info_description_integer_power', { exponent: exponent });
+        }; },
     },
     _l[types_1.OperatorCode.IntegerReciprocal] = {
         type: types_1.Type.Integer,
         name: types_1.IntegerOperatorName.Reciprocal,
         arguments: [],
         outputType: types_1.OutputType.Float,
-        description: function () {
-            return 'Calculate the multiplicative inverse (1/x) of the input Integer, and manage the result as Float.';
-        },
+        description: function (i18n) { return function () { return i18n.t('operator_info_description_integer_reciprocal'); }; },
     },
     _l[types_1.OperatorCode.IntegerSum] = {
         type: types_1.Type.Integer,
@@ -568,19 +573,17 @@ exports.operatorInfos = (_l = {},
             },
         ],
         outputType: types_1.OutputType.Integer,
-        description: function (addend) {
+        description: function (i18n) { return function (addend) {
             if (addend === void 0) { addend = 'addend'; }
-            return "Sum " + addend + " to the input Integer";
-        },
+            return i18n.t('operator_info_description_integer_sum', { addend: addend });
+        }; },
     },
     _l[types_1.OperatorCode.FloatAbsolute] = {
         type: types_1.Type.Float,
         name: types_1.IntegerOperatorName.Absolute,
         arguments: [],
         outputType: types_1.OutputType.Float,
-        description: function () {
-            return 'Compute the absolute value of the input Float, and manage the result as Float.';
-        },
+        description: function (i18n) { return function () { return i18n.t('operator_info_description_float_absolute'); }; },
     },
     _l[types_1.OperatorCode.FloatAsString] = {
         type: types_1.Type.Float,
@@ -593,14 +596,14 @@ exports.operatorInfos = (_l = {},
             },
         ],
         outputType: types_1.OutputType.String,
-        description: function () { return descriptions.cast('Float', 'String'); },
+        description: function (i18n) { return function () { return descriptions.cast(i18n)('Float', 'String'); }; },
     },
     _l[types_1.OperatorCode.FloatCeiling] = {
         type: types_1.Type.Float,
         name: types_1.FloatOperatorName.Ceiling,
         arguments: [],
         outputType: types_1.OutputType.Integer,
-        description: function () { return 'Compute the the least Integer greater than or equal the input Float'; },
+        description: function (i18n) { return function () { return i18n.t('operator_info_description_float_celling'); }; },
     },
     _l[types_1.OperatorCode.FloatGraterThan] = {
         type: types_1.Type.Float,
@@ -613,19 +616,17 @@ exports.operatorInfos = (_l = {},
             },
         ],
         outputType: types_1.OutputType.Boolean,
-        description: function (value) {
+        description: function (i18n) { return function (value) {
             if (value === void 0) { value = 'value'; }
-            return "Compare if the input Float is greater than " + value + ", and manage the value as Boolean.";
-        },
+            return i18n.t('operator_info_description_float_greaterthan', { value: value });
+        }; },
     },
     _l[types_1.OperatorCode.FloatFloor] = {
         type: types_1.Type.Float,
         name: types_1.FloatOperatorName.Floor,
         arguments: [],
         outputType: types_1.OutputType.Float,
-        description: function () {
-            return 'Compute the greatest integer less or equal the input Float, and manage the result as Integer';
-        },
+        description: function (i18n) { return function () { return i18n.t('operator_info_description_float_floor'); }; },
     },
     _l[types_1.OperatorCode.FloatLessThan] = {
         type: types_1.Type.Float,
@@ -638,10 +639,10 @@ exports.operatorInfos = (_l = {},
             },
         ],
         outputType: types_1.OutputType.Boolean,
-        description: function (argument) {
+        description: function (i18n) { return function (argument) {
             if (argument === void 0) { argument = 'argument'; }
-            return "Compare if the input Float is less than " + argument + ", and manage the value as Boolean";
-        },
+            return i18n.t('operator_info_description_float_lessthan', { argument: argument });
+        }; },
     },
     _l[types_1.OperatorCode.FloatModulo] = {
         type: types_1.Type.Float,
@@ -654,10 +655,10 @@ exports.operatorInfos = (_l = {},
             },
         ],
         outputType: types_1.OutputType.Float,
-        description: function (argument) {
+        description: function (i18n) { return function (argument) {
             if (argument === void 0) { argument = 'argument'; }
-            return "Compute the division by the input Float and " + argument + ". Then manage the result as Float";
-        },
+            return i18n.t('operator_info_description_float_modulo', { argument: argument });
+        }; },
     },
     _l[types_1.OperatorCode.FloatMultiply] = {
         type: types_1.Type.Float,
@@ -670,17 +671,17 @@ exports.operatorInfos = (_l = {},
             },
         ],
         outputType: types_1.OutputType.Float,
-        description: function (argument) {
+        description: function (i18n) { return function (argument) {
             if (argument === void 0) { argument = 'argument'; }
-            return "Compute the product by the input Float and " + argument + ". Then manage the result as Integer";
-        },
+            return i18n.t('operator_info_description_float_multiply', { argument: argument });
+        }; },
     },
     _l[types_1.OperatorCode.FloatNegate] = {
         type: types_1.Type.Float,
         name: types_1.FloatOperatorName.Negate,
         arguments: [],
         outputType: types_1.OutputType.Float,
-        description: function () { return "Compute the negative of the input Integer, and manage the result as Float"; },
+        description: function (i18n) { return function () { return i18n.t('operator_info_description_float_negate'); }; },
     },
     _l[types_1.OperatorCode.FloatPower] = {
         type: types_1.Type.Float,
@@ -693,26 +694,24 @@ exports.operatorInfos = (_l = {},
             },
         ],
         outputType: types_1.OutputType.Float,
-        description: function (exponent) {
+        description: function (i18n) { return function (exponent) {
             if (exponent === void 0) { exponent = 'exponent'; }
-            return "Compute the input Float raised to the power of " + exponent + ". Then, handle the result as Float.";
-        },
+            return i18n.t('operator_info_description_float_power', { exponent: exponent });
+        }; },
     },
     _l[types_1.OperatorCode.FloatReciprocal] = {
         type: types_1.Type.Float,
         name: types_1.FloatOperatorName.Reciprocal,
         arguments: [],
         outputType: types_1.OutputType.Float,
-        description: function () {
-            return 'Compute the multiplicative inverse of the input Float and manage the result as Float';
-        },
+        description: function (i18n) { return function () { return i18n.t('operator_info_description_float_reciprocal'); }; },
     },
     _l[types_1.OperatorCode.FloatRound] = {
         type: types_1.Type.Float,
         name: types_1.FloatOperatorName.Round,
         arguments: [],
         outputType: types_1.OutputType.Integer,
-        description: function () { return 'Round integer part from the Float input, and manage the result as Integer'; },
+        description: function (i18n) { return function () { return i18n.t('operator_info_description_float_round'); }; },
     },
     _l[types_1.OperatorCode.Floatsum] = {
         type: types_1.Type.Float,
@@ -725,26 +724,24 @@ exports.operatorInfos = (_l = {},
             },
         ],
         outputType: types_1.OutputType.Float,
-        description: function (addend) {
+        description: function (i18n) { return function (addend) {
             if (addend === void 0) { addend = 'addend'; }
-            return "Compute the addition between the input Float and " + addend + ". Then handle the result as Float.";
-        },
+            return i18n.t('operator_info_description_float_sum', { addend: addend });
+        }; },
     },
     _l[types_1.OperatorCode.FloatTruncate] = {
         type: types_1.Type.Float,
         name: types_1.FloatOperatorName.Truncate,
         arguments: [],
         outputType: types_1.OutputType.Integer,
-        description: function () { return 'Take integer part from the Float input, and manage the result as Integer.'; },
+        description: function (i18n) { return function () { return i18n.t('operator_info_description_float_truncate'); }; },
     },
     _l[types_1.OperatorCode.MapEntries] = {
         type: types_1.Type.Map,
         name: types_1.MapOperatorName.Entries,
         arguments: [],
         outputType: types_1.OutputType.Array,
-        description: function () {
-            return "Obtain a list of key-value tuples from the input Map, and manage the value as Array.";
-        },
+        description: function (i18n) { return function () { return i18n.t('operator_info_description_map_entries'); }; },
     },
     _l[types_1.OperatorCode.MapGetArray] = {
         type: types_1.Type.Map,
@@ -757,7 +754,7 @@ exports.operatorInfos = (_l = {},
             },
         ],
         outputType: types_1.OutputType.Array,
-        description: descriptions.getKey('Map', 'Array'),
+        description: function (i18n) { return descriptions.getKey(i18n)('Map', 'Array'); },
     },
     _l[types_1.OperatorCode.MapGetBoolean] = {
         type: types_1.Type.Map,
@@ -770,7 +767,7 @@ exports.operatorInfos = (_l = {},
             },
         ],
         outputType: types_1.OutputType.Boolean,
-        description: descriptions.getKey('Map', 'Boolean'),
+        description: function (i18n) { return descriptions.getKey(i18n)('Map', 'Boolean'); },
     },
     _l[types_1.OperatorCode.MapGetBytes] = {
         type: types_1.Type.Map,
@@ -783,7 +780,7 @@ exports.operatorInfos = (_l = {},
             },
         ],
         outputType: types_1.OutputType.Bytes,
-        description: descriptions.getKey('Map', 'Bytes'),
+        description: function (i18n) { return descriptions.getKey(i18n)('Map', 'Bytes'); },
     },
     _l[types_1.OperatorCode.MapGetInteger] = {
         type: types_1.Type.Map,
@@ -796,7 +793,7 @@ exports.operatorInfos = (_l = {},
             },
         ],
         outputType: types_1.OutputType.Integer,
-        description: descriptions.getKey('Map', 'Integer'),
+        description: function (i18n) { return descriptions.getKey(i18n)('Map', 'Integer'); },
     },
     _l[types_1.OperatorCode.MapGetFloat] = {
         type: types_1.Type.Map,
@@ -809,7 +806,7 @@ exports.operatorInfos = (_l = {},
             },
         ],
         outputType: types_1.OutputType.Float,
-        description: descriptions.getKey('Map', 'Float'),
+        description: function (i18n) { return descriptions.getKey(i18n)('Map', 'Float'); },
     },
     _l[types_1.OperatorCode.MapGetMap] = {
         type: types_1.Type.Map,
@@ -822,7 +819,7 @@ exports.operatorInfos = (_l = {},
             },
         ],
         outputType: types_1.OutputType.Map,
-        description: descriptions.getKey('Map', 'Map'),
+        description: function (i18n) { return descriptions.getKey(i18n)('Map', 'Map'); },
     },
     _l[types_1.OperatorCode.MapGetString] = {
         type: types_1.Type.Map,
@@ -835,102 +832,98 @@ exports.operatorInfos = (_l = {},
             },
         ],
         outputType: types_1.OutputType.String,
-        description: descriptions.getKey('Map', 'String'),
+        description: function (i18n) { return descriptions.getKey(i18n)('Map', 'String'); },
     },
     _l[types_1.OperatorCode.MapKeys] = {
         type: types_1.Type.Map,
         name: types_1.MapOperatorName.Keys,
         arguments: [],
         outputType: types_1.OutputType.ArrayString,
-        description: function () {
-            return 'Obtain a list with the keys names of the input Map, and manage the value as Array of String.';
-        },
+        description: function (i18n) { return function () { return i18n.t('operator_info_description_map_keys'); }; },
     },
     _l[types_1.OperatorCode.MapValuesArray] = {
         type: types_1.Type.Map,
         name: types_1.MapOperatorName.valuesArray,
         arguments: [],
         outputType: types_1.OutputType.ArrayArray,
-        description: function () { return descriptions.mapValues('Array'); },
+        description: function (i18n) { return function () { return descriptions.mapValues(i18n)('Array'); }; },
     },
     _l[types_1.OperatorCode.MapValuesBoolean] = {
         type: types_1.Type.Map,
         name: types_1.MapOperatorName.valuesBoolean,
         arguments: [],
         outputType: types_1.OutputType.ArrayBoolean,
-        description: function () { return descriptions.mapValues('Boolean'); },
+        description: function (i18n) { return function () { return descriptions.mapValues(i18n)('Boolean'); }; },
     },
     _l[types_1.OperatorCode.MapValuesBytes] = {
         type: types_1.Type.Map,
         name: types_1.MapOperatorName.valuesBytes,
         arguments: [],
         outputType: types_1.OutputType.ArrayBytes,
-        description: function () { return descriptions.mapValues('Bytes'); },
+        description: function (i18n) { return function () { return descriptions.mapValues(i18n)('Bytes'); }; },
     },
     _l[types_1.OperatorCode.MapValuesInteger] = {
         type: types_1.Type.Map,
         name: types_1.MapOperatorName.valuesInteger,
         arguments: [],
         outputType: types_1.OutputType.ArrayInteger,
-        description: function () { return descriptions.mapValues('Integer'); },
+        description: function (i18n) { return function () { return descriptions.mapValues(i18n)('Integer'); }; },
     },
     _l[types_1.OperatorCode.MapValuesFloat] = {
         type: types_1.Type.Map,
         name: types_1.MapOperatorName.valuesFloat,
         arguments: [],
         outputType: types_1.OutputType.ArrayFloat,
-        description: function () { return descriptions.mapValues('Float'); },
+        description: function (i18n) { return function () { return descriptions.mapValues(i18n)('Float'); }; },
     },
     _l[types_1.OperatorCode.MapValuesMap] = {
         type: types_1.Type.Map,
         name: types_1.MapOperatorName.valuesMap,
         arguments: [],
         outputType: types_1.OutputType.ArrayMap,
-        description: function () { return descriptions.mapValues('Map'); },
+        description: function (i18n) { return function () { return descriptions.mapValues(i18n)('Map'); }; },
     },
     _l[types_1.OperatorCode.MapValuesString] = {
         type: types_1.Type.Map,
         name: types_1.MapOperatorName.valuesString,
         arguments: [],
         outputType: types_1.OutputType.ArrayString,
-        description: function () { return descriptions.mapValues('String'); },
+        description: function (i18n) { return function () { return descriptions.mapValues(i18n)('String'); }; },
     },
     _l[types_1.OperatorCode.StringAsBoolean] = {
         type: types_1.Type.String,
         name: types_1.StringOperatorName.AsBoolean,
         arguments: [],
         outputType: types_1.OutputType.Boolean,
-        description: function () { return descriptions.cast('String', 'Boolean'); },
+        description: function (i18n) { return function () { return descriptions.cast(i18n)('String', 'Boolean'); }; },
     },
     _l[types_1.OperatorCode.StringAsBytes] = {
         type: types_1.Type.String,
         name: types_1.StringOperatorName.AsBytes,
         arguments: [],
         outputType: types_1.OutputType.Bytes,
-        description: function () { return descriptions.cast('String', 'Bytes'); },
+        description: function (i18n) { return function () { return descriptions.cast(i18n)('String', 'Bytes'); }; },
     },
     _l[types_1.OperatorCode.StringAsFloat] = {
         type: types_1.Type.String,
         name: types_1.StringOperatorName.AsFloat,
         arguments: [],
         outputType: types_1.OutputType.Float,
-        description: function () { return descriptions.cast('String', 'Float'); },
+        description: function (i18n) { return function () { return descriptions.cast(i18n)('String', 'Float'); }; },
     },
     _l[types_1.OperatorCode.StringAsInteger] = {
         type: types_1.Type.String,
         name: types_1.StringOperatorName.AsInteger,
         arguments: [],
         outputType: types_1.OutputType.Integer,
-        description: function () { return descriptions.cast('String', 'Integer'); },
+        description: function (i18n) { return function () { return descriptions.cast(i18n)('String', 'Integer'); }; },
     },
     _l[types_1.OperatorCode.StringLength] = {
         type: types_1.Type.String,
         name: types_1.StringOperatorName.Length,
         arguments: [],
         outputType: types_1.OutputType.Integer,
-        description: function () {
-            return 'Count the number of elements of the input String, and mannage the values as Integer.';
-        },
+        description: function (i18n) { return function () { return i18n.t('operator_info_description_string_length'); }; },
     },
     _l[types_1.OperatorCode.StringMatch] = {
         type: types_1.Type.String,
@@ -948,45 +941,45 @@ exports.operatorInfos = (_l = {},
             },
         ],
         outputType: types_1.OutputType.MatchOutput,
-        description: function (subscript) {
+        description: function (i18n) { return function (subscript) {
             if (subscript === void 0) { subscript = 'subscript'; }
-            return "Match the String input with " + subscript + " and return the value asociated with it. Similar than a switch statement";
-        },
+            return i18n.t('operator_info_description_string_match', { subscript: subscript });
+        }; },
     },
     _l[types_1.OperatorCode.StringParseJsonArray] = {
         type: types_1.Type.String,
         name: types_1.StringOperatorName.ParseJsonArray,
         arguments: [],
         outputType: types_1.OutputType.Array,
-        description: function () { return 'Interpretate the input String as a JSON-encoded Array structure.'; },
+        description: function (i18n) { return function () { return i18n.t('operator_info_description_string_parsejsonarray'); }; },
     },
     _l[types_1.OperatorCode.StringParseJsonMap] = {
         type: types_1.Type.String,
         name: types_1.StringOperatorName.ParseJsonMap,
         arguments: [],
         outputType: types_1.OutputType.Map,
-        description: function () { return 'Interpretate the input String as a JSON-encoded Map structure.'; },
+        description: function (i18n) { return function () { return i18n.t('operator_info_description_string_parsejsonmap'); }; },
     },
     _l[types_1.OperatorCode.StringParseXML] = {
         type: types_1.Type.String,
         name: types_1.StringOperatorName.ParseXml,
         arguments: [],
         outputType: types_1.OutputType.Map,
-        description: function () { return 'Interpretate the input String as a XML-encoded Map structure.'; },
+        description: function (i18n) { return function () { return i18n.t('operator_info_description_string_parsexml'); }; },
     },
     _l[types_1.OperatorCode.StringToLowerCase] = {
         type: types_1.Type.String,
         name: types_1.StringOperatorName.ToLowerCase,
         arguments: [],
         outputType: types_1.OutputType.String,
-        description: function () { return 'Convert to lowercase the input String, and manage the value as String'; },
+        description: function (i18n) { return function () { return i18n.t('operator_info_description_string_tolowercase'); }; },
     },
     _l[types_1.OperatorCode.StringToUpperCase] = {
         type: types_1.Type.String,
         name: types_1.StringOperatorName.ToUpperCase,
         arguments: [],
         outputType: types_1.OutputType.String,
-        description: function () { return 'Convert to uppercase the input String, and manage the value as String'; },
+        description: function (i18n) { return function () { return i18n.t('operator_info_description_string_touppercase'); }; },
     },
     _l);
 var Cache = /** @class */ (function () {

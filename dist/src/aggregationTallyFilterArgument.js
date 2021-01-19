@@ -3,9 +3,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.AggregationTallyFilterArgument = void 0;
 var types_1 = require("./types");
 var AggregationTallyFilterArgument = /** @class */ (function () {
-    function AggregationTallyFilterArgument(cache, argument) {
-        this.id = cache.insert(this).id;
-        this.cache = cache;
+    function AggregationTallyFilterArgument(context, argument) {
+        this.id = context.cache.insert(this).id;
+        this.context = context;
         this.value = argument;
     }
     AggregationTallyFilterArgument.prototype.getMarkup = function () {

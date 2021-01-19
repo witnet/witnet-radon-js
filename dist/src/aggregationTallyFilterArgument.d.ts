@@ -1,10 +1,9 @@
-import { Filter, MarkupInput, MirArgument } from './types';
-import { Cache } from './structures';
+import { Filter, MarkupInput, MirArgument, Context } from './types';
 export declare class AggregationTallyFilterArgument {
-    cache: Cache;
+    context: Context;
     id: number;
     value: string | number | boolean;
-    constructor(cache: Cache, argument: string | number | boolean);
+    constructor(context: Context, argument: string | number | boolean);
     getMarkup(): MarkupInput;
     getJs(): string | number | boolean;
     getMir(): MirArgument;

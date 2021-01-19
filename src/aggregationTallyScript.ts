@@ -2,32 +2,32 @@ import {
   AggregationTallyFilter,
   MarkupAggregationTallyScript,
   MirAggregationTallyScript,
+  Context,
 } from './types'
-import { Cache } from './structures'
 import { AggregationTallyOperatorReducer } from './aggregationTallyOperatorReducer'
 import { AggregationTallyOperatorFilter } from './aggregationTallyOperatorFilter'
 
 export class AggregationTallyScript {
-  public cache: Cache
+  public context: Context
   public filters: Array<AggregationTallyOperatorFilter>
   public mirScript: MirAggregationTallyScript
   public reducer: AggregationTallyOperatorReducer
   public scriptId: number
 
-  constructor(cache: Cache, script: MirAggregationTallyScript) {
-    this.scriptId = cache.insert(this).id
+  constructor(context: Context, script: MirAggregationTallyScript) {
+    this.scriptId = context.cache.insert(this).id
     this.mirScript = script
-    this.cache = cache
+    this.context = context
     this.filters = script.filters.map(
-      (filter) => new AggregationTallyOperatorFilter(cache, filter, this.scriptId)
+      (filter) => new AggregationTallyOperatorFilter(context, filter, this.scriptId)
     )
-    this.reducer = new AggregationTallyOperatorReducer(cache, script.reducer, this.scriptId)
+    this.reducer = new AggregationTallyOperatorReducer(context, script.reducer, this.scriptId)
   }
 
   public addOperator() {
     this.filters.push(
       new AggregationTallyOperatorFilter(
-        this.cache,
+        this.context,
         [AggregationTallyFilter.deviationStandard, 1],
         this.scriptId
       )
@@ -75,6 +75,6 @@ export class AggregationTallyScript {
   }
 
   public push(filter: AggregationTallyFilter) {
-    this.filters.push(new AggregationTallyOperatorFilter(this.cache, filter, this.scriptId))
+    this.filters.push(new AggregationTallyOperatorFilter(this.context, filter, this.scriptId))
   }
 }

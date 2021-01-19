@@ -4,10 +4,10 @@ exports.AggregationTallyOperatorReducer = void 0;
 var types_1 = require("./types");
 var structures_1 = require("./structures");
 var AggregationTallyOperatorReducer = /** @class */ (function () {
-    function AggregationTallyOperatorReducer(cache, operator, scriptId) {
+    function AggregationTallyOperatorReducer(context, operator, scriptId) {
         if (operator === void 0) { operator = types_1.AggregationTallyReducer.averageMean; }
-        this.id = cache.insert(this).id;
-        this.cache = cache;
+        this.id = context.cache.insert(this).id;
+        this.context = context;
         this.code = operator;
         this.scriptId = scriptId;
         this.label = types_1.AggregationTallyReducer[this.code];
@@ -31,7 +31,7 @@ var AggregationTallyOperatorReducer = /** @class */ (function () {
                 label: this.label,
                 markupType: types_1.MarkupType.Option,
                 outputType: types_1.OutputType.ReducerOutput,
-                description: structures_1.aggregationTallyReducerDescriptions === null || structures_1.aggregationTallyReducerDescriptions === void 0 ? void 0 : structures_1.aggregationTallyReducerDescriptions[this.code](),
+                description: structures_1.aggregationTallyReducerDescriptions === null || structures_1.aggregationTallyReducerDescriptions === void 0 ? void 0 : structures_1.aggregationTallyReducerDescriptions[this.code](this.context.i18n)(),
             },
         };
     };

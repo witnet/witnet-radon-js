@@ -6,6 +6,8 @@ import { Argument } from './argument'
 import { Operator } from './operator'
 import { Script } from './script'
 import { Source } from './source'
+import { Cache } from './structures'
+import { I18n } from './i18n'
 
 export type EventEmitter = {
   emit: Function
@@ -38,6 +40,8 @@ export enum CacheItemType {
   InputArgument,
   SelectArgument,
 }
+
+export type Context = { cache: Cache; i18n: I18n }
 
 export enum Stage {
   Retrieve = 'retrieve',
@@ -379,7 +383,7 @@ export type OperatorInfo = {
   type: Type
   name: string
   arguments: Array<ArgumentInfo>
-  description: (x: any, y?: any) => String
+  description: (i18n: I18n) => (x: any, y?: any) => string
 }
 
 export type ArgumentInfo = { name: string; optional: boolean; type: MirArgumentType }
@@ -516,8 +520,8 @@ export type TypeSystem = {
 }
 
 export type AggregationTallyFilterDescriptions = {
-  [T in AggregationTallyFilter]: (arg1?: any) => string
+  [T in AggregationTallyFilter]: (i18n: I18n) => (arg1?: any) => string
 }
 export type AggregationTallyReducerDescriptions = {
-  [T in AggregationTallyReducer]: (arg1?: any) => string
+  [T in AggregationTallyReducer]: (i18n: I18n) => (arg1?: any) => string
 }

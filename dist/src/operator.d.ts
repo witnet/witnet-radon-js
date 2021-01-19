@@ -1,9 +1,9 @@
 import { EventEmitter, MarkupOperator, MirArgument, MirOperator, OperatorCode, OperatorInfo, OutputType } from './types';
-import { Cache } from './structures';
 import { Argument } from './argument';
+import { Context } from './types';
 export declare class Operator {
     arguments: Array<Argument>;
-    cache: Cache;
+    context: Context;
     code: OperatorCode;
     default: Boolean;
     eventEmitter: EventEmitter;
@@ -12,7 +12,7 @@ export declare class Operator {
     mirArguments: MirArgument[];
     operatorInfo: OperatorInfo;
     scriptId: number;
-    constructor(cache: Cache, scriptId: number, inputType: OutputType | null, operator: MirOperator | null, eventEmitter: EventEmitter);
+    constructor(context: Context, scriptId: number, inputType: OutputType | null, operator: MirOperator | null, eventEmitter: EventEmitter);
     getJs(): string;
     getMarkup(): MarkupOperator;
     getMir(): MirOperator;

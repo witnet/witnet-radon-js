@@ -1,13 +1,14 @@
 import { AggregationTallyOperatorReducer } from '../../src/aggregationTallyOperatorReducer'
 import { Cache } from '../../src/structures'
 import { AggregationTallyReducer } from '../../src/types'
+import { I18n } from '../../src/i18n'
 
 describe('AggregationTallyOperatorReducer', () => {
   it('getJs', () => {
     const mirOperator: AggregationTallyReducer = AggregationTallyReducer.averageMean
 
-    const cache = new Cache()
-    const operator = new AggregationTallyOperatorReducer(cache, mirOperator, 1)
+    const context = { cache: new Cache(), i18n: new I18n() }
+    const operator = new AggregationTallyOperatorReducer(context, mirOperator, 1)
 
     const result = operator.getJs()
     const expected = 'Witnet.Types.REDUCERS.averageMean'
@@ -18,8 +19,8 @@ describe('AggregationTallyOperatorReducer', () => {
   it('getMarkup', () => {
     const mirOperator: AggregationTallyReducer = AggregationTallyReducer.averageMean
 
-    const cache = new Cache()
-    const operator = new AggregationTallyOperatorReducer(cache, mirOperator, 1)
+    const context = { cache: new Cache(), i18n: new I18n() }
+    const operator = new AggregationTallyOperatorReducer(context, mirOperator, 1)
 
     const result = operator.getMarkup()
     const expected = {
@@ -65,8 +66,8 @@ describe('AggregationTallyOperatorReducer', () => {
   it('getMir', () => {
     const mirOperator: AggregationTallyReducer = AggregationTallyReducer.averageMean
 
-    const cache = new Cache()
-    const operator = new AggregationTallyOperatorReducer(cache, mirOperator, 1)
+    const context = { cache: new Cache(), i18n: new I18n() }
+    const operator = new AggregationTallyOperatorReducer(context, mirOperator, 1)
 
     const result = operator.getMir()
 
@@ -76,8 +77,8 @@ describe('AggregationTallyOperatorReducer', () => {
   it('update', () => {
     const mirOperator: AggregationTallyReducer = AggregationTallyReducer.mode
 
-    const cache = new Cache()
-    const operator = new AggregationTallyOperatorReducer(cache, mirOperator, 1)
+    const context = { cache: new Cache(), i18n: new I18n() }
+    const operator = new AggregationTallyOperatorReducer(context, mirOperator, 1)
 
     operator.update(AggregationTallyReducer.averageMean)
 

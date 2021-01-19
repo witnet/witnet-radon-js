@@ -1,8 +1,7 @@
-import { AggregationTallyFilter, MarkupSelect, MirAggregationTallyFilterOperator } from './types';
-import { Cache } from './structures';
+import { AggregationTallyFilter, MarkupSelect, MirAggregationTallyFilterOperator, Context } from './types';
 import { AggregationTallyFilterArgument } from './aggregationTallyFilterArgument';
 export declare class AggregationTallyOperatorFilter {
-    cache: Cache;
+    context: Context;
     code: AggregationTallyFilter;
     id: number;
     default: boolean;
@@ -10,7 +9,7 @@ export declare class AggregationTallyOperatorFilter {
     scriptId: number;
     operator: MirAggregationTallyFilterOperator;
     label: string;
-    constructor(cache: Cache, operator: MirAggregationTallyFilterOperator, scriptId: number);
+    constructor(context: Context, operator: MirAggregationTallyFilterOperator, scriptId: number);
     getJs(): string;
     getMarkup(): MarkupSelect;
     getMir(): MirAggregationTallyFilterOperator;

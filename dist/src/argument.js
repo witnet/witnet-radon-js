@@ -11,11 +11,11 @@ var utils_1 = require("./utils");
 var script_1 = require("./script");
 var Argument = /** @class */ (function () {
     // TODO: find a better way to discriminate whether the argument is a subscript
-    function Argument(cache, argumentInfo, argument) {
+    function Argument(context, argumentInfo, argument) {
         this.argumentType = utils_1.getArgumentInfoType(argumentInfo);
-        this.id = cache.insert(this).id;
+        this.id = context.cache.insert(this).id;
         this.argumentInfo = argumentInfo;
-        this.cache = cache;
+        this.context = context;
         this.value = argument;
         if (this.argumentInfo.type === types_1.MirArgumentType.Boolean ||
             this.argumentInfo.type === types_1.MirArgumentType.Float ||
@@ -26,17 +26,17 @@ var Argument = /** @class */ (function () {
         else if (this.argumentInfo.type === types_1.MirArgumentType.FilterFunction) {
             // Check if it's custom filter to know if contains a subscript or a filter function
             if (Array.isArray(argument) && Array.isArray(argument[1])) {
-                this.argument = new Argument(this.cache, { name: 'by', optional: false, type: types_1.MirArgumentType.Subscript }, argument[1]);
+                this.argument = new Argument(this.context, { name: 'by', optional: false, type: types_1.MirArgumentType.Subscript }, argument[1]);
             }
             else {
-                this.argument = new Argument(this.cache, { name: 'by', optional: false, type: types_1.MirArgumentType.String }, argument[1]);
+                this.argument = new Argument(this.context, { name: 'by', optional: false, type: types_1.MirArgumentType.String }, argument[1]);
             }
         }
         else if (this.argumentInfo.type === types_1.MirArgumentType.ReducerFunction) {
-            this.argument = new Argument(this.cache, { name: 'by', optional: false, type: types_1.MirArgumentType.String }, argument);
+            this.argument = new Argument(this.context, { name: 'by', optional: false, type: types_1.MirArgumentType.String }, argument);
         }
         else if (this.argumentInfo.type === types_1.MirArgumentType.Subscript) {
-            this.argument = new script_1.Script(this.cache, argument, types_1.OutputType.SubscriptOutput);
+            this.argument = new script_1.Script(this.context, argument, types_1.OutputType.SubscriptOutput);
         }
         else {
             this.argument = null;
@@ -180,14 +180,14 @@ var Argument = /** @class */ (function () {
             if (value === 'custom' && this.value[0] !== types_1.Filter['custom']) {
                 // the current argument is an input argument and the new value is a subscript argument
                 this.value = [types_1.Filter[value], [constants_1.DEFAULT_OPERATOR]];
-                this.argument = new Argument(this.cache, { name: 'by', optional: false, type: types_1.MirArgumentType.Subscript }, this.value[1]);
+                this.argument = new Argument(this.context, { name: 'by', optional: false, type: types_1.MirArgumentType.Subscript }, this.value[1]);
             }
             else if (value !== 'custom' &&
                 this.value[0] === types_1.Filter['custom']) {
                 // the current argument is a subscript argument and the new value is an input argument
                 ;
                 this.value = [types_1.Filter[value], ''];
-                this.argument = new Argument(this.cache, { name: 'by', optional: false, type: types_1.MirArgumentType.String }, '');
+                this.argument = new Argument(this.context, { name: 'by', optional: false, type: types_1.MirArgumentType.String }, '');
             }
             else if (value !== 'custom' &&
                 this.value[0] !== types_1.Filter['custom']) {

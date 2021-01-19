@@ -1,14 +1,20 @@
-import { Filter, MarkupHierarchicalType, MarkupInput, MarkupType, MirArgument } from './types'
-import { Cache } from './structures'
+import {
+  Filter,
+  MarkupHierarchicalType,
+  MarkupInput,
+  MarkupType,
+  MirArgument,
+  Context,
+} from './types'
 
 export class AggregationTallyFilterArgument {
-  public cache: Cache
+  public context: Context
   public id: number
   public value: string | number | boolean
 
-  constructor(cache: Cache, argument: string | number | boolean) {
-    this.id = cache.insert(this).id
-    this.cache = cache
+  constructor(context: Context, argument: string | number | boolean) {
+    this.id = context.cache.insert(this).id
+    this.context = context
     this.value = argument
   }
 

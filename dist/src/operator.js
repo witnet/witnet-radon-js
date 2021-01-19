@@ -27,13 +27,13 @@ var utils_1 = require("./utils");
 var argument_1 = require("./argument");
 var constants_1 = require("./constants");
 var Operator = /** @class */ (function () {
-    function Operator(cache, scriptId, inputType, operator, eventEmitter) {
+    function Operator(context, scriptId, inputType, operator, eventEmitter) {
         var _this = this;
         var _a = utils_1.getMirOperatorInfo(operator || constants_1.DEFAULT_OPERATOR), code = _a.code, args = _a.args;
         this.eventEmitter = eventEmitter;
-        this.id = cache.insert(this).id;
+        this.id = context.cache.insert(this).id;
         this.default = !operator;
-        this.cache = cache;
+        this.context = context;
         this.code = code;
         this.operatorInfo = structures_1.operatorInfos[code];
         this.mirArguments = args;
@@ -46,11 +46,11 @@ var Operator = /** @class */ (function () {
                 type: types_1.MirArgumentType.FilterFunction,
             };
             this.arguments = [
-                new argument_1.Argument(cache, filterArgumentInfo, [types_1.Filter.custom, args[0]]),
+                new argument_1.Argument(context, filterArgumentInfo, [types_1.Filter.custom, args[0]]),
             ];
         }
         else {
-            this.arguments = args.map(function (x, index) { return new argument_1.Argument(cache, _this.operatorInfo.arguments[index], x); });
+            this.arguments = args.map(function (x, index) { return new argument_1.Argument(context, _this.operatorInfo.arguments[index], x); });
         }
         this.scriptId = scriptId;
     }
@@ -76,7 +76,7 @@ var Operator = /** @class */ (function () {
                 label: this.operatorInfo.name,
                 markupType: types_1.MarkupType.Option,
                 outputType: this.operatorInfo.outputType,
-                description: this.operatorInfo.description((_b = (_a = this.arguments) === null || _a === void 0 ? void 0 : _a[0]) === null || _b === void 0 ? void 0 : _b.value, (_d = (_c = this.arguments) === null || _c === void 0 ? void 0 : _c[1]) === null || _d === void 0 ? void 0 : _d.value),
+                description: this.operatorInfo.description(this.context.i18n)((_b = (_a = this.arguments) === null || _a === void 0 ? void 0 : _a[0]) === null || _b === void 0 ? void 0 : _b.value, (_d = (_c = this.arguments) === null || _c === void 0 ? void 0 : _c[1]) === null || _d === void 0 ? void 0 : _d.value),
             },
         };
     };
@@ -100,7 +100,7 @@ var Operator = /** @class */ (function () {
         this.operatorInfo = operatorInfo;
         this.mirArguments = defaultOperatorArguments;
         this.arguments = defaultOperatorArguments.map(function (x, index) {
-            return new argument_1.Argument(_this.cache, _this.operatorInfo.arguments[index], x);
+            return new argument_1.Argument(_this.context, _this.operatorInfo.arguments[index], x);
         });
         this.eventEmitter.emit({
             name: types_1.EventName.Update,

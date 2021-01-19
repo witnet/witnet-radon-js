@@ -1,22 +1,23 @@
-import { MarkupSource, MirSource, OutputType } from './types'
+import { MarkupSource, MirSource, OutputType, Context } from './types'
 import { Cache } from './structures'
 import { Script } from './script'
+import { I18n } from './i18n'
 
 export class Source {
-  public cache: Cache
   public kind: string
   public url: string
   public contentType: string
   public script: Script
   public id: number
+  public context: Context
 
-  constructor(cache: Cache, source: MirSource) {
-    this.id = cache.insert(this).id
-    this.cache = cache
+  constructor(context: { cache: Cache; i18n: I18n }, source: MirSource) {
+    this.id = context.cache.insert(this).id
     this.kind = source.kind || 'HTTP-GET'
     this.url = source.url || ''
     this.contentType = source.contentType || 'JSON API'
-    this.script = new Script(cache, source.script, OutputType.String)
+    this.script = new Script(context, source.script, OutputType.String)
+    this.context = context
   }
 
   public getJs(index: number): string {

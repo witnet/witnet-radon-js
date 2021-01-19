@@ -1,5 +1,5 @@
-import { Radon } from '../../src/radon'
-import { Operator } from '../../src/operator'
+import { Radon } from '../../src/'
+import { Operator } from '../../src/'
 import {
   MirRequest,
   OperatorCode,
@@ -233,7 +233,7 @@ describe('Radon', () => {
                   },
                 ],
                 description:
-                  'Discard any result that is more than ${number} times the standard deviation times away from the average. Long story short: remove outliers',
+                  'Discard any result that is more than "by" times the standard deviation times away from the average. Long story short: remove outliers',
                 hierarchicalType: 'selectedOperatorOption',
                 label: 'deviationStandard',
                 markupType: 'option',
@@ -500,7 +500,7 @@ describe('Radon', () => {
                     },
                   ],
                   description:
-                    'Match the Boolean input with "" and return the value asociated with it. Similar than a switch statement',
+                    'Match the Boolean input with "" and return the value associated with it. Similar than a switch statement',
                   hierarchicalType: 'selectedOperatorOption',
                   label: 'match',
                   markupType: 'option',
@@ -957,7 +957,7 @@ describe('Radon', () => {
                 selected: {
                   arguments: [],
                   description:
-                    'Count the number of elements of the input String, and mannage the values as Integer.',
+                    'Count the number of elements of the input String, and manage the values as Integer.',
                   hierarchicalType: 'selectedOperatorOption',
                   label: 'length',
                   markupType: 'option',
@@ -1189,7 +1189,7 @@ describe('Radon', () => {
                     },
                   ],
                   description:
-                    'Match the Boolean input with "" and return the value asociated with it. Similar than a switch statement',
+                    'Match the Boolean input with "" and return the value associated with it. Similar than a switch statement',
                   hierarchicalType: 'selectedOperatorOption',
                   label: 'match',
                   markupType: 'option',
@@ -1646,7 +1646,7 @@ describe('Radon', () => {
                 selected: {
                   arguments: [],
                   description:
-                    'Count the number of elements of the input String, and mannage the values as Integer.',
+                    'Count the number of elements of the input String, and manage the values as Integer.',
                   hierarchicalType: 'selectedOperatorOption',
                   label: 'length',
                   markupType: 'option',
@@ -1723,7 +1723,7 @@ describe('Radon', () => {
                   },
                 ],
                 description:
-                  'Discard any result that is more than ${number} times the standard deviation times away from the average. Long story short: remove outliers',
+                  'Discard any result that is more than "by" times the standard deviation times away from the average. Long story short: remove outliers',
                 hierarchicalType: 'selectedOperatorOption',
                 label: 'deviationStandard',
                 markupType: 'option',
@@ -1864,7 +1864,7 @@ describe('Radon', () => {
                   hierarchicalType: 'selectedOperatorOption',
                   label: 'getString',
                   description:
-                    'Access to the “hash” key of the input Map, and manage the value as String',
+                    'Access to the "hash" key of the input Map, and manage the value as String',
                   markupType: 'option',
                   outputType: 'string',
                 },
@@ -1914,7 +1914,7 @@ describe('Radon', () => {
                   hierarchicalType: 'selectedOperatorOption',
                   label: 'getMap',
                   description:
-                    'Access to the “data” key of the input Map, and manage the value as Map',
+                    'Access to the "data" key of the input Map, and manage the value as Map',
                   markupType: 'option',
                   outputType: 'map',
                 },
@@ -1939,7 +1939,7 @@ describe('Radon', () => {
                     },
                   ],
                   description:
-                    'Access to the “best_block_hash” key of the input Map, and manage the value as String',
+                    'Access to the "best_block_hash" key of the input Map, and manage the value as String',
                   hierarchicalType: 'selectedOperatorOption',
                   label: 'getString',
                   markupType: 'option',
@@ -2126,7 +2126,7 @@ describe('Radon', () => {
                   },
                 ],
                 description:
-                  'Discard any result that is more than ${number} times the standard deviation times away from the average. Long story short: remove outliers',
+                  'Discard any result that is more than "by" times the standard deviation times away from the average. Long story short: remove outliers',
                 hierarchicalType: 'selectedOperatorOption',
                 label: 'deviationStandard',
                 markupType: 'option',
@@ -2377,7 +2377,7 @@ describe('Radon', () => {
                     },
                   ],
                   description:
-                    'Access to the “data” key of the input Map, and manage the value as Array',
+                    'Access to the "data" key of the input Map, and manage the value as Array',
                   hierarchicalType: 'selectedOperatorOption',
                   label: 'getArray',
                   markupType: 'option',
@@ -3069,7 +3069,7 @@ describe('Radon', () => {
                                     },
                                   ],
                                   description:
-                                    'Access to the “symbol” key of the input Map, and manage the value as Array',
+                                    'Access to the "symbol" key of the input Map, and manage the value as Array',
                                   hierarchicalType: 'selectedOperatorOption',
                                   label: 'getArray',
                                   markupType: 'option',
@@ -3215,7 +3215,7 @@ describe('Radon', () => {
                                     },
                                   ],
                                   description:
-                                    'Match the String input with { "BTC": true, "ETH": true } and return the value asociated with it. Similar than a switch statement',
+                                    'Match the String input with { "BTC": true, "ETH": true } and return the value associated with it. Similar than a switch statement',
                                   hierarchicalType: 'selectedOperatorOption',
                                   label: 'match',
                                   markupType: 'option',
@@ -3233,7 +3233,7 @@ describe('Radon', () => {
                     },
                   ],
                   description:
-                    'Discard the items in the inpuyt array that doesn\'t match the 255,97,symbol,117,{ "BTC": true, "ETH": true },false function',
+                    'Discard the items in the input array that doesn\'t match the 255,97,symbol,117,{ "BTC": true, "ETH": true },false function',
                   hierarchicalType: 'selectedOperatorOption',
                   label: 'filter',
                   markupType: 'option',
@@ -3807,7 +3807,7 @@ describe('Radon', () => {
                               },
                             ],
                             description:
-                              'Access to the “symbol” key of the input Map, and manage the value as String',
+                              'Access to the "symbol" key of the input Map, and manage the value as String',
                             hierarchicalType: 'selectedOperatorOption',
                             label: 'getString',
                             markupType: 'option',
@@ -4391,7 +4391,7 @@ describe('Radon', () => {
                               },
                             ],
                             description:
-                              'Access to the “changePercent24h” key of the input Map, and manage the value as String',
+                              'Access to the "changePercent24h" key of the input Map, and manage the value as String',
                             hierarchicalType: 'selectedOperatorOption',
                             label: 'getString',
                             markupType: 'option',
@@ -4634,7 +4634,7 @@ describe('Radon', () => {
                     },
                   ],
                   description:
-                    'Match the Boolean input with "" and return the value asociated with it. Similar than a switch statement',
+                    'Match the Boolean input with "" and return the value associated with it. Similar than a switch statement',
                   hierarchicalType: 'selectedOperatorOption',
                   label: 'match',
                   markupType: 'option',
@@ -5091,7 +5091,7 @@ describe('Radon', () => {
                 selected: {
                   arguments: [],
                   description:
-                    'Count the number of elements of the input String, and mannage the values as Integer.',
+                    'Count the number of elements of the input String, and manage the values as Integer.',
                   hierarchicalType: 'selectedOperatorOption',
                   label: 'length',
                   markupType: 'option',
@@ -5168,7 +5168,7 @@ describe('Radon', () => {
                   },
                 ],
                 description:
-                  'Discard any result that is more than ${number} times the standard deviation times away from the average. Long story short: remove outliers',
+                  'Discard any result that is more than "by" times the standard deviation times away from the average. Long story short: remove outliers',
                 hierarchicalType: 'selectedOperatorOption',
                 label: 'deviationStandard',
                 markupType: 'option',
@@ -5215,6 +5215,543 @@ describe('Radon', () => {
         },
         timelock: 0,
       }
+
+      expect(result).toStrictEqual(expected)
+    })
+  })
+
+  describe('i18n', () => {
+    it('should use the given locale on descriptions', () => {
+      const mirRequest: MirRequest = {
+        timelock: 0,
+        retrieve: [
+          {
+            kind: 'HTTP-GET',
+            url: 'source_1',
+            contentType: 'JSON API',
+            script: [OperatorCode.StringAsBoolean],
+          },
+        ],
+        aggregate: {
+          filters: [AggregationTallyFilter.mode],
+          reducer: AggregationTallyReducer.mode,
+        },
+        tally: {
+          filters: [AggregationTallyFilter.mode],
+          reducer: AggregationTallyReducer.mode,
+        },
+      }
+
+      const radon = new Radon(mirRequest, 'es')
+      const result = radon.getMarkup()
+      const expected = {
+        aggregate: {
+          filters: [
+            {
+              hierarchicalType: 'operator',
+              id: 5,
+              label: 'mode',
+              markupType: 'select',
+              options: [
+                {
+                  hierarchicalType: 'operatorOption',
+                  label: 'deviationStandard',
+                  markupType: 'option',
+                  outputType: 'filterOutput',
+                },
+                {
+                  hierarchicalType: 'operatorOption',
+                  label: 'mode',
+                  markupType: 'option',
+                  outputType: 'filterOutput',
+                },
+              ],
+              outputType: 'filterOutput',
+              scriptId: 4,
+              selected: {
+                arguments: [],
+                description:
+                  'Discard any result that is different from the mode. Long story short: remove outliers',
+                hierarchicalType: 'selectedOperatorOption',
+                label: 'mode',
+                markupType: 'option',
+                outputType: 'filterOutput',
+              },
+            },
+          ],
+          reducer: {
+            hierarchicalType: 'operator',
+            id: 6,
+            label: 'mode',
+            markupType: 'select',
+            options: [
+              {
+                hierarchicalType: 'operatorOption',
+                label: 'mode',
+                markupType: 'option',
+                outputType: 'filterOutput',
+              },
+              {
+                hierarchicalType: 'operatorOption',
+                label: 'averageMean',
+                markupType: 'option',
+                outputType: 'filterOutput',
+              },
+              {
+                hierarchicalType: 'operatorOption',
+                label: 'deviationStandard',
+                markupType: 'option',
+                outputType: 'filterOutput',
+              },
+            ],
+            outputType: 'filterOutput',
+            scriptId: 4,
+            selected: {
+              arguments: [],
+              description: 'Calcula la moda de los valores',
+              hierarchicalType: 'selectedOperatorOption',
+              label: 'mode',
+              markupType: 'option',
+              outputType: 'reducerOutput',
+            },
+          },
+        },
+        retrieve: [
+          {
+            contentType: 'JSON API',
+            kind: 'HTTP-GET',
+            script: [
+              {
+                hierarchicalType: 'operator',
+                id: 3,
+                label: 'asBoolean',
+                markupType: 'select',
+                options: [
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'StringAsBoolean',
+                    markupType: 'option',
+                    outputType: 'boolean',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'StringAsBytes',
+                    markupType: 'option',
+                    outputType: 'bytes',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'StringAsFloat',
+                    markupType: 'option',
+                    outputType: 'float',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'StringAsInteger',
+                    markupType: 'option',
+                    outputType: 'integer',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'StringLength',
+                    markupType: 'option',
+                    outputType: 'integer',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'StringMatch',
+                    markupType: 'option',
+                    outputType: 'matchOutput',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'StringParseJsonArray',
+                    markupType: 'option',
+                    outputType: 'array',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'StringParseJsonMap',
+                    markupType: 'option',
+                    outputType: 'map',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'StringParseXML',
+                    markupType: 'option',
+                    outputType: 'map',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'StringToLowerCase',
+                    markupType: 'option',
+                    outputType: 'string',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'StringToUpperCase',
+                    markupType: 'option',
+                    outputType: 'string',
+                  },
+                ],
+                outputType: 'boolean',
+                scriptId: 2,
+                selected: {
+                  arguments: [],
+                  description: 'Cast the String input into Boolean',
+                  hierarchicalType: 'selectedOperatorOption',
+                  label: 'asBoolean',
+                  markupType: 'option',
+                  outputType: 'boolean',
+                },
+              },
+            ],
+            scriptId: 2,
+            url: 'source_1',
+          },
+        ],
+        tally: {
+          filters: [
+            {
+              hierarchicalType: 'operator',
+              id: 8,
+              label: 'mode',
+              markupType: 'select',
+              options: [
+                {
+                  hierarchicalType: 'operatorOption',
+                  label: 'deviationStandard',
+                  markupType: 'option',
+                  outputType: 'filterOutput',
+                },
+                {
+                  hierarchicalType: 'operatorOption',
+                  label: 'mode',
+                  markupType: 'option',
+                  outputType: 'filterOutput',
+                },
+              ],
+              outputType: 'filterOutput',
+              scriptId: 7,
+              selected: {
+                arguments: [],
+                description:
+                  'Discard any result that is different from the mode. Long story short: remove outliers',
+                hierarchicalType: 'selectedOperatorOption',
+                label: 'mode',
+                markupType: 'option',
+                outputType: 'filterOutput',
+              },
+            },
+          ],
+          reducer: {
+            hierarchicalType: 'operator',
+            id: 9,
+            label: 'mode',
+            markupType: 'select',
+            options: [
+              {
+                hierarchicalType: 'operatorOption',
+                label: 'mode',
+                markupType: 'option',
+                outputType: 'filterOutput',
+              },
+              {
+                hierarchicalType: 'operatorOption',
+                label: 'averageMean',
+                markupType: 'option',
+                outputType: 'filterOutput',
+              },
+              {
+                hierarchicalType: 'operatorOption',
+                label: 'deviationStandard',
+                markupType: 'option',
+                outputType: 'filterOutput',
+              },
+            ],
+            outputType: 'filterOutput',
+            scriptId: 7,
+            selected: {
+              arguments: [],
+              description: 'Calcula la moda de los valores',
+              hierarchicalType: 'selectedOperatorOption',
+              label: 'mode',
+              markupType: 'option',
+              outputType: 'reducerOutput',
+            },
+          },
+        },
+        timelock: 0,
+      }
+
+      expect(result).toStrictEqual(expected)
+    })
+  })
+
+  describe('setLocale', () => {
+    it('should change the locale after call setLocale', () => {
+      const mirRequest: MirRequest = {
+        timelock: 0,
+        retrieve: [
+          {
+            kind: 'HTTP-GET',
+            url: 'source_1',
+            contentType: 'JSON API',
+            script: [OperatorCode.StringAsBoolean],
+          },
+        ],
+        aggregate: {
+          filters: [AggregationTallyFilter.mode],
+          reducer: AggregationTallyReducer.mode,
+        },
+        tally: {
+          filters: [AggregationTallyFilter.mode],
+          reducer: AggregationTallyReducer.mode,
+        },
+      }
+      const expected = {
+        aggregate: {
+          filters: [
+            {
+              hierarchicalType: 'operator',
+              id: 5,
+              label: 'mode',
+              markupType: 'select',
+              options: [
+                {
+                  hierarchicalType: 'operatorOption',
+                  label: 'deviationStandard',
+                  markupType: 'option',
+                  outputType: 'filterOutput',
+                },
+                {
+                  hierarchicalType: 'operatorOption',
+                  label: 'mode',
+                  markupType: 'option',
+                  outputType: 'filterOutput',
+                },
+              ],
+              outputType: 'filterOutput',
+              scriptId: 4,
+              selected: {
+                arguments: [],
+                description:
+                  'Discard any result that is different from the mode. Long story short: remove outliers',
+                hierarchicalType: 'selectedOperatorOption',
+                label: 'mode',
+                markupType: 'option',
+                outputType: 'filterOutput',
+              },
+            },
+          ],
+          reducer: {
+            hierarchicalType: 'operator',
+            id: 6,
+            label: 'mode',
+            markupType: 'select',
+            options: [
+              {
+                hierarchicalType: 'operatorOption',
+                label: 'mode',
+                markupType: 'option',
+                outputType: 'filterOutput',
+              },
+              {
+                hierarchicalType: 'operatorOption',
+                label: 'averageMean',
+                markupType: 'option',
+                outputType: 'filterOutput',
+              },
+              {
+                hierarchicalType: 'operatorOption',
+                label: 'deviationStandard',
+                markupType: 'option',
+                outputType: 'filterOutput',
+              },
+            ],
+            outputType: 'filterOutput',
+            scriptId: 4,
+            selected: {
+              arguments: [],
+              description: 'Calcula la moda de los valores',
+              hierarchicalType: 'selectedOperatorOption',
+              label: 'mode',
+              markupType: 'option',
+              outputType: 'reducerOutput',
+            },
+          },
+        },
+        retrieve: [
+          {
+            contentType: 'JSON API',
+            kind: 'HTTP-GET',
+            script: [
+              {
+                hierarchicalType: 'operator',
+                id: 3,
+                label: 'asBoolean',
+                markupType: 'select',
+                options: [
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'StringAsBoolean',
+                    markupType: 'option',
+                    outputType: 'boolean',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'StringAsBytes',
+                    markupType: 'option',
+                    outputType: 'bytes',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'StringAsFloat',
+                    markupType: 'option',
+                    outputType: 'float',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'StringAsInteger',
+                    markupType: 'option',
+                    outputType: 'integer',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'StringLength',
+                    markupType: 'option',
+                    outputType: 'integer',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'StringMatch',
+                    markupType: 'option',
+                    outputType: 'matchOutput',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'StringParseJsonArray',
+                    markupType: 'option',
+                    outputType: 'array',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'StringParseJsonMap',
+                    markupType: 'option',
+                    outputType: 'map',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'StringParseXML',
+                    markupType: 'option',
+                    outputType: 'map',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'StringToLowerCase',
+                    markupType: 'option',
+                    outputType: 'string',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'StringToUpperCase',
+                    markupType: 'option',
+                    outputType: 'string',
+                  },
+                ],
+                outputType: 'boolean',
+                scriptId: 2,
+                selected: {
+                  arguments: [],
+                  description: 'Cast the String input into Boolean',
+                  hierarchicalType: 'selectedOperatorOption',
+                  label: 'asBoolean',
+                  markupType: 'option',
+                  outputType: 'boolean',
+                },
+              },
+            ],
+            scriptId: 2,
+            url: 'source_1',
+          },
+        ],
+        tally: {
+          filters: [
+            {
+              hierarchicalType: 'operator',
+              id: 8,
+              label: 'mode',
+              markupType: 'select',
+              options: [
+                {
+                  hierarchicalType: 'operatorOption',
+                  label: 'deviationStandard',
+                  markupType: 'option',
+                  outputType: 'filterOutput',
+                },
+                {
+                  hierarchicalType: 'operatorOption',
+                  label: 'mode',
+                  markupType: 'option',
+                  outputType: 'filterOutput',
+                },
+              ],
+              outputType: 'filterOutput',
+              scriptId: 7,
+              selected: {
+                arguments: [],
+                description:
+                  'Discard any result that is different from the mode. Long story short: remove outliers',
+                hierarchicalType: 'selectedOperatorOption',
+                label: 'mode',
+                markupType: 'option',
+                outputType: 'filterOutput',
+              },
+            },
+          ],
+          reducer: {
+            hierarchicalType: 'operator',
+            id: 9,
+            label: 'mode',
+            markupType: 'select',
+            options: [
+              {
+                hierarchicalType: 'operatorOption',
+                label: 'mode',
+                markupType: 'option',
+                outputType: 'filterOutput',
+              },
+              {
+                hierarchicalType: 'operatorOption',
+                label: 'averageMean',
+                markupType: 'option',
+                outputType: 'filterOutput',
+              },
+              {
+                hierarchicalType: 'operatorOption',
+                label: 'deviationStandard',
+                markupType: 'option',
+                outputType: 'filterOutput',
+              },
+            ],
+            outputType: 'filterOutput',
+            scriptId: 7,
+            selected: {
+              arguments: [],
+              description: 'Calcula la moda de los valores',
+              hierarchicalType: 'selectedOperatorOption',
+              label: 'mode',
+              markupType: 'option',
+              outputType: 'reducerOutput',
+            },
+          },
+        },
+        timelock: 0,
+      }
+
+      const radon = new Radon(mirRequest)
+      radon.setLocale('es')
+      const result = radon.getMarkup()
 
       expect(result).toStrictEqual(expected)
     })

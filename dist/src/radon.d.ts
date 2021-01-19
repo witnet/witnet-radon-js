@@ -1,14 +1,15 @@
-import { MirRequest, MarkupRequest } from './types';
-import { Cache } from './structures';
+import { MirRequest, MarkupRequest, Context } from './types';
 import { Source } from './source';
 import { AggregationTallyScript } from './aggregationTallyScript';
+import { Locale } from './i18n';
 export declare class Radon {
-    cache: Cache;
     timelock: number;
     retrieve: Array<Source>;
     aggregate: AggregationTallyScript;
     tally: AggregationTallyScript;
-    constructor(radRequest: MirRequest);
+    context: Context;
+    constructor(radRequest: MirRequest, locale?: Locale);
+    setLocale(locale: Locale): void;
     addOperator(scriptId: number): void;
     addSource(): void;
     deleteOperator(scriptId: number, operatorId: number): void;

@@ -4,23 +4,24 @@ import {
   MarkupSelect,
   MarkupType,
   OutputType,
+  Context,
 } from './types'
-import { aggregationTallyReducerDescriptions, aTReducerMarkupOptions, Cache } from './structures'
+import { aggregationTallyReducerDescriptions, aTReducerMarkupOptions } from './structures'
 
 export class AggregationTallyOperatorReducer {
-  public cache: Cache
+  public context: Context
   public code: AggregationTallyReducer
   public id: number
   public scriptId: number
   public label: string
 
   constructor(
-    cache: Cache,
+    context: Context,
     operator: AggregationTallyReducer = AggregationTallyReducer.averageMean,
     scriptId: number
   ) {
-    this.id = cache.insert(this).id
-    this.cache = cache
+    this.id = context.cache.insert(this).id
+    this.context = context
     this.code = operator
     this.scriptId = scriptId
     this.label = AggregationTallyReducer[this.code]
@@ -47,7 +48,7 @@ export class AggregationTallyOperatorReducer {
         label: this.label,
         markupType: MarkupType.Option,
         outputType: OutputType.ReducerOutput,
-        description: aggregationTallyReducerDescriptions?.[this.code](),
+        description: aggregationTallyReducerDescriptions?.[this.code](this.context.i18n)(),
       },
     } as MarkupSelect
   }

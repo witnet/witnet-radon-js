@@ -6,6 +6,8 @@ import { Argument } from './argument';
 import { Operator } from './operator';
 import { Script } from './script';
 import { Source } from './source';
+import { Cache } from './structures';
+import { I18n } from './i18n';
 export declare type EventEmitter = {
     emit: Function;
 };
@@ -26,6 +28,10 @@ export declare enum CacheItemType {
     InputArgument = 2,
     SelectArgument = 3
 }
+export declare type Context = {
+    cache: Cache;
+    i18n: I18n;
+};
 export declare enum Stage {
     Retrieve = "retrieve",
     Aggregate = "aggregate",
@@ -313,7 +319,7 @@ export declare type OperatorInfo = {
     type: Type;
     name: string;
     arguments: Array<ArgumentInfo>;
-    description: (x: any, y?: any) => String;
+    description: (i18n: I18n) => (x: any, y?: any) => string;
 };
 export declare type ArgumentInfo = {
     name: string;
@@ -435,9 +441,9 @@ export declare type TypeSystem = {
     };
 };
 export declare type AggregationTallyFilterDescriptions = {
-    [T in AggregationTallyFilter]: (arg1?: any) => string;
+    [T in AggregationTallyFilter]: (i18n: I18n) => (arg1?: any) => string;
 };
 export declare type AggregationTallyReducerDescriptions = {
-    [T in AggregationTallyReducer]: (arg1?: any) => string;
+    [T in AggregationTallyReducer]: (i18n: I18n) => (arg1?: any) => string;
 };
 //# sourceMappingURL=types.d.ts.map

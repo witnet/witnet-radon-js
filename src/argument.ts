@@ -16,9 +16,9 @@ import {
   MirScript,
   OutputType,
   Reducer,
+  Context,
 } from './types'
 import { DEFAULT_OPERATOR } from './constants'
-import { Cache } from './structures'
 import { getArgumentInfoType, getEnumNames, getMarkupInputTypeFromArgumentType } from './utils'
 import { Script } from './script'
 
@@ -26,16 +26,16 @@ export class Argument {
   public argument: Argument | Script | null
   public argumentInfo: ArgumentInfo
   public argumentType: MarkupArgumentType
-  public cache: Cache
+  public context: Context
   public id: number
   public value: MirArgument | undefined
 
   // TODO: find a better way to discriminate whether the argument is a subscript
-  constructor(cache: Cache, argumentInfo: ArgumentInfo, argument?: MirArgument) {
+  constructor(context: Context, argumentInfo: ArgumentInfo, argument?: MirArgument) {
     this.argumentType = getArgumentInfoType(argumentInfo)
-    this.id = cache.insert(this).id
+    this.id = context.cache.insert(this).id
     this.argumentInfo = argumentInfo
-    this.cache = cache
+    this.context = context
     this.value = argument
     if (
       this.argumentInfo.type === MirArgumentType.Boolean ||
@@ -48,25 +48,25 @@ export class Argument {
       // Check if it's custom filter to know if contains a subscript or a filter function
       if (Array.isArray(argument) && Array.isArray(argument[1])) {
         this.argument = new Argument(
-          this.cache,
+          this.context,
           { name: 'by', optional: false, type: MirArgumentType.Subscript },
           (argument as [Filter, MirScript])[1]
         )
       } else {
         this.argument = new Argument(
-          this.cache,
+          this.context,
           { name: 'by', optional: false, type: MirArgumentType.String },
           (argument as [Filter, boolean | string | number])[1]
         )
       }
     } else if (this.argumentInfo.type === MirArgumentType.ReducerFunction) {
       this.argument = new Argument(
-        this.cache,
+        this.context,
         { name: 'by', optional: false, type: MirArgumentType.String },
         argument as Reducer
       )
     } else if (this.argumentInfo.type === MirArgumentType.Subscript) {
-      this.argument = new Script(this.cache, argument as MirScript, OutputType.SubscriptOutput)
+      this.argument = new Script(this.context, argument as MirScript, OutputType.SubscriptOutput)
     } else {
       this.argument = null
     }
@@ -202,7 +202,7 @@ export class Argument {
         // the current argument is an input argument and the new value is a subscript argument
         this.value = [Filter[value as keyof typeof Filter], [DEFAULT_OPERATOR]]
         this.argument = new Argument(
-          this.cache,
+          this.context,
           { name: 'by', optional: false, type: MirArgumentType.Subscript },
           (this.value as [Filter, MirScript])[1]
         )
@@ -213,7 +213,7 @@ export class Argument {
         // the current argument is a subscript argument and the new value is an input argument
         ;(this.value as MirArgument) = [Filter[value as keyof typeof Filter], '']
         this.argument = new Argument(
-          this.cache,
+          this.context,
           { name: 'by', optional: false, type: MirArgumentType.String },
           ''
         )

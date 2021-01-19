@@ -1,4 +1,4 @@
-import { MirRequest, OperatorCode, MarkupRequest } from './types'
+import { MirRequest, OperatorCode, MarkupRequest, Context } from './types'
 import { Cache } from './structures'
 import { Source } from './source'
 import { AggregationTallyScript } from './aggregationTallyScript'
@@ -6,30 +6,35 @@ import { Script } from './script'
 import { Operator } from './operator'
 import { Argument } from './argument'
 import { formatJs } from './utils'
+import { I18n, Locale } from './i18n'
 
 export class Radon {
-  public cache: Cache
-
   public timelock: number
   public retrieve: Array<Source>
   public aggregate: AggregationTallyScript
   public tally: AggregationTallyScript
 
-  constructor(radRequest: MirRequest) {
-    this.cache = new Cache()
+  public context: Context
+
+  constructor(radRequest: MirRequest, locale?: Locale) {
+    this.context = { cache: new Cache(), i18n: new I18n(locale) }
     this.timelock = radRequest.timelock
-    this.retrieve = radRequest.retrieve.map((source) => new Source(this.cache, source))
-    this.aggregate = new AggregationTallyScript(this.cache, radRequest.aggregate)
-    this.tally = new AggregationTallyScript(this.cache, radRequest.tally)
+    this.retrieve = radRequest.retrieve.map((source) => new Source(this.context, source))
+    this.aggregate = new AggregationTallyScript(this.context, radRequest.aggregate)
+    this.tally = new AggregationTallyScript(this.context, radRequest.tally)
+  }
+
+  public setLocale(locale: Locale) {
+    this.context.i18n.setLocale(locale)
   }
 
   public addOperator(scriptId: number) {
-    ;(this.cache.get(scriptId) as Script).addOperator()
+    ;(this.context.cache.get(scriptId) as Script).addOperator()
   }
 
   public addSource() {
     this.retrieve.push(
-      new Source(this.cache, {
+      new Source(this.context, {
         url: '',
         script: [OperatorCode.StringAsFloat],
         kind: 'HTTP-GET',
@@ -39,7 +44,7 @@ export class Radon {
   }
 
   public deleteOperator(scriptId: number, operatorId: number) {
-    ;(this.cache.get(scriptId) as Script).deleteOperator(operatorId)
+    ;(this.context.cache.get(scriptId) as Script).deleteOperator(operatorId)
   }
 
   public deleteSource(sourceIndex: number) {
@@ -100,7 +105,7 @@ export class Radon {
 
   // TODO: Remove any
   public update(id: number, value: any) {
-    ;(this.cache.get(id) as Operator | Argument).update(value)
+    ;(this.context.cache.get(id) as Operator | Argument).update(value)
   }
 
   public updateSource(sourceIndex: number, args: any) {

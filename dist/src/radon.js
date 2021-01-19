@@ -6,21 +6,25 @@ var structures_1 = require("./structures");
 var source_1 = require("./source");
 var aggregationTallyScript_1 = require("./aggregationTallyScript");
 var utils_1 = require("./utils");
+var i18n_1 = require("./i18n");
 var Radon = /** @class */ (function () {
-    function Radon(radRequest) {
+    function Radon(radRequest, locale) {
         var _this = this;
-        this.cache = new structures_1.Cache();
+        this.context = { cache: new structures_1.Cache(), i18n: new i18n_1.I18n(locale) };
         this.timelock = radRequest.timelock;
-        this.retrieve = radRequest.retrieve.map(function (source) { return new source_1.Source(_this.cache, source); });
-        this.aggregate = new aggregationTallyScript_1.AggregationTallyScript(this.cache, radRequest.aggregate);
-        this.tally = new aggregationTallyScript_1.AggregationTallyScript(this.cache, radRequest.tally);
+        this.retrieve = radRequest.retrieve.map(function (source) { return new source_1.Source(_this.context, source); });
+        this.aggregate = new aggregationTallyScript_1.AggregationTallyScript(this.context, radRequest.aggregate);
+        this.tally = new aggregationTallyScript_1.AggregationTallyScript(this.context, radRequest.tally);
     }
+    Radon.prototype.setLocale = function (locale) {
+        this.context.i18n.setLocale(locale);
+    };
     Radon.prototype.addOperator = function (scriptId) {
         ;
-        this.cache.get(scriptId).addOperator();
+        this.context.cache.get(scriptId).addOperator();
     };
     Radon.prototype.addSource = function () {
-        this.retrieve.push(new source_1.Source(this.cache, {
+        this.retrieve.push(new source_1.Source(this.context, {
             url: '',
             script: [types_1.OperatorCode.StringAsFloat],
             kind: 'HTTP-GET',
@@ -29,7 +33,7 @@ var Radon = /** @class */ (function () {
     };
     Radon.prototype.deleteOperator = function (scriptId, operatorId) {
         ;
-        this.cache.get(scriptId).deleteOperator(operatorId);
+        this.context.cache.get(scriptId).deleteOperator(operatorId);
     };
     Radon.prototype.deleteSource = function (sourceIndex) {
         this.retrieve.splice(sourceIndex, 1);
@@ -65,7 +69,7 @@ var Radon = /** @class */ (function () {
     // TODO: Remove any
     Radon.prototype.update = function (id, value) {
         ;
-        this.cache.get(id).update(value);
+        this.context.cache.get(id).update(value);
     };
     Radon.prototype.updateSource = function (sourceIndex, args) {
         this.retrieve[sourceIndex].update(args);

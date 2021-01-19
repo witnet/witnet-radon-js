@@ -5,12 +5,13 @@ import {
   MarkupType,
   MirAggregationTallyFilterOperator,
   OutputType,
+  Context,
 } from './types'
-import { aggregationTallyFilterDescriptions, aTFilterMarkupOptions, Cache } from './structures'
+import { aggregationTallyFilterDescriptions, aTFilterMarkupOptions } from './structures'
 import { AggregationTallyFilterArgument } from './aggregationTallyFilterArgument'
 
 export class AggregationTallyOperatorFilter {
-  public cache: Cache
+  public context: Context
   public code: AggregationTallyFilter
   public id: number
   public default: boolean
@@ -19,14 +20,14 @@ export class AggregationTallyOperatorFilter {
   public operator: MirAggregationTallyFilterOperator
   public label: string
 
-  constructor(cache: Cache, operator: MirAggregationTallyFilterOperator, scriptId: number) {
+  constructor(context: Context, operator: MirAggregationTallyFilterOperator, scriptId: number) {
     const code = Array.isArray(operator) ? operator[0] : operator
-    this.id = cache.insert(this).id
+    this.id = context.cache.insert(this).id
     this.default = !operator
-    this.cache = cache
+    this.context = context
     this.code = code
     this.argument = Array.isArray(operator)
-      ? new AggregationTallyFilterArgument(cache, operator[1])
+      ? new AggregationTallyFilterArgument(context, operator[1])
       : null
     this.scriptId = scriptId
     this.operator = operator
@@ -62,7 +63,9 @@ export class AggregationTallyOperatorFilter {
         label: this.label,
         markupType: MarkupType.Option,
         outputType: OutputType.FilterOutput,
-        description: aggregationTallyFilterDescriptions?.[this.code](args?.[0]?.label),
+        description: aggregationTallyFilterDescriptions?.[this.code](this.context.i18n)(
+          args?.[0]?.label
+        ),
       },
     } as MarkupSelect
   }
@@ -81,7 +84,7 @@ export class AggregationTallyOperatorFilter {
     if (value === AggregationTallyFilter.mode) {
       this.argument = null
     } else if (!this.argument) {
-      this.argument = new AggregationTallyFilterArgument(this.cache, '')
+      this.argument = new AggregationTallyFilterArgument(this.context, '')
     }
     this.default = false
 

@@ -19,8 +19,8 @@ import {
   AggregationTallyFilterDescriptions,
   AggregationTallyReducerDescriptions,
 } from './types'
+import { I18n } from './i18n'
 import { getEnumNames } from './utils'
-
 export const typeSystem: TypeSystem = {
   [Type.Array]: {
     [ArrayOperatorName.Count]: [OperatorCode.ArrayCount, OutputType.Integer],
@@ -112,27 +112,32 @@ export const typeSystem: TypeSystem = {
 }
 
 const descriptions = {
-  getKey: (inputType: string = 'inputType', outputType: string = 'outputType') => (
-    key: String = 'key'
-  ) =>
-    `Access to the “${key}” key of the input ${inputType}, and manage the value as ${outputType}`,
-  mapValues: (type: string = 'type') =>
-    `Obtain a list with the values of the input Map, and manage the value as an Array of ${type}`,
-  cast: (inputType: string = 'inputType', outputType: string = 'outputType') =>
-    `Cast the ${inputType} input into ${outputType}`,
+  getKey: (i18n: I18n) => (inputType: string = 'inputType', outputType: string = 'outputType') => (
+    key: string = 'key'
+  ) => {
+    return i18n.t('operator_info_description.get_key', { key, inputType, outputType })
+  },
+  mapValues: (i18n: I18n) => (type: string = 'type') =>
+    i18n.t('operator_info_description.map.values', { type }),
+  cast: (i18n: I18n) => (inputType: string = 'inputType', outputType: string = 'outputType') =>
+    i18n.t('operator_info_description.cast', { outputType, inputType }),
 }
 
 export const aggregationTallyFilterDescriptions: AggregationTallyFilterDescriptions = {
-  [AggregationTallyFilter.deviationStandard]: () =>
-    'Discard any result that is more than ${number} times the standard deviation times away from the average. Long story short: remove outliers',
-  [AggregationTallyFilter.mode]: () =>
-    'Discard any result that is different from the mode. Long story short: remove outliers',
+  [AggregationTallyFilter.deviationStandard]: (i18n: I18n) => (
+    number: string | number = 'number'
+  ): string => i18n.t('aggregation_tally_description.filter.deviation_standard', { number }),
+  [AggregationTallyFilter.mode]: (i18n: I18n) => () =>
+    i18n.t('aggregation_tally_description.filter.mode'),
 }
 
 export const aggregationTallyReducerDescriptions: AggregationTallyReducerDescriptions = {
-  [AggregationTallyReducer.mode]: () => 'Compute the mode of the values',
-  [AggregationTallyReducer.averageMean]: () => 'Compute the average mean of the values',
-  [AggregationTallyReducer.deviationStandard]: () => 'Compute the standard deviation of the values',
+  [AggregationTallyReducer.mode]: (i18n: I18n) => () =>
+    i18n.t('aggregation_tally_description.reducer.mode'),
+  [AggregationTallyReducer.averageMean]: (i18n: I18n) => () =>
+    i18n.t('aggregation_tally_description.reducer.average_mean'),
+  [AggregationTallyReducer.deviationStandard]: (i18n: I18n) => () =>
+    i18n.t('aggregation_tally_description.reducer.deviation_standard'),
 }
 
 // FIXME(#21): update match operators information
@@ -142,7 +147,7 @@ export const operatorInfos: OperatorInfos = {
     name: ArrayOperatorName.Count,
     arguments: [],
     outputType: OutputType.Integer,
-    description: () => 'Count the number of elements in the input Array',
+    description: (i18n: I18n) => () => i18n.t('operator_info_description.array.count'),
   },
   [OperatorCode.ArrayFilter]: {
     type: Type.Array,
@@ -155,8 +160,8 @@ export const operatorInfos: OperatorInfos = {
       },
     ],
     outputType: OutputType.Same,
-    description: (filter: string = 'filter') =>
-      `Discard the items in the inpuyt array that doesn't match the ${filter} function`,
+    description: (i18n: I18n) => (filter: string = 'filter') =>
+      i18n.t('operator_info_description.array.filter', { filter }),
   },
   [OperatorCode.ArrayFlatten]: {
     type: Type.Array,
@@ -169,8 +174,8 @@ export const operatorInfos: OperatorInfos = {
       },
     ],
     outputType: OutputType.Inner,
-    description: (depth: string = 'depth') =>
-      `Remove ${depth} level of nesting of the input Array.`,
+    description: (i18n: I18n) => (depth: string = 'depth') =>
+      i18n.t('operator_info_description.array.flatten', { depth }),
   },
   [OperatorCode.ArrayGetArray]: {
     type: Type.Array,
@@ -183,7 +188,7 @@ export const operatorInfos: OperatorInfos = {
       },
     ],
     outputType: OutputType.Array,
-    description: descriptions.getKey('Array', 'Array'),
+    description: (i18n: I18n) => descriptions.getKey(i18n)('Array', 'Array'),
   },
   [OperatorCode.ArrayGetBoolean]: {
     type: Type.Boolean,
@@ -196,7 +201,7 @@ export const operatorInfos: OperatorInfos = {
       },
     ],
     outputType: OutputType.Boolean,
-    description: descriptions.getKey('Array', 'Boolean'),
+    description: (i18n: I18n) => descriptions.getKey(i18n)('Array', 'Boolean'),
   },
   [OperatorCode.ArrayGetBytes]: {
     type: Type.Array,
@@ -209,7 +214,7 @@ export const operatorInfos: OperatorInfos = {
       },
     ],
     outputType: OutputType.Bytes,
-    description: descriptions.getKey('Array', 'Bytes'),
+    description: (i18n: I18n) => descriptions.getKey(i18n)('Array', 'Bytes'),
   },
   [OperatorCode.ArrayGetInteger]: {
     type: Type.Array,
@@ -222,7 +227,7 @@ export const operatorInfos: OperatorInfos = {
       },
     ],
     outputType: OutputType.Integer,
-    description: descriptions.getKey('Array', 'Integer'),
+    description: (i18n: I18n) => descriptions.getKey(i18n)('Array', 'Integer'),
   },
   [OperatorCode.ArrayGetFloat]: {
     type: Type.Array,
@@ -235,7 +240,7 @@ export const operatorInfos: OperatorInfos = {
       },
     ],
     outputType: OutputType.Boolean,
-    description: descriptions.getKey('Array', 'Float'),
+    description: (i18n: I18n) => descriptions.getKey(i18n)('Array', 'Float'),
   },
   [OperatorCode.ArrayGetMap]: {
     type: Type.Array,
@@ -248,7 +253,9 @@ export const operatorInfos: OperatorInfos = {
       },
     ],
     outputType: OutputType.Map,
-    description: descriptions.getKey('Array', 'Map'),
+    description: (i18n: I18n) => {
+      return descriptions.getKey(i18n)('Array', 'Map')
+    },
   },
   [OperatorCode.ArrayGetString]: {
     type: Type.Array,
@@ -261,7 +268,7 @@ export const operatorInfos: OperatorInfos = {
       },
     ],
     outputType: OutputType.String,
-    description: descriptions.getKey('Array', 'String'),
+    description: (i18n: I18n) => descriptions.getKey(i18n)('Array', 'String'),
   },
   [OperatorCode.ArrayMap]: {
     type: Type.Array,
@@ -274,8 +281,8 @@ export const operatorInfos: OperatorInfos = {
       },
     ],
     outputType: OutputType.SubscriptOutput,
-    description: (subscript) =>
-      `Apply the ${subscript} script on all the elements of the input Array`,
+    description: (i18n: I18n) => (subscript) =>
+      i18n.t('operator_info_description.array.map', { subscript }),
   },
   [OperatorCode.ArrayReduce]: {
     type: Type.Array,
@@ -288,8 +295,8 @@ export const operatorInfos: OperatorInfos = {
       },
     ],
     outputType: OutputType.Inner,
-    description: (outputType: string = 'outputType', reducer: string = 'reducer') =>
-      `Reduce all the items in the input Array into a single item of type ${outputType} by applying the ${reducer} reducer function`,
+    description: (i18n: I18n) => (outputType: string = 'outputType', reducer: string = 'reducer') =>
+      i18n.t('operator_info_description.array.reduce', { outputType, reducer }),
   },
   [OperatorCode.ArraySome]: {
     type: Type.Array,
@@ -302,8 +309,8 @@ export const operatorInfos: OperatorInfos = {
       },
     ],
     outputType: OutputType.Boolean,
-    description: (filter: string = 'filter') =>
-      `Tell whether at least one of the items in the input Array passes the condition defined by the ${filter} filter function`,
+    description: (i18n: I18n) => (filter: string = 'filter') =>
+      i18n.t('operator_info_description.array.some', { filter }),
   },
   [OperatorCode.ArraySort]: {
     type: Type.Array,
@@ -321,7 +328,8 @@ export const operatorInfos: OperatorInfos = {
       },
     ],
     outputType: OutputType.Same,
-    description: (order: string = 'order') => `Sort the input Array in ${order} order`,
+    description: (i18n: I18n) => (order: string = 'order') =>
+      i18n.t('operator_info_description.array.sort', { order }),
   },
   [OperatorCode.ArrayTake]: {
     type: Type.Array,
@@ -335,15 +343,15 @@ export const operatorInfos: OperatorInfos = {
       },
     ],
     outputType: OutputType.Array,
-    description: (min, max) =>
-      `Take the elements from the input Array between positions ${min} and ${max}, and discard all the rest`,
+    description: (i18n: I18n) => (min, max) =>
+      i18n.t('operator_info_description.array.take', { min, max }),
   },
   [OperatorCode.BooleanAsString]: {
     type: Type.Boolean,
     name: BooleanOperatorName.AsString,
     arguments: [],
     outputType: OutputType.String,
-    description: () => descriptions.cast('Boolean', 'String'),
+    description: (i18n: I18n) => () => descriptions.cast(i18n)('Boolean', 'String'),
   },
   [OperatorCode.BooleanMatch]: {
     type: Type.Boolean,
@@ -361,44 +369,43 @@ export const operatorInfos: OperatorInfos = {
       },
     ],
     outputType: OutputType.MatchOutput,
-    description: (subscript: string = 'subscript') =>
-      `Match the Boolean input with "${subscript}" and return the value asociated with it. Similar than a switch statement`,
+    description: (i18n: I18n) => (subscript: string = 'subscript') =>
+      i18n.t('operator_info_description.boolean.match', { subscript }),
   },
   [OperatorCode.BooleanNegate]: {
     type: Type.Boolean,
     name: BooleanOperatorName.Negate,
     arguments: [],
     outputType: OutputType.Boolean,
-    description: () =>
-      'Negate the input Boolean (make it True if it was False, or make it False if it was True)',
+    description: (i18n: I18n) => () => i18n.t('operator_info_description.boolean.negate'),
   },
   [OperatorCode.BytesAsString]: {
     type: Type.Bytes,
     name: BytesOperatorName.AsString,
     arguments: [],
     outputType: OutputType.String,
-    description: () => descriptions.cast('Bytes', 'String'),
+    description: (i18n: I18n) => () => descriptions.cast(i18n)('Bytes', 'String'),
   },
   [OperatorCode.BytesHash]: {
     type: Type.Bytes,
     name: BytesOperatorName.Hash,
     arguments: [],
     outputType: OutputType.Bytes,
-    description: () => 'Compute the hash of the input Bytes',
+    description: (i18n: I18n) => () => i18n.t('operator_info_description.bytes.hash'),
   },
   [OperatorCode.IntegerAbsolute]: {
     type: Type.Integer,
     name: IntegerOperatorName.Absolute,
     arguments: [],
     outputType: OutputType.Integer,
-    description: () => 'Calculate the absolute value of the input Integer',
+    description: (i18n: I18n) => () => i18n.t('operator_info_description.integer.absolute'),
   },
   [OperatorCode.IntegerAsFloat]: {
     type: Type.Integer,
     name: IntegerOperatorName.AsFloat,
     arguments: [],
     outputType: OutputType.Float,
-    description: () => descriptions.cast('Integer', 'Float'),
+    description: (i18n: I18n) => () => descriptions.cast(i18n)('Integer', 'Float'),
   },
   [OperatorCode.IntegerAsString]: {
     type: Type.Integer,
@@ -411,7 +418,7 @@ export const operatorInfos: OperatorInfos = {
       },
     ],
     outputType: OutputType.String,
-    description: () => descriptions.cast('Integer', 'String'),
+    description: (i18n: I18n) => () => descriptions.cast(i18n)('Integer', 'String'),
   },
   [OperatorCode.IntegerGreaterThan]: {
     type: Type.Integer,
@@ -424,8 +431,8 @@ export const operatorInfos: OperatorInfos = {
       },
     ],
     outputType: OutputType.Boolean,
-    description: (argument: string = 'argument') =>
-      `Check if the input Integer is greater than ${argument} (output will be Boolean)`,
+    description: (i18n: I18n) => (argument: string = 'argument') =>
+      i18n.t('operator_info_description.integer.greater_than', { argument }),
   },
   [OperatorCode.IntegerLessThan]: {
     type: Type.Integer,
@@ -438,8 +445,8 @@ export const operatorInfos: OperatorInfos = {
       },
     ],
     outputType: OutputType.Boolean,
-    description: (argument: string = 'argument') =>
-      `Check if the input Integer is greater than ${argument} (output will be Boolean)`,
+    description: (i18n: I18n) => (argument: string = 'argument') =>
+      i18n.t('operator_info_description.integer.less_than', { argument }),
   },
   [OperatorCode.IntegerMatch]: {
     type: Type.Integer,
@@ -457,8 +464,8 @@ export const operatorInfos: OperatorInfos = {
       },
     ],
     outputType: OutputType.MatchOutput,
-    description: (subscript: string = 'subscript') =>
-      `Match the Integer input with ${subscript} and return the value asociated with it. Similar than a switch statement`,
+    description: (i18n: I18n) => (subscript: string = 'subscript') =>
+      i18n.t('operator_info_description.integer.match', { subscript }),
   },
   [OperatorCode.IntegerModulo]: {
     type: Type.Integer,
@@ -471,8 +478,8 @@ export const operatorInfos: OperatorInfos = {
       },
     ],
     outputType: OutputType.Integer,
-    description: (argument: string = 'argument') =>
-      `Calculate the integer division of the input integer by ${argument}`,
+    description: (i18n: I18n) => (argument: string = 'argument') =>
+      i18n.t('operator_info_description.integer.modulo', { argument }),
   },
   [OperatorCode.IntegerMultiply]: {
     type: Type.Integer,
@@ -485,14 +492,15 @@ export const operatorInfos: OperatorInfos = {
       },
     ],
     outputType: OutputType.Integer,
-    description: (factor: string = 'factor') => `Multiply the input Integer by ${factor}`,
+    description: (i18n: I18n) => (factor: string = 'factor') =>
+      i18n.t('operator_info_description.integer.multiply', { factor }),
   },
   [OperatorCode.IntegerNegate]: {
     type: Type.Integer,
     name: IntegerOperatorName.Negate,
     arguments: [],
     outputType: OutputType.Integer,
-    description: () => `Calculate the negative of the input Integer`,
+    description: (i18n: I18n) => () => i18n.t('operator_info_description.integer.negate'),
   },
   [OperatorCode.IntegerPower]: {
     type: Type.Integer,
@@ -505,16 +513,15 @@ export const operatorInfos: OperatorInfos = {
       },
     ],
     outputType: OutputType.Integer,
-    description: (exponent: string = 'exponent') =>
-      `Calculate the input Integer raised to the power of ${exponent}`,
+    description: (i18n: I18n) => (exponent: string = 'exponent') =>
+      i18n.t('operator_info_description.integer.power', { exponent }),
   },
   [OperatorCode.IntegerReciprocal]: {
     type: Type.Integer,
     name: IntegerOperatorName.Reciprocal,
     arguments: [],
     outputType: OutputType.Float,
-    description: () =>
-      'Calculate the multiplicative inverse (1/x) of the input Integer, and manage the result as Float.',
+    description: (i18n: I18n) => () => i18n.t('operator_info_description.integer.reciprocal'),
   },
   [OperatorCode.IntegerSum]: {
     type: Type.Integer,
@@ -527,15 +534,15 @@ export const operatorInfos: OperatorInfos = {
       },
     ],
     outputType: OutputType.Integer,
-    description: (addend: string = 'addend') => `Sum ${addend} to the input Integer`,
+    description: (i18n: I18n) => (addend: string = 'addend') =>
+      i18n.t('operator_info_description.integer.sum', { addend }),
   },
   [OperatorCode.FloatAbsolute]: {
     type: Type.Float,
     name: IntegerOperatorName.Absolute,
     arguments: [],
     outputType: OutputType.Float,
-    description: () =>
-      'Compute the absolute value of the input Float, and manage the result as Float.',
+    description: (i18n: I18n) => () => i18n.t('operator_info_description.float.absolute'),
   },
   [OperatorCode.FloatAsString]: {
     type: Type.Float,
@@ -548,14 +555,14 @@ export const operatorInfos: OperatorInfos = {
       },
     ],
     outputType: OutputType.String,
-    description: () => descriptions.cast('Float', 'String'),
+    description: (i18n: I18n) => () => descriptions.cast(i18n)('Float', 'String'),
   },
   [OperatorCode.FloatCeiling]: {
     type: Type.Float,
     name: FloatOperatorName.Ceiling,
     arguments: [],
     outputType: OutputType.Integer,
-    description: () => 'Compute the the least Integer greater than or equal the input Float',
+    description: (i18n: I18n) => () => i18n.t('operator_info_description.float.celling'),
   },
   [OperatorCode.FloatGraterThan]: {
     type: Type.Float,
@@ -568,16 +575,15 @@ export const operatorInfos: OperatorInfos = {
       },
     ],
     outputType: OutputType.Boolean,
-    description: (value: string = 'value') =>
-      `Compare if the input Float is greater than ${value}, and manage the value as Boolean.`,
+    description: (i18n: I18n) => (value: string = 'value') =>
+      i18n.t('operator_info_description.float.greater_than', { value }),
   },
   [OperatorCode.FloatFloor]: {
     type: Type.Float,
     name: FloatOperatorName.Floor,
     arguments: [],
     outputType: OutputType.Float,
-    description: () =>
-      'Compute the greatest integer less or equal the input Float, and manage the result as Integer',
+    description: (i18n: I18n) => () => i18n.t('operator_info_description.float.floor'),
   },
   [OperatorCode.FloatLessThan]: {
     type: Type.Float,
@@ -590,8 +596,8 @@ export const operatorInfos: OperatorInfos = {
       },
     ],
     outputType: OutputType.Boolean,
-    description: (argument: string = 'argument') =>
-      `Compare if the input Float is less than ${argument}, and manage the value as Boolean`,
+    description: (i18n: I18n) => (argument: string = 'argument') =>
+      i18n.t('operator_info_description.float.less_than', { argument }),
   },
   [OperatorCode.FloatModulo]: {
     type: Type.Float,
@@ -604,8 +610,8 @@ export const operatorInfos: OperatorInfos = {
       },
     ],
     outputType: OutputType.Float,
-    description: (argument: string = 'argument') =>
-      `Compute the division by the input Float and ${argument}. Then manage the result as Float`,
+    description: (i18n: I18n) => (argument: string = 'argument') =>
+      i18n.t('operator_info_description.float.modulo', { argument }),
   },
   [OperatorCode.FloatMultiply]: {
     type: Type.Float,
@@ -618,15 +624,15 @@ export const operatorInfos: OperatorInfos = {
       },
     ],
     outputType: OutputType.Float,
-    description: (argument: string = 'argument') =>
-      `Compute the product by the input Float and ${argument}. Then manage the result as Integer`,
+    description: (i18n: I18n) => (argument: string = 'argument') =>
+      i18n.t('operator_info_description.float.multiply', { argument }),
   },
   [OperatorCode.FloatNegate]: {
     type: Type.Float,
     name: FloatOperatorName.Negate,
     arguments: [],
     outputType: OutputType.Float,
-    description: () => `Compute the negative of the input Integer, and manage the result as Float`,
+    description: (i18n: I18n) => () => i18n.t('operator_info_description.float.negate'),
   },
   [OperatorCode.FloatPower]: {
     type: Type.Float,
@@ -639,23 +645,22 @@ export const operatorInfos: OperatorInfos = {
       },
     ],
     outputType: OutputType.Float,
-    description: (exponent: string = 'exponent') =>
-      `Compute the input Float raised to the power of ${exponent}. Then, handle the result as Float.`,
+    description: (i18n: I18n) => (exponent: string = 'exponent') =>
+      i18n.t('operator_info_description.float.power', { exponent }),
   },
   [OperatorCode.FloatReciprocal]: {
     type: Type.Float,
     name: FloatOperatorName.Reciprocal,
     arguments: [],
     outputType: OutputType.Float,
-    description: () =>
-      'Compute the multiplicative inverse of the input Float and manage the result as Float',
+    description: (i18n: I18n) => () => i18n.t('operator_info_description.float.reciprocal'),
   },
   [OperatorCode.FloatRound]: {
     type: Type.Float,
     name: FloatOperatorName.Round,
     arguments: [],
     outputType: OutputType.Integer,
-    description: () => 'Round integer part from the Float input, and manage the result as Integer',
+    description: (i18n: I18n) => () => i18n.t('operator_info_description.float.round'),
   },
   [OperatorCode.Floatsum]: {
     type: Type.Float,
@@ -668,23 +673,22 @@ export const operatorInfos: OperatorInfos = {
       },
     ],
     outputType: OutputType.Float,
-    description: (addend: string = 'addend') =>
-      `Compute the addition between the input Float and ${addend}. Then handle the result as Float.`,
+    description: (i18n: I18n) => (addend: string = 'addend') =>
+      i18n.t('operator_info_description.float.sum', { addend }),
   },
   [OperatorCode.FloatTruncate]: {
     type: Type.Float,
     name: FloatOperatorName.Truncate,
     arguments: [],
     outputType: OutputType.Integer,
-    description: () => 'Take integer part from the Float input, and manage the result as Integer.',
+    description: (i18n: I18n) => () => i18n.t('operator_info_description.float.truncate'),
   },
   [OperatorCode.MapEntries]: {
     type: Type.Map,
     name: MapOperatorName.Entries,
     arguments: [],
     outputType: OutputType.Array,
-    description: () =>
-      `Obtain a list of key-value tuples from the input Map, and manage the value as Array.`,
+    description: (i18n: I18n) => () => i18n.t('operator_info_description.map.entries'),
   },
   [OperatorCode.MapGetArray]: {
     type: Type.Map,
@@ -697,7 +701,7 @@ export const operatorInfos: OperatorInfos = {
       },
     ],
     outputType: OutputType.Array,
-    description: descriptions.getKey('Map', 'Array'),
+    description: (i18n: I18n) => descriptions.getKey(i18n)('Map', 'Array'),
   },
   [OperatorCode.MapGetBoolean]: {
     type: Type.Map,
@@ -710,7 +714,7 @@ export const operatorInfos: OperatorInfos = {
       },
     ],
     outputType: OutputType.Boolean,
-    description: descriptions.getKey('Map', 'Boolean'),
+    description: (i18n: I18n) => descriptions.getKey(i18n)('Map', 'Boolean'),
   },
   [OperatorCode.MapGetBytes]: {
     type: Type.Map,
@@ -723,7 +727,7 @@ export const operatorInfos: OperatorInfos = {
       },
     ],
     outputType: OutputType.Bytes,
-    description: descriptions.getKey('Map', 'Bytes'),
+    description: (i18n: I18n) => descriptions.getKey(i18n)('Map', 'Bytes'),
   },
   [OperatorCode.MapGetInteger]: {
     type: Type.Map,
@@ -736,7 +740,7 @@ export const operatorInfos: OperatorInfos = {
       },
     ],
     outputType: OutputType.Integer,
-    description: descriptions.getKey('Map', 'Integer'),
+    description: (i18n: I18n) => descriptions.getKey(i18n)('Map', 'Integer'),
   },
   [OperatorCode.MapGetFloat]: {
     type: Type.Map,
@@ -749,7 +753,7 @@ export const operatorInfos: OperatorInfos = {
       },
     ],
     outputType: OutputType.Float,
-    description: descriptions.getKey('Map', 'Float'),
+    description: (i18n: I18n) => descriptions.getKey(i18n)('Map', 'Float'),
   },
   [OperatorCode.MapGetMap]: {
     type: Type.Map,
@@ -762,7 +766,7 @@ export const operatorInfos: OperatorInfos = {
       },
     ],
     outputType: OutputType.Map,
-    description: descriptions.getKey('Map', 'Map'),
+    description: (i18n: I18n) => descriptions.getKey(i18n)('Map', 'Map'),
   },
   [OperatorCode.MapGetString]: {
     type: Type.Map,
@@ -775,100 +779,98 @@ export const operatorInfos: OperatorInfos = {
       },
     ],
     outputType: OutputType.String,
-    description: descriptions.getKey('Map', 'String'),
+    description: (i18n: I18n) => descriptions.getKey(i18n)('Map', 'String'),
   },
   [OperatorCode.MapKeys]: {
     type: Type.Map,
     name: MapOperatorName.Keys,
     arguments: [],
     outputType: OutputType.ArrayString,
-    description: () =>
-      'Obtain a list with the keys names of the input Map, and manage the value as Array of String.',
+    description: (i18n: I18n) => () => i18n.t('operator_info_description.map.keys'),
   },
   [OperatorCode.MapValuesArray]: {
     type: Type.Map,
     name: MapOperatorName.valuesArray,
     arguments: [],
     outputType: OutputType.ArrayArray,
-    description: () => descriptions.mapValues('Array'),
+    description: (i18n: I18n) => () => descriptions.mapValues(i18n)('Array'),
   },
   [OperatorCode.MapValuesBoolean]: {
     type: Type.Map,
     name: MapOperatorName.valuesBoolean,
     arguments: [],
     outputType: OutputType.ArrayBoolean,
-    description: () => descriptions.mapValues('Boolean'),
+    description: (i18n: I18n) => () => descriptions.mapValues(i18n)('Boolean'),
   },
   [OperatorCode.MapValuesBytes]: {
     type: Type.Map,
     name: MapOperatorName.valuesBytes,
     arguments: [],
     outputType: OutputType.ArrayBytes,
-    description: () => descriptions.mapValues('Bytes'),
+    description: (i18n: I18n) => () => descriptions.mapValues(i18n)('Bytes'),
   },
   [OperatorCode.MapValuesInteger]: {
     type: Type.Map,
     name: MapOperatorName.valuesInteger,
     arguments: [],
     outputType: OutputType.ArrayInteger,
-    description: () => descriptions.mapValues('Integer'),
+    description: (i18n: I18n) => () => descriptions.mapValues(i18n)('Integer'),
   },
   [OperatorCode.MapValuesFloat]: {
     type: Type.Map,
     name: MapOperatorName.valuesFloat,
     arguments: [],
     outputType: OutputType.ArrayFloat,
-    description: () => descriptions.mapValues('Float'),
+    description: (i18n: I18n) => () => descriptions.mapValues(i18n)('Float'),
   },
   [OperatorCode.MapValuesMap]: {
     type: Type.Map,
     name: MapOperatorName.valuesMap,
     arguments: [],
     outputType: OutputType.ArrayMap,
-    description: () => descriptions.mapValues('Map'),
+    description: (i18n: I18n) => () => descriptions.mapValues(i18n)('Map'),
   },
   [OperatorCode.MapValuesString]: {
     type: Type.Map,
     name: MapOperatorName.valuesString,
     arguments: [],
     outputType: OutputType.ArrayString,
-    description: () => descriptions.mapValues('String'),
+    description: (i18n: I18n) => () => descriptions.mapValues(i18n)('String'),
   },
   [OperatorCode.StringAsBoolean]: {
     type: Type.String,
     name: StringOperatorName.AsBoolean,
     arguments: [],
     outputType: OutputType.Boolean,
-    description: () => descriptions.cast('String', 'Boolean'),
+    description: (i18n: I18n) => () => descriptions.cast(i18n)('String', 'Boolean'),
   },
   [OperatorCode.StringAsBytes]: {
     type: Type.String,
     name: StringOperatorName.AsBytes,
     arguments: [],
     outputType: OutputType.Bytes,
-    description: () => descriptions.cast('String', 'Bytes'),
+    description: (i18n: I18n) => () => descriptions.cast(i18n)('String', 'Bytes'),
   },
   [OperatorCode.StringAsFloat]: {
     type: Type.String,
     name: StringOperatorName.AsFloat,
     arguments: [],
     outputType: OutputType.Float,
-    description: () => descriptions.cast('String', 'Float'),
+    description: (i18n: I18n) => () => descriptions.cast(i18n)('String', 'Float'),
   },
   [OperatorCode.StringAsInteger]: {
     type: Type.String,
     name: StringOperatorName.AsInteger,
     arguments: [],
     outputType: OutputType.Integer,
-    description: () => descriptions.cast('String', 'Integer'),
+    description: (i18n: I18n) => () => descriptions.cast(i18n)('String', 'Integer'),
   },
   [OperatorCode.StringLength]: {
     type: Type.String,
     name: StringOperatorName.Length,
     arguments: [],
     outputType: OutputType.Integer,
-    description: () =>
-      'Count the number of elements of the input String, and mannage the values as Integer.',
+    description: (i18n: I18n) => () => i18n.t('operator_info_description.string.length'),
   },
   [OperatorCode.StringMatch]: {
     type: Type.String,
@@ -886,43 +888,43 @@ export const operatorInfos: OperatorInfos = {
       },
     ],
     outputType: OutputType.MatchOutput,
-    description: (subscript: string = 'subscript') =>
-      `Match the String input with ${subscript} and return the value asociated with it. Similar than a switch statement`,
+    description: (i18n: I18n) => (subscript: string = 'subscript') =>
+      i18n.t('operator_info_description.string.match', { subscript }),
   },
   [OperatorCode.StringParseJsonArray]: {
     type: Type.String,
     name: StringOperatorName.ParseJsonArray,
     arguments: [],
     outputType: OutputType.Array,
-    description: () => 'Interpretate the input String as a JSON-encoded Array structure.',
+    description: (i18n: I18n) => () => i18n.t('operator_info_description.string.parse_json_array'),
   },
   [OperatorCode.StringParseJsonMap]: {
     type: Type.String,
     name: StringOperatorName.ParseJsonMap,
     arguments: [],
     outputType: OutputType.Map,
-    description: () => 'Interpretate the input String as a JSON-encoded Map structure.',
+    description: (i18n: I18n) => () => i18n.t('operator_info_description.string.parse_json_map'),
   },
   [OperatorCode.StringParseXML]: {
     type: Type.String,
     name: StringOperatorName.ParseXml,
     arguments: [],
     outputType: OutputType.Map,
-    description: () => 'Interpretate the input String as a XML-encoded Map structure.',
+    description: (i18n: I18n) => () => i18n.t('operator_info_description.string.parse_xml'),
   },
   [OperatorCode.StringToLowerCase]: {
     type: Type.String,
     name: StringOperatorName.ToLowerCase,
     arguments: [],
     outputType: OutputType.String,
-    description: () => 'Convert to lowercase the input String, and manage the value as String',
+    description: (i18n: I18n) => () => i18n.t('operator_info_description.string.to_lower_case'),
   },
   [OperatorCode.StringToUpperCase]: {
     type: Type.String,
     name: StringOperatorName.ToUpperCase,
     arguments: [],
     outputType: OutputType.String,
-    description: () => 'Convert to uppercase the input String, and manage the value as String',
+    description: (i18n: I18n) => () => i18n.t('operator_info_description.string.to_upper_case'),
   },
 }
 

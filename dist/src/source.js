@@ -4,13 +4,13 @@ exports.Source = void 0;
 var types_1 = require("./types");
 var script_1 = require("./script");
 var Source = /** @class */ (function () {
-    function Source(cache, source) {
-        this.id = cache.insert(this).id;
-        this.cache = cache;
+    function Source(context, source) {
+        this.id = context.cache.insert(this).id;
         this.kind = source.kind || 'HTTP-GET';
         this.url = source.url || '';
         this.contentType = source.contentType || 'JSON API';
-        this.script = new script_1.Script(cache, source.script, types_1.OutputType.String);
+        this.script = new script_1.Script(context, source.script, types_1.OutputType.String);
+        this.context = context;
     }
     Source.prototype.getJs = function (index) {
         var script = this.script.getJs();

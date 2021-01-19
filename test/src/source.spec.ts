@@ -2,14 +2,15 @@ import { MirScript, OperatorCode } from '../../src/types'
 import { Source } from '../../src/source'
 import { Cache, markupOptions } from '../../src/structures'
 import { formatJsTest } from '../utils'
+import { I18n } from '../../src/i18n'
 
 describe('Source', () => {
   describe('getJs method', () => {
     it('empty', () => {
       const mirScript: MirScript = []
-      const cache = new Cache()
+      const context = { cache: new Cache(), i18n: new I18n() }
 
-      const source = new Source(cache, {
+      const source = new Source(context, {
         kind: 'kind',
         url: 'url',
         script: mirScript,
@@ -22,7 +23,7 @@ describe('Source', () => {
     })
 
     it('multiple operators', () => {
-      const cache = new Cache()
+      const context = { cache: new Cache(), i18n: new I18n() }
 
       const mirScript: MirScript = [
         OperatorCode.StringAsBoolean,
@@ -37,7 +38,7 @@ describe('Source', () => {
         script: mirScript,
       }
 
-      const result = formatJsTest(new Source(cache, mirSource).getJs(0))
+      const result = formatJsTest(new Source(context, mirSource).getJs(0))
 
       const expected = 'const source_0 = new Witnet.Source("url").asBoolean().negate().match()'
 
@@ -48,9 +49,9 @@ describe('Source', () => {
   describe('getMarkup method', () => {
     it('empty', () => {
       const mirScript: MirScript = []
-      const cache = new Cache()
+      const context = { cache: new Cache(), i18n: new I18n() }
 
-      const source = new Source(cache, {
+      const source = new Source(context, {
         kind: 'kind',
         url: 'url',
         script: mirScript,
@@ -69,7 +70,7 @@ describe('Source', () => {
     })
 
     it('multiple operators', () => {
-      const cache = new Cache()
+      const context = { cache: new Cache(), i18n: new I18n() }
 
       const mirScript: MirScript = [
         OperatorCode.StringAsBoolean,
@@ -84,7 +85,7 @@ describe('Source', () => {
         script: mirScript,
       }
 
-      const result = new Source(cache, mirSource).getMarkup()
+      const result = new Source(context, mirSource).getMarkup()
 
       const expected: any = {
         kind: 'kind',
@@ -136,7 +137,7 @@ describe('Source', () => {
             outputType: 'matchOutput',
             selected: {
               description:
-                'Match the Boolean input with "subscript" and return the value asociated with it. Similar than a switch statement',
+                'Match the Boolean input with "subscript" and return the value associated with it. Similar than a switch statement',
               arguments: [],
               hierarchicalType: 'selectedOperatorOption',
               label: 'match',
@@ -155,9 +156,9 @@ describe('Source', () => {
   describe('getMir method', () => {
     it('empty', () => {
       const mirScript: MirScript = []
-      const cache = new Cache()
+      const context = { cache: new Cache(), i18n: new I18n() }
 
-      const source = new Source(cache, {
+      const source = new Source(context, {
         kind: 'kind',
         url: 'url',
         script: mirScript,
@@ -171,7 +172,7 @@ describe('Source', () => {
     })
 
     it('multiple operators', () => {
-      const cache = new Cache()
+      const context = { cache: new Cache(), i18n: new I18n() }
 
       const mirScript: MirScript = [
         OperatorCode.StringAsBoolean,
@@ -186,7 +187,7 @@ describe('Source', () => {
         script: mirScript,
       }
 
-      const result = new Source(cache, mirSource).getMir()
+      const result = new Source(context, mirSource).getMir()
 
       const expected = mirSource
 

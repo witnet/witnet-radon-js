@@ -12,8 +12,10 @@ import {
   Filter,
   Reducer,
   MirScript,
+  Context,
 } from '../../src/types'
 import { formatJsTest } from '../utils'
+import { I18n } from '../../src/i18n'
 
 const reducerOptions = generateReducerArgumentOptions()
 
@@ -22,8 +24,8 @@ describe('Argument methods', () => {
     it('string', () => {
       const operator: MirOperator = [OperatorCode.MapGetMap, 'bpi']
       const argumentInfo: ArgumentInfo = operatorInfos[operator[0]].arguments[0]
-      const cache: Cache = new Cache()
-      const argument = new Argument(cache, argumentInfo, 'bpi')
+      const context: Context = { cache: new Cache(), i18n: new I18n() }
+      const argument = new Argument(context, argumentInfo, 'bpi')
       const result = argument.getMarkup()
       const expected = {
         hierarchicalType: 'argument',
@@ -39,8 +41,8 @@ describe('Argument methods', () => {
     it('float', () => {
       const operator: MirOperator = [OperatorCode.FloatGraterThan, 1.1]
       const argumentInfo: ArgumentInfo = operatorInfos[operator[0]].arguments[0]
-      const cache = new Cache()
-      const argument = new Argument(cache, argumentInfo, operator[1])
+      const context: Context = { cache: new Cache(), i18n: new I18n() }
+      const argument = new Argument(context, argumentInfo, operator[1])
       const result = argument.getMarkup()
       const expected = {
         hierarchicalType: 'argument',
@@ -56,8 +58,8 @@ describe('Argument methods', () => {
     it('with map input', () => {
       const operator: MirOperator = [OperatorCode.StringMatch, { BTC: true }, true]
       const argumentInfo: ArgumentInfo = operatorInfos[operator[0]].arguments[0]
-      const cache = new Cache()
-      const argument = new Argument(cache, argumentInfo, operator[1])
+      const context: Context = { cache: new Cache(), i18n: new I18n() }
+      const argument = new Argument(context, argumentInfo, operator[1])
       const result = argument.getMarkup()
       const expected = {
         hierarchicalType: 'argument',
@@ -79,8 +81,9 @@ describe('Argument methods', () => {
         [[OperatorCode.MapGetString, 'symbol'], OperatorCode.StringToLowerCase],
       ]
       const argumentInfo = operatorInfos[operator[0]].arguments[0]
-      const cache = new Cache()
-      const argument = new Argument(cache, argumentInfo, operator[1])
+      const context: Context = { cache: new Cache(), i18n: new I18n() }
+      const argument = new Argument(context, argumentInfo, operator[1])
+
       const result = argument.getMarkup()
       const expected = {
         id: 1,
@@ -552,7 +555,7 @@ describe('Argument methods', () => {
               markupType: 'option',
               outputType: 'string',
               description:
-                'Access to the “symbol” key of the input Map, and manage the value as String',
+                'Access to the "symbol" key of the input Map, and manage the value as String',
             },
           },
           {
@@ -648,8 +651,8 @@ describe('Argument methods', () => {
     it('filter', () => {
       const operator: MirOperator = [OperatorCode.ArraySome, 0x03, 1]
       const argumentInfo = operatorInfos[operator[0]].arguments[0]
-      const cache = new Cache()
-      const argument = new Argument(cache, argumentInfo, [operator[1], operator[2]] as [
+      const context: Context = { cache: new Cache(), i18n: new I18n() }
+      const argument = new Argument(context, argumentInfo, [operator[1], operator[2]] as [
         Filter,
         number
       ])
@@ -804,8 +807,8 @@ describe('Argument methods', () => {
         optional: false,
         type: MirArgumentType.FilterFunction,
       }
-      const cache = new Cache()
-      const argument = new Argument(cache, fakeSelectArgumentInfo, [
+      const context: Context = { cache: new Cache(), i18n: new I18n() }
+      const argument = new Argument(context, fakeSelectArgumentInfo, [
         Filter.custom,
         operator[1] as MirScript,
       ])
@@ -1398,7 +1401,7 @@ describe('Argument methods', () => {
                     markupType: 'option',
                     outputType: 'string',
                     description:
-                      'Access to the “symbol” key of the input Map, and manage the value as String',
+                      'Access to the "symbol" key of the input Map, and manage the value as String',
                   },
                 },
                 {
@@ -1605,7 +1608,7 @@ describe('Argument methods', () => {
                     markupType: 'option',
                     outputType: 'matchOutput',
                     description:
-                      'Match the String input with { "btc": true } and return the value asociated with it. Similar than a switch statement',
+                      'Match the String input with { "btc": true } and return the value associated with it. Similar than a switch statement',
                   },
                 },
               ],
@@ -1623,8 +1626,8 @@ describe('Argument methods', () => {
     it('reducer', () => {
       const operator: MirOperator = [OperatorCode.ArrayReduce, 0x00]
       const argumentInfo = operatorInfos[operator[0]].arguments[0]
-      const cache = new Cache()
-      const argument = new Argument(cache, argumentInfo, operator[1])
+      const context: Context = { cache: new Cache(), i18n: new I18n() }
+      const argument = new Argument(context, argumentInfo, operator[1])
       const result = argument.getMarkup()
       const expected = {
         hierarchicalType: 'argument',
@@ -1648,8 +1651,8 @@ describe('Argument methods', () => {
   describe('getMir', () => {
     it('string', () => {
       const argumentInfo: ArgumentInfo = operatorInfos[OperatorCode.MapGetMap].arguments[0]
-      const cache: Cache = new Cache()
-      const argument = new Argument(cache, argumentInfo, 'bpi')
+      const context: Context = { cache: new Cache(), i18n: new I18n() }
+      const argument = new Argument(context, argumentInfo, 'bpi')
       const result = argument.getMir()
       const expected = 'bpi'
 
@@ -1658,8 +1661,8 @@ describe('Argument methods', () => {
 
     it('float', () => {
       const argumentInfo: ArgumentInfo = operatorInfos[OperatorCode.FloatGraterThan].arguments[0]
-      const cache = new Cache()
-      const argument = new Argument(cache, argumentInfo, 1.1)
+      const context: Context = { cache: new Cache(), i18n: new I18n() }
+      const argument = new Argument(context, argumentInfo, 1.1)
       const result = argument.getMir()
       const expected = 1.1
 
@@ -1668,8 +1671,8 @@ describe('Argument methods', () => {
 
     it('boolean', () => {
       const argumentInfo: ArgumentInfo = operatorInfos[OperatorCode.ArraySort].arguments[1]
-      const cache = new Cache()
-      const argument = new Argument(cache, argumentInfo, true)
+      const context: Context = { cache: new Cache(), i18n: new I18n() }
+      const argument = new Argument(context, argumentInfo, true)
       const result = argument.getMir()
       const expected = true
 
@@ -1682,16 +1685,16 @@ describe('Argument methods', () => {
         OperatorCode.ArrayMap,
         [[OperatorCode.MapGetString, 'symbol'], OperatorCode.StringToLowerCase],
       ]
-      const cache = new Cache()
-      const argument = new Argument(cache, argumentInfo, operator[1])
+      const context: Context = { cache: new Cache(), i18n: new I18n() }
+      const argument = new Argument(context, argumentInfo, operator[1])
       const result = argument.getMir()
       expect(result).toStrictEqual(operator[1])
     })
 
     it('filter', () => {
       const argumentInfo = operatorInfos[OperatorCode.ArraySome].arguments[0]
-      const cache = new Cache()
-      const argument = new Argument(cache, argumentInfo, [0x00, 1])
+      const context: Context = { cache: new Cache(), i18n: new I18n() }
+      const argument = new Argument(context, argumentInfo, [0x00, 1])
       const result = argument.getMir()
       const expected = [0x00, 1]
 
@@ -1700,8 +1703,8 @@ describe('Argument methods', () => {
 
     it('reducer', () => {
       const argumentInfo = operatorInfos[OperatorCode.ArrayReduce].arguments[0]
-      const cache = new Cache()
-      const argument = new Argument(cache, argumentInfo, 0x00)
+      const context: Context = { cache: new Cache(), i18n: new I18n() }
+      const argument = new Argument(context, argumentInfo, 0x00)
       const result = argument.getMir()
       const expected = 0x00
 
@@ -1712,8 +1715,8 @@ describe('Argument methods', () => {
       it('with well formatted map', () => {
         const operator: MirOperator = [OperatorCode.StringMatch, '{ BTC: true }', true]
         const argumentInfo: ArgumentInfo = operatorInfos[operator[0]].arguments[0]
-        const cache = new Cache()
-        const argument = new Argument(cache, argumentInfo, operator[1])
+        const context: Context = { cache: new Cache(), i18n: new I18n() }
+        const argument = new Argument(context, argumentInfo, operator[1])
         const result = argument.getMir()
 
         expect(result).toStrictEqual({ BTC: true })
@@ -1723,8 +1726,8 @@ describe('Argument methods', () => {
         // this test will show a warn log
         const operator: MirOperator = [OperatorCode.StringMatch, '{abc', true]
         const argumentInfo: ArgumentInfo = operatorInfos[operator[0]].arguments[0]
-        const cache = new Cache()
-        const argument = new Argument(cache, argumentInfo, operator[1])
+        const context: Context = { cache: new Cache(), i18n: new I18n() }
+        const argument = new Argument(context, argumentInfo, operator[1])
         const result = argument.getMir()
 
         expect(result).toStrictEqual('{abc')
@@ -1735,8 +1738,8 @@ describe('Argument methods', () => {
   describe('getJs', () => {
     it('string', () => {
       const argumentInfo: ArgumentInfo = operatorInfos[OperatorCode.MapGetMap].arguments[0]
-      const cache: Cache = new Cache()
-      const argument = new Argument(cache, argumentInfo, 'bpi')
+      const context: Context = { cache: new Cache(), i18n: new I18n() }
+      const argument = new Argument(context, argumentInfo, 'bpi')
       const result = argument.getJs()
       const expected = '"bpi"'
 
@@ -1745,8 +1748,8 @@ describe('Argument methods', () => {
 
     it('float', () => {
       const argumentInfo: ArgumentInfo = operatorInfos[OperatorCode.FloatGraterThan].arguments[0]
-      const cache = new Cache()
-      const argument = new Argument(cache, argumentInfo, 1.1)
+      const context: Context = { cache: new Cache(), i18n: new I18n() }
+      const argument = new Argument(context, argumentInfo, 1.1)
       const result = argument.getJs()
       const expected = 1.1
 
@@ -1755,8 +1758,8 @@ describe('Argument methods', () => {
 
     it('boolean', () => {
       const argumentInfo: ArgumentInfo = operatorInfos[OperatorCode.ArraySort].arguments[1]
-      const cache = new Cache()
-      const argument = new Argument(cache, argumentInfo, true)
+      const context: Context = { cache: new Cache(), i18n: new I18n() }
+      const argument = new Argument(context, argumentInfo, true)
       const result = argument.getJs()
       const expected = true
 
@@ -1769,8 +1772,8 @@ describe('Argument methods', () => {
         OperatorCode.ArrayMap,
         [[OperatorCode.MapGetString, 'symbol'], OperatorCode.StringToLowerCase],
       ]
-      const cache = new Cache()
-      const argument = new Argument(cache, argumentInfo, operator[1])
+      const context: Context = { cache: new Cache(), i18n: new I18n() }
+      const argument = new Argument(context, argumentInfo, operator[1])
       const result = formatJsTest(`${argument.getJs()}`)
       const expected = formatJsTest('new Script().getString("symbol").toLowerCase()')
 
@@ -1779,8 +1782,8 @@ describe('Argument methods', () => {
 
     it('filter', () => {
       const argumentInfo = operatorInfos[OperatorCode.ArraySome].arguments[0]
-      const cache = new Cache()
-      const argument = new Argument(cache, argumentInfo, [0x00, 1])
+      const context: Context = { cache: new Cache(), i18n: new I18n() }
+      const argument = new Argument(context, argumentInfo, [0x00, 1])
       const result = argument.getJs()
       const expected = '1'
 
@@ -1789,8 +1792,8 @@ describe('Argument methods', () => {
 
     it('reducer', () => {
       const argumentInfo = operatorInfos[OperatorCode.ArrayReduce].arguments[0]
-      const cache = new Cache()
-      const argument = new Argument(cache, argumentInfo, 0x00)
+      const context: Context = { cache: new Cache(), i18n: new I18n() }
+      const argument = new Argument(context, argumentInfo, 0x00)
       const result = argument.getJs()
       const expected = 'min'
 
@@ -1800,8 +1803,8 @@ describe('Argument methods', () => {
     it('with map input', () => {
       const operator: MirOperator = [OperatorCode.StringMatch, { BTC: true }, true]
       const argumentInfo: ArgumentInfo = operatorInfos[operator[0]].arguments[0]
-      const cache = new Cache()
-      const argument = new Argument(cache, argumentInfo, operator[1])
+      const context: Context = { cache: new Cache(), i18n: new I18n() }
+      const argument = new Argument(context, argumentInfo, operator[1])
       const result = argument.getJs()
 
       expect(result).toStrictEqual('{"BTC":true}')
@@ -1810,14 +1813,14 @@ describe('Argument methods', () => {
 
   describe('update', () => {
     it('optional', () => {
-      const cache = new Cache()
+      const context: Context = { cache: new Cache(), i18n: new I18n() }
       const argumentInfo = {
         name: 'min',
         optional: true,
         type: MirArgumentType.Integer,
       }
 
-      const argument = new Argument(cache, argumentInfo, undefined)
+      const argument = new Argument(context, argumentInfo, undefined)
       const newValue = 9
       argument.update(newValue)
 
@@ -1825,14 +1828,14 @@ describe('Argument methods', () => {
     })
 
     it('integer', () => {
-      const cache = new Cache()
+      const context: Context = { cache: new Cache(), i18n: new I18n() }
       const argumentInfo = {
         name: 'min',
         optional: true,
         type: MirArgumentType.Integer,
       }
 
-      const argument = new Argument(cache, argumentInfo, 0)
+      const argument = new Argument(context, argumentInfo, 0)
       const newValue = 9
       argument.update(newValue)
 
@@ -1840,25 +1843,25 @@ describe('Argument methods', () => {
     })
 
     it('filter function', () => {
-      const cache = new Cache()
+      const context: Context = { cache: new Cache(), i18n: new I18n() }
       const argumentInfo = {
         name: 'function',
         optional: false,
         type: MirArgumentType.FilterFunction,
       }
-      const argument = new Argument(cache, argumentInfo, [Filter.lessThan, 5])
+      const argument = new Argument(context, argumentInfo, [Filter.lessThan, 5])
       argument.update('bottom')
       expect(argument.value).toStrictEqual([Filter.bottom, 5])
     })
 
     it('filter function from subscript argument to input argument', () => {
-      const cache = new Cache()
+      const context: Context = { cache: new Cache(), i18n: new I18n() }
       const argumentInfo = {
         name: 'function',
         optional: false,
         type: MirArgumentType.FilterFunction,
       }
-      const argument = new Argument(cache, argumentInfo, [Filter.custom, [DEFAULT_OPERATOR]])
+      const argument = new Argument(context, argumentInfo, [Filter.custom, [DEFAULT_OPERATOR]])
       argument.update('bottom')
       const result = (argument.argument as Argument).argumentInfo.type
       const expected = MirArgumentType.String
@@ -1866,13 +1869,13 @@ describe('Argument methods', () => {
     })
 
     it('filter function with subscript', () => {
-      const cache = new Cache()
+      const context: Context = { cache: new Cache(), i18n: new I18n() }
       const argumentInfo = {
         name: 'function',
         optional: false,
         type: MirArgumentType.FilterFunction,
       }
-      const argument = new Argument(cache, argumentInfo, [Filter.lessThan, 5])
+      const argument = new Argument(context, argumentInfo, [Filter.lessThan, 5])
       argument.update('custom')
       const result = (argument.argument as Argument).argumentInfo.type
       const expected = MirArgumentType.Subscript
@@ -1880,14 +1883,14 @@ describe('Argument methods', () => {
     })
 
     it('reducer function', () => {
-      const cache = new Cache()
+      const context: Context = { cache: new Cache(), i18n: new I18n() }
       const argumentInfo = {
         name: 'function',
         optional: false,
         type: MirArgumentType.ReducerFunction,
       }
 
-      const argument = new Argument(cache, argumentInfo, Reducer.averageMeanWeighted)
+      const argument = new Argument(context, argumentInfo, Reducer.averageMeanWeighted)
       const newValue: Reducer = Reducer.averageMean
       argument.update(newValue)
 
@@ -1895,14 +1898,14 @@ describe('Argument methods', () => {
     })
 
     it('float', () => {
-      const cache = new Cache()
+      const context: Context = { cache: new Cache(), i18n: new I18n() }
       const argumentInfo = {
         name: 'value',
         optional: false,
         type: MirArgumentType.Float,
       }
 
-      const argument = new Argument(cache, argumentInfo, 0.0)
+      const argument = new Argument(context, argumentInfo, 0.0)
       const newValue = 1.0
       argument.update(newValue)
 
@@ -1910,9 +1913,9 @@ describe('Argument methods', () => {
     })
 
     it('string', () => {
-      const cache = new Cache()
+      const context: Context = { cache: new Cache(), i18n: new I18n() }
       const argumentInfo = operatorInfos[OperatorCode.MapGetBoolean].arguments[0]
-      const argument = new Argument(cache, argumentInfo, 'key')
+      const argument = new Argument(context, argumentInfo, 'key')
       const newValue = 'value'
       argument.update(newValue)
 
@@ -1920,14 +1923,14 @@ describe('Argument methods', () => {
     })
 
     it('boolean', () => {
-      const cache = new Cache()
+      const context: Context = { cache: new Cache(), i18n: new I18n() }
       const argumentInfo = {
         name: 'ascending',
         optional: false,
         type: MirArgumentType.Boolean,
       }
 
-      const argument = new Argument(cache, argumentInfo, true)
+      const argument = new Argument(context, argumentInfo, true)
       const newValue = false
       argument.update(newValue)
 
@@ -1935,10 +1938,10 @@ describe('Argument methods', () => {
     })
 
     it('map input', () => {
-      const cache = new Cache()
+      const context: Context = { cache: new Cache(), i18n: new I18n() }
       const operator: MirOperator = [OperatorCode.StringMatch, { BTC: true }, true]
       const argumentInfo: ArgumentInfo = operatorInfos[operator[0]].arguments[0]
-      const argument = new Argument(cache, argumentInfo, operator[1])
+      const argument = new Argument(context, argumentInfo, operator[1])
       const newValue = { ETH: false }
       argument.update(newValue)
 

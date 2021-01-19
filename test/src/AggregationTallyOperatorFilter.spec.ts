@@ -1,14 +1,15 @@
 import { AggregationTallyOperatorFilter } from '../../src/aggregationTallyOperatorFilter'
 import { Cache } from '../../src/structures'
 import { AggregationTallyFilter, MirAggregationTallyFilterOperator } from '../../src/types'
+import { I18n } from '../../src/i18n'
 
 describe('AggregationTallyOperatorFilter', () => {
   describe('getJs', () => {
     it('without argument', () => {
       const mirOperator: MirAggregationTallyFilterOperator = AggregationTallyFilter.mode
 
-      const cache = new Cache()
-      const operator = new AggregationTallyOperatorFilter(cache, mirOperator, 0)
+      const context = { cache: new Cache(), i18n: new I18n() }
+      const operator = new AggregationTallyOperatorFilter(context, mirOperator, 0)
 
       const result = operator.getJs()
       const expected = 'Witnet.Types.FILTERS.mode'
@@ -21,8 +22,8 @@ describe('AggregationTallyOperatorFilter', () => {
         3,
       ]
 
-      const cache = new Cache()
-      const operator = new AggregationTallyOperatorFilter(cache, mirOperator, 0)
+      const context = { cache: new Cache(), i18n: new I18n() }
+      const operator = new AggregationTallyOperatorFilter(context, mirOperator, 0)
 
       const result = operator.getJs()
       const expected = '[Witnet.Types.FILTERS.deviationStandard, 3]'
@@ -35,8 +36,8 @@ describe('AggregationTallyOperatorFilter', () => {
     it('without argument', () => {
       const mirOperator: MirAggregationTallyFilterOperator = AggregationTallyFilter.mode
 
-      const cache = new Cache()
-      const operator = new AggregationTallyOperatorFilter(cache, mirOperator, 0)
+      const context = { cache: new Cache(), i18n: new I18n() }
+      const operator = new AggregationTallyOperatorFilter(context, mirOperator, 0)
 
       const result = operator.getMarkup()
       const expected = {
@@ -80,8 +81,8 @@ describe('AggregationTallyOperatorFilter', () => {
         3,
       ]
 
-      const cache = new Cache()
-      const operator = new AggregationTallyOperatorFilter(cache, mirOperator, 0)
+      const context = { cache: new Cache(), i18n: new I18n() }
+      const operator = new AggregationTallyOperatorFilter(context, mirOperator, 0)
 
       const result = operator.getMarkup()
       const expected = {
@@ -116,7 +117,7 @@ describe('AggregationTallyOperatorFilter', () => {
             },
           ],
           description:
-            'Discard any result that is more than ${number} times the standard deviation times away from the average. Long story short: remove outliers',
+            'Discard any result that is more than "by" times the standard deviation times away from the average. Long story short: remove outliers',
           hierarchicalType: 'selectedOperatorOption',
           label: 'deviationStandard',
           markupType: 'option',
@@ -132,8 +133,8 @@ describe('AggregationTallyOperatorFilter', () => {
     it('without argument', () => {
       const mirOperator: MirAggregationTallyFilterOperator = AggregationTallyFilter.mode
 
-      const cache = new Cache()
-      const operator = new AggregationTallyOperatorFilter(cache, mirOperator, 0)
+      const context = { cache: new Cache(), i18n: new I18n() }
+      const operator = new AggregationTallyOperatorFilter(context, mirOperator, 0)
 
       const result = operator.getMir()
 
@@ -146,8 +147,8 @@ describe('AggregationTallyOperatorFilter', () => {
         3,
       ]
 
-      const cache = new Cache()
-      const operator = new AggregationTallyOperatorFilter(cache, mirOperator, 0)
+      const context = { cache: new Cache(), i18n: new I18n() }
+      const operator = new AggregationTallyOperatorFilter(context, mirOperator, 0)
 
       const result = operator.getMir()
       expect(result).toStrictEqual(mirOperator)
@@ -158,8 +159,8 @@ describe('AggregationTallyOperatorFilter', () => {
     it('without argument', () => {
       const mirOperator: MirAggregationTallyFilterOperator = AggregationTallyFilter.mode
 
-      const cache = new Cache()
-      const operator = new AggregationTallyOperatorFilter(cache, mirOperator, 0)
+      const context = { cache: new Cache(), i18n: new I18n() }
+      const operator = new AggregationTallyOperatorFilter(context, mirOperator, 0)
 
       operator.update(AggregationTallyFilter.deviationStandard)
 
@@ -173,8 +174,8 @@ describe('AggregationTallyOperatorFilter', () => {
         3,
       ]
 
-      const cache = new Cache()
-      const operator = new AggregationTallyOperatorFilter(cache, mirOperator, 0)
+      const context = { cache: new Cache(), i18n: new I18n() }
+      const operator = new AggregationTallyOperatorFilter(context, mirOperator, 0)
 
       operator.update(AggregationTallyFilter.deviationStandard)
 

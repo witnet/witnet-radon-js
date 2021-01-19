@@ -1,12 +1,11 @@
-import { AggregationTallyReducer, MarkupSelect } from './types';
-import { Cache } from './structures';
+import { AggregationTallyReducer, MarkupSelect, Context } from './types';
 export declare class AggregationTallyOperatorReducer {
-    cache: Cache;
+    context: Context;
     code: AggregationTallyReducer;
     id: number;
     scriptId: number;
     label: string;
-    constructor(cache: Cache, operator: AggregationTallyReducer | undefined, scriptId: number);
+    constructor(context: Context, operator: AggregationTallyReducer | undefined, scriptId: number);
     getJs(): string;
     getMarkup(): MarkupSelect;
     getMir(): AggregationTallyReducer;
