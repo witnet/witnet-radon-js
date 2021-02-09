@@ -4,8 +4,9 @@
   "description": "",
   "main": "dist/src/index.js",
   "files": [
-    "dist/"
+    "dist/**/*"
   ],
+  "prepublish": "npm run build",
   "scripts": {
     "build": "tsc -p tsconfig.build.json",
     "fmt": "prettier --check '{src,test}/**/*.{t,j}s'",
