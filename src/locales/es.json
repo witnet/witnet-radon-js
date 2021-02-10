@@ -1,12 +1,12 @@
 {
   "operator_info_description": {
     "get_key": "Access to the '{{key}}' key of the input {{inputType}}, and manage the value as {{outputType}}",
-    "cast": "Cast the {{inputType}} input into {{outputType}}",
+    "cast": "Convierte el {{inputType}} de entrada en un {{outputType}}",
     "array": {
       "count": "Cuenta el número de elementos en el Array de entrada",
-      "filter": "Discard the items in the input array that doesn't match the {{filter}} function",
-      "flatten": "Remove {{depth}} level of nesting of the input Array",
-      "map": "Apply the {{subscript}} script on all the elements of the input Array",
+      "filter": "Descarta los elementos del Array entrante que no pasan el filtro {{filter}}",
+      "flatten": "Elimina {{depth}} niveles de profundidad redundantes del Array de entrada",
+      "map": "Aplica el script {{subscript}} en cada uno de los elementos del Array de entrada",
       "reduce": "Reduce all the items in the input Array into a single item of type {{outputType}} by applying the {{reducer}} reducer function",
       "some": "Tell whether at least one of the items in the input Array passes the condition defined by the {{filter}} filter function",
       "sort": "Sort the input Array in {{order}} order",
