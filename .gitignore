@@ -1,5 +1,7 @@
 node_modules/
-dist
+dist/**/*.ts
+dist/**/*.ts.map
+dist/tsconfig.build.tsbuildinfo
 **/coverage/
 
 # Log files
