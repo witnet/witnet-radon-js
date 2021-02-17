@@ -7,12 +7,12 @@
   "files": [
     "dist/**/*"
   ],
-  "prepublish": "npm run build",
   "scripts": {
     "build": "tsc -p tsconfig.build.json",
     "fmt": "prettier --check '{src,test}/**/*.{t,j}s'",
     "fmt!": "prettier --write '{src,test}/**/*.{t,j}s'",
-    "test": "jest"
+    "test": "jest",
+    "prepare": "npm run build"
   },
   "keywords": ["radon", "witnet"],
   "author": "Witnet Foundation <info@witnet.foundation>",
