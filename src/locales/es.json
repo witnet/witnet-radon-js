@@ -1,75 +1,75 @@
 {
   "operator_info_description": {
-    "get_key": "Access to the '{{key}}' key of the input {{inputType}}, and manage the value as {{outputType}}",
+    "get_key": "Accede a la '{{key}}' clave de la entrada {{inputType}}, y administra el valor como {{outputType}}",
     "cast": "Convierte el {{inputType}} de entrada en un {{outputType}}",
     "array": {
       "count": "Cuenta el número de elementos en el Array de entrada",
       "filter": "Descarta los elementos del Array entrante que no pasan el filtro {{filter}}",
       "flatten": "Elimina {{depth}} niveles de profundidad redundantes del Array de entrada",
       "map": "Aplica el script {{subscript}} en cada uno de los elementos del Array de entrada",
-      "reduce": "Reduce all the items in the input Array into a single item of type {{outputType}} by applying the {{reducer}} reducer function",
-      "some": "Tell whether at least one of the items in the input Array passes the condition defined by the {{filter}} filter function",
-      "sort": "Sort the input Array in {{order}} order",
-      "take": "Take the elements from the input Array between positions {{min}} and {{max}}, and discard all the rest"
+      "reduce": "Combina todos los objetos en el Array de entrada a un solo elemento de tipo {{outputType}} aplicando la función de reducción {{reducer}}",
+      "some": "Comprueba si al menos uno de los elementos del Array de entrada cumple con la condición definida por la función de filtro {{filter}}",
+      "sort": "Ordena el Array de entrada en orden {{order}}",
+      "take": "Toma los elementos del Array entre las posiciones {{min}} y {{max}} y descarta todo el resto"
     },
     "boolean": {
-      "match": "Match the Boolean input with \"{{subscript}}\" and return the value associated with it. Similar than a switch statement",
-      "negate": "Negate the input Boolean (make it True if it was False, or make it False if it was True)"
+      "match": "Coincide la entrada booleana con \"{{subscript}}\" y devuelve el valor asociado a ella. Similar a un switch",
+      "negate": "Niega la entrada booleana (la hace True si era False, o False si era True)"
     },
     "bytes": {
-      "hash": "Compute the hash of the input Bytes"
+      "hash": "Calcula el hash de los Bytes de entrada"
     },
     "integer": {
-      "absolute": "Calculate the absolute value of the input Integer",
-      "greater_than": "Check if the input Integer is greater than {{argument}} (output will be Boolean)",
-      "lessThan": "Check if the input Integer is greater than {{argument}} (output will be Boolean)",
-      "match": "Match the Integer input with {{subscript}} and return the value associated with it. Similar than a switch statement",
-      "modulo": "Calculate the integer division of the input integer by {{argument}}",
-      "multiply": "Multiply the input Integer by {{factor}}",
-      "negate": "Calculate the negative of the input Integer",
-      "power": "Calculate the input Integer raised to the power of {{exponent}}",
-      "reciprocal": "Calculate the multiplicative inverse (1/x) of the input Integer, and manage the result as Float.",
-      "sum": "Sum {{addend}} to the input Integer"
+      "absolute": "Calcula el valor absoluto del Integer de entrada",
+      "greater_than": "Comprueba si el Integer de entrada es mayor que {{argument}} (la salida será booleana)",
+      "lessThan": "Comprueba si el Integer de entrada es mayor que {{argument}} (la salida será booleana)",
+      "match": "Coincide la entrada Integer con {{subscript}} y devuelve el valor asociado a ella. Similar a un switch",
+      "modulo": "Calcula el valor integer de la división de una entrada integer por {{argument}}",
+      "multiply": "Multiplicar el Integer de entrada por {{factor}}",
+      "negate": "Calcula el negativo del Integer de entrada (e.g. 1 se convierte en -1)",
+      "power": "Calcula el Integer de entrada elevado a {{exponent}}",
+      "reciprocal": "Calcula el recíproco o inverso multiplicativo (1/x) del Integer de entrada, y proporciona el resultado como Float.",
+      "sum": "Suma {{addend}} al Integer de entrada"
     },
     "float": {
-      "absolute": "Compute the absolute value of the input Float, and manage the result as Float",
-      "celling": "Compute the the least Integer greater than or equal the input Float",
-      "greater_than": "Compare if the input Float is greater than {{value}}, and manage the value as Boolean",
-      "floor": "Compute the greatest integer less or equal the input Float, and manage the result as Integer",
-      "less_than": "Compare if the input Float is less than {{argument}}, and manage the value as Boolean",
-      "modulo": "Compute the division by the input Float and {{argument}} Then manage the result as Float",
-      "multiply": "Compute the product by the input Float and {{argument}}. Then manage the result as Integer",
-      "negate": "Compute the negative of the input Integer, and manage the result as Float",
-      "power": "Compute the input Float raised to the power of {{exponent}}. Then, handle the result as Float",
-      "reciprocal": "Compute the multiplicative inverse of the input Float and manage the result as Float",
-      "round": "Round integer part from the Float input, and manage the result as Integer",
-      "sum": "Compute the addition between the input Float and {{addend}}. Then handle the result as Float",
-      "truncate": "Take integer part from the Float input, and manage the result as Integer"
+      "absolute": "Calcula el valor absoluto del Float de entrada, y proporciona el resultado como Float",
+      "celling": "Calcula el valor integer más pequeño, el cual es mayor o igual que el float de entrada",
+      "greater_than": "Compara si la entrada Float es mayor que {{value}} y administra el valor como booleano",
+      "floor": "Calcula el valor integer más grande, el cual es menor o igual a la entrada de Float, y administra el resultado como integer",
+      "less_than": "Compara si la entrada Float es menor que {{argument}} y administra el valor como booleano",
+      "modulo": "Calcula el valor obtenido de la división del float de entrada y {{argument}} Luego gestiona el resultado como Float",
+      "multiply": "Calcula el resultado del producto del float de entrada por {{argument}}. Luego gestiona el resultado como Integer",
+      "negate": "Calcula el valor absoluto del Float de entrada, y proporciona el resultado como Float",
+      "power": "Calcula el float de entrada elevado a la potencia de {{exponent}}. Luego, gestiona el resultado como un float",
+      "reciprocal": "Calcula el recíproco o inverso multiplicativo (/x) del Integer de entrada, y proporciona el resultado como Float",
+      "round": "Redondea la parte entera de la entrada Float y administra el resultado como Integer",
+      "sum": "Calcula la suma entre el float de entrada y {{addend}}. Luego maneja el resultado como float",
+      "truncate": "Toma la parte entera de la entrada Float y administra el resultado como Integer"
     },
     "map": {
-      "entries": "Obtain a list of key-value tuples from the input Map, and manage the value as Array",
-      "keys": "Obtain a list with the keys names of the input Map, and manage the value as Array of String.",
-      "values": "Obtain a list with the values of the input Map, and manage the value as an Array of {{type}}"
+      "entries": "Obtiene una lista de tuplas clave-valor del mapa de entrada, y administrar el valor como Array",
+      "keys": "Obtiene una lista con los nombres claves del Mapa de entrada y administrar el valor como un Array de Strings.",
+      "values": "Obtiene una lista con los valores del Map de entrada, y administrar el valor como un Array de {{type}}"
     },
     "string": {
-      "length": "Count the number of elements of the input String, and manage the values as Integer.",
-      "match": "Match the String input with {{subscript}} and return the value associated with it. Similar than a switch statement",
-      "parse_json_array": "Interpretate the input String as a JSON-encoded Array structure.",
-      "parse_json_map": "Interpretate the input String as a JSON-encoded Map structure.",
-      "parse_xml": "Interpretate the input String as a XML-encoded Map structure.",
-      "to_lower_case": "Convert to lowercase the input String, and manage the value as String",
-      "to_upper_case": "Convert to uppercase the input String, and manage the value as String"
+      "length": "Cuenta el número de elementos del String de entrada, y administra los valores como Integer.",
+      "match": "Hace coincidir el String de entrada con {{subscript}} y devuelve el valor asociado a ella. Similar a un switch",
+      "parse_json_array": "Interpreta el String de entrada como una estructura de Array codificada en JSON.",
+      "parse_json_map": "Interpreta el String de entrada como una estructura Map codificada en JSON.",
+      "parse_xml": "Interpreta el String de entrada como una estructura Map codificada como XML.",
+      "to_lower_case": "Convertir en minúsculas el String de entrada, y administrar el valor como String",
+      "to_upper_case": "Convertir en mayúsculas el String de entrada, y administrar el valor como String"
     }
   },
   "aggregation_tally_description": {
     "filter": {
-      "deviation_standard": "Discard any result that is more than \"{{number}}\" times the standard deviation times away from the average. Long story short: remove outliers",
-      "mode": "Discard any result that is different from the mode. Long story short: remove outliers"
+      "deviation_standard": "Descarta cualquier resultado que sea más de \"{{number}}\" veces el tiempo de desviación estándar lejos del promedio. En resumen: elimina los valores atípicos",
+      "mode": "Descarta cualquier resultado que sea diferente de la moda. En resumen: elimina los valores atípicos"
     },
     "reducer": {
       "mode": "Calcula la moda de los valores",
-      "average_mean": "Compute the average mean of the values",
-      "deviation_standard": "Compute the standard deviation of the values"
+      "average_mean": "Calcula la media aritmética de los valores",
+      "deviation_standard": "Calcula la desviación estándar de los valores"
     }
   }
 }
