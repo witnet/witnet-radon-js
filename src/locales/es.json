@@ -37,18 +37,18 @@
       "greater_than": "Compara si la entrada Float es mayor que {{value}} y administra el valor como Boolean",
       "floor": "Calcula el valor Integer más grande, el cual es menor o igual a la entrada Float, y administra el resultado como Integer",
       "less_than": "Compara si la entrada Float es menor que {{argument}} y administra el valor como booleano",
-      "modulo": "Calcula el valor obtenido de la división del float de entrada y {{argument}} Luego gestiona el resultado como Float",
-      "multiply": "Calcula el resultado del producto del float de entrada por {{argument}}. Luego gestiona el resultado como Integer",
+      "modulo": "Calcula el valor obtenido de la división del Float de entrada y {{argument}} Luego gestiona el resultado como Float",
+      "multiply": "Calcula el resultado del producto del Float de entrada por {{argument}}. Luego gestiona el resultado como Integer",
       "negate": "Calcula el valor absoluto del Float de entrada, y proporciona el resultado como Float",
-      "power": "Calcula el float de entrada elevado a la potencia de {{exponent}}. Luego, gestiona el resultado como un float",
+      "power": "Calcula el Float de entrada elevado a la potencia de {{exponent}}. Luego, gestiona el resultado como un Float",
       "reciprocal": "Calcula el recíproco o inverso multiplicativo (/x) del Integer de entrada, y proporciona el resultado como Float",
       "round": "Redondea la parte entera de la entrada Float y administra el resultado como Integer",
-      "sum": "Calcula la suma entre el float de entrada y {{addend}}. Luego maneja el resultado como float",
+      "sum": "Calcula la suma entre el Float de entrada y {{addend}}. Luego administra el resultado como Float",
       "truncate": "Toma la parte entera de la entrada Float y administra el resultado como Integer"
     },
     "map": {
       "entries": "Obtiene una lista de tuplas clave-valor del mapa de entrada, y administrar el valor como Array",
-      "keys": "Obtiene una lista con los nombres claves del Mapa de entrada y administrar el valor como un Array de Strings.",
+      "keys": "Obtiene una lista con los nombres claves del Map de entrada y administrar el valor como un Array de Strings.",
       "values": "Obtiene una lista con los valores del Map de entrada, y administrar el valor como un Array de {{type}}"
     },
     "string": {
