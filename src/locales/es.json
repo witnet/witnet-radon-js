@@ -13,7 +13,7 @@
       "take": "Toma los elementos del Array entre las posiciones {{min}} y {{max}} y descarta todo el resto"
     },
     "boolean": {
-      "match": "Coincide la entrada booleana con \"{{subscript}}\" y devuelve el valor asociado a ella. Similar a un switch",
+      "match": "Coincide la entrada Boolean con \"{{subscript}}\" y devuelve el valor asociado a ella. Similar a un switch",
       "negate": "Niega la entrada booleana (la hace True si era False, o False si era True)"
     },
     "bytes": {
@@ -24,7 +24,7 @@
       "greater_than": "Comprueba si el Integer de entrada es mayor que {{argument}} (la salida será booleana)",
       "lessThan": "Comprueba si el Integer de entrada es mayor que {{argument}} (la salida será booleana)",
       "match": "Coincide la entrada Integer con {{subscript}} y devuelve el valor asociado a ella. Similar a un switch",
-      "modulo": "Calcula el valor integer de la división de una entrada integer por {{argument}}",
+      "modulo": "Calcula el valor Integer de la división de una entrada Integer entre {{argument}}",
       "multiply": "Multiplicar el Integer de entrada por {{factor}}",
       "negate": "Calcula el negativo del Integer de entrada (e.g. 1 se convierte en -1)",
       "power": "Calcula el Integer de entrada elevado a {{exponent}}",
@@ -33,9 +33,9 @@
     },
     "float": {
       "absolute": "Calcula el valor absoluto del Float de entrada, y proporciona el resultado como Float",
-      "celling": "Calcula el valor integer más pequeño, el cual es mayor o igual que el float de entrada",
-      "greater_than": "Compara si la entrada Float es mayor que {{value}} y administra el valor como booleano",
-      "floor": "Calcula el valor integer más grande, el cual es menor o igual a la entrada de Float, y administra el resultado como integer",
+      "celling": "Calcula el valor Integer más pequeño, el cual es mayor o igual que el Float de entrada",
+      "greater_than": "Compara si la entrada Float es mayor que {{value}} y administra el valor como Boolean",
+      "floor": "Calcula el valor Integer más grande, el cual es menor o igual a la entrada Float, y administra el resultado como Integer",
       "less_than": "Compara si la entrada Float es menor que {{argument}} y administra el valor como booleano",
       "modulo": "Calcula el valor obtenido de la división del float de entrada y {{argument}} Luego gestiona el resultado como Float",
       "multiply": "Calcula el resultado del producto del float de entrada por {{argument}}. Luego gestiona el resultado como Integer",
