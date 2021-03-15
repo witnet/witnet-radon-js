@@ -34,31 +34,31 @@
     "float": {
       "absolute": "Calcula el valor absoluto del Float de entrada, y proporciona el resultado como Float",
       "celling": "Calcula el valor Integer más pequeño, el cual es mayor o igual que el Float de entrada",
-      "greater_than": "Compara si la entrada Float es mayor que {{value}} y administra el valor como Boolean",
-      "floor": "Calcula el valor Integer más grande, el cual es menor o igual a la entrada Float, y administra el resultado como Integer",
-      "less_than": "Compara si la entrada Float es menor que {{argument}} y administra el valor como booleano",
-      "modulo": "Calcula el valor obtenido de la división del Float de entrada y {{argument}} Luego gestiona el resultado como Float",
-      "multiply": "Calcula el resultado del producto del Float de entrada por {{argument}}. Luego gestiona el resultado como Integer",
+      "greater_than": "Compara si la entrada Float es mayor que {{value}} y proporciona el resultado como Boolean",
+      "floor": "Calcula el valor Integer más grande, el cual es menor o igual a la entrada Float, y proporciona el resultado como Integer",
+      "less_than": "Compara si la entrada Float es menor que {{argument}} y proporciona el resultado como Boolean",
+      "modulo": "Calcula el valor obtenido de la división del Float de entrada y {{argument}} Luego proporciona el resultado como Float",
+      "multiply": "Calcula el resultado del producto del Float de entrada por {{argument}}. Luego proporciona el resultado como Integer",
       "negate": "Calcula el valor absoluto del Float de entrada, y proporciona el resultado como Float",
       "power": "Calcula el Float de entrada elevado a la potencia de {{exponent}}. Luego, gestiona el resultado como un Float",
       "reciprocal": "Calcula el recíproco o inverso multiplicativo (/x) del Integer de entrada, y proporciona el resultado como Float",
-      "round": "Redondea la parte entera de la entrada Float y administra el resultado como Integer",
+      "round": "Redondea la parte entera de la entrada Float y proporciona el resultado como Integer",
       "sum": "Calcula la suma entre el Float de entrada y {{addend}}. Luego administra el resultado como Float",
-      "truncate": "Toma la parte entera de la entrada Float y administra el resultado como Integer"
+      "truncate": "Toma la parte entera de la entrada Float y proporciona el resultado como Integer"
     },
     "map": {
-      "entries": "Obtiene una lista de tuplas clave-valor del mapa de entrada, y administrar el valor como Array",
-      "keys": "Obtiene una lista con los nombres claves del Map de entrada y administrar el valor como un Array de Strings.",
-      "values": "Obtiene una lista con los valores del Map de entrada, y administrar el valor como un Array de {{type}}"
+      "entries": "Obtiene una lista de tuplas clave-valor del mapa de entrada, y proporciona el resultado como Array",
+      "keys": "Obtiene una lista con los nombres claves del Map de entrada y proporciona el resultado como un Array de Strings.",
+      "values": "Obtiene una lista con los valores del Map de entrada, y proporciona el resultado como un Array de {{type}}"
     },
     "string": {
-      "length": "Cuenta el número de elementos del String de entrada, y administra los valores como Integer.",
+      "length": "Cuenta el número de elementos del String de entrada, y proporciona el resultado como Integer.",
       "match": "Hace coincidir el String de entrada con {{subscript}} y devuelve el valor asociado a ella. Similar a un switch",
       "parse_json_array": "Interpreta el String de entrada como una estructura de Array codificada en JSON.",
       "parse_json_map": "Interpreta el String de entrada como una estructura Map codificada en JSON.",
       "parse_xml": "Interpreta el String de entrada como una estructura Map codificada como XML.",
-      "to_lower_case": "Convertir en minúsculas el String de entrada, y administrar el valor como String",
-      "to_upper_case": "Convertir en mayúsculas el String de entrada, y administrar el valor como String"
+      "to_lower_case": "Convertir en minúsculas el String de entrada, y proporciona el resultado como String",
+      "to_upper_case": "Convertir en mayúsculas el String de entrada, y proporciona el resultado como String"
     }
   },
   "aggregation_tally_description": {
