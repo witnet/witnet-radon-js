@@ -196,7 +196,7 @@ export class Argument {
     }
   }
 
-  public update(value: string | number | boolean | Filter | Object) {
+  public update(value: string | number | boolean | Filter | keyof typeof Reducer | Object) {
     if (this.argumentType === MarkupArgumentType.SelectFilter) {
       if (value === 'custom' && (this.value as [Filter, MirScript])[0] !== Filter['custom']) {
         // the current argument is an input argument and the new value is a subscript argument
@@ -224,6 +224,8 @@ export class Argument {
         // the current argument is an input argument and the new value is also an input argument
         ;(this.value as [Filter, MirArgument])[0] = Filter[value as keyof typeof Filter]
       }
+    } else if (this.argumentType === MarkupArgumentType.SelectReduce) {
+      this.value = Reducer[value as keyof typeof Reducer]
     } else {
       this.value = value
     }

@@ -1472,7 +1472,7 @@ describe('Argument methods', () => {
 
       const argument = new Argument(context, argumentInfo, Reducer.averageMean)
       const newValue: Reducer = Reducer.averageMean
-      argument.update(newValue)
+      argument.update(Reducer[newValue])
 
       expect(argument.value).toStrictEqual(newValue)
     })
