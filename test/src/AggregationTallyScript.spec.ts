@@ -138,6 +138,12 @@ describe('AggregationTallyScript', () => {
             },
             {
               hierarchicalType: 'operatorOption',
+              label: 'averageMedian',
+              markupType: 'option',
+              outputType: 'filterOutput',
+            },
+            {
+              hierarchicalType: 'operatorOption',
               label: 'deviationStandard',
               markupType: 'option',
               outputType: 'filterOutput',
@@ -225,6 +231,12 @@ describe('AggregationTallyScript', () => {
             {
               hierarchicalType: 'operatorOption',
               label: 'averageMean',
+              markupType: 'option',
+              outputType: 'filterOutput',
+            },
+            {
+              hierarchicalType: 'operatorOption',
+              label: 'averageMedian',
               markupType: 'option',
               outputType: 'filterOutput',
             },

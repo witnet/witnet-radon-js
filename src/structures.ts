@@ -136,6 +136,8 @@ export const aggregationTallyReducerDescriptions: AggregationTallyReducerDescrip
     i18n.t('aggregation_tally_description.reducer.mode'),
   [AggregationTallyReducer.averageMean]: (i18n: I18n) => () =>
     i18n.t('aggregation_tally_description.reducer.average_mean'),
+  [AggregationTallyReducer.averageMedian]: (i18n: I18n) => () =>
+    i18n.t('aggregation_tally_description.reducer.average_median'),
   [AggregationTallyReducer.deviationStandard]: (i18n: I18n) => () =>
     i18n.t('aggregation_tally_description.reducer.deviation_standard'),
 }

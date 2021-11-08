@@ -65,7 +65,7 @@ export enum Reducer {
   mode = 0x02,
   averageMean = 0x03,
   //averageMeanWeighted = 0x04,
-  //averageMedian = 0x05,
+  averageMedian = 0x05,
   //averageMedianWeighted = 0x06,
   deviationStandard = 0x07,
   //deviationAverage = 0x08,
@@ -80,9 +80,9 @@ export enum Filter {
   //deviationAbsolute = 0x03,
   //deviationRelative = 0x04,
   deviationStandard = 0x05,
+  mode = 0x08,
   //top = 0x06,
   //bottom = 0x07,
-  mode = 0x08,
   //lessOrEqualThan = 0x80,
   //greaterOrEqualThan = 0x81,
   //notEquals = 0x82,
@@ -342,6 +342,7 @@ export enum AggregationTallyFilter {
 export enum AggregationTallyReducer {
   mode = 0x02,
   averageMean = 0x03,
+  averageMedian = 0x05,
   deviationStandard = 0x07,
 }
 

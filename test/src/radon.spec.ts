@@ -318,6 +318,12 @@ describe('Radon', () => {
               },
               {
                 hierarchicalType: 'operatorOption',
+                label: 'averageMedian',
+                markupType: 'option',
+                outputType: 'filterOutput',
+              },
+              {
+                hierarchicalType: 'operatorOption',
                 label: 'deviationStandard',
                 markupType: 'option',
                 outputType: 'filterOutput',
@@ -423,6 +429,12 @@ describe('Radon', () => {
               {
                 hierarchicalType: 'operatorOption',
                 label: 'averageMean',
+                markupType: 'option',
+                outputType: 'filterOutput',
+              },
+              {
+                hierarchicalType: 'operatorOption',
+                label: 'averageMedian',
                 markupType: 'option',
                 outputType: 'filterOutput',
               },
@@ -984,20 +996,20 @@ describe('Radon', () => {
                       markupType: 'select',
                       options: [
                         {
+                          hierarchicalType: 'operatorOption',
                           label: 'deviationStandard',
-                          hierarchicalType: 'operatorOption',
                           markupType: 'option',
                           outputType: 'filterOutput',
                         },
                         {
+                          hierarchicalType: 'operatorOption',
                           label: 'mode',
-                          hierarchicalType: 'operatorOption',
                           markupType: 'option',
                           outputType: 'filterOutput',
                         },
                         {
-                          label: 'custom',
                           hierarchicalType: 'operatorOption',
+                          label: 'custom',
                           markupType: 'option',
                           outputType: 'filterOutput',
                         },
@@ -2713,6 +2725,12 @@ describe('Radon', () => {
               },
               {
                 hierarchicalType: 'operatorOption',
+                label: 'averageMedian',
+                markupType: 'option',
+                outputType: 'filterOutput',
+              },
+              {
+                hierarchicalType: 'operatorOption',
                 label: 'deviationStandard',
                 markupType: 'option',
                 outputType: 'filterOutput',
@@ -2823,6 +2841,12 @@ describe('Radon', () => {
               },
               {
                 hierarchicalType: 'operatorOption',
+                label: 'averageMedian',
+                markupType: 'option',
+                outputType: 'filterOutput',
+              },
+              {
+                hierarchicalType: 'operatorOption',
                 label: 'deviationStandard',
                 markupType: 'option',
                 outputType: 'filterOutput',
@@ -2895,7 +2919,7 @@ describe('Radon', () => {
                 OperatorCode.ArrayFilter,
                 [
                   [OperatorCode.MapGetArray, 'symbol'],
-                  [OperatorCode.StringMatch, { "BTC": true, "ETH": true }],
+                  [OperatorCode.StringMatch, { BTC: true, ETH: true }],
                 ],
               ],
               [OperatorCode.ArraySort, [[OperatorCode.MapGetString, 'symbol']]],
