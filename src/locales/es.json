@@ -1,6 +1,6 @@
 {
   "operator_info_description": {
-    "get_key": "Accede a la '{{key}}' clave de la entrada {{inputType}}, y administra el valor como {{outputType}}",
+    "get_key": "Access to the '{{key}}' key of the input {{inputType}}, and manage the value as {{outputType}}",
     "cast": "Convierte el {{inputType}} de entrada en un {{outputType}}",
     "array": {
       "count": "Cuenta el número de elementos en el Array de entrada",
@@ -69,6 +69,7 @@
     "reducer": {
       "mode": "Calcula la moda de los valores",
       "average_mean": "Calcula la media aritmética de los valores",
+      "average_median": "Calcula la mediana de los valores",
       "deviation_standard": "Calcula la desviación estándar de los valores"
     }
   }
