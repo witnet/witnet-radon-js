@@ -1,5 +1,6 @@
 import { Radon } from '../../src/radon'
 import { Operator } from '../../src/operator'
+import { DEFAULT_KIND_OPTION, KIND_OPTIONS, CONTENT_TYPE_OPTIONS } from '../../src/constants'
 import {
   MirRequest,
   OperatorCode,
@@ -15,15 +16,19 @@ describe('Radon', () => {
       timelock: 0,
       retrieve: [
         {
-          kind: 'HTTP-GET',
+          kind: DEFAULT_KIND_OPTION,
+          kindOptions: KIND_OPTIONS,
           url: 'source_1',
           contentType: 'JSON API',
+          contentTypeOptions: CONTENT_TYPE_OPTIONS,
           script: [OperatorCode.StringAsBoolean, OperatorCode.BooleanNegate],
         },
         {
-          kind: 'HTTP-GET',
+          kind: DEFAULT_KIND_OPTION,
+          kindOptions: KIND_OPTIONS,
           url: 'source_2',
           contentType: 'JSON API',
+          contentTypeOptions: CONTENT_TYPE_OPTIONS,
           script: [OperatorCode.StringAsBoolean, OperatorCode.BooleanNegate],
         },
       ],
@@ -47,15 +52,19 @@ describe('Radon', () => {
       timelock: 0,
       retrieve: [
         {
-          kind: 'HTTP-GET',
+          kind: DEFAULT_KIND_OPTION,
+          kindOptions: KIND_OPTIONS,
           url: 'source_1',
           contentType: 'JSON API',
+          contentTypeOptions: CONTENT_TYPE_OPTIONS,
           script: [OperatorCode.StringAsBoolean, OperatorCode.BooleanNegate],
         },
         {
-          kind: 'HTTP-GET',
+          kind: DEFAULT_KIND_OPTION,
+          kindOptions: KIND_OPTIONS,
           url: 'source_2',
           contentType: 'JSON API',
+          contentTypeOptions: CONTENT_TYPE_OPTIONS,
           script: [OperatorCode.StringAsBoolean, OperatorCode.BooleanNegate],
         },
       ],
@@ -78,15 +87,19 @@ describe('Radon', () => {
       timelock: 0,
       retrieve: [
         {
-          kind: 'HTTP-GET',
+          kind: DEFAULT_KIND_OPTION,
+          kindOptions: KIND_OPTIONS,
           url: 'source_1',
           contentType: 'JSON API',
+          contentTypeOptions: CONTENT_TYPE_OPTIONS,
           script: [OperatorCode.StringAsBoolean, OperatorCode.BooleanNegate],
         },
         {
-          kind: 'HTTP-GET',
+          kind: DEFAULT_KIND_OPTION,
+          kindOptions: KIND_OPTIONS,
           url: 'source_2',
           contentType: 'JSON API',
+          contentTypeOptions: CONTENT_TYPE_OPTIONS,
           script: [OperatorCode.StringAsBoolean, OperatorCode.BooleanNegate],
         },
       ],
@@ -111,15 +124,19 @@ describe('Radon', () => {
         timelock: 0,
         retrieve: [
           {
-            kind: 'HTTP-GET',
+            kind: DEFAULT_KIND_OPTION,
+            kindOptions: KIND_OPTIONS,
             url: 'source_1',
             contentType: 'JSON API',
+            contentTypeOptions: CONTENT_TYPE_OPTIONS,
             script: [OperatorCode.StringAsBoolean, OperatorCode.BooleanNegate],
           },
           {
-            kind: 'HTTP-GET',
+            kind: DEFAULT_KIND_OPTION,
+            kindOptions: KIND_OPTIONS,
             url: 'source_2',
             contentType: 'JSON API',
+            contentTypeOptions: CONTENT_TYPE_OPTIONS,
             script: [OperatorCode.StringAsBoolean, OperatorCode.BooleanNegate],
           },
         ],
@@ -139,9 +156,11 @@ describe('Radon', () => {
         timelock: 0,
         retrieve: [
           {
-            kind: 'HTTP-GET',
+            kind: DEFAULT_KIND_OPTION,
+            kindOptions: KIND_OPTIONS,
             url: 'source_1',
             contentType: 'JSON API',
+            contentTypeOptions: CONTENT_TYPE_OPTIONS,
             scriptId: 2,
             script: [
               {
@@ -182,10 +201,12 @@ describe('Radon', () => {
             ],
           },
           {
-            kind: 'HTTP-GET',
+            kind: DEFAULT_KIND_OPTION,
+            kindOptions: KIND_OPTIONS,
             url: 'source_2',
             scriptId: 6,
             contentType: 'JSON API',
+            contentTypeOptions: CONTENT_TYPE_OPTIONS,
             script: [
               {
                 hierarchicalType: 'operator',
@@ -467,21 +488,27 @@ describe('Radon', () => {
         timelock: 1669852800,
         retrieve: [
           {
-            kind: 'HTTP-GET',
+            kind: DEFAULT_KIND_OPTION,
+            kindOptions: KIND_OPTIONS,
             url: 'https://blockchain.info/q/latesthash',
             contentType: 'JSON API',
+            contentTypeOptions: CONTENT_TYPE_OPTIONS,
             script: [],
           },
           {
-            kind: 'HTTP-GET',
+            kind: DEFAULT_KIND_OPTION,
+            kindOptions: KIND_OPTIONS,
             url: 'https://api-r.bitcoinchain.com/v1/status',
             contentType: 'JSON API',
+            contentTypeOptions: CONTENT_TYPE_OPTIONS,
             script: [119, [103, 'hash']],
           },
           {
-            kind: 'HTTP-GET',
+            kind: DEFAULT_KIND_OPTION,
+            kindOptions: KIND_OPTIONS,
             url: 'https://api.blockchair.com/bitcoin/stats',
             contentType: 'JSON API',
+            contentTypeOptions: CONTENT_TYPE_OPTIONS,
             script: [119, [102, 'data'], [103, 'best_block_hash']],
           },
         ],
@@ -501,16 +528,20 @@ describe('Radon', () => {
         timelock: 1669852800,
         retrieve: [
           {
-            kind: 'HTTP-GET',
+            kind: DEFAULT_KIND_OPTION,
+            kindOptions: KIND_OPTIONS,
             url: 'https://blockchain.info/q/latesthash',
             contentType: 'JSON API',
+            contentTypeOptions: CONTENT_TYPE_OPTIONS,
             script: [],
             scriptId: 2,
           },
           {
-            kind: 'HTTP-GET',
+            kind: DEFAULT_KIND_OPTION,
+            kindOptions: KIND_OPTIONS,
             scriptId: 4,
             contentType: 'JSON API',
+            contentTypeOptions: CONTENT_TYPE_OPTIONS,
             url: 'https://api-r.bitcoinchain.com/v1/status',
             script: [
               {
@@ -560,8 +591,10 @@ describe('Radon', () => {
             ],
           },
           {
-            kind: 'HTTP-GET',
+            kind: DEFAULT_KIND_OPTION,
+            kindOptions: KIND_OPTIONS,
             contentType: 'JSON API',
+            contentTypeOptions: CONTENT_TYPE_OPTIONS,
             script: [
               {
                 hierarchicalType: 'operator',
@@ -708,9 +741,11 @@ describe('Radon', () => {
         timelock: 0,
         retrieve: [
           {
-            kind: 'HTTP-GET',
+            kind: DEFAULT_KIND_OPTION,
+            kindOptions: KIND_OPTIONS,
             url: 'source_1',
             contentType: 'JSON API',
+            contentTypeOptions: CONTENT_TYPE_OPTIONS,
             script: [
               OperatorCode.StringParseJsonMap,
               [OperatorCode.MapGetArray, 'data'],
@@ -726,9 +761,11 @@ describe('Radon', () => {
             ],
           },
           {
-            kind: 'HTTP-GET',
+            kind: DEFAULT_KIND_OPTION,
+            kindOptions: KIND_OPTIONS,
             url: 'source_2',
             contentType: 'JSON API',
+            contentTypeOptions: CONTENT_TYPE_OPTIONS,
             script: [OperatorCode.StringAsBoolean, OperatorCode.BooleanNegate],
           },
         ],
@@ -748,9 +785,11 @@ describe('Radon', () => {
         timelock: 0,
         retrieve: [
           {
-            kind: 'HTTP-GET',
+            kind: DEFAULT_KIND_OPTION,
+            kindOptions: KIND_OPTIONS,
             url: 'source_1',
             contentType: 'JSON API',
+            contentTypeOptions: CONTENT_TYPE_OPTIONS,
             script: [
               {
                 hierarchicalType: 'operator',
@@ -2467,9 +2506,11 @@ describe('Radon', () => {
             scriptId: 2,
           },
           {
-            kind: 'HTTP-GET',
+            kind: DEFAULT_KIND_OPTION,
+            kindOptions: KIND_OPTIONS,
             url: 'source_2',
             contentType: 'JSON API',
+            contentTypeOptions: CONTENT_TYPE_OPTIONS,
             script: [
               {
                 hierarchicalType: 'operator',
@@ -2865,7 +2906,6 @@ describe('Radon', () => {
           },
         },
       }
-
       expect(result).toStrictEqual(expected)
     })
   })
@@ -2876,15 +2916,19 @@ describe('Radon', () => {
         timelock: 0,
         retrieve: [
           {
-            kind: 'HTTP-GET',
+            kind: DEFAULT_KIND_OPTION,
+            kindOptions: KIND_OPTIONS,
             url: 'source_1',
             contentType: 'JSON API',
+            contentTypeOptions: CONTENT_TYPE_OPTIONS,
             script: [OperatorCode.StringAsBoolean, OperatorCode.BooleanNegate],
           },
           {
-            kind: 'HTTP-GET',
+            kind: DEFAULT_KIND_OPTION,
+            kindOptions: KIND_OPTIONS,
             url: 'source_2',
             contentType: 'JSON API',
+            contentTypeOptions: CONTENT_TYPE_OPTIONS,
             script: [OperatorCode.StringAsBoolean, OperatorCode.BooleanNegate],
           },
         ],
@@ -2909,9 +2953,11 @@ describe('Radon', () => {
         timelock: 0,
         retrieve: [
           {
-            kind: 'HTTP-GET',
+            kind: DEFAULT_KIND_OPTION,
+            kindOptions: KIND_OPTIONS,
             url: 'source_1',
             contentType: 'JSON API',
+            contentTypeOptions: CONTENT_TYPE_OPTIONS,
             script: [
               OperatorCode.StringParseJsonMap,
               [OperatorCode.MapGetArray, 'data'],
@@ -2927,9 +2973,11 @@ describe('Radon', () => {
             ],
           },
           {
-            kind: 'HTTP-GET',
+            kind: DEFAULT_KIND_OPTION,
+            kindOptions: KIND_OPTIONS,
             url: 'source_2',
             contentType: 'JSON API',
+            contentTypeOptions: CONTENT_TYPE_OPTIONS,
             script: [OperatorCode.StringAsBoolean, OperatorCode.BooleanNegate],
           },
         ],
@@ -2957,9 +3005,11 @@ describe('Radon', () => {
         timelock: 0,
         retrieve: [
           {
-            kind: 'HTTP-GET',
+            kind: DEFAULT_KIND_OPTION,
+            kindOptions: KIND_OPTIONS,
             url: 'source_1',
             contentType: 'JSON API',
+            contentTypeOptions: CONTENT_TYPE_OPTIONS,
             script: [
               OperatorCode.StringAsBoolean,
               OperatorCode.BooleanNegate,
@@ -2967,9 +3017,11 @@ describe('Radon', () => {
             ],
           },
           {
-            kind: 'HTTP-GET',
+            kind: DEFAULT_KIND_OPTION,
+            kindOptions: KIND_OPTIONS,
             url: 'source_2',
             contentType: 'JSON API',
+            contentTypeOptions: CONTENT_TYPE_OPTIONS,
             script: [
               OperatorCode.StringAsBoolean,
               OperatorCode.BooleanNegate,
@@ -2998,15 +3050,19 @@ describe('Radon', () => {
         timelock: 0,
         retrieve: [
           {
-            kind: 'HTTP-GET',
+            kind: DEFAULT_KIND_OPTION,
+            kindOptions: KIND_OPTIONS,
             url: 'source_1',
             contentType: 'JSON API',
+            contentTypeOptions: CONTENT_TYPE_OPTIONS,
             script: [OperatorCode.StringAsInteger, [OperatorCode.IntegerMultiply, 2]],
           },
           {
-            kind: 'HTTP-GET',
+            kind: DEFAULT_KIND_OPTION,
+            kindOptions: KIND_OPTIONS,
             url: 'source_2',
             contentType: 'JSON API',
+            contentTypeOptions: CONTENT_TYPE_OPTIONS,
             script: [OperatorCode.StringAsInteger, [OperatorCode.IntegerMultiply, 2]],
           },
         ],
@@ -3033,15 +3089,19 @@ describe('Radon', () => {
         timelock: 0,
         retrieve: [
           {
-            kind: 'HTTP-GET',
+            kind: DEFAULT_KIND_OPTION,
+            kindOptions: KIND_OPTIONS,
             url: 'source_1',
             contentType: 'JSON API',
+            contentTypeOptions: CONTENT_TYPE_OPTIONS,
             script: [OperatorCode.StringAsBoolean, OperatorCode.BooleanNegate],
           },
           {
-            kind: 'HTTP-GET',
+            kind: DEFAULT_KIND_OPTION,
+            kindOptions: KIND_OPTIONS,
             url: 'source_2',
             contentType: 'JSON API',
+            contentTypeOptions: CONTENT_TYPE_OPTIONS,
             script: [OperatorCode.StringAsBoolean, OperatorCode.BooleanNegate],
           },
         ],
@@ -3069,9 +3129,11 @@ describe('Radon', () => {
         timelock: 0,
         retrieve: [
           {
-            kind: 'HTTP-GET',
+            kind: DEFAULT_KIND_OPTION,
+            kindOptions: KIND_OPTIONS,
             url: 'source_1',
             contentType: 'JSON API',
+            contentTypeOptions: CONTENT_TYPE_OPTIONS,
             script: [
               OperatorCode.StringAsBoolean,
               OperatorCode.BooleanNegate,
@@ -3079,9 +3141,11 @@ describe('Radon', () => {
             ],
           },
           {
-            kind: 'HTTP-GET',
+            kind: DEFAULT_KIND_OPTION,
+            kindOptions: KIND_OPTIONS,
             url: 'source_2',
             contentType: 'JSON API',
+            contentTypeOptions: CONTENT_TYPE_OPTIONS,
             script: [
               OperatorCode.StringAsBoolean,
               OperatorCode.BooleanNegate,
@@ -3143,21 +3207,27 @@ describe('Radon', () => {
         timelock: 0,
         retrieve: [
           {
-            kind: 'HTTP-GET',
+            kind: DEFAULT_KIND_OPTION,
+            kindOptions: KIND_OPTIONS,
             script: [119, [102, 'data'], [100, 'closing_price']],
             contentType: 'JSON API',
+            contentTypeOptions: CONTENT_TYPE_OPTIONS,
             url: 'https://api.bithumb.com/public/ticker/BTC',
           },
           {
             contentType: 'JSON API',
-            kind: 'HTTP-GET',
+            contentTypeOptions: CONTENT_TYPE_OPTIONS,
+            kind: DEFAULT_KIND_OPTION,
+            kindOptions: KIND_OPTIONS,
             script: [119, [100, 'price']],
             url:
               'https://api.coinpaprika.com/v1/price-converter?base_currency_id=btc-bitcoin&quote_currency_id=krw-south-korea-won&amount=1',
           },
           {
             contentType: 'JSON API',
-            kind: 'HTTP-GET',
+            contentTypeOptions: CONTENT_TYPE_OPTIONS,
+            kind: DEFAULT_KIND_OPTION,
+            kindOptions: KIND_OPTIONS,
             script: [
               119,
               [102, 'result'],

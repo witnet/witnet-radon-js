@@ -187,9 +187,11 @@ export type MarkupArgumentScript = {
 }
 
 export type MarkupSource = {
-  kind: string
+  kind: Kind
+  kindOptions: KindOptions
   url: string
   contentType: string
+  contentTypeOptions: ContentTypeOptions
   script: MarkupScript
   scriptId: number
 }
@@ -207,6 +209,13 @@ export type Markup = {
   name: string
   description: string
   radRequest: MarkupRequest
+}
+
+export type KindOptions = Array<Kind>
+
+export enum Kind {
+  HttpGet = 'HTTP-GET',
+  RNG = 'RNG'
 }
 
 export enum OperatorCode {
@@ -358,10 +367,17 @@ export type MarkupAggregationTallyScript = {
 }
 
 export type MirSource = {
-  kind: string
+  kind: Kind
+  kindOptions: KindOptions
   url: string
   contentType: string
+  contentTypeOptions: ContentTypeOptions
   script: MirScript
+}
+
+export type ContentTypeOptions = {
+  [Kind.HttpGet]: string | Array<string>
+  [Kind.RNG]: string
 }
 
 export type MirRequest = {

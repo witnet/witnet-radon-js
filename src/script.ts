@@ -7,6 +7,7 @@ import {
   OutputType,
   Type,
   Context,
+  Kind,
 } from './types'
 import { Operator } from './operator'
 import { DEFAULT_SCRIPT_FIRST_TYPE } from './constants'
@@ -21,16 +22,19 @@ export class Script {
   public operators: Array<Operator>
   public firstType: OutputType
   public scriptId: number
+  public sourceType: Kind
 
   constructor(
     context: Context,
     script: MirScript,
-    firstType: OutputType = DEFAULT_SCRIPT_FIRST_TYPE
+    sourceType: Kind,
+    firstType: OutputType = sourceType === Kind.RNG ? OutputType.Bytes : DEFAULT_SCRIPT_FIRST_TYPE,
   ) {
     this.context = context
     this.operators = []
     this.firstType = firstType
     this.scriptId = context.cache.insert(this).id
+    this.sourceType = sourceType
     // TODO: Refactor
     script.reduce((acc, item) => {
       let op = new Operator(context, this.scriptId, acc, item, this.onChildrenEvent())
@@ -48,17 +52,10 @@ export class Script {
   public addOperator() {
     const lastOutputType = this.getOutputType()
     const type: Type | null = fromOutputTypeToType(lastOutputType)
-
-    if (type) {
-      const operator: MirOperator = getDefaultMirOperatorByType(type)
+    if (this.sourceType !== Kind.RNG ) {
+      const operator: MirOperator | null = type ? getDefaultMirOperatorByType(type): null
       this.operators.push(
         new Operator(this.context, this.scriptId, lastOutputType, operator, this.onChildrenEvent())
-      )
-    } else {
-      // TODO: search in operators the type for the regarding types:
-      // SubscriptOutput, ReducerOutput, FilterOutput, MatchOutput, Same, Inner
-      this.operators.push(
-        new Operator(this.context, this.scriptId, lastOutputType, null, this.onChildrenEvent())
       )
     }
   }
@@ -94,13 +91,17 @@ export class Script {
   }
 
   public getOutputType(): OutputType {
-    return this.getLastOperator()
-      ? this.operators.reduce((acc, operator) => {
-          let outputType = operator.operatorInfo.outputType
-          return outputType === OutputType.Same ? acc : outputType
-        }, this.firstType)
-      : this.firstType
-  }
+    if (this.sourceType === Kind.RNG) {
+      return OutputType.Bytes
+    } else if (this.getLastOperator()) {
+      return this.operators.reduce((acc, operator) => {
+        let outputType = operator.operatorInfo.outputType
+        return outputType === OutputType.Same ? acc : outputType
+      }, this.firstType)
+    } else {
+      return this.firstType
+    }
+  }         
 
   public onChildrenEvent() {
     return {
@@ -115,15 +116,24 @@ export class Script {
   }
 
   public push(operator: MirOperator) {
-    this.operators.push(
-      new Operator(
-        this.context,
-        this.scriptId,
-        this.getOutputType(),
-        operator,
-        this.onChildrenEvent()
+    if (this.sourceType !== Kind.RNG ) {
+      this.operators.push(
+        new Operator(
+          this.context,
+          this.scriptId,
+          this.getOutputType(),
+          operator,
+          this.onChildrenEvent()
+        )
       )
-    )
+    }
+  }
+
+  public updateSourceType(sourceType: Kind) {
+    this.sourceType = sourceType
+    if (this.sourceType === Kind.RNG ) {
+      this.operators = []
+    }
   }
 
   // TODO: Refactor this function to be readable

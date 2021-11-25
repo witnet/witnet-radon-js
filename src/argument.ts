@@ -17,6 +17,7 @@ import {
   OutputType,
   Reducer,
   Context,
+  Kind,
 } from './types'
 import { DEFAULT_OPERATOR } from './constants'
 import { getArgumentInfoType, getEnumNames, getMarkupInputTypeFromArgumentType } from './utils'
@@ -66,7 +67,7 @@ export class Argument {
         argument as Reducer
       )
     } else if (this.argumentInfo.type === MirArgumentType.Subscript) {
-      this.argument = new Script(this.context, argument as MirScript, OutputType.SubscriptOutput)
+      this.argument = new Script(this.context, argument as MirScript, Kind.HttpGet, OutputType.SubscriptOutput)
     } else {
       this.argument = null
     }

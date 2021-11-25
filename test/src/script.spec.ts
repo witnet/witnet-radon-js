@@ -1,4 +1,4 @@
-import { MirScript, OperatorCode, OutputType } from '../../src/types'
+import { MirScript, OperatorCode, OutputType, Kind } from '../../src/types'
 import { Script } from '../../src/script'
 import { Operator } from '../../src/operator'
 import { DEFAULT_SCRIPT_FIRST_TYPE } from '../../src/constants'
@@ -12,7 +12,7 @@ describe('Script methods', () => {
     it('last type is a Type', () => {
       const mirScript: MirScript = [OperatorCode.StringAsBoolean]
       const context = { cache: new Cache(), i18n: new I18n() }
-      const script = new Script(context, mirScript)
+      const script = new Script(context, mirScript, Kind.HttpGet)
       script.addOperator()
 
       expect(script.operators[script.operators.length - 1].code).toStrictEqual(
@@ -22,7 +22,7 @@ describe('Script methods', () => {
     it('last type is a pseudotype', () => {
       const mirScript: MirScript = [OperatorCode.StringAsBoolean, OperatorCode.BooleanAsString]
       const context = { cache: new Cache(), i18n: new I18n() }
-      const script = new Script(context, mirScript)
+      const script = new Script(context, mirScript, Kind.HttpGet)
       script.addOperator()
 
       expect(script.operators[script.operators.length - 1].code).toStrictEqual(
@@ -35,7 +35,7 @@ describe('Script methods', () => {
     it('deletes operator by id', () => {
       const mirScript: MirScript = [OperatorCode.StringAsBoolean, OperatorCode.BooleanAsString]
       const context = { cache: new Cache(), i18n: new I18n() }
-      const script = new Script(context, mirScript)
+      const script = new Script(context, mirScript, Kind.HttpGet)
       const firstOperatorId = script.operators[0].id
       script.deleteOperator(firstOperatorId)
       expect(script.operators.length).toStrictEqual(1)
@@ -47,7 +47,7 @@ describe('Script methods', () => {
       const mirScript: MirScript = []
       const context = { cache: new Cache(), i18n: new I18n() }
 
-      const script = new Script(context, mirScript)
+      const script = new Script(context, mirScript, Kind.HttpGet)
 
       const result = script.getLastOperator()
       expect(result).toBeNull()
@@ -60,7 +60,7 @@ describe('Script methods', () => {
         OperatorCode.BooleanAsString,
       ]
       const context = { cache: new Cache(), i18n: new I18n() }
-      const script = new Script(context, mirScript)
+      const script = new Script(context, mirScript, Kind.HttpGet)
       const result = script.getLastOperator()
       const expectedCode = 32
       const expectedArguments: any = []
@@ -74,7 +74,7 @@ describe('Script methods', () => {
     it('empty', () => {
       const mirScript: MirScript = []
       const context = { cache: new Cache(), i18n: new I18n() }
-      const script = new Script(context, mirScript)
+      const script = new Script(context, mirScript, Kind.HttpGet)
 
       const result = script.getJs()
       expect(result).toStrictEqual('')
@@ -85,7 +85,7 @@ describe('Script methods', () => {
 
       const mirScript: MirScript = [OperatorCode.StringAsBoolean]
 
-      const script = new Script(context, mirScript)
+      const script = new Script(context, mirScript, Kind.HttpGet)
       const result = script.getJs()
       const expected = '.asBoolean()'
 
@@ -101,7 +101,7 @@ describe('Script methods', () => {
         OperatorCode.BooleanAsString,
       ]
 
-      const script = new Script(context, mirScript)
+      const script = new Script(context, mirScript, Kind.HttpGet)
       const result = removeBreakLine(script.getJs())
       const expected: any = removeBreakLine(`.asBoolean().negate().asString()`)
 
@@ -113,7 +113,7 @@ describe('Script methods', () => {
     it('empty', () => {
       const mirScript: MirScript = []
       const context = { cache: new Cache(), i18n: new I18n() }
-      const script = new Script(context, mirScript)
+      const script = new Script(context, mirScript, Kind.HttpGet)
 
       const result = script.getMarkup()
       expect(result).toStrictEqual([])
@@ -124,7 +124,7 @@ describe('Script methods', () => {
 
       const mirScript: MirScript = [OperatorCode.StringAsBoolean]
 
-      const script = new Script(context, mirScript)
+      const script = new Script(context, mirScript, Kind.HttpGet)
       const result = script.getMarkup()
       const expected = [
         {
@@ -158,7 +158,7 @@ describe('Script methods', () => {
         OperatorCode.BooleanAsString,
       ]
 
-      const script = new Script(context, mirScript)
+      const script = new Script(context, mirScript, Kind.HttpGet)
       const result = script.getMarkup()
       const expected: any = [
         {
@@ -223,7 +223,7 @@ describe('Script methods', () => {
     it('empty', () => {
       const mirScript: MirScript = []
       const context = { cache: new Cache(), i18n: new I18n() }
-      const script = new Script(context, mirScript)
+      const script = new Script(context, mirScript, Kind.HttpGet)
 
       const result = script.getMir()
       expect(result).toStrictEqual([])
@@ -234,7 +234,7 @@ describe('Script methods', () => {
 
       const mirScript: MirScript = [OperatorCode.StringAsBoolean]
 
-      const script = new Script(context, mirScript)
+      const script = new Script(context, mirScript, Kind.HttpGet)
       const result = script.getMir()
       const expected = mirScript
 
@@ -250,7 +250,7 @@ describe('Script methods', () => {
         OperatorCode.BooleanAsString,
       ]
 
-      const script = new Script(context, mirScript)
+      const script = new Script(context, mirScript, Kind.HttpGet)
       const result = script.getMir()
       const expected: any = mirScript
 
@@ -262,7 +262,7 @@ describe('Script methods', () => {
     it('default output type when is empty', () => {
       const mirScript: MirScript = []
       const context = { cache: new Cache(), i18n: new I18n() }
-      const script = new Script(context, mirScript)
+      const script = new Script(context, mirScript, Kind.HttpGet)
       const result = script.getOutputType()
 
       expect(result).toBe(DEFAULT_SCRIPT_FIRST_TYPE)
@@ -271,7 +271,7 @@ describe('Script methods', () => {
     it('returns last output type', () => {
       const mirScript: MirScript = [OperatorCode.StringLength, OperatorCode.IntegerAbsolute]
       const context = { cache: new Cache(), i18n: new I18n() }
-      const script = new Script(context, mirScript)
+      const script = new Script(context, mirScript, Kind.HttpGet)
       const result = script.getOutputType()
 
       expect(result).toBe(OutputType.Integer)
@@ -283,7 +283,7 @@ describe('Script methods', () => {
 
     const context = { cache: new Cache(), i18n: new I18n() }
 
-    const script = new Script(context, mirScript)
+    const script = new Script(context, mirScript, Kind.HttpGet)
 
     script.push(OperatorCode.BooleanAsString)
     const expectedCode = 32

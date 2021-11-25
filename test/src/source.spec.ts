@@ -1,8 +1,17 @@
-import { MirScript, OperatorCode } from '../../src/types'
+import { MirScript, OperatorCode, Kind } from '../../src/types'
 import { Source } from '../../src/source'
 import { Cache, markupOptions } from '../../src/structures'
 import { formatJsTest } from '../utils'
 import { I18n } from '../../src/i18n'
+import { KIND_OPTIONS, CONTENT_TYPE_OPTIONS } from '../../src/constants'
+
+const onChildrenEvent = () => {
+  return {
+    emit: (e: Event) => {
+      return e
+    },
+  }
+}
 
 describe('Source', () => {
   describe('getJs method', () => {
@@ -11,11 +20,13 @@ describe('Source', () => {
       const context = { cache: new Cache(), i18n: new I18n() }
 
       const source = new Source(context, {
-        kind: 'kind',
+        kind: Kind.HttpGet,
+        kindOptions: KIND_OPTIONS,
         url: 'url',
         script: mirScript,
         contentType: 'JSON API',
-      })
+        contentTypeOptions: CONTENT_TYPE_OPTIONS,
+      }, Kind.HttpGet, onChildrenEvent())
 
       const result = formatJsTest(source.getJs(0))
       const expected = formatJsTest('const source_0 = new Witnet.Source("url")')
@@ -32,13 +43,15 @@ describe('Source', () => {
       ]
 
       const mirSource = {
-        kind: 'kind',
+        kind: Kind.HttpGet,
+        kindOptions: KIND_OPTIONS,
         url: 'url',
         contentType: 'JSON API',
+        contentTypeOptions: CONTENT_TYPE_OPTIONS,
         script: mirScript,
       }
 
-      const result = formatJsTest(new Source(context, mirSource).getJs(0))
+      const result = formatJsTest(new Source(context, mirSource, Kind.HttpGet, onChildrenEvent()).getJs(0))
 
       const expected = 'const source_0 = new Witnet.Source("url").asBoolean().negate().asString()'
 
@@ -52,17 +65,21 @@ describe('Source', () => {
       const context = { cache: new Cache(), i18n: new I18n() }
 
       const source = new Source(context, {
-        kind: 'kind',
+        kind: Kind.HttpGet,
+        kindOptions: KIND_OPTIONS,
         url: 'url',
         script: mirScript,
         contentType: 'JSON API',
-      })
+        contentTypeOptions: CONTENT_TYPE_OPTIONS,
+      }, Kind.HttpGet, onChildrenEvent())
 
       const result = source.getMarkup()
       const expected = {
-        kind: 'kind',
+        kind: Kind.HttpGet,
+        kindOptions: KIND_OPTIONS,
         url: 'url',
         contentType: 'JSON API',
+        contentTypeOptions: CONTENT_TYPE_OPTIONS,
         script: [],
         scriptId: 2,
       }
@@ -79,17 +96,21 @@ describe('Source', () => {
       ]
 
       const mirSource = {
-        kind: 'kind',
+        kind: Kind.HttpGet,
+        kindOptions: KIND_OPTIONS,
         url: 'url',
         contentType: 'JSON API',
+        contentTypeOptions: CONTENT_TYPE_OPTIONS,
         script: mirScript,
       }
 
-      const result = new Source(context, mirSource).getMarkup()
+      const result = new Source(context, mirSource, Kind.HttpGet, onChildrenEvent()).getMarkup()
 
       const expected: any = {
-        kind: 'kind',
+        kind: Kind.HttpGet,
+        kindOptions: KIND_OPTIONS,
         contentType: 'JSON API',
+        contentTypeOptions: CONTENT_TYPE_OPTIONS,
         scriptId: 2,
         script: [
           {
@@ -158,14 +179,16 @@ describe('Source', () => {
       const context = { cache: new Cache(), i18n: new I18n() }
 
       const source = new Source(context, {
-        kind: 'kind',
+        kind: Kind.HttpGet,
+        kindOptions: KIND_OPTIONS,
         url: 'url',
         script: mirScript,
         contentType: 'JSON API',
-      })
+        contentTypeOptions: CONTENT_TYPE_OPTIONS,
+      }, Kind.HttpGet, onChildrenEvent())
 
       const result = source.getMir()
-      const expected = { kind: 'kind', url: 'url', script: [], contentType: 'JSON API' }
+      const expected = { kind: Kind.HttpGet, kindOptions: KIND_OPTIONS, url: 'url', script: [], contentType: 'JSON API', contentTypeOptions: CONTENT_TYPE_OPTIONS, }
 
       expect(result).toStrictEqual(expected)
     })
@@ -180,13 +203,15 @@ describe('Source', () => {
       ]
 
       const mirSource = {
-        kind: 'kind',
+        kind: Kind.HttpGet,
+        kindOptions: KIND_OPTIONS,
         url: 'url',
         contentType: 'JSON API',
+        contentTypeOptions: CONTENT_TYPE_OPTIONS,
         script: mirScript,
       }
 
-      const result = new Source(context, mirSource).getMir()
+      const result = new Source(context, mirSource, Kind.HttpGet, onChildrenEvent()).getMir()
 
       const expected = mirSource
 

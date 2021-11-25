@@ -1,7 +1,7 @@
 import { I18n } from '../../src/i18n'
 import { AggregationTallyScript } from '../../src/aggregationTallyScript'
 import { Cache } from '../../src/structures'
-import { AggregationTallyFilter, MirAggregationTallyScript } from '../../src/types'
+import { AggregationTallyFilter, Kind, MirAggregationTallyScript } from '../../src/types'
 import { formatJsTest } from '../utils'
 
 describe('AggregationTallyScript', () => {
@@ -12,7 +12,7 @@ describe('AggregationTallyScript', () => {
         reducer: 0x02,
       }
       const context = { cache: new Cache(), i18n: new I18n() }
-      const script = new AggregationTallyScript(context, mirScript)
+      const script = new AggregationTallyScript(context, mirScript, Kind.HttpGet)
       script.addOperator()
       const expected = 2
       expect(script.filters.length).toStrictEqual(expected)
@@ -25,7 +25,7 @@ describe('AggregationTallyScript', () => {
         reducer: 0x02,
       }
       const context = { cache: new Cache(), i18n: new I18n() }
-      const script = new AggregationTallyScript(context, mirScript)
+      const script = new AggregationTallyScript(context, mirScript, Kind.HttpGet)
       script.addOperator()
       const expected = 1
       expect(script.filters.length).toStrictEqual(expected)
@@ -40,7 +40,7 @@ describe('AggregationTallyScript', () => {
         reducer: 0x02,
       }
       const context = { cache: new Cache(), i18n: new I18n() }
-      const script = new AggregationTallyScript(context, mirScript)
+      const script = new AggregationTallyScript(context, mirScript, Kind.HttpGet)
 
       script.deleteOperator(script.filters[0].id)
 
@@ -57,7 +57,7 @@ describe('AggregationTallyScript', () => {
         reducer: 0x02,
       }
       const context = { cache: new Cache(), i18n: new I18n() }
-      const script = new AggregationTallyScript(context, mirScript)
+      const script = new AggregationTallyScript(context, mirScript, Kind.HttpGet)
       script.deleteOperator(script.filters[2].id)
 
       expect(script.filters[0].code).toStrictEqual(AggregationTallyFilter.deviationStandard)
@@ -74,7 +74,7 @@ describe('AggregationTallyScript', () => {
       }
 
       const context = { cache: new Cache(), i18n: new I18n() }
-      const script = new AggregationTallyScript(context, mirScript)
+      const script = new AggregationTallyScript(context, mirScript, Kind.HttpGet)
 
       const result = formatJsTest(script.getJs('aggregator'))
       const expected = formatJsTest(`const aggregator = new Witnet.aggregator({
@@ -92,7 +92,7 @@ describe('AggregationTallyScript', () => {
         reducer: 0x02,
       }
       const context = { cache: new Cache(), i18n: new I18n() }
-      const script = new AggregationTallyScript(context, mirScript)
+      const script = new AggregationTallyScript(context, mirScript, Kind.HttpGet)
 
       const result = formatJsTest(script.getJs('aggregator'))
       const expected = formatJsTest(`const aggregator = new Witnet.aggregator({
@@ -113,7 +113,7 @@ describe('AggregationTallyScript', () => {
         reducer: 0x02,
       }
       const context = { cache: new Cache(), i18n: new I18n() }
-      const script = new AggregationTallyScript(context, mirScript)
+      const script = new AggregationTallyScript(context, mirScript, Kind.HttpGet)
 
       const result = script.getMarkup()
       const expected = {
@@ -171,7 +171,7 @@ describe('AggregationTallyScript', () => {
         reducer: 0x02,
       }
       const context = { cache: new Cache(), i18n: new I18n() }
-      const script = new AggregationTallyScript(context, mirScript)
+      const script = new AggregationTallyScript(context, mirScript, Kind.HttpGet)
 
       const result = script.getMarkup()
       const expected = {
@@ -271,7 +271,7 @@ describe('AggregationTallyScript', () => {
         reducer: 0x02,
       }
       const context = { cache: new Cache(), i18n: new I18n() }
-      const script = new AggregationTallyScript(context, mirScript)
+      const script = new AggregationTallyScript(context, mirScript, Kind.HttpGet)
 
       const result = script.getMir()
       expect(result).toStrictEqual(mirScript)
@@ -283,7 +283,7 @@ describe('AggregationTallyScript', () => {
         reducer: 0x02,
       }
       const context = { cache: new Cache(), i18n: new I18n() }
-      const script = new AggregationTallyScript(context, mirScript)
+      const script = new AggregationTallyScript(context, mirScript, Kind.HttpGet)
 
       const result = script.getMir()
       expect(result).toStrictEqual(mirScript)
@@ -297,7 +297,7 @@ describe('AggregationTallyScript', () => {
         reducer: 0x02,
       }
       const context = { cache: new Cache(), i18n: new I18n() }
-      const script = new AggregationTallyScript(context, mirScript)
+      const script = new AggregationTallyScript(context, mirScript, Kind.HttpGet)
       script.push(AggregationTallyFilter.deviationStandard as AggregationTallyFilter)
       const expected = AggregationTallyFilter.deviationStandard
       expect(script.filters[1].code).toStrictEqual(expected)
@@ -309,7 +309,7 @@ describe('AggregationTallyScript', () => {
         reducer: 0x02,
       }
       const context = { cache: new Cache(), i18n: new I18n() }
-      const script = new AggregationTallyScript(context, mirScript)
+      const script = new AggregationTallyScript(context, mirScript, Kind.HttpGet)
       script.push(AggregationTallyFilter.deviationStandard as AggregationTallyFilter)
       const expected = AggregationTallyFilter.deviationStandard
       expect(script.filters[0].code).toStrictEqual(expected)

@@ -3,6 +3,7 @@ import {
   MarkupAggregationTallyScript,
   MirAggregationTallyScript,
   Context,
+  Kind
 } from './types'
 import { AggregationTallyOperatorReducer } from './aggregationTallyOperatorReducer'
 import { AggregationTallyOperatorFilter } from './aggregationTallyOperatorFilter'
@@ -13,11 +14,13 @@ export class AggregationTallyScript {
   public mirScript: MirAggregationTallyScript
   public reducer: AggregationTallyOperatorReducer
   public scriptId: number
+  public sourceType: Kind
 
-  constructor(context: Context, script: MirAggregationTallyScript) {
+  constructor(context: Context, script: MirAggregationTallyScript, sourceType: Kind) {
     this.scriptId = context.cache.insert(this).id
     this.mirScript = script
     this.context = context
+    this.sourceType = sourceType
     this.filters = script.filters.map(
       (filter) => new AggregationTallyOperatorFilter(context, filter, this.scriptId)
     )
@@ -25,13 +28,15 @@ export class AggregationTallyScript {
   }
 
   public addOperator() {
-    this.filters.push(
-      new AggregationTallyOperatorFilter(
-        this.context,
-        [AggregationTallyFilter.deviationStandard, 1],
-        this.scriptId
+    if (this.sourceType !== Kind.RNG ) {
+      this.filters.push(
+        new AggregationTallyOperatorFilter(
+          this.context,
+          [AggregationTallyFilter.deviationStandard, 1],
+          this.scriptId
+        )
       )
-    )
+    }
   }
 
   // Remove the filter from the filter's list by id
@@ -67,6 +72,13 @@ export class AggregationTallyScript {
         return operator.getMarkup()
       }),
       reducer: this.reducer.getMarkup(),
+    }
+  }
+
+  public updateSourceType(sourceType: Kind) {
+    this.sourceType = sourceType
+    if (this.sourceType === Kind.RNG) {
+      this.filters = []
     }
   }
 

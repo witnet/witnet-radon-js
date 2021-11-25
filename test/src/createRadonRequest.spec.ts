@@ -1,4 +1,5 @@
 import { Radon } from '../../src/radon'
+import { DEFAULT_KIND_OPTION, KIND_OPTIONS, CONTENT_TYPE_OPTIONS } from '../../src/constants'
 import { MirRequest, AggregationTallyReducer, MarkupInput } from '../../src/types'
 
 describe('Radon', () => {
@@ -7,9 +8,11 @@ describe('Radon', () => {
       timelock: 0,
       retrieve: [
         {
-          kind: 'HTTP-GET',
+          kind: DEFAULT_KIND_OPTION,
+          kindOptions: KIND_OPTIONS,
           url: 'source_1',
           contentType: 'JSON API',
+          contentTypeOptions: CONTENT_TYPE_OPTIONS,
           script: [],
         },
       ],
@@ -112,9 +115,11 @@ describe('Radon', () => {
       timelock: 0,
       retrieve: [
         {
-          kind: 'HTTP-GET',
+          kind: DEFAULT_KIND_OPTION,
+          kindOptions: KIND_OPTIONS,
           url: 'source_1',
           contentType: 'JSON API',
+          contentTypeOptions: CONTENT_TYPE_OPTIONS,
           script: [],
         },
       ],
