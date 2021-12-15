@@ -45,6 +45,9 @@ export class Radon {
       emit: (e: { sourceType: Kind }) => {
         this.sourceType = e.sourceType
         this.retrieve.forEach(source => source.updateSourceType(this.sourceType))
+        if (this.sourceType === Kind.RNG) {
+          this.retrieve = [this.retrieve[0]]
+        }
         this.aggregate.updateSourceType(this.sourceType)
         this.tally.updateSourceType(this.sourceType)
         this.retrieve

@@ -83,7 +83,6 @@ describe('RandomNumberGenerator request', () => {
         contentType: Kind.RNG,
       })
       expect(radon.retrieve[0].script.operators.length).toBe(0)
-      expect(radon.retrieve[1].script.operators.length).toBe(0)
     })
     it('correctly updates the source deleting filters', () => {
       const radon = new Radon(mir)
@@ -104,7 +103,6 @@ describe('RandomNumberGenerator request', () => {
         contentType: Kind.RNG,
       })
       expect(radon.retrieve[0].url).toBe('')
-      expect(radon.retrieve[1].url).toBe('')
     })
   })
   describe('Markup', () => {
@@ -154,7 +152,6 @@ describe('RandomNumberGenerator request', () => {
         contentType: Kind.RNG,
       })
       expect(radon.getMarkup().retrieve[0].script.length).toBe(0)
-      expect(radon.getMarkup().retrieve[1].script.length).toBe(0)
     })
     it('correctly updates the source deleting filters', () => {
       const radon = new Radon(mir)
@@ -175,7 +172,6 @@ describe('RandomNumberGenerator request', () => {
         contentType: Kind.RNG,
       })
       expect(radon.getMarkup().retrieve[0].url).toBe('')
-      expect(radon.getMarkup().retrieve[1].url).toBe('')
     })
   })
   describe('Mir', () => {
@@ -245,7 +241,6 @@ describe('RandomNumberGenerator request', () => {
         contentType: 'JSON API',
       })
       expect(radon.getMir().retrieve[0].kind).toBe('HTTP-GET')
-      expect(radon.getMir().retrieve[1].kind).toBe('HTTP-GET')
     })
     it('creates an aggregation/tally script with RNG source', () => {
       const mirScript: MirAggregationTallyScript = {
@@ -265,7 +260,16 @@ describe('RandomNumberGenerator request', () => {
         contentType: Kind.RNG,
       })
       expect(radon.getMir().retrieve[0].script.length).toBe(0)
-      expect(radon.getMir().retrieve[1].script.length).toBe(0)
+    })
+    it('correctly updates the source leaving just one source', () => {
+      const radon = new Radon(mir)
+      radon.addOperator(2)
+      radon.retrieve[0].update({
+        kind: Kind.RNG,
+        url: '',
+        contentType: Kind.RNG,
+      })
+      expect(radon.getMir().retrieve.length).toBe(1)
     })
     it('correctly updates the source deleting filters', () => {
       const radon = new Radon(mir)
@@ -286,7 +290,6 @@ describe('RandomNumberGenerator request', () => {
         contentType: Kind.RNG,
       })
       expect(radon.getMir().retrieve[0].url).toBe('')
-      expect(radon.getMir().retrieve[1].url).toBe('')
     })
   })
   describe('JS', () => {
@@ -341,12 +344,10 @@ describe('RandomNumberGenerator request', () => {
       const expected = formatJsTest(`import * as Witnet from "witnet-requests"
         const request = new Witnet.Request()
         const source_0 = new Witnet.Source("")
-        const source_1 = new Witnet.Source("")
         const aggregator = new Witnet.aggregator({  filters: [],  reducer: Witnet.Types.REDUCERS.mode,})
         const tally = new Witnet.tally({  filters: [],  reducer: Witnet.Types.REDUCERS.mode,})
         const request = new Witnet.Request()  
-          .addSource(source_0)  
-          .addSource(source_1)  
+          .addSource(source_0)
           .setAggregator(aggregator) // Set the aggregator function  
           .setTally(tally) // Set the tally function  
           .setQuorum(4, 70) // Set witness count  
