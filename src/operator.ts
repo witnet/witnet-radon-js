@@ -75,16 +75,7 @@ export class Operator {
 
   public getMarkup(): MarkupOperator {
     const args = this.arguments.map((argument) => argument.getMarkup())
-    if (this.operatorInfo.name === 'map') {
-      console.log('descriptioni', this.operatorInfo)
-      console.log('descriptioni', this.operatorInfo.description(this.context.i18n)('', ''))
-      console.log(
-        'arguments',
 
-        this.arguments?.[0]?.value,
-        this.arguments?.[1]?.value
-      )
-    }
     return {
       hierarchicalType: MarkupHierarchicalType.Operator,
       id: this.id,

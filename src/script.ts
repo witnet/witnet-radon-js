@@ -28,7 +28,7 @@ export class Script {
     context: Context,
     script: MirScript,
     sourceType: Kind,
-    firstType: OutputType = sourceType === Kind.RNG ? OutputType.Bytes : DEFAULT_SCRIPT_FIRST_TYPE,
+    firstType: OutputType = sourceType === Kind.RNG ? OutputType.Bytes : DEFAULT_SCRIPT_FIRST_TYPE
   ) {
     this.context = context
     this.operators = []
@@ -52,8 +52,8 @@ export class Script {
   public addOperator() {
     const lastOutputType = this.getOutputType()
     const type: Type | null = fromOutputTypeToType(lastOutputType)
-    if (this.sourceType !== Kind.RNG ) {
-      const operator: MirOperator | null = type ? getDefaultMirOperatorByType(type): null
+    if (this.sourceType !== Kind.RNG) {
+      const operator: MirOperator | null = type ? getDefaultMirOperatorByType(type) : null
       this.operators.push(
         new Operator(this.context, this.scriptId, lastOutputType, operator, this.onChildrenEvent())
       )
@@ -101,7 +101,7 @@ export class Script {
     } else {
       return this.firstType
     }
-  }         
+  }
 
   public onChildrenEvent() {
     return {
@@ -116,7 +116,7 @@ export class Script {
   }
 
   public push(operator: MirOperator) {
-    if (this.sourceType !== Kind.RNG ) {
+    if (this.sourceType !== Kind.RNG) {
       this.operators.push(
         new Operator(
           this.context,
@@ -131,7 +131,7 @@ export class Script {
 
   public updateSourceType(sourceType: Kind) {
     this.sourceType = sourceType
-    if (this.sourceType === Kind.RNG ) {
+    if (this.sourceType === Kind.RNG) {
       this.operators = []
     }
   }

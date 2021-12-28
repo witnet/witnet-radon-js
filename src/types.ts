@@ -215,7 +215,7 @@ export type KindOptions = Array<Kind>
 
 export enum Kind {
   HttpGet = 'HTTP-GET',
-  RNG = 'RNG'
+  RNG = 'RNG',
 }
 
 export enum OperatorCode {
@@ -353,6 +353,7 @@ export enum AggregationTallyReducer {
   averageMean = 0x03,
   averageMedian = 0x05,
   deviationStandard = 0x07,
+  hashConcatenate = 0x0b,
 }
 
 export type MirScript = Array<MirOperator>

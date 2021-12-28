@@ -15,19 +15,24 @@ export class Radon {
   public aggregate: AggregationTallyScript
   public tally: AggregationTallyScript
   private _sourceType: Kind
+
   public get sourceType() {
-    return this._sourceType;
+    return this._sourceType
   }
   public set sourceType(kind: Kind) {
-    this._sourceType = kind;
+    this._sourceType = kind
   }
   public context: Context
 
   constructor(radRequest: MirRequest, locale?: Locale) {
     this.context = { cache: new Cache(), i18n: new I18n(locale) }
     this.timelock = radRequest.timelock
-    this._sourceType =  radRequest.retrieve.find((source) => source.kind === Kind.RNG) ? Kind.RNG : Kind.HttpGet
-    this.retrieve = radRequest.retrieve.map((source) => new Source(this.context, source, this.sourceType, this.onChildrenEvent()))
+    this._sourceType = radRequest.retrieve.find((source) => source.kind === Kind.RNG)
+      ? Kind.RNG
+      : Kind.HttpGet
+    this.retrieve = radRequest.retrieve.map(
+      (source) => new Source(this.context, source, this.sourceType, this.onChildrenEvent())
+    )
     this.aggregate = new AggregationTallyScript(this.context, radRequest.aggregate, this.sourceType)
     this.tally = new AggregationTallyScript(this.context, radRequest.tally, this.sourceType)
   }
@@ -44,7 +49,7 @@ export class Radon {
     return {
       emit: (e: { sourceType: Kind }) => {
         this.sourceType = e.sourceType
-        this.retrieve.forEach(source => source.updateSourceType(this.sourceType))
+        this.retrieve.forEach((source) => source.updateSourceType(this.sourceType))
         if (this.sourceType === Kind.RNG) {
           this.retrieve = [this.retrieve[0]]
         }
@@ -57,14 +62,19 @@ export class Radon {
 
   public addSource() {
     this.retrieve.push(
-      new Source(this.context, {
-        url: '',
-        script: [OperatorCode.StringAsFloat],
-        kind: DEFAULT_KIND_OPTION,
-        kindOptions: KIND_OPTIONS,
-        contentTypeOptions: CONTENT_TYPE_OPTIONS,
-        contentType: 'JSON API',
-      }, this.sourceType, this.onChildrenEvent())
+      new Source(
+        this.context,
+        {
+          url: '',
+          script: [OperatorCode.StringAsFloat],
+          kind: DEFAULT_KIND_OPTION,
+          kindOptions: KIND_OPTIONS,
+          contentTypeOptions: CONTENT_TYPE_OPTIONS,
+          contentType: 'JSON API',
+        },
+        this.sourceType,
+        this.onChildrenEvent()
+      )
     )
   }
 

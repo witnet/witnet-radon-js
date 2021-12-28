@@ -67,7 +67,12 @@ export class Argument {
         argument as Reducer
       )
     } else if (this.argumentInfo.type === MirArgumentType.Subscript) {
-      this.argument = new Script(this.context, argument as MirScript, Kind.HttpGet, OutputType.SubscriptOutput)
+      this.argument = new Script(
+        this.context,
+        argument as MirScript,
+        Kind.HttpGet,
+        OutputType.SubscriptOutput
+      )
     } else {
       this.argument = null
     }

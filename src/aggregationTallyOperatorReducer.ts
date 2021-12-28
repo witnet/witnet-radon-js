@@ -5,8 +5,13 @@ import {
   MarkupType,
   OutputType,
   Context,
+  Kind,
 } from './types'
-import { aggregationTallyReducerDescriptions, aTReducerMarkupOptions } from './structures'
+import {
+  aggregationTallyReducerDescriptions,
+  aTReducerMarkupOptions,
+  aTRNGReducerMarkupOptions,
+} from './structures'
 
 export class AggregationTallyOperatorReducer {
   public context: Context
@@ -14,17 +19,23 @@ export class AggregationTallyOperatorReducer {
   public id: number
   public scriptId: number
   public label: string
+  public sourceType: Kind
 
   constructor(
     context: Context,
     operator: AggregationTallyReducer = AggregationTallyReducer.averageMean,
-    scriptId: number
+    scriptId: number,
+    sourceType: Kind
   ) {
     this.id = context.cache.insert(this).id
     this.context = context
-    this.code = operator
+    this.code = sourceType === Kind.RNG ? AggregationTallyReducer.hashConcatenate : operator
     this.scriptId = scriptId
-    this.label = AggregationTallyReducer[this.code]
+    this.label =
+      sourceType === Kind.RNG
+        ? AggregationTallyReducer[AggregationTallyReducer.hashConcatenate]
+        : AggregationTallyReducer[this.code]
+    this.sourceType = sourceType
   }
 
   public getJs(): string {
@@ -39,7 +50,7 @@ export class AggregationTallyOperatorReducer {
       id: this.id,
       label: this.label,
       markupType: MarkupType.Select,
-      options: aTReducerMarkupOptions(),
+      options: this.sourceType === 'RNG' ? aTRNGReducerMarkupOptions() : aTReducerMarkupOptions(),
       outputType: OutputType.FilterOutput,
       scriptId: this.scriptId,
       selected: {
@@ -58,10 +69,12 @@ export class AggregationTallyOperatorReducer {
   }
 
   public update(value: AggregationTallyReducer | number) {
-    if (Number.isInteger(value)) {
-      this.code = value
-    } else {
-      this.code = (AggregationTallyReducer[value] as unknown) as AggregationTallyReducer
+    if (this.sourceType !== 'RNG') {
+      if (Number.isInteger(value)) {
+        this.code = value
+      } else {
+        this.code = (AggregationTallyReducer[value] as unknown) as AggregationTallyReducer
+      }
     }
   }
 }

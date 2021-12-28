@@ -1,4 +1,13 @@
-import { MarkupSource, MirSource, OutputType, Context, KindOptions, Kind, EventEmitter, ContentTypeOptions } from './types'
+import {
+  MarkupSource,
+  MirSource,
+  OutputType,
+  Context,
+  KindOptions,
+  Kind,
+  EventEmitter,
+  ContentTypeOptions,
+} from './types'
 import { KIND_OPTIONS, CONTENT_TYPE_OPTIONS } from './constants'
 import { Cache } from './structures'
 import { Script } from './script'
@@ -15,14 +24,24 @@ export class Source {
   public context: Context
   public eventEmitter: EventEmitter
 
-  constructor(context: { cache: Cache; i18n: I18n }, source: MirSource, sourceType: Kind, eventEmitter: EventEmitter) {
+  constructor(
+    context: { cache: Cache; i18n: I18n },
+    source: MirSource,
+    sourceType: Kind,
+    eventEmitter: EventEmitter
+  ) {
     this.id = context.cache.insert(this).id
     this.kind = sourceType
     this.kindOptions = KIND_OPTIONS
     this.contentTypeOptions = CONTENT_TYPE_OPTIONS
-    this.url = sourceType === Kind.RNG ? '' : (source.url || '')
+    this.url = sourceType === Kind.RNG ? '' : source.url || ''
     this.contentType = CONTENT_TYPE_OPTIONS[sourceType]
-    this.script = new Script(context, source.script, this.kind, this.kind === Kind.RNG ? OutputType.Bytes : OutputType.String)
+    this.script = new Script(
+      context,
+      source.script,
+      this.kind,
+      this.kind === Kind.RNG ? OutputType.Bytes : OutputType.String
+    )
     this.context = context
     this.eventEmitter = eventEmitter
   }

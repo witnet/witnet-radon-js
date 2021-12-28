@@ -148,6 +148,12 @@ describe('AggregationTallyScript', () => {
               markupType: 'option',
               outputType: 'filterOutput',
             },
+            {
+              hierarchicalType: 'operatorOption',
+              label: 'hashConcatenate',
+              markupType: 'option',
+              outputType: 'filterOutput',
+            },
           ],
           outputType: 'filterOutput',
           scriptId: 1,
@@ -243,6 +249,12 @@ describe('AggregationTallyScript', () => {
             {
               hierarchicalType: 'operatorOption',
               label: 'deviationStandard',
+              markupType: 'option',
+              outputType: 'filterOutput',
+            },
+            {
+              hierarchicalType: 'operatorOption',
+              label: 'hashConcatenate',
               markupType: 'option',
               outputType: 'filterOutput',
             },

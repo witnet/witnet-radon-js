@@ -3,7 +3,8 @@ import {
   MarkupAggregationTallyScript,
   MirAggregationTallyScript,
   Context,
-  Kind
+  Kind,
+  AggregationTallyReducer,
 } from './types'
 import { AggregationTallyOperatorReducer } from './aggregationTallyOperatorReducer'
 import { AggregationTallyOperatorFilter } from './aggregationTallyOperatorFilter'
@@ -24,11 +25,16 @@ export class AggregationTallyScript {
     this.filters = script.filters.map(
       (filter) => new AggregationTallyOperatorFilter(context, filter, this.scriptId)
     )
-    this.reducer = new AggregationTallyOperatorReducer(context, script.reducer, this.scriptId)
+    this.reducer = new AggregationTallyOperatorReducer(
+      context,
+      script.reducer,
+      this.scriptId,
+      this.sourceType
+    )
   }
 
   public addOperator() {
-    if (this.sourceType !== Kind.RNG ) {
+    if (this.sourceType !== Kind.RNG) {
       this.filters.push(
         new AggregationTallyOperatorFilter(
           this.context,
@@ -79,6 +85,12 @@ export class AggregationTallyScript {
     this.sourceType = sourceType
     if (this.sourceType === Kind.RNG) {
       this.filters = []
+      this.reducer = new AggregationTallyOperatorReducer(
+        this.context,
+        AggregationTallyReducer.hashConcatenate,
+        this.scriptId,
+        this.sourceType
+      )
     }
   }
 

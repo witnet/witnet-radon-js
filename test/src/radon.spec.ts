@@ -349,6 +349,12 @@ describe('Radon', () => {
                 markupType: 'option',
                 outputType: 'filterOutput',
               },
+              {
+                hierarchicalType: 'operatorOption',
+                label: 'hashConcatenate',
+                markupType: 'option',
+                outputType: 'filterOutput',
+              },
             ],
             outputType: 'filterOutput',
             scriptId: 9,
@@ -462,6 +468,12 @@ describe('Radon', () => {
               {
                 hierarchicalType: 'operatorOption',
                 label: 'deviationStandard',
+                markupType: 'option',
+                outputType: 'filterOutput',
+              },
+              {
+                hierarchicalType: 'operatorOption',
+                label: 'hashConcatenate',
                 markupType: 'option',
                 outputType: 'filterOutput',
               },
@@ -2776,6 +2788,12 @@ describe('Radon', () => {
                 markupType: 'option',
                 outputType: 'filterOutput',
               },
+              {
+                hierarchicalType: 'operatorOption',
+                label: 'hashConcatenate',
+                markupType: 'option',
+                outputType: 'filterOutput',
+              },
             ],
             outputType: 'filterOutput',
             scriptId: 29,
@@ -2889,6 +2907,12 @@ describe('Radon', () => {
               {
                 hierarchicalType: 'operatorOption',
                 label: 'deviationStandard',
+                markupType: 'option',
+                outputType: 'filterOutput',
+              },
+              {
+                hierarchicalType: 'operatorOption',
+                label: 'hashConcatenate',
                 markupType: 'option',
                 outputType: 'filterOutput',
               },

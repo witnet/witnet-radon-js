@@ -2,7 +2,14 @@ import { Radon } from '../../src/radon'
 import { KIND_OPTIONS, DEFAULT_KIND_OPTION, CONTENT_TYPE_OPTIONS } from '../../src/constants'
 import { I18n } from '../../src/i18n'
 import { Cache } from '../../src/structures'
-import { MirRequest, AggregationTallyReducer, Kind, MirAggregationTallyScript, AggregationTallyFilter, OperatorCode } from '../../src/types'
+import {
+  MirRequest,
+  AggregationTallyReducer,
+  Kind,
+  MirAggregationTallyScript,
+  AggregationTallyFilter,
+  OperatorCode,
+} from '../../src/types'
 import { AggregationTallyScript } from '../../src/aggregationTallyScript'
 import { formatJsTest } from '../utils'
 
@@ -60,7 +67,7 @@ describe('RandomNumberGenerator request', () => {
         },
       }
       const radon = new Radon(mir)
-  
+
       radon.addOperator(2)
       expect(radon.retrieve[0].script.operators.length).toBeFalsy()
       // Add operator in first source
@@ -129,7 +136,7 @@ describe('RandomNumberGenerator request', () => {
         },
       }
       const radon = new Radon(mir)
-  
+
       radon.addOperator(2)
       expect(radon.getMarkup().retrieve[0].script.length).toBeFalsy()
       // Add operator in first source
@@ -198,7 +205,7 @@ describe('RandomNumberGenerator request', () => {
         },
       }
       const radon = new Radon(mir)
-  
+
       radon.addOperator(2)
       expect(radon.getMir().retrieve[0].script.length).toBeFalsy()
       // Add operator in first source
@@ -316,13 +323,13 @@ describe('RandomNumberGenerator request', () => {
         },
       }
       const radon = new Radon(mir)
-  
+
       radon.addOperator(2)
       const expected = formatJsTest(`import * as Witnet from "witnet-requests"
         const request = new Witnet.Request()
         const source_0 = new Witnet.Source("")
-        const aggregator = new Witnet.aggregator({  filters: [],  reducer: Witnet.Types.REDUCERS.mode,})
-        const tally = new Witnet.tally({  filters: [],  reducer: Witnet.Types.REDUCERS.mode,})
+        const aggregator = new Witnet.aggregator({  filters: [],  reducer: Witnet.Types.REDUCERS.hashConcatenate,})
+        const tally = new Witnet.tally({  filters: [],  reducer: Witnet.Types.REDUCERS.hashConcatenate,})
         const request = new Witnet.Request()  
           .addSource(source_0)  
           .setAggregator(aggregator) // Set the aggregator function  
@@ -344,8 +351,8 @@ describe('RandomNumberGenerator request', () => {
       const expected = formatJsTest(`import * as Witnet from "witnet-requests"
         const request = new Witnet.Request()
         const source_0 = new Witnet.Source("")
-        const aggregator = new Witnet.aggregator({  filters: [],  reducer: Witnet.Types.REDUCERS.mode,})
-        const tally = new Witnet.tally({  filters: [],  reducer: Witnet.Types.REDUCERS.mode,})
+        const aggregator = new Witnet.aggregator({  filters: [],  reducer: Witnet.Types.REDUCERS.hashConcatenate,})
+        const tally = new Witnet.tally({  filters: [],  reducer: Witnet.Types.REDUCERS.hashConcatenate,})
         const request = new Witnet.Request()  
           .addSource(source_0)
           .setAggregator(aggregator) // Set the aggregator function  

@@ -70,7 +70,8 @@
       "mode": "Calcula la moda de los valores",
       "average_mean": "Calcula la media aritmética de los valores",
       "average_median": "Calcula la mediana aritmética de los valores",
-      "deviation_standard": "Calcula la desviación estándar de los valores"
+      "deviation_standard": "Calcula la desviación estándar de los valores",
+      "hash_concatenate": "Calcula el hash y concatena los valores"
     }
   }
 }

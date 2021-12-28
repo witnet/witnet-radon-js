@@ -140,6 +140,8 @@ export const aggregationTallyReducerDescriptions: AggregationTallyReducerDescrip
     i18n.t('aggregation_tally_description.reducer.average_median'),
   [AggregationTallyReducer.deviationStandard]: (i18n: I18n) => () =>
     i18n.t('aggregation_tally_description.reducer.deviation_standard'),
+  [AggregationTallyReducer.hashConcatenate]: (i18n: I18n) => () =>
+    i18n.t('aggregation_tally_description.reducer.hash_concatenate'),
 }
 
 // FIXME(#21): update match operators information
@@ -1120,6 +1122,13 @@ export const aTReducerMarkupOptions = () =>
   getEnumNames(AggregationTallyReducer).map((filter) =>
     generateOption(filter, OutputType.FilterOutput)
   )
+
+export const aTRNGReducerMarkupOptions = () => [
+  generateOption(
+    AggregationTallyReducer[AggregationTallyReducer.hashConcatenate],
+    OutputType.FilterOutput
+  ),
+]
 
 export const allMarkupOptions = removeRepeatedOptions([
   ...primitiveMarkupOptions.array,
