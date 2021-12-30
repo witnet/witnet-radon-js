@@ -71,7 +71,8 @@
       "mode":"Compute the mode of the values",
       "average_mean":"Compute the average mean of the values",
       "average_median": "Compute the average median of the values",
-      "deviation_standard": "Compute the standard deviation of the values"
+      "deviation_standard": "Compute the standard deviation of the values",
+      "hash_concatenate": "Compute the hash and concatenate the values"
     }
   }
 }
