@@ -243,7 +243,7 @@ export const operatorInfos: OperatorInfos = {
         type: MirArgumentType.Integer,
       },
     ],
-    outputType: OutputType.Boolean,
+    outputType: OutputType.Float,
     description: (i18n: I18n) => descriptions.getKey(i18n)('Array', 'Float'),
   },
   [OperatorCode.ArrayGetMap]: {
