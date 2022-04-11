@@ -43,7 +43,7 @@ describe('Radon', () => {
     radon.update(8, 'MapGetArray')
 
     // Update the input argument with a value
-    radon.update(9, 'dataseries')
+    radon.update(10, 'dataseries')
     expect(
       (radon.getMarkup().retrieve[0].script[1].selected.arguments[0] as MarkupInput).value
     ).toBe('dataseries')
@@ -58,12 +58,12 @@ describe('Radon', () => {
     ).toBeTruthy()
 
     // select ArrayGetMap option
-    radon.update(10, 'ArrayGetMap')
+    radon.update(11, 'ArrayGetMap')
 
     expect(radon.getMarkup().retrieve[0].script[2].selected.label).toBe('getMap')
 
     // Write argument value
-    radon.update(11, '0')
+    radon.update(12, '0')
 
     expect(
       (radon.getMarkup().retrieve[0].script[2].selected.arguments[0] as MarkupInput).value
@@ -77,12 +77,12 @@ describe('Radon', () => {
     ).toBeTruthy()
 
     // Select MapGetMap option
-    radon.update(12, 'MapGetMap')
+    radon.update(13, 'MapGetMap')
 
     expect(radon.getMarkup().retrieve[0].script[3].selected.label).toBe('getMap')
 
-    // Write argument value
-    radon.update(13, 'temp2m')
+    // // Write argument value
+    radon.update(15, 'temp2m')
 
     expect(
       (radon.getMarkup().retrieve[0].script[3].selected.arguments[0] as MarkupInput).value
@@ -98,12 +98,12 @@ describe('Radon', () => {
     ).toBeTruthy()
 
     // Select MapGetFloat option
-    radon.update(14, 'MapGetFloat')
+    radon.update(16, 'MapGetFloat')
 
     expect(radon.getMarkup().retrieve[0].script[4].selected.label).toBe('getFloat')
 
     // Write argument value
-    radon.update(15, 'max')
+    radon.update(18, 'max')
 
     expect(
       (radon.getMarkup().retrieve[0].script[4].selected.arguments[0] as MarkupInput).value
@@ -150,8 +150,7 @@ describe('Radon', () => {
     radon.update(8, 'MapGetBoolean')
 
     radon.addOperator(2)
-
-    radon.update(10, 'BooleanNegate')
+    radon.update(11, 'BooleanNegate')
 
     expect(radon.getMarkup().retrieve[0].script[2].label).toBe('negate')
   })
