@@ -131,7 +131,7 @@ export function getDefaultMirOperatorByType(type: Type): MirOperator {
     case Type.Integer:
       return OperatorCode.IntegerAbsolute
     case Type.Map:
-      return OperatorCode.MapGetArray
+      return [OperatorCode.MapGetArray, '']
     case Type.String:
       return OperatorCode.StringAsBoolean
   }
