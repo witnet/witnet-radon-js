@@ -3244,8 +3244,7 @@ describe('Radon', () => {
             kind: DEFAULT_KIND_OPTION,
             kindOptions: KIND_OPTIONS,
             script: [119, [100, 'price']],
-            url:
-              'https://api.coinpaprika.com/v1/price-converter?base_currency_id=btc-bitcoin&quote_currency_id=krw-south-korea-won&amount=1',
+            url: 'https://api.coinpaprika.com/v1/price-converter?base_currency_id=btc-bitcoin&quote_currency_id=krw-south-korea-won&amount=1',
           },
           {
             contentType: 'JSON API',
