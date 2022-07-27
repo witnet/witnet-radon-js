@@ -415,7 +415,7 @@ describe('Operator methods', () => {
           },
           {
             hierarchicalType: 'operatorOption',
-            label: 'MapValuesArray',
+            label: 'MapValues',
             markupType: 'option',
             outputType: 'arrayArray',
           },
@@ -769,7 +769,7 @@ describe('Operator methods', () => {
                     },
                     {
                       hierarchicalType: 'operatorOption',
-                      label: 'MapValuesArray',
+                      label: 'MapValues',
                       markupType: 'option',
                       outputType: 'arrayArray',
                     },

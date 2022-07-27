@@ -280,13 +280,7 @@ export enum OperatorCode {
   MapGetMap = 0x66,
   MapGetString = 0x67,
   MapKeys = 0x68,
-  MapValuesArray = 0x69,
-  //MapValuesBoolean = 0x6a,
-  //MapValuesBytes = 0x6b,
-  //MapValuesFloat = 0x6c,
-  //MapValuesInteger = 0x6d,
-  //MapValuesMap = 0x6e,
-  //MapValuesString = 0x6f,
+  MapValues = 0x69,
 
   StringAsBoolean = 0x70,
   //StringAsBytes = 0x71,
@@ -483,13 +477,7 @@ export enum MapOperatorName {
   GetMap = 'getMap',
   GetString = 'getString',
   Keys = 'keys',
-  valuesArray = 'valuesAsArray',
-  //valuesBoolean = 'valuesAsBoolean',
-  //valuesBytes = 'valuesAsBytes',
-  //valuesInteger = 'valuesAsInteger',
-  //valuesFloat = 'valuesAsFloat',
-  //valuesMap = 'valuesAsMap',
-  //valuesString = 'valuesAsString',
+  values = 'values',
 }
 
 export enum StringOperatorName {

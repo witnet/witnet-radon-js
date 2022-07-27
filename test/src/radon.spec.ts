@@ -937,7 +937,7 @@ describe('Radon', () => {
                   },
                   {
                     hierarchicalType: 'operatorOption',
-                    label: 'MapValuesArray',
+                    label: 'MapValues',
                     markupType: 'option',
                     outputType: 'arrayArray',
                   },
@@ -1365,7 +1365,7 @@ describe('Radon', () => {
                                   },
                                   {
                                     hierarchicalType: 'operatorOption',
-                                    label: 'MapValuesArray',
+                                    label: 'MapValues',
                                     markupType: 'option',
                                     outputType: 'arrayArray',
                                   },
@@ -1965,7 +1965,7 @@ describe('Radon', () => {
                             },
                             {
                               hierarchicalType: 'operatorOption',
-                              label: 'MapValuesArray',
+                              label: 'MapValues',
                               markupType: 'option',
                               outputType: 'arrayArray',
                             },
@@ -2429,7 +2429,7 @@ describe('Radon', () => {
                             },
                             {
                               hierarchicalType: 'operatorOption',
-                              label: 'MapValuesArray',
+                              label: 'MapValues',
                               markupType: 'option',
                               outputType: 'arrayArray',
                             },

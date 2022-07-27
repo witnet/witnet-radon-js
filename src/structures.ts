@@ -88,13 +88,7 @@ export const typeSystem: TypeSystem = {
     [MapOperatorName.GetMap]: [OperatorCode.MapGetMap, OutputType.Map],
     [MapOperatorName.GetString]: [OperatorCode.MapGetString, OutputType.String],
     [MapOperatorName.Keys]: [OperatorCode.MapKeys, OutputType.ArrayString],
-    [MapOperatorName.valuesArray]: [OperatorCode.MapValuesArray, OutputType.ArrayArray],
-    //[MapOperatorName.valuesBoolean]: [OperatorCode.MapValuesBoolean, OutputType.ArrayBoolean],
-    //[MapOperatorName.valuesBytes]: [OperatorCode.MapValuesBytes, OutputType.ArrayBytes],
-    //[MapOperatorName.valuesFloat]: [OperatorCode.MapValuesFloat, OutputType.ArrayFloat],
-    //[MapOperatorName.valuesInteger]: [OperatorCode.MapValuesInteger, OutputType.ArrayInteger],
-    //[MapOperatorName.valuesMap]: [OperatorCode.MapValuesMap, OutputType.ArrayMap],
-    //[MapOperatorName.valuesString]: [OperatorCode.MapValuesString, OutputType.ArrayString],
+    [MapOperatorName.values]: [OperatorCode.MapValues, OutputType.ArrayArray],
   },
   [Type.String]: {
     [StringOperatorName.AsBoolean]: [OperatorCode.StringAsBoolean, OutputType.Boolean],
@@ -792,9 +786,9 @@ export const operatorInfos: OperatorInfos = {
     outputType: OutputType.ArrayString,
     description: (i18n: I18n) => () => i18n.t('operator_info_description.map.keys'),
   },
-  [OperatorCode.MapValuesArray]: {
+  [OperatorCode.MapValues]: {
     type: Type.Map,
-    name: MapOperatorName.valuesArray,
+    name: MapOperatorName.values,
     arguments: [],
     outputType: OutputType.ArrayArray,
     description: (i18n: I18n) => () => descriptions.mapValues(i18n)('Array'),

@@ -376,7 +376,7 @@ describe('Argument methods', () => {
               },
               {
                 hierarchicalType: 'operatorOption',
-                label: 'MapValuesArray',
+                label: 'MapValues',
                 markupType: 'option',
                 outputType: 'arrayArray',
               },
@@ -934,7 +934,7 @@ describe('Argument methods', () => {
                     },
                     {
                       hierarchicalType: 'operatorOption',
-                      label: 'MapValuesArray',
+                      label: 'MapValues',
                       markupType: 'option',
                       outputType: 'arrayArray',
                     },
