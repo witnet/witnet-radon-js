@@ -296,7 +296,7 @@ export enum OperatorCode {
   StringMatch = 0x75,
   StringParseJsonArray = 0x76,
   StringParseJsonMap = 0x77,
-  //StringParseXML = 0x78,
+  StringParseXmlMap = 0x78,
   StringToLowerCase = 0x79,
   StringToUpperCase = 0x7a,
 }
@@ -501,7 +501,7 @@ export enum StringOperatorName {
   Match = 'match',
   ParseJsonArray = 'parseJSONArray',
   ParseJsonMap = 'parseJSONMap',
-  //ParseXml = 'parseXML',
+  ParseXmlMap = 'parseXMLMap',
   ToLowerCase = 'toLowerCase',
   ToUpperCase = 'toUpperCase',
 }
