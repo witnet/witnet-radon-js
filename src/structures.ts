@@ -106,21 +106,27 @@ export const typeSystem: TypeSystem = {
 }
 
 const descriptions = {
-  getKey: (i18n: I18n) => (inputType: string = 'inputType', outputType: string = 'outputType') => (
-    key: string = 'key'
-  ) => {
-    return i18n.t('operator_info_description.get_key', { key, inputType, outputType })
-  },
-  mapValues: (i18n: I18n) => (type: string = 'type') =>
-    i18n.t('operator_info_description.map.values', { type }),
-  cast: (i18n: I18n) => (inputType: string = 'inputType', outputType: string = 'outputType') =>
-    i18n.t('operator_info_description.cast', { outputType, inputType }),
+  getKey:
+    (i18n: I18n) =>
+    (inputType: string = 'inputType', outputType: string = 'outputType') =>
+    (key: string = 'key') => {
+      return i18n.t('operator_info_description.get_key', { key, inputType, outputType })
+    },
+  mapValues:
+    (i18n: I18n) =>
+    (type: string = 'type') =>
+      i18n.t('operator_info_description.map.values', { type }),
+  cast:
+    (i18n: I18n) =>
+    (inputType: string = 'inputType', outputType: string = 'outputType') =>
+      i18n.t('operator_info_description.cast', { outputType, inputType }),
 }
 
 export const aggregationTallyFilterDescriptions: AggregationTallyFilterDescriptions = {
-  [AggregationTallyFilter.deviationStandard]: (i18n: I18n) => (
-    number: string | number = 'number'
-  ): string => i18n.t('aggregation_tally_description.filter.deviation_standard', { number }),
+  [AggregationTallyFilter.deviationStandard]:
+    (i18n: I18n) =>
+    (number: string | number = 'number'): string =>
+      i18n.t('aggregation_tally_description.filter.deviation_standard', { number }),
   [AggregationTallyFilter.mode]: (i18n: I18n) => () =>
     i18n.t('aggregation_tally_description.filter.mode'),
 }
@@ -158,8 +164,10 @@ export const operatorInfos: OperatorInfos = {
       },
     ],
     outputType: OutputType.Same,
-    description: (i18n: I18n) => (filter: string = 'filter') =>
-      i18n.t('operator_info_description.array.filter', { filter }),
+    description:
+      (i18n: I18n) =>
+      (filter: string = 'filter') =>
+        i18n.t('operator_info_description.array.filter', { filter }),
   },
   /*[OperatorCode.ArrayFlatten]: {
     type: Type.Array,
@@ -293,8 +301,10 @@ export const operatorInfos: OperatorInfos = {
       },
     ],
     outputType: OutputType.Inner,
-    description: (i18n: I18n) => (outputType: string = 'outputType', reducer: string = 'reducer') =>
-      i18n.t('operator_info_description.array.reduce', { outputType, reducer }),
+    description:
+      (i18n: I18n) =>
+      (outputType: string = 'outputType', reducer: string = 'reducer') =>
+        i18n.t('operator_info_description.array.reduce', { outputType, reducer }),
   },
   /*[OperatorCode.ArraySome]: {
     type: Type.Array,
@@ -326,8 +336,10 @@ export const operatorInfos: OperatorInfos = {
       },
     ],
     outputType: OutputType.Same,
-    description: (i18n: I18n) => (order: string = 'order') =>
-      i18n.t('operator_info_description.array.sort', { order }),
+    description:
+      (i18n: I18n) =>
+      (order: string = 'order') =>
+        i18n.t('operator_info_description.array.sort', { order }),
   },
   /*[OperatorCode.ArrayTake]: {
     type: Type.Array,
@@ -429,8 +441,10 @@ export const operatorInfos: OperatorInfos = {
       },
     ],
     outputType: OutputType.Boolean,
-    description: (i18n: I18n) => (argument: string = 'argument') =>
-      i18n.t('operator_info_description.integer.greater_than', { argument }),
+    description:
+      (i18n: I18n) =>
+      (argument: string = 'argument') =>
+        i18n.t('operator_info_description.integer.greater_than', { argument }),
   },
   [OperatorCode.IntegerLessThan]: {
     type: Type.Integer,
@@ -443,8 +457,10 @@ export const operatorInfos: OperatorInfos = {
       },
     ],
     outputType: OutputType.Boolean,
-    description: (i18n: I18n) => (argument: string = 'argument') =>
-      i18n.t('operator_info_description.integer.less_than', { argument }),
+    description:
+      (i18n: I18n) =>
+      (argument: string = 'argument') =>
+        i18n.t('operator_info_description.integer.less_than', { argument }),
   },
   // [OperatorCode.IntegerMatch]: {
   //   type: Type.Integer,
@@ -476,8 +492,10 @@ export const operatorInfos: OperatorInfos = {
       },
     ],
     outputType: OutputType.Integer,
-    description: (i18n: I18n) => (argument: string = 'argument') =>
-      i18n.t('operator_info_description.integer.modulo', { argument }),
+    description:
+      (i18n: I18n) =>
+      (argument: string = 'argument') =>
+        i18n.t('operator_info_description.integer.modulo', { argument }),
   },
   [OperatorCode.IntegerMultiply]: {
     type: Type.Integer,
@@ -490,8 +508,10 @@ export const operatorInfos: OperatorInfos = {
       },
     ],
     outputType: OutputType.Integer,
-    description: (i18n: I18n) => (factor: string = 'factor') =>
-      i18n.t('operator_info_description.integer.multiply', { factor }),
+    description:
+      (i18n: I18n) =>
+      (factor: string = 'factor') =>
+        i18n.t('operator_info_description.integer.multiply', { factor }),
   },
   [OperatorCode.IntegerNegate]: {
     type: Type.Integer,
@@ -511,8 +531,10 @@ export const operatorInfos: OperatorInfos = {
       },
     ],
     outputType: OutputType.Integer,
-    description: (i18n: I18n) => (exponent: string = 'exponent') =>
-      i18n.t('operator_info_description.integer.power', { exponent }),
+    description:
+      (i18n: I18n) =>
+      (exponent: string = 'exponent') =>
+        i18n.t('operator_info_description.integer.power', { exponent }),
   },
   /*[OperatorCode.IntegerReciprocal]: {
     type: Type.Integer,
@@ -573,8 +595,10 @@ export const operatorInfos: OperatorInfos = {
       },
     ],
     outputType: OutputType.Boolean,
-    description: (i18n: I18n) => (value: string = 'value') =>
-      i18n.t('operator_info_description.float.greater_than', { value }),
+    description:
+      (i18n: I18n) =>
+      (value: string = 'value') =>
+        i18n.t('operator_info_description.float.greater_than', { value }),
   },
   [OperatorCode.FloatFloor]: {
     type: Type.Float,
@@ -594,8 +618,10 @@ export const operatorInfos: OperatorInfos = {
       },
     ],
     outputType: OutputType.Boolean,
-    description: (i18n: I18n) => (argument: string = 'argument') =>
-      i18n.t('operator_info_description.float.less_than', { argument }),
+    description:
+      (i18n: I18n) =>
+      (argument: string = 'argument') =>
+        i18n.t('operator_info_description.float.less_than', { argument }),
   },
   [OperatorCode.FloatModulo]: {
     type: Type.Float,
@@ -608,8 +634,10 @@ export const operatorInfos: OperatorInfos = {
       },
     ],
     outputType: OutputType.Float,
-    description: (i18n: I18n) => (argument: string = 'argument') =>
-      i18n.t('operator_info_description.float.modulo', { argument }),
+    description:
+      (i18n: I18n) =>
+      (argument: string = 'argument') =>
+        i18n.t('operator_info_description.float.modulo', { argument }),
   },
   [OperatorCode.FloatMultiply]: {
     type: Type.Float,
@@ -622,8 +650,10 @@ export const operatorInfos: OperatorInfos = {
       },
     ],
     outputType: OutputType.Float,
-    description: (i18n: I18n) => (argument: string = 'argument') =>
-      i18n.t('operator_info_description.float.multiply', { argument }),
+    description:
+      (i18n: I18n) =>
+      (argument: string = 'argument') =>
+        i18n.t('operator_info_description.float.multiply', { argument }),
   },
   [OperatorCode.FloatNegate]: {
     type: Type.Float,
@@ -643,8 +673,10 @@ export const operatorInfos: OperatorInfos = {
       },
     ],
     outputType: OutputType.Float,
-    description: (i18n: I18n) => (exponent: string = 'exponent') =>
-      i18n.t('operator_info_description.float.power', { exponent }),
+    description:
+      (i18n: I18n) =>
+      (exponent: string = 'exponent') =>
+        i18n.t('operator_info_description.float.power', { exponent }),
   },
   /*[OperatorCode.FloatReciprocal]: {
     type: Type.Float,
@@ -886,8 +918,10 @@ export const operatorInfos: OperatorInfos = {
       },
     ],
     outputType: OutputType.MatchOutput,
-    description: (i18n: I18n) => (subscript: string = 'subscript') =>
-      i18n.t('operator_info_description.string.match', { subscript }),
+    description:
+      (i18n: I18n) =>
+      (subscript: string = 'subscript') =>
+        i18n.t('operator_info_description.string.match', { subscript }),
   },
   [OperatorCode.StringParseJsonArray]: {
     type: Type.String,

@@ -91,7 +91,7 @@ export class AggregationTallyOperatorFilter {
     if (Number.isInteger(value)) {
       this.code = value
     } else {
-      this.code = (AggregationTallyFilter[value] as unknown) as AggregationTallyFilter
+      this.code = AggregationTallyFilter[value] as unknown as AggregationTallyFilter
     }
   }
 }

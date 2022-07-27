@@ -73,7 +73,7 @@ export class AggregationTallyOperatorReducer {
       if (Number.isInteger(value)) {
         this.code = value
       } else {
-        this.code = (AggregationTallyReducer[value] as unknown) as AggregationTallyReducer
+        this.code = AggregationTallyReducer[value] as unknown as AggregationTallyReducer
       }
     }
   }
