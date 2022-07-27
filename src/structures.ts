@@ -54,7 +54,7 @@ export const typeSystem: TypeSystem = {
     [IntegerOperatorName.AsString]: [OperatorCode.IntegerAsString, OutputType.String],
     [IntegerOperatorName.GreaterThan]: [OperatorCode.IntegerGreaterThan, OutputType.Boolean],
     [IntegerOperatorName.LessThan]: [OperatorCode.IntegerLessThan, OutputType.Boolean],
-    [IntegerOperatorName.Match]: [OperatorCode.IntegerMatch, OutputType.MatchOutput],
+    // [IntegerOperatorName.Match]: [OperatorCode.IntegerMatch, OutputType.MatchOutput],
     [IntegerOperatorName.Modulo]: [OperatorCode.IntegerModulo, OutputType.Integer],
     [IntegerOperatorName.Multiply]: [OperatorCode.IntegerMultiply, OutputType.Integer],
     [IntegerOperatorName.Negate]: [OperatorCode.IntegerNegate, OutputType.Integer],
@@ -452,25 +452,25 @@ export const operatorInfos: OperatorInfos = {
     description: (i18n: I18n) => (argument: string = 'argument') =>
       i18n.t('operator_info_description.integer.less_than', { argument }),
   },
-  [OperatorCode.IntegerMatch]: {
-    type: Type.Integer,
-    name: IntegerOperatorName.Match,
-    arguments: [
-      {
-        name: 'categories',
-        optional: false,
-        type: MirArgumentType.Map,
-      },
-      {
-        name: 'default',
-        optional: false,
-        type: MirArgumentType.Boolean,
-      },
-    ],
-    outputType: OutputType.MatchOutput,
-    description: (i18n: I18n) => (subscript: string = 'subscript') =>
-      i18n.t('operator_info_description.integer.match', { subscript }),
-  },
+  // [OperatorCode.IntegerMatch]: {
+  //   type: Type.Integer,
+  //   name: IntegerOperatorName.Match,
+  //   arguments: [
+  //     {
+  //       name: 'categories',
+  //       optional: false,
+  //       type: MirArgumentType.Map,
+  //     },
+  //     {
+  //       name: 'default',
+  //       optional: false,
+  //       type: MirArgumentType.Boolean,
+  //     },
+  //   ],
+  //   outputType: OutputType.MatchOutput,
+  //   description: (i18n: I18n) => (subscript: string = 'subscript') =>
+  //     i18n.t('operator_info_description.integer.match', { subscript }),
+  // },
   [OperatorCode.IntegerModulo]: {
     type: Type.Integer,
     name: 'modulo',

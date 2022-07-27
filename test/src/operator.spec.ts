@@ -445,12 +445,6 @@ describe('Operator methods', () => {
           },
           {
             hierarchicalType: 'operatorOption',
-            label: 'IntegerMatch',
-            markupType: 'option',
-            outputType: 'matchOutput',
-          },
-          {
-            hierarchicalType: 'operatorOption',
             label: 'IntegerModulo',
             markupType: 'option',
             outputType: 'integer',
@@ -796,12 +790,6 @@ describe('Operator methods', () => {
                       label: 'IntegerLessThan',
                       markupType: 'option',
                       outputType: 'boolean',
-                    },
-                    {
-                      hierarchicalType: 'operatorOption',
-                      label: 'IntegerMatch',
-                      markupType: 'option',
-                      outputType: 'matchOutput',
                     },
                     {
                       hierarchicalType: 'operatorOption',

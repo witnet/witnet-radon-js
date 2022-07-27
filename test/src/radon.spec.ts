@@ -1389,12 +1389,6 @@ describe('Radon', () => {
                                   },
                                   {
                                     hierarchicalType: 'operatorOption',
-                                    label: 'IntegerMatch',
-                                    markupType: 'option',
-                                    outputType: 'matchOutput',
-                                  },
-                                  {
-                                    hierarchicalType: 'operatorOption',
                                     label: 'IntegerModulo',
                                     markupType: 'option',
                                     outputType: 'integer',
@@ -1989,12 +1983,6 @@ describe('Radon', () => {
                             },
                             {
                               hierarchicalType: 'operatorOption',
-                              label: 'IntegerMatch',
-                              markupType: 'option',
-                              outputType: 'matchOutput',
-                            },
-                            {
-                              hierarchicalType: 'operatorOption',
                               label: 'IntegerModulo',
                               markupType: 'option',
                               outputType: 'integer',
@@ -2450,12 +2438,6 @@ describe('Radon', () => {
                               label: 'IntegerLessThan',
                               markupType: 'option',
                               outputType: 'boolean',
-                            },
-                            {
-                              hierarchicalType: 'operatorOption',
-                              label: 'IntegerMatch',
-                              markupType: 'option',
-                              outputType: 'matchOutput',
                             },
                             {
                               hierarchicalType: 'operatorOption',
