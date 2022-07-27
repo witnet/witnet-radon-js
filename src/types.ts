@@ -71,6 +71,7 @@ export enum Reducer {
   //deviationAverage = 0x08,
   //deviationMedian = 0x09,
   //deviationMaximum = 0x0a,
+  hashConcatenate = 0x0b,
 }
 
 export enum Filter {
