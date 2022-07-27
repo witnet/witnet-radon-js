@@ -322,6 +322,7 @@ export type MirArgument =
   | [Filter, number]
   | [Filter, string]
   | [Filter, boolean]
+  // TODO: Should [Filter, MirScript] be [MirScript]?
   | [Filter, MirScript]
   | MirScript
   | Reducer

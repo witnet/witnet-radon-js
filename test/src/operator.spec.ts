@@ -1134,6 +1134,23 @@ describe('Operator methods', () => {
 
       expect(result).toStrictEqual(expected)
     })
+
+    it('custom filter', () => {
+      const op: MirOperator = [
+        OperatorCode.ArrayFilter,
+        [
+          [OperatorCode.MapGetString, 'symbol'],
+          [OperatorCode.StringMatch, { 'GLINT-USDT': true }, false],
+        ],
+      ]
+      const context: Context = { cache: new Cache(), i18n: new I18n() }
+      const operator = new Operator(context, 0, OutputType.Array, op, { emit: () => {} })
+
+      const result = operator.getMir()
+      const expected = op
+
+      expect(result).toStrictEqual(expected)
+    })
   })
 
   describe('update', () => {
