@@ -105,7 +105,7 @@ export const typeSystem: TypeSystem = {
     [StringOperatorName.Match]: [OperatorCode.StringMatch, OutputType.MatchOutput],
     [StringOperatorName.ParseJsonArray]: [OperatorCode.StringParseJsonArray, OutputType.Array],
     [StringOperatorName.ParseJsonMap]: [OperatorCode.StringParseJsonMap, OutputType.Map],
-    //[StringOperatorName.ParseXml]: [OperatorCode.StringParseXML, OutputType.Map],
+    [StringOperatorName.ParseXMLMap]: [OperatorCode.StringParseXMLMap, OutputType.Map],
     [StringOperatorName.ToLowerCase]: [OperatorCode.StringToLowerCase, OutputType.String],
     [StringOperatorName.ToUpperCase]: [OperatorCode.StringToUpperCase, OutputType.String],
   },
@@ -909,13 +909,13 @@ export const operatorInfos: OperatorInfos = {
     outputType: OutputType.Map,
     description: (i18n: I18n) => () => i18n.t('operator_info_description.string.parse_json_map'),
   },
-  /*[OperatorCode.StringParseXML]: {
+  [OperatorCode.StringParseXMLMap]: {
     type: Type.String,
-    name: StringOperatorName.ParseXml,
+    name: StringOperatorName.ParseXMLMap,
     arguments: [],
     outputType: OutputType.Map,
     description: (i18n: I18n) => () => i18n.t('operator_info_description.string.parse_xml'),
-  },*/
+  },
   [OperatorCode.StringToLowerCase]: {
     type: Type.String,
     name: StringOperatorName.ToLowerCase,

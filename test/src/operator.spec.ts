@@ -349,6 +349,12 @@ describe('Operator methods', () => {
           },
           {
             hierarchicalType: 'operatorOption',
+            label: 'StringParseXMLMap',
+            markupType: 'option',
+            outputType: 'map',
+          },
+          {
+            hierarchicalType: 'operatorOption',
             label: 'StringToLowerCase',
             markupType: 'option',
             outputType: 'string',
@@ -692,6 +698,12 @@ describe('Operator methods', () => {
                     {
                       hierarchicalType: 'operatorOption',
                       label: 'StringParseJsonMap',
+                      markupType: 'option',
+                      outputType: 'map',
+                    },
+                    {
+                      hierarchicalType: 'operatorOption',
+                      label: 'StringParseXMLMap',
                       markupType: 'option',
                       outputType: 'map',
                     },
