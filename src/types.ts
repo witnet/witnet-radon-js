@@ -8,6 +8,7 @@ import { Script } from './script'
 import { Source } from './source'
 import { Cache } from './structures'
 import { I18n } from './i18n'
+import { OutgoingHttpHeaders } from 'http'
 
 export type EventEmitter = {
   emit: Function
@@ -190,6 +191,8 @@ export type MarkupArgumentScript = {
 export type MarkupSource = {
   kind: Kind
   kindOptions: KindOptions
+  headers: OutgoingHttpHeaders
+  body?: object
   url: string
   contentType: string
   contentTypeOptions: ContentTypeOptions
@@ -216,6 +219,7 @@ export type KindOptions = Array<Kind>
 
 export enum Kind {
   HttpGet = 'HTTP-GET',
+  HttpPost = 'HTTP-POST',
   RNG = 'RNG',
 }
 
@@ -364,6 +368,8 @@ export type MarkupAggregationTallyScript = {
 
 export type MirSource = {
   kind: Kind
+  headers: OutgoingHttpHeaders
+  body?: object
   kindOptions: KindOptions
   url: string
   contentType: string

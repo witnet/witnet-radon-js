@@ -14,27 +14,34 @@ export class Radon {
   public retrieve: Array<Source>
   public aggregate: AggregationTallyScript
   public tally: AggregationTallyScript
-  private _sourceType: Kind
+  // private _sourceType: Kind
 
-  public get sourceType() {
-    return this._sourceType
-  }
-  public set sourceType(kind: Kind) {
-    this._sourceType = kind
-  }
+  // public get sourceType() {
+  //   return this._sourceType
+  // }
+  // public set sourceType(kind: Kind) {
+  //   this._sourceType = kind
+  // }
   public context: Context
+
+  public isRngRequest: boolean
 
   constructor(radRequest: MirRequest, locale?: Locale) {
     this.context = { cache: new Cache(), i18n: new I18n(locale) }
     this.timelock = radRequest.timelock
-    this._sourceType = radRequest.retrieve.find((source) => source.kind === Kind.RNG)
-      ? Kind.RNG
-      : Kind.HttpGet
+    // this._sourceType = radRequest.retrieve.find((source) => source.kind === Kind.RNG)
+    //   ? Kind.RNG
+    //   : Kind.HttpGet
+    this.isRngRequest = !!radRequest.retrieve.find((source) => source.kind === Kind.RNG)
     this.retrieve = radRequest.retrieve.map(
-      (source) => new Source(this.context, source, this.sourceType, this.onChildrenEvent())
+      (source) => new Source(this.context, source, this.onChildrenEvent())
     )
-    this.aggregate = new AggregationTallyScript(this.context, radRequest.aggregate, this.sourceType)
-    this.tally = new AggregationTallyScript(this.context, radRequest.tally, this.sourceType)
+    this.aggregate = new AggregationTallyScript(
+      this.context,
+      radRequest.aggregate,
+      this.isRngRequest
+    )
+    this.tally = new AggregationTallyScript(this.context, radRequest.tally, this.isRngRequest)
   }
 
   public setLocale(locale: Locale) {
@@ -48,14 +55,13 @@ export class Radon {
   public onChildrenEvent() {
     return {
       emit: (e: { sourceType: Kind }) => {
-        this.sourceType = e.sourceType
-        this.retrieve.forEach((source) => source.updateSourceType(this.sourceType))
-        if (this.sourceType === Kind.RNG) {
+        this.isRngRequest = e.sourceType === Kind.RNG
+        this.retrieve.forEach((source) => source.updateSourceType(e.sourceType))
+        if (this.isRngRequest) {
           this.retrieve = [this.retrieve[0]]
         }
-        this.aggregate.updateSourceType(this.sourceType)
-        this.tally.updateSourceType(this.sourceType)
-        this.retrieve
+        this.aggregate.setIsRngRequest(this.isRngRequest)
+        this.tally.setIsRngRequest(this.isRngRequest)
       },
     }
   }
@@ -71,8 +77,8 @@ export class Radon {
           kindOptions: KIND_OPTIONS,
           contentTypeOptions: CONTENT_TYPE_OPTIONS,
           contentType: 'JSON API',
+          headers: {},
         },
-        this.sourceType,
         this.onChildrenEvent()
       )
     )

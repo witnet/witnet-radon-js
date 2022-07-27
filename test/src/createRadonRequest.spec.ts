@@ -14,6 +14,7 @@ describe('Radon', () => {
           contentType: 'JSON API',
           contentTypeOptions: CONTENT_TYPE_OPTIONS,
           script: [],
+          headers: {},
         },
       ],
       aggregate: {
@@ -121,6 +122,7 @@ describe('Radon', () => {
           contentType: 'JSON API',
           contentTypeOptions: CONTENT_TYPE_OPTIONS,
           script: [],
+          headers: {},
         },
       ],
       aggregate: {
@@ -153,5 +155,43 @@ describe('Radon', () => {
     radon.update(11, 'BooleanNegate')
 
     expect(radon.getMarkup().retrieve[0].script[2].label).toBe('negate')
+  })
+
+  it('works with post requests', () => {
+    const body = { field: 'value' }
+    const headers = { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8' }
+
+    const mir: MirRequest = {
+      timelock: 0,
+      retrieve: [
+        {
+          kind: DEFAULT_KIND_OPTION,
+          kindOptions: KIND_OPTIONS,
+          url: 'source_1',
+          contentType: 'JSON API',
+          contentTypeOptions: CONTENT_TYPE_OPTIONS,
+          script: [],
+          headers,
+          body,
+        },
+      ],
+      aggregate: {
+        filters: [],
+        reducer: AggregationTallyReducer.mode,
+      },
+      tally: {
+        filters: [],
+        reducer: AggregationTallyReducer.mode,
+      },
+    }
+    const radon = new Radon(mir)
+
+    const sourceMir = radon.getMir().retrieve[0]
+    const sourceMarkup = radon.getMarkup().retrieve[0]
+
+    expect(sourceMir.body).toStrictEqual(body)
+    expect(sourceMir.headers).toStrictEqual(headers)
+    expect(sourceMarkup.body).toStrictEqual(body)
+    expect(sourceMarkup.headers).toStrictEqual(headers)
   })
 })

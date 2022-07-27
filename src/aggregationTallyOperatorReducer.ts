@@ -5,7 +5,6 @@ import {
   MarkupType,
   OutputType,
   Context,
-  Kind,
 } from './types'
 import {
   aggregationTallyReducerDescriptions,
@@ -19,23 +18,22 @@ export class AggregationTallyOperatorReducer {
   public id: number
   public scriptId: number
   public label: string
-  public sourceType: Kind
+  public isRngRequest: boolean
 
   constructor(
     context: Context,
     operator: AggregationTallyReducer = AggregationTallyReducer.averageMean,
     scriptId: number,
-    sourceType: Kind
+    isRngRequest: boolean
   ) {
     this.id = context.cache.insert(this).id
     this.context = context
-    this.code = sourceType === Kind.RNG ? AggregationTallyReducer.hashConcatenate : operator
+    this.code = isRngRequest ? AggregationTallyReducer.hashConcatenate : operator
     this.scriptId = scriptId
-    this.label =
-      sourceType === Kind.RNG
-        ? AggregationTallyReducer[AggregationTallyReducer.hashConcatenate]
-        : AggregationTallyReducer[this.code]
-    this.sourceType = sourceType
+    this.label = isRngRequest
+      ? AggregationTallyReducer[AggregationTallyReducer.hashConcatenate]
+      : AggregationTallyReducer[this.code]
+    this.isRngRequest = isRngRequest
   }
 
   public getJs(): string {
@@ -50,7 +48,7 @@ export class AggregationTallyOperatorReducer {
       id: this.id,
       label: this.label,
       markupType: MarkupType.Select,
-      options: this.sourceType === 'RNG' ? aTRNGReducerMarkupOptions() : aTReducerMarkupOptions(),
+      options: this.isRngRequest ? aTRNGReducerMarkupOptions() : aTReducerMarkupOptions(),
       outputType: OutputType.FilterOutput,
       scriptId: this.scriptId,
       selected: {
@@ -69,7 +67,7 @@ export class AggregationTallyOperatorReducer {
   }
 
   public update(value: AggregationTallyReducer | number) {
-    if (this.sourceType !== 'RNG') {
+    if (!this.isRngRequest) {
       if (Number.isInteger(value)) {
         this.code = value
       } else {

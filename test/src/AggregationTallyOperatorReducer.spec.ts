@@ -1,6 +1,6 @@
 import { AggregationTallyOperatorReducer } from '../../src/aggregationTallyOperatorReducer'
 import { Cache } from '../../src/structures'
-import { AggregationTallyReducer, Kind } from '../../src/types'
+import { AggregationTallyReducer } from '../../src/types'
 import { I18n } from '../../src/i18n'
 
 describe('AggregationTallyOperatorReducer', () => {
@@ -8,7 +8,7 @@ describe('AggregationTallyOperatorReducer', () => {
     const mirOperator: AggregationTallyReducer = AggregationTallyReducer.averageMean
 
     const context = { cache: new Cache(), i18n: new I18n() }
-    const operator = new AggregationTallyOperatorReducer(context, mirOperator, 1, Kind.HttpGet)
+    const operator = new AggregationTallyOperatorReducer(context, mirOperator, 1, false)
 
     const result = operator.getJs()
     const expected = 'Witnet.Types.REDUCERS.averageMean'
@@ -20,7 +20,7 @@ describe('AggregationTallyOperatorReducer', () => {
     const mirOperator: AggregationTallyReducer = AggregationTallyReducer.averageMean
 
     const context = { cache: new Cache(), i18n: new I18n() }
-    const operator = new AggregationTallyOperatorReducer(context, mirOperator, 1, Kind.HttpGet)
+    const operator = new AggregationTallyOperatorReducer(context, mirOperator, 1, false)
 
     const result = operator.getMarkup()
     const expected = {
@@ -79,7 +79,7 @@ describe('AggregationTallyOperatorReducer', () => {
     const mirOperator: AggregationTallyReducer = AggregationTallyReducer.averageMean
 
     const context = { cache: new Cache(), i18n: new I18n() }
-    const operator = new AggregationTallyOperatorReducer(context, mirOperator, 1, Kind.HttpGet)
+    const operator = new AggregationTallyOperatorReducer(context, mirOperator, 1, false)
 
     const result = operator.getMir()
 
@@ -90,7 +90,7 @@ describe('AggregationTallyOperatorReducer', () => {
     const mirOperator: AggregationTallyReducer = AggregationTallyReducer.mode
 
     const context = { cache: new Cache(), i18n: new I18n() }
-    const operator = new AggregationTallyOperatorReducer(context, mirOperator, 1, Kind.HttpGet)
+    const operator = new AggregationTallyOperatorReducer(context, mirOperator, 1, false)
 
     operator.update(AggregationTallyReducer.averageMean)
 

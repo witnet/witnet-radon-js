@@ -28,8 +28,8 @@ describe('Source', () => {
           script: mirScript,
           contentType: 'JSON API',
           contentTypeOptions: CONTENT_TYPE_OPTIONS,
+          headers: {},
         },
-        Kind.HttpGet,
         onChildrenEvent()
       )
 
@@ -54,11 +54,10 @@ describe('Source', () => {
         contentType: 'JSON API',
         contentTypeOptions: CONTENT_TYPE_OPTIONS,
         script: mirScript,
+        headers: {},
       }
 
-      const result = formatJsTest(
-        new Source(context, mirSource, Kind.HttpGet, onChildrenEvent()).getJs(0)
-      )
+      const result = formatJsTest(new Source(context, mirSource, onChildrenEvent()).getJs(0))
 
       const expected = 'const source_0 = new Witnet.Source("url").asBoolean().negate().asString()'
 
@@ -80,8 +79,8 @@ describe('Source', () => {
           script: mirScript,
           contentType: 'JSON API',
           contentTypeOptions: CONTENT_TYPE_OPTIONS,
+          headers: {},
         },
-        Kind.HttpGet,
         onChildrenEvent()
       )
 
@@ -94,6 +93,7 @@ describe('Source', () => {
         contentTypeOptions: CONTENT_TYPE_OPTIONS,
         script: [],
         scriptId: 2,
+        headers: {},
       }
       expect(result).toStrictEqual(expected)
     })
@@ -114,11 +114,13 @@ describe('Source', () => {
         contentType: 'JSON API',
         contentTypeOptions: CONTENT_TYPE_OPTIONS,
         script: mirScript,
+        headers: {},
       }
 
-      const result = new Source(context, mirSource, Kind.HttpGet, onChildrenEvent()).getMarkup()
+      const result = new Source(context, mirSource, onChildrenEvent()).getMarkup()
 
       const expected: any = {
+        headers: {},
         kind: Kind.HttpGet,
         kindOptions: KIND_OPTIONS,
         contentType: 'JSON API',
@@ -199,8 +201,8 @@ describe('Source', () => {
           script: mirScript,
           contentType: 'JSON API',
           contentTypeOptions: CONTENT_TYPE_OPTIONS,
+          headers: {},
         },
-        Kind.HttpGet,
         onChildrenEvent()
       )
 
@@ -212,6 +214,7 @@ describe('Source', () => {
         script: [],
         contentType: 'JSON API',
         contentTypeOptions: CONTENT_TYPE_OPTIONS,
+        headers: {},
       }
 
       expect(result).toStrictEqual(expected)
@@ -233,9 +236,10 @@ describe('Source', () => {
         contentType: 'JSON API',
         contentTypeOptions: CONTENT_TYPE_OPTIONS,
         script: mirScript,
+        headers: {},
       }
 
-      const result = new Source(context, mirSource, Kind.HttpGet, onChildrenEvent()).getMir()
+      const result = new Source(context, mirSource, onChildrenEvent()).getMir()
 
       const expected = mirSource
 

@@ -21,6 +21,7 @@ describe('RandomNumberGenerator request', () => {
         kind: DEFAULT_KIND_OPTION,
         kindOptions: KIND_OPTIONS,
         url: 'source_1',
+        headers: {},
         contentType: 'JSON API',
         contentTypeOptions: CONTENT_TYPE_OPTIONS,
         script: [OperatorCode.StringAsBoolean, OperatorCode.BooleanNegate],
@@ -29,6 +30,7 @@ describe('RandomNumberGenerator request', () => {
         kind: DEFAULT_KIND_OPTION,
         kindOptions: KIND_OPTIONS,
         url: 'source_2',
+        headers: {},
         contentType: 'JSON API',
         contentTypeOptions: CONTENT_TYPE_OPTIONS,
         script: [OperatorCode.StringAsBoolean, OperatorCode.BooleanNegate],
@@ -52,6 +54,7 @@ describe('RandomNumberGenerator request', () => {
             kind: Kind.RNG,
             kindOptions: KIND_OPTIONS,
             url: 'source_1',
+            headers: {},
             contentType: 'JSON API',
             contentTypeOptions: CONTENT_TYPE_OPTIONS,
             script: [],
@@ -78,7 +81,7 @@ describe('RandomNumberGenerator request', () => {
         reducer: 0x02,
       }
       const context = { cache: new Cache(), i18n: new I18n() }
-      const script = new AggregationTallyScript(context, mirScript, Kind.RNG)
+      const script = new AggregationTallyScript(context, mirScript, true)
       expect(script.filters.length).toStrictEqual(0)
     })
     it('correctly updates the source deleting source script operators', () => {
@@ -121,6 +124,7 @@ describe('RandomNumberGenerator request', () => {
             kind: Kind.RNG,
             kindOptions: KIND_OPTIONS,
             url: 'source_1',
+            headers: {},
             contentType: 'JSON API',
             contentTypeOptions: CONTENT_TYPE_OPTIONS,
             script: [],
@@ -147,7 +151,7 @@ describe('RandomNumberGenerator request', () => {
         reducer: 0x02,
       }
       const context = { cache: new Cache(), i18n: new I18n() }
-      const script = new AggregationTallyScript(context, mirScript, Kind.RNG)
+      const script = new AggregationTallyScript(context, mirScript, true)
       expect(script.getMarkup().filters.length).toStrictEqual(0)
     })
     it('correctly updates the source deleting source script operators', () => {
@@ -190,6 +194,7 @@ describe('RandomNumberGenerator request', () => {
             kind: Kind.RNG,
             kindOptions: KIND_OPTIONS,
             url: 'source_1',
+            headers: {},
             contentType: 'JSON API',
             contentTypeOptions: CONTENT_TYPE_OPTIONS,
             script: [],
@@ -218,6 +223,7 @@ describe('RandomNumberGenerator request', () => {
             kind: Kind.RNG,
             kindOptions: KIND_OPTIONS,
             url: 'source_1',
+            headers: {},
             contentType: 'JSON API',
             contentTypeOptions: CONTENT_TYPE_OPTIONS,
             script: [],
@@ -226,6 +232,7 @@ describe('RandomNumberGenerator request', () => {
             kind: Kind.RNG,
             kindOptions: KIND_OPTIONS,
             url: 'source_1',
+            headers: {},
             contentType: 'JSON API',
             contentTypeOptions: CONTENT_TYPE_OPTIONS,
             script: [],
@@ -255,7 +262,7 @@ describe('RandomNumberGenerator request', () => {
         reducer: 0x02,
       }
       const context = { cache: new Cache(), i18n: new I18n() }
-      const script = new AggregationTallyScript(context, mirScript, Kind.RNG)
+      const script = new AggregationTallyScript(context, mirScript, true)
       expect(script.getMir().filters.length).toStrictEqual(0)
     })
     it('correctly updates the source deleting source script operators', () => {
@@ -308,6 +315,7 @@ describe('RandomNumberGenerator request', () => {
             kind: Kind.RNG,
             kindOptions: KIND_OPTIONS,
             url: 'source_1',
+            headers: {},
             contentType: 'RNG',
             contentTypeOptions: CONTENT_TYPE_OPTIONS,
             script: [],

@@ -3,7 +3,6 @@ import {
   MarkupAggregationTallyScript,
   MirAggregationTallyScript,
   Context,
-  Kind,
   AggregationTallyReducer,
 } from './types'
 import { AggregationTallyOperatorReducer } from './aggregationTallyOperatorReducer'
@@ -15,13 +14,13 @@ export class AggregationTallyScript {
   public mirScript: MirAggregationTallyScript
   public reducer: AggregationTallyOperatorReducer
   public scriptId: number
-  public sourceType: Kind
+  public isRngRequest: boolean
 
-  constructor(context: Context, script: MirAggregationTallyScript, sourceType: Kind) {
+  constructor(context: Context, script: MirAggregationTallyScript, isRngRequest: boolean) {
     this.scriptId = context.cache.insert(this).id
     this.mirScript = script
     this.context = context
-    this.sourceType = sourceType
+    this.isRngRequest = isRngRequest
     this.filters = script.filters.map(
       (filter) => new AggregationTallyOperatorFilter(context, filter, this.scriptId)
     )
@@ -29,12 +28,12 @@ export class AggregationTallyScript {
       context,
       script.reducer,
       this.scriptId,
-      this.sourceType
+      this.isRngRequest
     )
   }
 
   public addOperator() {
-    if (this.sourceType !== Kind.RNG) {
+    if (!this.isRngRequest) {
       this.filters.push(
         new AggregationTallyOperatorFilter(
           this.context,
@@ -81,15 +80,15 @@ export class AggregationTallyScript {
     }
   }
 
-  public updateSourceType(sourceType: Kind) {
-    this.sourceType = sourceType
-    if (this.sourceType === Kind.RNG) {
+  public setIsRngRequest(isRngRequest: boolean) {
+    this.isRngRequest = isRngRequest
+    if (isRngRequest) {
       this.filters = []
       this.reducer = new AggregationTallyOperatorReducer(
         this.context,
         AggregationTallyReducer.hashConcatenate,
         this.scriptId,
-        this.sourceType
+        this.isRngRequest
       )
     }
   }
