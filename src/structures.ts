@@ -54,7 +54,7 @@ export const typeSystem: TypeSystem = {
     [IntegerOperatorName.AsString]: [OperatorCode.IntegerAsString, OutputType.String],
     [IntegerOperatorName.GreaterThan]: [OperatorCode.IntegerGreaterThan, OutputType.Boolean],
     [IntegerOperatorName.LessThan]: [OperatorCode.IntegerLessThan, OutputType.Boolean],
-    [IntegerOperatorName.Match]: [OperatorCode.IntegerMatch, OutputType.MatchOutput],
+    // [IntegerOperatorName.Match]: [OperatorCode.IntegerMatch, OutputType.MatchOutput],
     [IntegerOperatorName.Modulo]: [OperatorCode.IntegerModulo, OutputType.Integer],
     [IntegerOperatorName.Multiply]: [OperatorCode.IntegerMultiply, OutputType.Integer],
     [IntegerOperatorName.Negate]: [OperatorCode.IntegerNegate, OutputType.Integer],
@@ -88,13 +88,7 @@ export const typeSystem: TypeSystem = {
     [MapOperatorName.GetMap]: [OperatorCode.MapGetMap, OutputType.Map],
     [MapOperatorName.GetString]: [OperatorCode.MapGetString, OutputType.String],
     [MapOperatorName.Keys]: [OperatorCode.MapKeys, OutputType.ArrayString],
-    [MapOperatorName.valuesArray]: [OperatorCode.MapValuesArray, OutputType.ArrayArray],
-    //[MapOperatorName.valuesBoolean]: [OperatorCode.MapValuesBoolean, OutputType.ArrayBoolean],
-    //[MapOperatorName.valuesBytes]: [OperatorCode.MapValuesBytes, OutputType.ArrayBytes],
-    //[MapOperatorName.valuesFloat]: [OperatorCode.MapValuesFloat, OutputType.ArrayFloat],
-    //[MapOperatorName.valuesInteger]: [OperatorCode.MapValuesInteger, OutputType.ArrayInteger],
-    //[MapOperatorName.valuesMap]: [OperatorCode.MapValuesMap, OutputType.ArrayMap],
-    //[MapOperatorName.valuesString]: [OperatorCode.MapValuesString, OutputType.ArrayString],
+    [MapOperatorName.values]: [OperatorCode.MapValues, OutputType.ArrayArray],
   },
   [Type.String]: {
     [StringOperatorName.AsBoolean]: [OperatorCode.StringAsBoolean, OutputType.Boolean],
@@ -105,7 +99,7 @@ export const typeSystem: TypeSystem = {
     [StringOperatorName.Match]: [OperatorCode.StringMatch, OutputType.MatchOutput],
     [StringOperatorName.ParseJsonArray]: [OperatorCode.StringParseJsonArray, OutputType.Array],
     [StringOperatorName.ParseJsonMap]: [OperatorCode.StringParseJsonMap, OutputType.Map],
-    //[StringOperatorName.ParseXml]: [OperatorCode.StringParseXML, OutputType.Map],
+    [StringOperatorName.ParseXMLMap]: [OperatorCode.StringParseXMLMap, OutputType.Map],
     [StringOperatorName.ToLowerCase]: [OperatorCode.StringToLowerCase, OutputType.String],
     [StringOperatorName.ToUpperCase]: [OperatorCode.StringToUpperCase, OutputType.String],
   },
@@ -452,25 +446,25 @@ export const operatorInfos: OperatorInfos = {
     description: (i18n: I18n) => (argument: string = 'argument') =>
       i18n.t('operator_info_description.integer.less_than', { argument }),
   },
-  [OperatorCode.IntegerMatch]: {
-    type: Type.Integer,
-    name: IntegerOperatorName.Match,
-    arguments: [
-      {
-        name: 'categories',
-        optional: false,
-        type: MirArgumentType.Map,
-      },
-      {
-        name: 'default',
-        optional: false,
-        type: MirArgumentType.Boolean,
-      },
-    ],
-    outputType: OutputType.MatchOutput,
-    description: (i18n: I18n) => (subscript: string = 'subscript') =>
-      i18n.t('operator_info_description.integer.match', { subscript }),
-  },
+  // [OperatorCode.IntegerMatch]: {
+  //   type: Type.Integer,
+  //   name: IntegerOperatorName.Match,
+  //   arguments: [
+  //     {
+  //       name: 'categories',
+  //       optional: false,
+  //       type: MirArgumentType.Map,
+  //     },
+  //     {
+  //       name: 'default',
+  //       optional: false,
+  //       type: MirArgumentType.Boolean,
+  //     },
+  //   ],
+  //   outputType: OutputType.MatchOutput,
+  //   description: (i18n: I18n) => (subscript: string = 'subscript') =>
+  //     i18n.t('operator_info_description.integer.match', { subscript }),
+  // },
   [OperatorCode.IntegerModulo]: {
     type: Type.Integer,
     name: 'modulo',
@@ -792,9 +786,9 @@ export const operatorInfos: OperatorInfos = {
     outputType: OutputType.ArrayString,
     description: (i18n: I18n) => () => i18n.t('operator_info_description.map.keys'),
   },
-  [OperatorCode.MapValuesArray]: {
+  [OperatorCode.MapValues]: {
     type: Type.Map,
-    name: MapOperatorName.valuesArray,
+    name: MapOperatorName.values,
     arguments: [],
     outputType: OutputType.ArrayArray,
     description: (i18n: I18n) => () => descriptions.mapValues(i18n)('Array'),
@@ -909,13 +903,13 @@ export const operatorInfos: OperatorInfos = {
     outputType: OutputType.Map,
     description: (i18n: I18n) => () => i18n.t('operator_info_description.string.parse_json_map'),
   },
-  /*[OperatorCode.StringParseXML]: {
+  [OperatorCode.StringParseXMLMap]: {
     type: Type.String,
-    name: StringOperatorName.ParseXml,
+    name: StringOperatorName.ParseXMLMap,
     arguments: [],
     outputType: OutputType.Map,
     description: (i18n: I18n) => () => i18n.t('operator_info_description.string.parse_xml'),
-  },*/
+  },
   [OperatorCode.StringToLowerCase]: {
     type: Type.String,
     name: StringOperatorName.ToLowerCase,

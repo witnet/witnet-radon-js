@@ -310,6 +310,12 @@ describe('Argument methods', () => {
               },
               {
                 hierarchicalType: 'operatorOption',
+                label: 'StringParseXMLMap',
+                markupType: 'option',
+                outputType: 'map',
+              },
+              {
+                hierarchicalType: 'operatorOption',
                 label: 'StringToLowerCase',
                 markupType: 'option',
                 outputType: 'string',
@@ -370,7 +376,7 @@ describe('Argument methods', () => {
               },
               {
                 hierarchicalType: 'operatorOption',
-                label: 'MapValuesArray',
+                label: 'MapValues',
                 markupType: 'option',
                 outputType: 'arrayArray',
               },
@@ -403,12 +409,6 @@ describe('Argument methods', () => {
                 label: 'IntegerLessThan',
                 markupType: 'option',
                 outputType: 'boolean',
-              },
-              {
-                hierarchicalType: 'operatorOption',
-                label: 'IntegerMatch',
-                markupType: 'option',
-                outputType: 'matchOutput',
               },
               {
                 hierarchicalType: 'operatorOption',
@@ -501,6 +501,12 @@ describe('Argument methods', () => {
               {
                 hierarchicalType: 'operatorOption',
                 label: 'StringParseJsonMap',
+                markupType: 'option',
+                outputType: 'map',
+              },
+              {
+                hierarchicalType: 'operatorOption',
+                label: 'StringParseXMLMap',
                 markupType: 'option',
                 outputType: 'map',
               },
@@ -862,6 +868,12 @@ describe('Argument methods', () => {
                     },
                     {
                       hierarchicalType: 'operatorOption',
+                      label: 'StringParseXMLMap',
+                      markupType: 'option',
+                      outputType: 'map',
+                    },
+                    {
+                      hierarchicalType: 'operatorOption',
                       label: 'StringToLowerCase',
                       markupType: 'option',
                       outputType: 'string',
@@ -922,7 +934,7 @@ describe('Argument methods', () => {
                     },
                     {
                       hierarchicalType: 'operatorOption',
-                      label: 'MapValuesArray',
+                      label: 'MapValues',
                       markupType: 'option',
                       outputType: 'arrayArray',
                     },
@@ -955,12 +967,6 @@ describe('Argument methods', () => {
                       label: 'IntegerLessThan',
                       markupType: 'option',
                       outputType: 'boolean',
-                    },
-                    {
-                      hierarchicalType: 'operatorOption',
-                      label: 'IntegerMatch',
-                      markupType: 'option',
-                      outputType: 'matchOutput',
                     },
                     {
                       hierarchicalType: 'operatorOption',
@@ -1058,6 +1064,12 @@ describe('Argument methods', () => {
                     },
                     {
                       hierarchicalType: 'operatorOption',
+                      label: 'StringParseXMLMap',
+                      markupType: 'option',
+                      outputType: 'map',
+                    },
+                    {
+                      hierarchicalType: 'operatorOption',
                       label: 'StringToLowerCase',
                       markupType: 'option',
                       outputType: 'string',
@@ -1126,6 +1138,12 @@ describe('Argument methods', () => {
                     {
                       hierarchicalType: 'operatorOption',
                       label: 'StringParseJsonMap',
+                      markupType: 'option',
+                      outputType: 'map',
+                    },
+                    {
+                      hierarchicalType: 'operatorOption',
+                      label: 'StringParseXMLMap',
                       markupType: 'option',
                       outputType: 'map',
                     },

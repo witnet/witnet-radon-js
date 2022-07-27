@@ -139,7 +139,10 @@ export function getDefaultMirOperatorByType(type: Type): MirOperator {
 
 export function getMirOperatorInfo(
   operator: MirOperator
-): { code: OperatorCode; args: Array<MirArgument> } {
+): {
+  code: OperatorCode
+  args: Array<MirArgument>
+} {
   return Array.isArray(operator)
     ? {
         code: operator[0] as OperatorCode,

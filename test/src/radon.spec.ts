@@ -853,6 +853,12 @@ describe('Radon', () => {
                   },
                   {
                     hierarchicalType: 'operatorOption',
+                    label: 'StringParseXMLMap',
+                    markupType: 'option',
+                    outputType: 'map',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
                     label: 'StringToLowerCase',
                     markupType: 'option',
                     outputType: 'string',
@@ -931,7 +937,7 @@ describe('Radon', () => {
                   },
                   {
                     hierarchicalType: 'operatorOption',
-                    label: 'MapValuesArray',
+                    label: 'MapValues',
                     markupType: 'option',
                     outputType: 'arrayArray',
                   },
@@ -1293,6 +1299,12 @@ describe('Radon', () => {
                                   },
                                   {
                                     hierarchicalType: 'operatorOption',
+                                    label: 'StringParseXMLMap',
+                                    markupType: 'option',
+                                    outputType: 'map',
+                                  },
+                                  {
+                                    hierarchicalType: 'operatorOption',
                                     label: 'StringToLowerCase',
                                     markupType: 'option',
                                     outputType: 'string',
@@ -1353,7 +1365,7 @@ describe('Radon', () => {
                                   },
                                   {
                                     hierarchicalType: 'operatorOption',
-                                    label: 'MapValuesArray',
+                                    label: 'MapValues',
                                     markupType: 'option',
                                     outputType: 'arrayArray',
                                   },
@@ -1386,12 +1398,6 @@ describe('Radon', () => {
                                     label: 'IntegerLessThan',
                                     markupType: 'option',
                                     outputType: 'boolean',
-                                  },
-                                  {
-                                    hierarchicalType: 'operatorOption',
-                                    label: 'IntegerMatch',
-                                    markupType: 'option',
-                                    outputType: 'matchOutput',
                                   },
                                   {
                                     hierarchicalType: 'operatorOption',
@@ -1893,6 +1899,12 @@ describe('Radon', () => {
                             },
                             {
                               hierarchicalType: 'operatorOption',
+                              label: 'StringParseXMLMap',
+                              markupType: 'option',
+                              outputType: 'map',
+                            },
+                            {
+                              hierarchicalType: 'operatorOption',
                               label: 'StringToLowerCase',
                               markupType: 'option',
                               outputType: 'string',
@@ -1953,7 +1965,7 @@ describe('Radon', () => {
                             },
                             {
                               hierarchicalType: 'operatorOption',
-                              label: 'MapValuesArray',
+                              label: 'MapValues',
                               markupType: 'option',
                               outputType: 'arrayArray',
                             },
@@ -1986,12 +1998,6 @@ describe('Radon', () => {
                               label: 'IntegerLessThan',
                               markupType: 'option',
                               outputType: 'boolean',
-                            },
-                            {
-                              hierarchicalType: 'operatorOption',
-                              label: 'IntegerMatch',
-                              markupType: 'option',
-                              outputType: 'matchOutput',
                             },
                             {
                               hierarchicalType: 'operatorOption',
@@ -2357,6 +2363,12 @@ describe('Radon', () => {
                             },
                             {
                               hierarchicalType: 'operatorOption',
+                              label: 'StringParseXMLMap',
+                              markupType: 'option',
+                              outputType: 'map',
+                            },
+                            {
+                              hierarchicalType: 'operatorOption',
                               label: 'StringToLowerCase',
                               markupType: 'option',
                               outputType: 'string',
@@ -2417,7 +2429,7 @@ describe('Radon', () => {
                             },
                             {
                               hierarchicalType: 'operatorOption',
-                              label: 'MapValuesArray',
+                              label: 'MapValues',
                               markupType: 'option',
                               outputType: 'arrayArray',
                             },
@@ -2450,12 +2462,6 @@ describe('Radon', () => {
                               label: 'IntegerLessThan',
                               markupType: 'option',
                               outputType: 'boolean',
-                            },
-                            {
-                              hierarchicalType: 'operatorOption',
-                              label: 'IntegerMatch',
-                              markupType: 'option',
-                              outputType: 'matchOutput',
                             },
                             {
                               hierarchicalType: 'operatorOption',
@@ -2574,6 +2580,12 @@ describe('Radon', () => {
                   },
                   {
                     hierarchicalType: 'operatorOption',
+                    label: 'StringParseXMLMap',
+                    markupType: 'option',
+                    outputType: 'map',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
                     label: 'StringToLowerCase',
                     markupType: 'option',
                     outputType: 'string',
@@ -2653,6 +2665,12 @@ describe('Radon', () => {
                   {
                     hierarchicalType: 'operatorOption',
                     label: 'StringParseJsonMap',
+                    markupType: 'option',
+                    outputType: 'map',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'StringParseXMLMap',
                     markupType: 'option',
                     outputType: 'map',
                   },
@@ -3268,7 +3286,7 @@ describe('Radon', () => {
                 [[0x64, 'price']],
               ],
               [
-                23, // get
+                0x16, // get
                 '0',
               ],
             ],

@@ -71,6 +71,7 @@ export enum Reducer {
   //deviationAverage = 0x08,
   //deviationMedian = 0x09,
   //deviationMaximum = 0x0a,
+  hashConcatenate = 0x0b,
 }
 
 export enum Filter {
@@ -225,8 +226,8 @@ export enum OperatorCode {
   ArrayGetArray = 0x13,
   ArrayGetBoolean = 0x14,
   ArrayGetBytes = 0x15,
-  ArrayGetInteger = 0x16,
-  ArrayGetFloat = 0x17,
+  ArrayGetFloat = 0x16,
+  ArrayGetInteger = 0x17,
   ArrayGetMap = 0x18,
   ArrayGetString = 0x19,
   ArrayMap = 0x1a,
@@ -248,7 +249,7 @@ export enum OperatorCode {
   IntegerAsString = 0x42,
   IntegerGreaterThan = 0x43,
   IntegerLessThan = 0x44,
-  IntegerMatch = 0x45,
+  // IntegerMatch = 0x45,
   IntegerModulo = 0x46,
   IntegerMultiply = 0x47,
   IntegerNegate = 0x48,
@@ -259,8 +260,8 @@ export enum OperatorCode {
   FloatAbsolute = 0x50,
   FloatAsString = 0x51,
   FloatCeiling = 0x52,
-  FloatFloor = 0x54,
   FloatGreaterThan = 0x53,
+  FloatFloor = 0x54,
   FloatLessThan = 0x55,
   FloatModulo = 0x56,
   FloatMultiply = 0x57,
@@ -280,13 +281,7 @@ export enum OperatorCode {
   MapGetMap = 0x66,
   MapGetString = 0x67,
   MapKeys = 0x68,
-  MapValuesArray = 0x69,
-  //MapValuesBoolean = 0x6a,
-  //MapValuesBytes = 0x6b,
-  //MapValuesFloat = 0x6c,
-  //MapValuesInteger = 0x6d,
-  //MapValuesMap = 0x6e,
-  //MapValuesString = 0x6f,
+  MapValues = 0x69,
 
   StringAsBoolean = 0x70,
   //StringAsBytes = 0x71,
@@ -296,7 +291,7 @@ export enum OperatorCode {
   StringMatch = 0x75,
   StringParseJsonArray = 0x76,
   StringParseJsonMap = 0x77,
-  //StringParseXML = 0x78,
+  StringParseXMLMap = 0x78,
   StringToLowerCase = 0x79,
   StringToUpperCase = 0x7a,
 }
@@ -327,6 +322,7 @@ export type MirArgument =
   | [Filter, number]
   | [Filter, string]
   | [Filter, boolean]
+  // TODO: Should [Filter, MirScript] be [MirScript]?
   | [Filter, MirScript]
   | MirScript
   | Reducer
@@ -447,7 +443,7 @@ export enum IntegerOperatorName {
   AsString = 'asString',
   GreaterThan = 'greaterThan',
   LessThan = 'lessThan',
-  Match = 'match',
+  // Match = 'match',
   Modulo = 'modulo',
   Multiply = 'multiply',
   Negate = 'negate',
@@ -483,13 +479,7 @@ export enum MapOperatorName {
   GetMap = 'getMap',
   GetString = 'getString',
   Keys = 'keys',
-  valuesArray = 'valuesAsArray',
-  //valuesBoolean = 'valuesAsBoolean',
-  //valuesBytes = 'valuesAsBytes',
-  //valuesInteger = 'valuesAsInteger',
-  //valuesFloat = 'valuesAsFloat',
-  //valuesMap = 'valuesAsMap',
-  //valuesString = 'valuesAsString',
+  values = 'values',
 }
 
 export enum StringOperatorName {
@@ -501,7 +491,7 @@ export enum StringOperatorName {
   Match = 'match',
   ParseJsonArray = 'parseJSONArray',
   ParseJsonMap = 'parseJSONMap',
-  //ParseXml = 'parseXML',
+  ParseXMLMap = 'parseXMLMap',
   ToLowerCase = 'toLowerCase',
   ToUpperCase = 'toUpperCase',
 }

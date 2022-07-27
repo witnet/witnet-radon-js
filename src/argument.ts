@@ -203,6 +203,7 @@ export class Argument {
   }
 
   public update(value: string | number | boolean | Filter | keyof typeof Reducer | Object) {
+    console.log('🚀 ~ file: argument.ts ~ line 206 ~ Argument ~ update ~ value:', value)
     if (this.argumentType === MarkupArgumentType.SelectFilter) {
       if (value === 'custom' && (this.value as [Filter, MirScript])[0] !== Filter['custom']) {
         // the current argument is an input argument and the new value is a subscript argument

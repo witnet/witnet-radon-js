@@ -349,6 +349,12 @@ describe('Operator methods', () => {
           },
           {
             hierarchicalType: 'operatorOption',
+            label: 'StringParseXMLMap',
+            markupType: 'option',
+            outputType: 'map',
+          },
+          {
+            hierarchicalType: 'operatorOption',
             label: 'StringToLowerCase',
             markupType: 'option',
             outputType: 'string',
@@ -409,7 +415,7 @@ describe('Operator methods', () => {
           },
           {
             hierarchicalType: 'operatorOption',
-            label: 'MapValuesArray',
+            label: 'MapValues',
             markupType: 'option',
             outputType: 'arrayArray',
           },
@@ -442,12 +448,6 @@ describe('Operator methods', () => {
             label: 'IntegerLessThan',
             markupType: 'option',
             outputType: 'boolean',
-          },
-          {
-            hierarchicalType: 'operatorOption',
-            label: 'IntegerMatch',
-            markupType: 'option',
-            outputType: 'matchOutput',
           },
           {
             hierarchicalType: 'operatorOption',
@@ -703,6 +703,12 @@ describe('Operator methods', () => {
                     },
                     {
                       hierarchicalType: 'operatorOption',
+                      label: 'StringParseXMLMap',
+                      markupType: 'option',
+                      outputType: 'map',
+                    },
+                    {
+                      hierarchicalType: 'operatorOption',
                       label: 'StringToLowerCase',
                       markupType: 'option',
                       outputType: 'string',
@@ -763,7 +769,7 @@ describe('Operator methods', () => {
                     },
                     {
                       hierarchicalType: 'operatorOption',
-                      label: 'MapValuesArray',
+                      label: 'MapValues',
                       markupType: 'option',
                       outputType: 'arrayArray',
                     },
@@ -796,12 +802,6 @@ describe('Operator methods', () => {
                       label: 'IntegerLessThan',
                       markupType: 'option',
                       outputType: 'boolean',
-                    },
-                    {
-                      hierarchicalType: 'operatorOption',
-                      label: 'IntegerMatch',
-                      markupType: 'option',
-                      outputType: 'matchOutput',
                     },
                     {
                       hierarchicalType: 'operatorOption',
@@ -1128,6 +1128,23 @@ describe('Operator methods', () => {
       const op = OperatorCode.StringAsBoolean
       const context: Context = { cache: new Cache(), i18n: new I18n() }
       const operator = new Operator(context, 0, OutputType.String, op, { emit: () => {} })
+
+      const result = operator.getMir()
+      const expected = op
+
+      expect(result).toStrictEqual(expected)
+    })
+
+    it('custom filter', () => {
+      const op: MirOperator = [
+        OperatorCode.ArrayFilter,
+        [
+          [OperatorCode.MapGetString, 'symbol'],
+          [OperatorCode.StringMatch, { 'GLINT-USDT': true }, false],
+        ],
+      ]
+      const context: Context = { cache: new Cache(), i18n: new I18n() }
+      const operator = new Operator(context, 0, OutputType.Array, op, { emit: () => {} })
 
       const result = operator.getMir()
       const expected = op
