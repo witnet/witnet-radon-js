@@ -420,13 +420,7 @@ export const operatorInfos: OperatorInfos = {
   [OperatorCode.IntegerAsString]: {
     type: Type.Integer,
     name: IntegerOperatorName.AsString,
-    arguments: [
-      {
-        name: 'base',
-        optional: true,
-        type: MirArgumentType.Integer,
-      },
-    ],
+    arguments: [],
     outputType: OutputType.String,
     description: (i18n: I18n) => () => descriptions.cast(i18n)('Integer', 'String'),
   },
