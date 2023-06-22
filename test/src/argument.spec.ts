@@ -1268,7 +1268,7 @@ describe('Argument methods', () => {
     })
 
     it('boolean', () => {
-      const argumentInfo: ArgumentInfo = operatorInfos[OperatorCode.ArraySort].arguments[1]
+      const argumentInfo: ArgumentInfo = operatorInfos[OperatorCode.StringMatch].arguments[1]
       const context: Context = { cache: new Cache(), i18n: new I18n() }
       const argument = new Argument(context, argumentInfo, true)
       const result = argument.getMir()
@@ -1355,7 +1355,7 @@ describe('Argument methods', () => {
     })
 
     it('boolean', () => {
-      const argumentInfo: ArgumentInfo = operatorInfos[OperatorCode.ArraySort].arguments[1]
+      const argumentInfo: ArgumentInfo = operatorInfos[OperatorCode.StringMatch].arguments[1]
       const context: Context = { cache: new Cache(), i18n: new I18n() }
       const argument = new Argument(context, argumentInfo, true)
       const result = argument.getJs()

@@ -6,6 +6,7 @@ import {
   OperatorCode,
   AggregationTallyReducer,
   AggregationTallyFilter,
+  Kind,
 } from '../../src/types'
 import { markupOptions, aTFilterMarkupOptions, aTReducerMarkupOptions } from '../../src/structures'
 import { formatJsTest } from '../utils'
@@ -3055,6 +3056,31 @@ describe('Radon', () => {
           filters: [AggregationTallyFilter.mode, [AggregationTallyFilter.deviationStandard, 1.1]],
           reducer: AggregationTallyReducer.mode,
         },
+      }
+
+      const radon = new Radon(mirRequest)
+      const result = radon.getMir()
+      const expected = mirRequest
+
+      expect(result).toStrictEqual(expected)
+    })
+
+    it('Data request with sort works', () => {
+      const mirRequest: MirRequest = {
+        aggregate: { filters: [], reducer: 2 },
+        retrieve: [
+          {
+            contentType: 'JSON API',
+            contentTypeOptions: CONTENT_TYPE_OPTIONS,
+            headers: {},
+            kind: Kind.HttpGet,
+            kindOptions: KIND_OPTIONS,
+            script: [119, [97, 'products'], [29, [[101, 'price']]]],
+            url: 'https://dummyjson.com/products',
+          },
+        ],
+        tally: { filters: [], reducer: 2 },
+        timelock: 0,
       }
 
       const radon = new Radon(mirRequest)

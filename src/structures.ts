@@ -326,13 +326,8 @@ export const operatorInfos: OperatorInfos = {
     arguments: [
       {
         name: 'mapFunction',
-        optional: false,
+        optional: true,
         type: MirArgumentType.Subscript,
-      },
-      {
-        name: 'ascending',
-        optional: false,
-        type: MirArgumentType.Boolean,
       },
     ],
     outputType: OutputType.Same,
