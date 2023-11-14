@@ -103,6 +103,7 @@ export const typeSystem: TypeSystem = {
     [StringOperatorName.ToLowerCase]: [OperatorCode.StringToLowerCase, OutputType.String],
     [StringOperatorName.ToUpperCase]: [OperatorCode.StringToUpperCase, OutputType.String],
     [StringOperatorName.Replace]: [OperatorCode.StringReplace, OutputType.String],
+    [StringOperatorName.Slice]: [OperatorCode.StringSlice, OutputType.String],
   },
 }
 
@@ -968,6 +969,27 @@ export const operatorInfos: OperatorInfos = {
       (i18n: I18n) =>
       (pattern: string = '', replacement: string = '') =>
         i18n.t('operator_info_description.string.replace', { pattern, replacement }),
+  },
+  [OperatorCode.StringSlice]: {
+    type: Type.String,
+    name: StringOperatorName.Slice,
+    arguments: [
+      {
+        name: 'startIndex',
+        optional: false,
+        type: MirArgumentType.Integer,
+      },
+      {
+        name: 'endIndex',
+        optional: true,
+        type: MirArgumentType.Integer,
+      },
+    ],
+    outputType: OutputType.String,
+    description:
+      (i18n: I18n) =>
+      (startIndex: number = 0, endIndex: number) =>
+        i18n.t('operator_info_description.string.slice', { startIndex, endIndex }),
   },
 }
 
