@@ -25,7 +25,7 @@ export const typeSystem: TypeSystem = {
   [Type.Array]: {
     [ArrayOperatorName.Count]: [OperatorCode.ArrayCount, OutputType.Integer],
     [ArrayOperatorName.Filter]: [OperatorCode.ArrayFilter, OutputType.Same],
-    //[ArrayOperatorName.Flatten]: [OperatorCode.ArrayFlatten, OutputType.Array],
+    [ArrayOperatorName.Join]: [OperatorCode.ArrayJoin, OutputType.JoinOutput],
     [ArrayOperatorName.GetArray]: [OperatorCode.ArrayGetArray, OutputType.Array],
     [ArrayOperatorName.GetBoolean]: [OperatorCode.ArrayGetBoolean, OutputType.Boolean],
     [ArrayOperatorName.GetBytes]: [OperatorCode.ArrayGetBytes, OutputType.Bytes],
@@ -172,20 +172,20 @@ export const operatorInfos: OperatorInfos = {
       (filter: string = 'filter') =>
         i18n.t('operator_info_description.array.filter', { filter }),
   },
-  /*[OperatorCode.ArrayFlatten]: {
+  [OperatorCode.ArrayJoin]: {
     type: Type.Array,
-    name: ArrayOperatorName.Flatten,
+    name: ArrayOperatorName.Join,
     arguments: [
       {
-        name: 'depth',
+        name: 'separator',
         optional: true,
-        type: MirArgumentType.Integer,
+        type: MirArgumentType.String,
       },
     ],
     outputType: OutputType.Inner,
-    description: (i18n: I18n) => (depth: string = 'depth') =>
-      i18n.t('operator_info_description.array.flatten', { depth }),
-  },*/
+    description: (i18n: I18n) => (separator: string = '') =>
+      i18n.t('operator_info_description.array.join', { separator }),
+  },
   [OperatorCode.ArrayGetArray]: {
     type: Type.Array,
     name: ArrayOperatorName.GetArray,

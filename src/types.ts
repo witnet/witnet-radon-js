@@ -118,6 +118,7 @@ export enum OutputType {
   Same = 'same',
   String = 'string',
   SubscriptOutput = 'subscriptOutput',
+  JoinOutput = 'joinOutput',
 }
 
 export enum MarkupHierarchicalType {
@@ -227,7 +228,7 @@ export enum Kind {
 export enum OperatorCode {
   ArrayCount = 0x10,
   ArrayFilter = 0x11,
-  //ArrayFlatten = 0x12,
+  ArrayJoin = 0x12,
   ArrayGetArray = 0x13,
   ArrayGetBoolean = 0x14,
   ArrayGetBytes = 0x15,
@@ -420,7 +421,7 @@ export type OperatorInfos = {
 export enum ArrayOperatorName {
   Count = 'count',
   Filter = 'filter',
-  //Flatten = 'flatten',
+  Join = 'join',
   GetArray = 'getArray',
   GetBoolean = 'getBoolean',
   GetBytes = 'getBytes',
