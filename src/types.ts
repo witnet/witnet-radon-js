@@ -502,6 +502,7 @@ export enum StringOperatorName {
   ToLowerCase = 'toLowerCase',
   ToUpperCase = 'toUpperCase',
   Replace = 'replace',
+  Slice = 'slice',
 }
 
 export type OperatorName =
