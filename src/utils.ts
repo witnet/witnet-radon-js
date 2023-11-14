@@ -83,13 +83,13 @@ export function getMarkupInputTypeFromArgumentType(argumentType: MirArgumentType
 }
 
 export function getArgumentInfoType(info: ArgumentInfo): MarkupArgumentType {
-  if (info.type === MirArgumentType.FilterFunction) {
+  if (info?.type === MirArgumentType.FilterFunction) {
     return MarkupArgumentType.SelectFilter
-  } else if (info.type === MirArgumentType.ReducerFunction) {
+  } else if (info?.type === MirArgumentType.ReducerFunction) {
     return MarkupArgumentType.SelectReduce
-  } else if (info.type === MirArgumentType.Subscript) {
+  } else if (info?.type === MirArgumentType.Subscript) {
     return MarkupArgumentType.Subscript
-  } else if (info.type === MirArgumentType.Boolean) {
+  } else if (info?.type === MirArgumentType.Boolean) {
     return MarkupArgumentType.SelectBoolean
   } else {
     return MarkupArgumentType.Input
