@@ -299,6 +299,7 @@ export enum OperatorCode {
   StringParseXmlMap = 0x78,
   StringToLowerCase = 0x79,
   StringToUpperCase = 0x7a,
+  StringReplace = 0x7b,
 }
 
 export enum MirArgumentType {
@@ -500,6 +501,7 @@ export enum StringOperatorName {
   ParseXmlMap = 'parseXMLMap',
   ToLowerCase = 'toLowerCase',
   ToUpperCase = 'toUpperCase',
+  Replace = 'replace',
 }
 
 export type OperatorName =

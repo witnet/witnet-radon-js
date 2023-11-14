@@ -102,6 +102,7 @@ export const typeSystem: TypeSystem = {
     [StringOperatorName.ParseXmlMap]: [OperatorCode.StringParseXmlMap, OutputType.Map],
     [StringOperatorName.ToLowerCase]: [OperatorCode.StringToLowerCase, OutputType.String],
     [StringOperatorName.ToUpperCase]: [OperatorCode.StringToUpperCase, OutputType.String],
+    [StringOperatorName.Replace]: [OperatorCode.StringReplace, OutputType.String],
   },
 }
 
@@ -946,6 +947,27 @@ export const operatorInfos: OperatorInfos = {
     arguments: [],
     outputType: OutputType.String,
     description: (i18n: I18n) => () => i18n.t('operator_info_description.string.to_upper_case'),
+  },
+  [OperatorCode.StringReplace]: {
+    type: Type.String,
+    name: StringOperatorName.Replace,
+    arguments: [
+      {
+        name: 'pattern',
+        optional: false,
+        type: MirArgumentType.String,
+      },
+      {
+        name: 'replacement',
+        optional: false,
+        type: MirArgumentType.String,
+      },
+    ],
+    outputType: OutputType.String,
+    description:
+      (i18n: I18n) =>
+      (pattern: string = '', replacement: string = '') =>
+        i18n.t('operator_info_description.string.replace', { pattern, replacement }),
   },
 }
 
