@@ -104,6 +104,7 @@ export const typeSystem: TypeSystem = {
     [StringOperatorName.ToUpperCase]: [OperatorCode.StringToUpperCase, OutputType.String],
     [StringOperatorName.Replace]: [OperatorCode.StringReplace, OutputType.String],
     [StringOperatorName.Slice]: [OperatorCode.StringSlice, OutputType.String],
+    [StringOperatorName.Split]: [OperatorCode.StringSplit, OutputType.String],
   },
 }
 
@@ -990,6 +991,22 @@ export const operatorInfos: OperatorInfos = {
       (i18n: I18n) =>
       (startIndex: number = 0, endIndex: number) =>
         i18n.t('operator_info_description.string.slice', { startIndex, endIndex }),
+  },
+  [OperatorCode.StringSplit]: {
+    type: Type.String,
+    name: StringOperatorName.Split,
+    arguments: [
+      {
+        name: 'regex',
+        optional: true,
+        type: MirArgumentType.String,
+      },
+    ],
+    outputType: OutputType.ArrayString,
+    description:
+      (i18n: I18n) =>
+      (regex: string = "\r") =>
+        i18n.t('operator_info_description.string.split', { regex }),
   },
 }
 
