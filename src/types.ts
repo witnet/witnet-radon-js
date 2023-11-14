@@ -300,6 +300,8 @@ export enum OperatorCode {
   StringToLowerCase = 0x79,
   StringToUpperCase = 0x7a,
   StringReplace = 0x7b,
+  StringSlice = 0x7c,
+  StringSplit = 0x7d,
 }
 
 export enum MirArgumentType {
@@ -503,6 +505,7 @@ export enum StringOperatorName {
   ToUpperCase = 'toUpperCase',
   Replace = 'replace',
   Slice = 'slice',
+  Split = 'split',
 }
 
 export type OperatorName =
