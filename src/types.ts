@@ -220,6 +220,7 @@ export type KindOptions = Array<Kind>
 export enum Kind {
   HttpGet = 'HTTP-GET',
   HttpPost = 'HTTP-POST',
+  HttpHead = 'HTTP-HEAD',
   RNG = 'RNG',
 }
 
