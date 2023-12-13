@@ -9,8 +9,8 @@
   ],
   "scripts": {
     "build": "tsc -p tsconfig.build.json",
-    "lint": "prettier --write '{src,test}/**/*.{t,j}s'",
-    "lint:check": "prettier --check '{src,test}/**/*.{t,j}s'",
+    "lint": "prettier --write {src,test}/**/*.{t,j}s",
+    "lint:check": "prettier --check {src,test}/**/*.{t,j}s",
     "test": "jest",
     "prepare": "npm run build"
   },
