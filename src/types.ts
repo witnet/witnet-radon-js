@@ -238,44 +238,37 @@ export enum OperatorCode {
   ArrayGetString = 0x19,
   ArrayMap = 0x1a,
   ArrayReduce = 0x1b,
-  //ArraySome = 0x1c,
   ArraySort = 0x1d,
-  //ArrayTake = 0x1e,
 
-  BooleanAsString = 0x20,
-  //BooleanMatch = 0x21,
   BooleanNegate = 0x22,
+  BooleanToString = 0x20,
 
-  BytesAsString = 0x30,
-  BytesHash = 0x31,
-  //BytesLength = 0x32,
+  BytesHash = 0x31,  
+  BytesLength = 0x34,
+  BytesSlice = 0x3C,
+  BytesStringify = 0x30,
 
   IntegerAbsolute = 0x40,
-  IntegerAsFloat = 0x41,
-  IntegerAsString = 0x42,
   IntegerGreaterThan = 0x43,
   IntegerLessThan = 0x44,
-  // IntegerMatch = 0x45,
   IntegerModulo = 0x46,
   IntegerMultiply = 0x47,
   IntegerNegate = 0x48,
   IntegerPower = 0x49,
-  //IntegerReciprocal = 0x4a,
-  //IntegerSum = 0x4b,
+  IntegerToFloat = 0x41,
+  IntegerToString = 0x42,
 
   FloatAbsolute = 0x50,
-  FloatAsString = 0x51,
   FloatCeiling = 0x52,
-  FloatGreaterThan = 0x53,
   FloatFloor = 0x54,
+  FloatGreaterThan = 0x53,
   FloatLessThan = 0x55,
   FloatModulo = 0x56,
   FloatMultiply = 0x57,
   FloatNegate = 0x58,
   FloatPower = 0x59,
-  //FloatReciprocal = 0x5a,
   FloatRound = 0x5b,
-  //Floatsum = 0x5c,
+  FloatToString = 0x51,
   FloatTruncate = 0x5d,
 
   //MapEntries = 0x60,
@@ -298,11 +291,11 @@ export enum OperatorCode {
   StringParseJsonArray = 0x76,
   StringParseJsonMap = 0x77,
   StringParseXmlMap = 0x78,
-  StringToLowerCase = 0x79,
-  StringToUpperCase = 0x7a,
   StringReplace = 0x7b,
   StringSlice = 0x7c,
   StringSplit = 0x7d,
+  StringToLowerCase = 0x79,
+  StringToUpperCase = 0x7a,
 }
 
 export enum MirArgumentType {
@@ -431,40 +424,37 @@ export enum ArrayOperatorName {
   GetString = 'getString',
   Map = 'map',
   Reduce = 'reduce',
-  //Some = 'some',
   Sort = 'sort',
-  //Take = 'take',
 }
 
 export enum BooleanOperatorName {
-  AsString = 'asString',
   Negate = 'negate',
-  //Match = 'match',
+  ToString = 'toString',
 }
 
 export enum BytesOperatorName {
-  AsString = 'asString',
+  AsInteger = 'asInteger',
   Hash = 'hash',
+  Length = 'length',
+  Slice = 'slice',
+  Stringify = 'stringify',
 }
 
 export enum IntegerOperatorName {
   Absolute = 'absolute',
-  AsFloat = 'asFloat',
-  AsString = 'asString',
   GreaterThan = 'greaterThan',
   LessThan = 'lessThan',
-  // Match = 'match',
   Modulo = 'modulo',
   Multiply = 'multiply',
   Negate = 'negate',
   Power = 'power',
-  //Reciprocal = 'reciprocal',
-  //Sum = 'sum',
+  ToBytes = 'toBytes',
+  ToFloat = 'toFloat',
+  ToString = 'stringify',
 }
 
 export enum FloatOperatorName {
   Absolute = 'absolute',
-  AsString = 'asString',
   Ceiling = 'ceiling',
   GreaterThan = 'greaterThan',
   Floor = 'floor',
@@ -473,14 +463,12 @@ export enum FloatOperatorName {
   Multiply = 'multiply',
   Negate = 'negate',
   Power = 'power',
-  //Reciprocal = 'reciprocal',
   Round = 'round',
-  //Sum = 'sum',
+  ToString = 'stringify',
   Truncate = 'truncate',
 }
 
 export enum MapOperatorName {
-  //Entries = 'entries',
   GetArray = 'getArray',
   GetBoolean = 'getBoolean',
   GetBytes = 'getBytes',
@@ -494,7 +482,7 @@ export enum MapOperatorName {
 
 export enum StringOperatorName {
   AsBoolean = 'asBoolean',
-  //AsBytes = 'asBytes',
+  AsBytes = 'asBytes',
   AsFloat = 'asFloat',
   AsInteger = 'asInteger',
   Length = 'length',
@@ -502,11 +490,11 @@ export enum StringOperatorName {
   ParseJsonArray = 'parseJSONArray',
   ParseJsonMap = 'parseJSONMap',
   ParseXmlMap = 'parseXMLMap',
-  ToLowerCase = 'toLowerCase',
-  ToUpperCase = 'toUpperCase',
   Replace = 'replace',
   Slice = 'slice',
   Split = 'split',
+  ToLowerCase = 'toLowerCase',
+  ToUpperCase = 'toUpperCase',
 }
 
 export type OperatorName =

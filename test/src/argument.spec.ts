@@ -172,7 +172,7 @@ describe('Argument methods', () => {
               },
               {
                 hierarchicalType: 'operatorOption',
-                label: 'BooleanAsString',
+                label: 'BooleanToString',
                 markupType: 'option',
                 outputType: 'string',
               },
@@ -184,7 +184,7 @@ describe('Argument methods', () => {
               },
               {
                 hierarchicalType: 'operatorOption',
-                label: 'BytesAsString',
+                label: 'BytesStringify',
                 markupType: 'option',
                 outputType: 'string',
               },
@@ -202,7 +202,7 @@ describe('Argument methods', () => {
               },
               {
                 hierarchicalType: 'operatorOption',
-                label: 'FloatAsString',
+                label: 'FloatToString',
                 markupType: 'option',
                 outputType: 'string',
               },
@@ -388,13 +388,13 @@ describe('Argument methods', () => {
               },
               {
                 hierarchicalType: 'operatorOption',
-                label: 'IntegerAsFloat',
+                label: 'IntegerToFloat',
                 markupType: 'option',
                 outputType: 'float',
               },
               {
                 hierarchicalType: 'operatorOption',
-                label: 'IntegerAsString',
+                label: 'IntegerToString',
                 markupType: 'option',
                 outputType: 'string',
               },
@@ -730,7 +730,7 @@ describe('Argument methods', () => {
                     },
                     {
                       hierarchicalType: 'operatorOption',
-                      label: 'BooleanAsString',
+                      label: 'BooleanToString',
                       markupType: 'option',
                       outputType: 'string',
                     },
@@ -742,7 +742,7 @@ describe('Argument methods', () => {
                     },
                     {
                       hierarchicalType: 'operatorOption',
-                      label: 'BytesAsString',
+                      label: 'BytesStringify',
                       markupType: 'option',
                       outputType: 'string',
                     },
@@ -760,7 +760,7 @@ describe('Argument methods', () => {
                     },
                     {
                       hierarchicalType: 'operatorOption',
-                      label: 'FloatAsString',
+                      label: 'FloatToString',
                       markupType: 'option',
                       outputType: 'string',
                     },
@@ -946,13 +946,13 @@ describe('Argument methods', () => {
                     },
                     {
                       hierarchicalType: 'operatorOption',
-                      label: 'IntegerAsFloat',
+                      label: 'IntegerToFloat',
                       markupType: 'option',
                       outputType: 'float',
                     },
                     {
                       hierarchicalType: 'operatorOption',
-                      label: 'IntegerAsString',
+                      label: 'IntegerToString',
                       markupType: 'option',
                       outputType: 'string',
                     },

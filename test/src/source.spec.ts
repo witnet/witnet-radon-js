@@ -44,7 +44,7 @@ describe('Source', () => {
       const mirScript: MirScript = [
         OperatorCode.StringAsBoolean,
         OperatorCode.BooleanNegate,
-        OperatorCode.BooleanAsString,
+        OperatorCode.BooleanToString,
       ]
 
       const mirSource = {
@@ -104,7 +104,7 @@ describe('Source', () => {
       const mirScript: MirScript = [
         OperatorCode.StringAsBoolean,
         OperatorCode.BooleanNegate,
-        OperatorCode.BooleanAsString,
+        OperatorCode.BooleanToString,
       ]
 
       const mirSource = {
@@ -226,7 +226,7 @@ describe('Source', () => {
       const mirScript: MirScript = [
         OperatorCode.StringAsBoolean,
         OperatorCode.BooleanNegate,
-        OperatorCode.BooleanAsString,
+        OperatorCode.BooleanToString,
       ]
 
       const mirSource = {

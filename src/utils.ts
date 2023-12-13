@@ -123,9 +123,9 @@ export function getDefaultMirOperatorByType(type: Type): MirOperator {
     case Type.Array:
       return OperatorCode.ArrayCount
     case Type.Boolean:
-      return OperatorCode.BooleanAsString
+      return OperatorCode.BooleanToString
     case Type.Bytes:
-      return OperatorCode.BytesAsString
+      return OperatorCode.BytesStringify
     case Type.Float:
       return OperatorCode.FloatAbsolute
     case Type.Integer:
