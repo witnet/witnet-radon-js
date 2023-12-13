@@ -42,7 +42,7 @@ export const typeSystem: TypeSystem = {
     [BooleanOperatorName.Negate]: [OperatorCode.BooleanNegate, OutputType.Boolean],
   },
   [Type.Bytes]: {
-    [BytesOperatorName.AsString]: [OperatorCode.BytesAsString, OutputType.String],
+    [BytesOperatorName.AsInteger]: [OperatorCode.BytesAsInteger, OutputType.Integer],
     [BytesOperatorName.Hash]: [OperatorCode.BytesHash, OutputType.Bytes],
     [BytesOperatorName.Length]: [OperatorCode.BytesLength, OutputType.Integer],
     [BytesOperatorName.Slice]: [OperatorCode.BytesSlice, OutputType.Bytes],
@@ -349,9 +349,9 @@ export const operatorInfos: OperatorInfos = {
     description: (i18n: I18n) => (min, max) =>
       i18n.t('operator_info_description.array.take', { min, max }),
   },*/
-  [OperatorCode.BooleanAsString]: {
+  [OperatorCode.BooleanToString]: {
     type: Type.Boolean,
-    name: BooleanOperatorName.AsString,
+    name: BooleanOperatorName.ToString,
     arguments: [],
     outputType: OutputType.String,
     description: (i18n: I18n) => () => descriptions.cast(i18n)('Boolean', 'String'),
@@ -396,6 +396,29 @@ export const operatorInfos: OperatorInfos = {
     outputType: OutputType.Bytes,
     description: (i18n: I18n) => () => i18n.t('operator_info_description.bytes.hash'),
   },
+  [OperatorCode.BytesAsInteger]: {
+    type: Type.Bytes,
+    name: BytesOperatorName.AsInteger,
+    arguments: [],
+    outputType: OutputType.Integer,
+    description: (i18n: I18n) => () => descriptions.cast(i18n)('Bytes', 'Integer'),
+  },
+  [OperatorCode.BytesLength]: {
+    type: Type.Bytes,
+    name: BytesOperatorName.Length,
+    arguments: [],
+    outputType: OutputType.Integer,
+    description: (i18n: I18n) => () => i18n.t('operator_info_description.bytes.length'),
+  },
+  [OperatorCode.BytesSlice]: {
+    type: Type.Bytes,
+    name: BytesOperatorName.Slice,
+    arguments: [],
+    outputType: OutputType.Bytes,
+    description: (i18n: I18n) =>
+      (startIndex: number = 0, endIndex: number) =>
+        i18n.t('operator_info_description.bytes.slice', { startIndex, endIndex }),
+  },
   [OperatorCode.IntegerAbsolute]: {
     type: Type.Integer,
     name: IntegerOperatorName.Absolute,
@@ -410,9 +433,9 @@ export const operatorInfos: OperatorInfos = {
     outputType: OutputType.Float,
     description: (i18n: I18n) => () => descriptions.cast(i18n)('Integer', 'Float'),
   },
-  [OperatorCode.IntegerAsString]: {
+  [OperatorCode.IntegerToString]: {
     type: Type.Integer,
-    name: IntegerOperatorName.AsString,
+    name: IntegerOperatorName.ToString,
     arguments: [],
     outputType: OutputType.String,
     description: (i18n: I18n) => () => descriptions.cast(i18n)('Integer', 'String'),
@@ -551,9 +574,9 @@ export const operatorInfos: OperatorInfos = {
     outputType: OutputType.Float,
     description: (i18n: I18n) => () => i18n.t('operator_info_description.float.absolute'),
   },
-  [OperatorCode.FloatAsString]: {
+  [OperatorCode.FloatToString]: {
     type: Type.Float,
-    name: FloatOperatorName.AsString,
+    name: FloatOperatorName.ToString,
     arguments: [
       {
         name: 'decimals',

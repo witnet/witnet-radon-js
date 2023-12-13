@@ -243,6 +243,7 @@ export enum OperatorCode {
   BooleanNegate = 0x22,
   BooleanToString = 0x20,
 
+  BytesAsInteger = 0x32,
   BytesHash = 0x31,  
   BytesLength = 0x34,
   BytesSlice = 0x3C,
