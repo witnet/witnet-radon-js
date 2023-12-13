@@ -244,9 +244,9 @@ export enum OperatorCode {
   BooleanToString = 0x20,
 
   BytesAsInteger = 0x32,
-  BytesHash = 0x31,  
+  BytesHash = 0x31,
   BytesLength = 0x34,
-  BytesSlice = 0x3C,
+  BytesSlice = 0x3c,
   BytesStringify = 0x30,
 
   IntegerAbsolute = 0x40,

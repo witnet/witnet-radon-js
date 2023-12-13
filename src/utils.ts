@@ -1,5 +1,4 @@
 import * as prettier from 'prettier'
-
 import {
   ArgumentInfo,
   MarkupInputType,
