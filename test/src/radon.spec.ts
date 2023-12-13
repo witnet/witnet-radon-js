@@ -1181,7 +1181,7 @@ describe('Radon', () => {
                                   },
                                   {
                                     hierarchicalType: 'operatorOption',
-                                    label: 'BooleanAsString',
+                                    label: 'BooleanToString',
                                     markupType: 'option',
                                     outputType: 'string',
                                   },
@@ -1193,7 +1193,7 @@ describe('Radon', () => {
                                   },
                                   {
                                     hierarchicalType: 'operatorOption',
-                                    label: 'BytesAsString',
+                                    label: 'BytesStringify',
                                     markupType: 'option',
                                     outputType: 'string',
                                   },
@@ -1211,7 +1211,7 @@ describe('Radon', () => {
                                   },
                                   {
                                     hierarchicalType: 'operatorOption',
-                                    label: 'FloatAsString',
+                                    label: 'FloatToString',
                                     markupType: 'option',
                                     outputType: 'string',
                                   },
@@ -1397,13 +1397,13 @@ describe('Radon', () => {
                                   },
                                   {
                                     hierarchicalType: 'operatorOption',
-                                    label: 'IntegerAsFloat',
+                                    label: 'IntegerToFloat',
                                     markupType: 'option',
                                     outputType: 'float',
                                   },
                                   {
                                     hierarchicalType: 'operatorOption',
-                                    label: 'IntegerAsString',
+                                    label: 'IntegerToString',
                                     markupType: 'option',
                                     outputType: 'string',
                                   },
@@ -1781,7 +1781,7 @@ describe('Radon', () => {
                             },
                             {
                               hierarchicalType: 'operatorOption',
-                              label: 'BooleanAsString',
+                              label: 'BooleanToString',
                               markupType: 'option',
                               outputType: 'string',
                             },
@@ -1793,7 +1793,7 @@ describe('Radon', () => {
                             },
                             {
                               hierarchicalType: 'operatorOption',
-                              label: 'BytesAsString',
+                              label: 'BytesStringify',
                               markupType: 'option',
                               outputType: 'string',
                             },
@@ -1811,7 +1811,7 @@ describe('Radon', () => {
                             },
                             {
                               hierarchicalType: 'operatorOption',
-                              label: 'FloatAsString',
+                              label: 'FloatToString',
                               markupType: 'option',
                               outputType: 'string',
                             },
@@ -1997,13 +1997,13 @@ describe('Radon', () => {
                             },
                             {
                               hierarchicalType: 'operatorOption',
-                              label: 'IntegerAsFloat',
+                              label: 'IntegerToFloat',
                               markupType: 'option',
                               outputType: 'float',
                             },
                             {
                               hierarchicalType: 'operatorOption',
-                              label: 'IntegerAsString',
+                              label: 'IntegerToString',
                               markupType: 'option',
                               outputType: 'string',
                             },
@@ -2245,7 +2245,7 @@ describe('Radon', () => {
                             },
                             {
                               hierarchicalType: 'operatorOption',
-                              label: 'BooleanAsString',
+                              label: 'BooleanToString',
                               markupType: 'option',
                               outputType: 'string',
                             },
@@ -2257,7 +2257,7 @@ describe('Radon', () => {
                             },
                             {
                               hierarchicalType: 'operatorOption',
-                              label: 'BytesAsString',
+                              label: 'BytesStringify',
                               markupType: 'option',
                               outputType: 'string',
                             },
@@ -2275,7 +2275,7 @@ describe('Radon', () => {
                             },
                             {
                               hierarchicalType: 'operatorOption',
-                              label: 'FloatAsString',
+                              label: 'FloatToString',
                               markupType: 'option',
                               outputType: 'string',
                             },
@@ -2461,13 +2461,13 @@ describe('Radon', () => {
                             },
                             {
                               hierarchicalType: 'operatorOption',
-                              label: 'IntegerAsFloat',
+                              label: 'IntegerToFloat',
                               markupType: 'option',
                               outputType: 'float',
                             },
                             {
                               hierarchicalType: 'operatorOption',
-                              label: 'IntegerAsString',
+                              label: 'IntegerToString',
                               markupType: 'option',
                               outputType: 'string',
                             },
@@ -2637,7 +2637,7 @@ describe('Radon', () => {
                 options: [
                   {
                     hierarchicalType: 'operatorOption',
-                    label: 'BooleanAsString',
+                    label: 'BooleanToString',
                     markupType: 'option',
                     outputType: 'string',
                   },
@@ -3106,7 +3106,7 @@ describe('Radon', () => {
             script: [
               OperatorCode.StringAsBoolean,
               OperatorCode.BooleanNegate,
-              OperatorCode.BooleanAsString,
+              OperatorCode.BooleanToString,
             ],
           },
           {
@@ -3119,7 +3119,7 @@ describe('Radon', () => {
             script: [
               OperatorCode.StringAsBoolean,
               OperatorCode.BooleanNegate,
-              OperatorCode.BooleanAsString,
+              OperatorCode.BooleanToString,
             ],
           },
         ],
@@ -3236,7 +3236,7 @@ describe('Radon', () => {
             script: [
               OperatorCode.StringAsBoolean,
               OperatorCode.BooleanNegate,
-              OperatorCode.BooleanAsString,
+              OperatorCode.BooleanToString,
             ],
           },
           {
@@ -3249,7 +3249,7 @@ describe('Radon', () => {
             script: [
               OperatorCode.StringAsBoolean,
               OperatorCode.BooleanNegate,
-              OperatorCode.BooleanAsString,
+              OperatorCode.BooleanToString,
             ],
           },
         ],

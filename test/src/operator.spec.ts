@@ -40,7 +40,7 @@ describe('Operator methods', () => {
     })
 
     it('bytes', () => {
-      const op = OperatorCode.BytesAsString
+      const op = OperatorCode.BytesStringify
       const context: Context = { cache: new Cache(), i18n: new I18n() }
       const operator = new Operator(context, 0, OutputType.Bytes, op, { emit: () => {} })
 
@@ -212,7 +212,7 @@ describe('Operator methods', () => {
           },
           {
             hierarchicalType: 'operatorOption',
-            label: 'BooleanAsString',
+            label: 'BooleanToString',
             markupType: 'option',
             outputType: 'string',
           },
@@ -224,7 +224,7 @@ describe('Operator methods', () => {
           },
           {
             hierarchicalType: 'operatorOption',
-            label: 'BytesAsString',
+            label: 'BytesStringify',
             markupType: 'option',
             outputType: 'string',
           },
@@ -242,7 +242,7 @@ describe('Operator methods', () => {
           },
           {
             hierarchicalType: 'operatorOption',
-            label: 'FloatAsString',
+            label: 'FloatToString',
             markupType: 'option',
             outputType: 'string',
           },
@@ -428,13 +428,13 @@ describe('Operator methods', () => {
           },
           {
             hierarchicalType: 'operatorOption',
-            label: 'IntegerAsFloat',
+            label: 'IntegerToFloat',
             markupType: 'option',
             outputType: 'float',
           },
           {
             hierarchicalType: 'operatorOption',
-            label: 'IntegerAsString',
+            label: 'IntegerToString',
             markupType: 'option',
             outputType: 'string',
           },
@@ -566,7 +566,7 @@ describe('Operator methods', () => {
                     },
                     {
                       hierarchicalType: 'operatorOption',
-                      label: 'BooleanAsString',
+                      label: 'BooleanToString',
                       markupType: 'option',
                       outputType: 'string',
                     },
@@ -578,7 +578,7 @@ describe('Operator methods', () => {
                     },
                     {
                       hierarchicalType: 'operatorOption',
-                      label: 'BytesAsString',
+                      label: 'BytesStringify',
                       markupType: 'option',
                       outputType: 'string',
                     },
@@ -596,7 +596,7 @@ describe('Operator methods', () => {
                     },
                     {
                       hierarchicalType: 'operatorOption',
-                      label: 'FloatAsString',
+                      label: 'FloatToString',
                       markupType: 'option',
                       outputType: 'string',
                     },
@@ -782,13 +782,13 @@ describe('Operator methods', () => {
                     },
                     {
                       hierarchicalType: 'operatorOption',
-                      label: 'IntegerAsFloat',
+                      label: 'IntegerToFloat',
                       markupType: 'option',
                       outputType: 'float',
                     },
                     {
                       hierarchicalType: 'operatorOption',
-                      label: 'IntegerAsString',
+                      label: 'IntegerToString',
                       markupType: 'option',
                       outputType: 'string',
                     },
@@ -910,7 +910,7 @@ describe('Operator methods', () => {
     })
 
     it('bytes', () => {
-      const op = OperatorCode.BytesAsString
+      const op = OperatorCode.BytesStringify
       const context: Context = { cache: new Cache(), i18n: new I18n() }
       const operator = new Operator(context, 0, OutputType.Bytes, op, { emit: () => {} })
 
@@ -1080,7 +1080,7 @@ describe('Operator methods', () => {
     })
 
     it('bytes', () => {
-      const op = OperatorCode.BytesAsString
+      const op = OperatorCode.BytesStringify
       const context: Context = { cache: new Cache(), i18n: new I18n() }
       const operator = new Operator(context, 0, OutputType.Bytes, op, { emit: () => {} })
 
@@ -1159,7 +1159,7 @@ describe('Operator methods', () => {
         const context: Context = { cache: new Cache(), i18n: new I18n() }
         const emitMock = vi.fn()
         const operator = new Operator(context, 0, null, null, { emit: emitMock })
-        const newOperatorCode = OperatorCode.BooleanAsString
+        const newOperatorCode = OperatorCode.BooleanToString
 
         expect(operator.default).toBe(true)
 
@@ -1177,7 +1177,7 @@ describe('Operator methods', () => {
         const emitMock = vi.fn()
         const op = OperatorCode.ArrayCount
         const operator = new Operator(context, 0, OutputType.Array, op, { emit: emitMock })
-        const newOperatorCode = OperatorCode.BooleanAsString
+        const newOperatorCode = OperatorCode.BooleanToString
 
         operator.update(newOperatorCode)
 
@@ -1190,7 +1190,7 @@ describe('Operator methods', () => {
       it('boolean', () => {
         const context: Context = { cache: new Cache(), i18n: new I18n() }
         const emitMock = vi.fn()
-        const op = OperatorCode.BooleanAsString
+        const op = OperatorCode.BooleanToString
         const operator = new Operator(context, 0, OutputType.Boolean, op, { emit: emitMock })
         const newOperatorCode = OperatorCode.ArrayCount
 
@@ -1205,7 +1205,7 @@ describe('Operator methods', () => {
       it('bytes', () => {
         const context: Context = { cache: new Cache(), i18n: new I18n() }
         const emitMock = vi.fn()
-        const op = OperatorCode.BytesAsString
+        const op = OperatorCode.BytesStringify
         const operator = new Operator(context, 0, OutputType.Bytes, op, { emit: emitMock })
         const newOperatorCode = OperatorCode.ArrayCount
 
@@ -1220,7 +1220,7 @@ describe('Operator methods', () => {
       it('integer', () => {
         const context: Context = { cache: new Cache(), i18n: new I18n() }
         const emitMock = vi.fn()
-        const op = OperatorCode.IntegerAsString
+        const op = OperatorCode.IntegerToString
         const operator = new Operator(context, 0, OutputType.Integer, op, { emit: emitMock })
         const newOperatorCode = OperatorCode.FloatGreaterThan
 
@@ -1300,7 +1300,7 @@ describe('Operator methods', () => {
       it('boolean', () => {
         const context: Context = { cache: new Cache(), i18n: new I18n() }
         const emitMock = vi.fn()
-        const operatorName = 'BooleanAsString'
+        const operatorName = 'BooleanToString'
         const operator = new Operator(context, 0, OutputType.Boolean, OperatorCode[operatorName], {
           emit: emitMock,
         })
@@ -1318,7 +1318,7 @@ describe('Operator methods', () => {
       it('bytes', () => {
         const context: Context = { cache: new Cache(), i18n: new I18n() }
         const emitMock = vi.fn()
-        const operatorName = 'BytesAsString'
+        const operatorName = 'BytesStringify'
         const operator = new Operator(context, 0, OutputType.Bytes, OperatorCode[operatorName], {
           emit: emitMock,
         })
@@ -1335,7 +1335,7 @@ describe('Operator methods', () => {
       it('integer', () => {
         const context: Context = { cache: new Cache(), i18n: new I18n() }
         const emitMock = vi.fn()
-        const operatorName = 'IntegerAsString'
+        const operatorName = 'IntegerToString'
         const operator = new Operator(context, 0, OutputType.Integer, OperatorCode[operatorName], {
           emit: emitMock,
         })
