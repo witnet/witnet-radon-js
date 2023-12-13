@@ -56,6 +56,7 @@ export const typeSystem: TypeSystem = {
     [IntegerOperatorName.Multiply]: [OperatorCode.IntegerMultiply, OutputType.Integer],
     [IntegerOperatorName.Negate]: [OperatorCode.IntegerNegate, OutputType.Integer],
     [IntegerOperatorName.Power]: [OperatorCode.IntegerPower, OutputType.Integer],
+    [IntegerOperatorName.ToBytes]: [OperatorCode.IntegerToBytes, OutputType.Bytes],
     [IntegerOperatorName.ToFloat]: [OperatorCode.IntegerToFloat, OutputType.Float],
     [IntegerOperatorName.ToString]: [OperatorCode.IntegerToString, OutputType.String],
   },
@@ -432,9 +433,16 @@ export const operatorInfos: OperatorInfos = {
     outputType: OutputType.Integer,
     description: (i18n: I18n) => () => i18n.t('operator_info_description.integer.absolute'),
   },
-  [OperatorCode.IntegerAsFloat]: {
+  [OperatorCode.IntegerToBytes]: {
     type: Type.Integer,
-    name: IntegerOperatorName.AsFloat,
+    name: IntegerOperatorName.ToBytes,
+    arguments: [],
+    outputType: OutputType.Bytes,
+    description: (i18n: I18n) => () => descriptions.cast(i18n)('Integer', 'Bytes'),
+  },
+  [OperatorCode.IntegerToFloat]: {
+    type: Type.Integer,
+    name: IntegerOperatorName.ToFloat,
     arguments: [],
     outputType: OutputType.Float,
     description: (i18n: I18n) => () => descriptions.cast(i18n)('Integer', 'Float'),
