@@ -88,7 +88,7 @@ export const typeSystem: TypeSystem = {
   },
   [Type.String]: {
     [StringOperatorName.AsBoolean]: [OperatorCode.StringAsBoolean, OutputType.Boolean],
-    //[StringOperatorName.AsBytes]: [OperatorCode.StringAsBytes, OutputType.Bytes],
+    [StringOperatorName.AsBytes]: [OperatorCode.StringAsBytes, OutputType.Bytes],
     [StringOperatorName.AsFloat]: [OperatorCode.StringAsFloat, OutputType.Float],
     [StringOperatorName.AsInteger]: [OperatorCode.StringAsInteger, OutputType.Integer],
     [StringOperatorName.Length]: [OperatorCode.StringLength, OutputType.Integer],
@@ -898,13 +898,19 @@ export const operatorInfos: OperatorInfos = {
     outputType: OutputType.Boolean,
     description: (i18n: I18n) => () => descriptions.cast(i18n)('String', 'Boolean'),
   },
-  /*[OperatorCode.StringAsBytes]: {
+  [OperatorCode.StringAsBytes]: {
     type: Type.String,
     name: StringOperatorName.AsBytes,
-    arguments: [],
+    arguments: [
+      {
+        name: 'encoding',
+        optional: true,
+        type: MirArgumentType.Integer,
+      },
+    ],
     outputType: OutputType.Bytes,
     description: (i18n: I18n) => () => descriptions.cast(i18n)('String', 'Bytes'),
-  },*/
+  },
   [OperatorCode.StringAsFloat]: {
     type: Type.String,
     name: StringOperatorName.AsFloat,
