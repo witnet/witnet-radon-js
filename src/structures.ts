@@ -179,8 +179,10 @@ export const operatorInfos: OperatorInfos = {
       },
     ],
     outputType: OutputType.Inner,
-    description: (i18n: I18n) => (separator: string = '') =>
-      i18n.t('operator_info_description.array.join', { separator }),
+    description:
+      (i18n: I18n) =>
+      (separator: string = '') =>
+        i18n.t('operator_info_description.array.join', { separator }),
   },
   [OperatorCode.ArrayGetArray]: {
     type: Type.Array,
@@ -422,7 +424,8 @@ export const operatorInfos: OperatorInfos = {
     name: BytesOperatorName.Slice,
     arguments: [],
     outputType: OutputType.Bytes,
-    description: (i18n: I18n) =>
+    description:
+      (i18n: I18n) =>
       (startIndex: number = 0, endIndex: number) =>
         i18n.t('operator_info_description.bytes.slice', { startIndex, endIndex }),
   },
@@ -1043,7 +1046,7 @@ export const operatorInfos: OperatorInfos = {
     outputType: OutputType.ArrayString,
     description:
       (i18n: I18n) =>
-      (regex: string = "\r") =>
+      (regex: string = '\r') =>
         i18n.t('operator_info_description.string.split', { regex }),
   },
 }

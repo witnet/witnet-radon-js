@@ -1,5 +1,5 @@
-import prettier from 'prettier/standalone'
-import parserBabel from 'prettier/parser-babel'
+// import prettier from 'prettier/standalone'
+// import parserBabel from 'prettier/parser-babel'
 
 import {
   ArgumentInfo,
@@ -59,7 +59,7 @@ export function fromOutputTypeToType(type: OutputType): Type | null {
 }
 
 export function formatJs(source: string) {
-  return prettier.format(source, { semi: false, plugins: [parserBabel], parser: 'babel' })
+  return source //prettier.format(source, { semi: false, plugins: [parserBabel], parser: 'babel' })
 }
 
 export function getEnumNames(e: any): Array<any> {
