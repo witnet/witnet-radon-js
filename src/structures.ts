@@ -382,10 +382,16 @@ export const operatorInfos: OperatorInfos = {
     outputType: OutputType.Boolean,
     description: (i18n: I18n) => () => i18n.t('operator_info_description.boolean.negate'),
   },
-  [OperatorCode.BytesAsString]: {
+  [OperatorCode.BytesStringify]: {
     type: Type.Bytes,
-    name: BytesOperatorName.AsString,
-    arguments: [],
+    name: BytesOperatorName.Stringify,
+    arguments: [
+      {
+        name: 'encoding',
+        optional: true,
+        type: MirArgumentType.Integer,
+      },
+    ],
     outputType: OutputType.String,
     description: (i18n: I18n) => () => descriptions.cast(i18n)('Bytes', 'String'),
   },
