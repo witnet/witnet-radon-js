@@ -256,6 +256,7 @@ export enum OperatorCode {
   IntegerMultiply = 0x47,
   IntegerNegate = 0x48,
   IntegerPower = 0x49,
+  IntegerToBytes = 0x4a,
   IntegerToFloat = 0x41,
   IntegerToString = 0x42,
 
