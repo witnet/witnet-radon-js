@@ -239,6 +239,7 @@ export enum OperatorCode {
   ArrayMap = 0x1a,
   ArrayReduce = 0x1b,
   ArraySort = 0x1d,
+  ArrayPick = 0x1e,
 
   BooleanNegate = 0x22,
   BooleanToString = 0x20,
@@ -309,6 +310,7 @@ export enum MirArgumentType {
   String,
   Boolean,
   Map,
+  Array,
 }
 
 export enum MarkupArgumentType {
@@ -427,6 +429,7 @@ export enum ArrayOperatorName {
   Map = 'map',
   Reduce = 'reduce',
   Sort = 'sort',
+  Pick = 'pick',
 }
 
 export enum BooleanOperatorName {

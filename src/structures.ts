@@ -36,6 +36,7 @@ export const typeSystem: TypeSystem = {
     [ArrayOperatorName.Map]: [OperatorCode.ArrayMap, OutputType.ArrayMap],
     [ArrayOperatorName.Reduce]: [OperatorCode.ArrayReduce, OutputType.Inner],
     [ArrayOperatorName.Sort]: [OperatorCode.ArraySort, OutputType.Same],
+    [ArrayOperatorName.Pick]: [OperatorCode.ArrayPick, OutputType.Same],
   },
   [Type.Boolean]: {
     [BooleanOperatorName.ToString]: [OperatorCode.BooleanToString, OutputType.String],
@@ -336,6 +337,22 @@ export const operatorInfos: OperatorInfos = {
       (i18n: I18n) =>
       (order: string = 'order') =>
         i18n.t('operator_info_description.array.sort', { order }),
+  },
+  [OperatorCode.ArrayPick]: {
+    type: Type.Array,
+    name: ArrayOperatorName.Pick,
+    arguments: [
+      {
+        name: 'indexes',
+        optional: false,
+        type: MirArgumentType.Array,
+      },
+    ],
+    outputType: OutputType.Same,
+    description:
+      (i18n: I18n) =>
+      (indexes: number[]) =>
+        i18n.t('operator_info_description.array.pick', { indexes: JSON.stringify(indexes) }),
   },
   /*[OperatorCode.ArrayTake]: {
     type: Type.Array,
