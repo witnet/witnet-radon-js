@@ -285,6 +285,7 @@ export enum OperatorCode {
   //MapEntries = 0x6a,
   MapAlter = 0x6b,
   MapPick = 0x6e,
+  MapStringify = 0x60,
 
   StringAsBoolean = 0x70,
   StringAsBytes = 0x71,
@@ -484,7 +485,9 @@ export enum MapOperatorName {
   GetMap = 'getMap',
   GetString = 'getString',
   Keys = 'keys',
-  values = 'values',
+  Pick = 'pick',
+  Stringify = 'stringify',
+  Values = 'values',
 }
 
 export enum StringOperatorName {
