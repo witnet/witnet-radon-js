@@ -85,7 +85,10 @@ export const typeSystem: TypeSystem = {
     [MapOperatorName.GetMap]: [OperatorCode.MapGetMap, OutputType.Map],
     [MapOperatorName.GetString]: [OperatorCode.MapGetString, OutputType.String],
     [MapOperatorName.Keys]: [OperatorCode.MapKeys, OutputType.ArrayString],
-    [MapOperatorName.values]: [OperatorCode.MapValues, OutputType.ArrayArray],
+    [MapOperatorName.Values]: [OperatorCode.MapValues, OutputType.ArrayArray],
+    //[MapOperatorName.Entries]: [OperatorCode.MapEntries, OutputType.Bytes],
+    [MapOperatorName.Alter]: [OperatorCode.MapAlter, OutputType.Map],
+    [MapOperatorName.Pick]: [OperatorCode.MapPick, OutputType.Map],
   },
   [Type.String]: {
     [StringOperatorName.AsBoolean]: [OperatorCode.StringAsBoolean, OutputType.Boolean],
@@ -889,6 +892,22 @@ export const operatorInfos: OperatorInfos = {
     arguments: [],
     outputType: OutputType.ArrayArray,
     description: (i18n: I18n) => () => descriptions.mapValues(i18n)('Array'),
+  },
+  [OperatorCode.MapPick]: {
+    type: Type.Map,
+    name: MapOperatorName.Pick,
+    arguments: [
+      {
+        name: 'keys',
+        optional: false,
+        type: MirArgumentType.Array,
+      },
+    ],
+    outputType: OutputType.Same,
+    description:
+      (i18n: I18n) =>
+      (keys: string[]) =>
+        i18n.t('operator_info_description.map.pick', { keys: JSON.stringify(keys) }),
   },
   /*[OperatorCode.MapValuesBoolean]: {
     type: Type.Map,

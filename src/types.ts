@@ -284,6 +284,7 @@ export enum OperatorCode {
   MapValues = 0x69,
   //MapEntries = 0x6a,
   MapAlter = 0x6b,
+  MapPick = 0x6e,
 
   StringAsBoolean = 0x70,
   StringAsBytes = 0x71,
