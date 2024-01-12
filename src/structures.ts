@@ -1038,9 +1038,17 @@ export const operatorInfos: OperatorInfos = {
   [OperatorCode.StringParseJsonMap]: {
     type: Type.String,
     name: StringOperatorName.ParseJsonMap,
-    arguments: [],
+    arguments: [
+      {
+        name: 'jsonPath',
+        optional: true,
+        type: MirArgumentType.String,
+      },
+    ],
     outputType: OutputType.Map,
-    description: (i18n: I18n) => () => i18n.t('operator_info_description.string.parse_json_map'),
+    description: (i18n: I18n) => (jsonPath?: string) => i18n.t('operator_info_description.string.parse_json_map', { 
+      jsonPath: jsonPath || '' 
+    }),
   },
   [OperatorCode.StringParseXmlMap]: {
     type: Type.String,
