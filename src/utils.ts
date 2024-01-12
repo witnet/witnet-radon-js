@@ -112,6 +112,8 @@ export function getDefaultMirArgumentByType(type: MirArgumentType): MirArgument 
       return [DEFAULT_OPERATOR]
     case MirArgumentType.Map:
       return {}
+    case MirArgumentType.Array:
+      return []
   }
 }
 
