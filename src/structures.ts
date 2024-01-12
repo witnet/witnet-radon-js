@@ -888,7 +888,7 @@ export const operatorInfos: OperatorInfos = {
   },
   [OperatorCode.MapValues]: {
     type: Type.Map,
-    name: MapOperatorName.values,
+    name: MapOperatorName.Values,
     arguments: [],
     outputType: OutputType.ArrayArray,
     description: (i18n: I18n) => () => descriptions.mapValues(i18n)('Array'),
@@ -908,6 +908,13 @@ export const operatorInfos: OperatorInfos = {
       (i18n: I18n) =>
       (keys: string[]) =>
         i18n.t('operator_info_description.map.pick', { keys: JSON.stringify(keys) }),
+  },
+  [OperatorCode.MapStringify]: {
+    type: Type.Map,
+    name: MapOperatorName.Stringify,
+    arguments: [],
+    outputType: OutputType.String,
+    description: (i18n: I18n) => () => i18n.t('operator_info_description.map.stringify'),
   },
   /*[OperatorCode.MapValuesBoolean]: {
     type: Type.Map,
