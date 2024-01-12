@@ -1023,9 +1023,17 @@ export const operatorInfos: OperatorInfos = {
   [OperatorCode.StringParseJsonArray]: {
     type: Type.String,
     name: StringOperatorName.ParseJsonArray,
-    arguments: [],
+    arguments: [
+      {
+        name: 'jsonPaths',
+        optional: true,
+        type: MirArgumentType.Array,
+      },
+    ],
     outputType: OutputType.Array,
-    description: (i18n: I18n) => () => i18n.t('operator_info_description.string.parse_json_array'),
+    description: (i18n: I18n) => (paths?: string | string[]) => i18n.t('operator_info_description.string.parse_json_array', {
+      jsonPaths: JSON.stringify(paths) || ''
+    }),
   },
   [OperatorCode.StringParseJsonMap]: {
     type: Type.String,
