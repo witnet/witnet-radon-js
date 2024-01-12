@@ -273,8 +273,6 @@ export enum OperatorCode {
   FloatRound = 0x5b,
   FloatToString = 0x51,
   FloatTruncate = 0x5d,
-
-  //MapEntries = 0x60,
   MapGetArray = 0x61,
   MapGetBoolean = 0x62,
   MapGetBytes = 0x63,
@@ -284,6 +282,8 @@ export enum OperatorCode {
   MapGetString = 0x67,
   MapKeys = 0x68,
   MapValues = 0x69,
+  //MapEntries = 0x6a,
+  MapAlter = 0x6b,
 
   StringAsBoolean = 0x70,
   StringAsBytes = 0x71,
@@ -474,6 +474,7 @@ export enum FloatOperatorName {
 }
 
 export enum MapOperatorName {
+  Alter = 'alter',
   GetArray = 'getArray',
   GetBoolean = 'getBoolean',
   GetBytes = 'getBytes',

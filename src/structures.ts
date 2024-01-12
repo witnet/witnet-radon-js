@@ -764,6 +764,27 @@ export const operatorInfos: OperatorInfos = {
     outputType: OutputType.Array,
     description: (i18n: I18n) => () => i18n.t('operator_info_description.map.entries'),
   },*/
+  [OperatorCode.MapAlter]: {
+    type: Type.Map,
+    name: MapOperatorName.Alter,
+    arguments: [
+      {
+        name: 'keys',
+        optional: false,
+        type: MirArgumentType.Array,
+      },
+      {
+        name: 'subscript',
+        optional: false,
+        type: MirArgumentType.Subscript,
+      }
+    ],
+    outputType: OutputType.Same,
+    description:
+      (i18n: I18n) =>
+      (keys: string[], subscript: string = "subscript") =>
+        i18n.t('operator_info_description.map.alter', { key: JSON.stringify(keys), subscript }),
+  },
   [OperatorCode.MapGetArray]: {
     type: Type.Map,
     name: MapOperatorName.GetArray,
