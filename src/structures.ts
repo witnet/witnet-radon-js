@@ -76,7 +76,6 @@ export const typeSystem: TypeSystem = {
     [FloatOperatorName.Truncate]: [OperatorCode.FloatTruncate, OutputType.Integer],
   },
   [Type.Map]: {
-    //[MapOperatorName.Entries]: [OperatorCode.MapEntries, OutputType.Bytes],
     [MapOperatorName.GetArray]: [OperatorCode.MapGetArray, OutputType.Array],
     [MapOperatorName.GetBoolean]: [OperatorCode.MapGetBoolean, OutputType.Boolean],
     [MapOperatorName.GetBytes]: [OperatorCode.MapGetBytes, OutputType.Bytes],
@@ -89,6 +88,7 @@ export const typeSystem: TypeSystem = {
     //[MapOperatorName.Entries]: [OperatorCode.MapEntries, OutputType.Bytes],
     [MapOperatorName.Alter]: [OperatorCode.MapAlter, OutputType.Map],
     [MapOperatorName.Pick]: [OperatorCode.MapPick, OutputType.Map],
+    [MapOperatorName.Stringify]: [OperatorCode.MapStringify, OutputType.String],
   },
   [Type.String]: {
     [StringOperatorName.AsBoolean]: [OperatorCode.StringAsBoolean, OutputType.Boolean],
