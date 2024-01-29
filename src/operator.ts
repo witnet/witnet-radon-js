@@ -13,12 +13,12 @@ import {
   OutputType,
   MirArgumentType,
   Filter,
-} from './types'
-import { operatorInfos, markupOptions, allMarkupOptions } from './structures'
-import { getDefaultMirArgumentByType, getMirOperatorInfo } from './utils'
-import { Argument } from './argument'
-import { DEFAULT_OPERATOR, DEFAULT_INPUT_TYPE } from './constants'
-import { MirScript, Context } from './types'
+} from './types.js'
+import { operatorInfos, markupOptions, allMarkupOptions } from './structures.js'
+import { getDefaultMirArgumentByType, getMirOperatorInfo } from './utils.js'
+import { Argument } from './argument.js'
+import { DEFAULT_OPERATOR, DEFAULT_INPUT_TYPE } from './constants.js'
+import { MirScript, Context } from './types.js'
 
 export class Operator {
   public arguments: Array<Argument>

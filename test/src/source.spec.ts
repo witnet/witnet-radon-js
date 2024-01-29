@@ -1,9 +1,9 @@
-import { MirScript, OperatorCode, Kind } from '../../src/types'
-import { Source } from '../../src/source'
-import { Cache, markupOptions } from '../../src/structures'
-import { formatJsTest } from '../utils'
-import { I18n } from '../../src/i18n'
-import { KIND_OPTIONS, CONTENT_TYPE_OPTIONS } from '../../src/constants'
+import { MirScript, OperatorCode, Kind } from '../../src/types.js'
+import { Source } from '../../src/source.js'
+import { Cache, markupOptions } from '../../src/structures.js'
+import { formatJsTest } from '../utils.js'
+import { I18n } from '../../src/i18n.js'
+import { KIND_OPTIONS, CONTENT_TYPE_OPTIONS } from '../../src/constants.js'
 
 const onChildrenEvent = () => {
   return {

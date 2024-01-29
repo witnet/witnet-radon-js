@@ -18,10 +18,10 @@ import {
   Reducer,
   Context,
   Kind,
-} from './types'
-import { DEFAULT_OPERATOR } from './constants'
-import { getArgumentInfoType, getEnumNames, getMarkupInputTypeFromArgumentType } from './utils'
-import { Script } from './script'
+} from './types.js'
+import { DEFAULT_OPERATOR } from './constants.js'
+import { getArgumentInfoType, getEnumNames, getMarkupInputTypeFromArgumentType } from './utils.js'
+import { Script } from './script.js'
 
 export class Argument {
   public argument: Argument | Script | null

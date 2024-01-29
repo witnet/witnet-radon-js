@@ -1,8 +1,8 @@
-import { I18n } from '../../src/i18n'
-import { AggregationTallyScript } from '../../src/aggregationTallyScript'
-import { Cache } from '../../src/structures'
-import { AggregationTallyFilter, MirAggregationTallyScript } from '../../src/types'
-import { formatJsTest } from '../utils'
+import { I18n } from '../../src/i18n.js'
+import { AggregationTallyScript } from '../../src/aggregationTallyScript.js'
+import { Cache } from '../../src/structures.js'
+import { AggregationTallyFilter, MirAggregationTallyScript } from '../../src/types.js'
+import { formatJsTest } from '../utils.js'
 
 describe('AggregationTallyScript', () => {
   describe('addOperator', () => {

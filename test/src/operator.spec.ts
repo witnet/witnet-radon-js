@@ -1,8 +1,8 @@
-import { Operator } from '../../src/operator'
-import { OperatorCode, OutputType, MirOperator, Context } from '../../src/types'
-import { Cache, markupOptions, allMarkupOptions, operatorInfos } from '../../src/structures'
-import { DEFAULT_OPERATOR } from '../../src/constants'
-import { I18n } from '../../src/i18n'
+import { Operator } from '../../src/operator.js'
+import { OperatorCode, OutputType, MirOperator, Context } from '../../src/types.js'
+import { Cache, markupOptions, allMarkupOptions, operatorInfos } from '../../src/structures.js'
+import { DEFAULT_OPERATOR } from '../../src/constants.js'
+import { I18n } from '../../src/i18n.js'
 import { vi } from 'vitest'
 
 describe('Operator methods', () => {

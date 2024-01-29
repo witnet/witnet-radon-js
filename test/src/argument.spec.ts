@@ -1,6 +1,6 @@
-import { Argument, generateReducerArgumentOptions } from '../../src/argument'
-import { Cache, operatorInfos } from '../../src/structures'
-import { DEFAULT_OPERATOR } from '../../src/constants'
+import { Argument, generateReducerArgumentOptions } from '../../src/argument.js'
+import { Cache, operatorInfos } from '../../src/structures.js'
+import { DEFAULT_OPERATOR } from '../../src/constants.js'
 import {
   OutputType,
   OperatorCode,
@@ -13,9 +13,9 @@ import {
   Reducer,
   MirScript,
   Context,
-} from '../../src/types'
-import { formatJsTest } from '../utils'
-import { I18n } from '../../src/i18n'
+} from '../../src/types.js'
+import { formatJsTest } from '../utils.js'
+import { I18n } from '../../src/i18n.js'
 
 const reducerOptions = generateReducerArgumentOptions()
 

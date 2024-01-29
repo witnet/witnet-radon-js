@@ -1,10 +1,10 @@
-import { MirScript, OperatorCode, OutputType, Kind } from '../../src/types'
-import { Script } from '../../src/script'
-import { Operator } from '../../src/operator'
-import { DEFAULT_SCRIPT_FIRST_TYPE } from '../../src/constants'
-import { Cache, markupOptions } from '../../src/structures'
-import { removeBreakLine } from '../utils'
-import { I18n } from '../../src/i18n'
+import { MirScript, OperatorCode, OutputType, Kind } from '../../src/types.js'
+import { Script } from '../../src/script.js'
+import { Operator } from '../../src/operator.js'
+import { DEFAULT_SCRIPT_FIRST_TYPE } from '../../src/constants.js'
+import { Cache, markupOptions } from '../../src/structures.js'
+import { removeBreakLine } from '../utils.js'
+import { I18n } from '../../src/i18n.js'
 
 // TODO: validateScript
 describe('Script methods', () => {

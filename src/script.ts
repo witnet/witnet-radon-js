@@ -8,14 +8,14 @@ import {
   Type,
   Context,
   Kind,
-} from './types'
-import { Operator } from './operator'
-import { DEFAULT_SCRIPT_FIRST_TYPE } from './constants'
+} from './types.js'
+import { Operator } from './operator.js'
+import { DEFAULT_SCRIPT_FIRST_TYPE } from './constants.js'
 import {
   fromOutputTypeToType,
   getDefaultMirOperatorByType,
   areValidConsecutiveOperators,
-} from './utils'
+} from './utils.js'
 
 export class Script {
   public context: Context

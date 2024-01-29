@@ -4,9 +4,9 @@ import {
   MirAggregationTallyScript,
   Context,
   AggregationTallyReducer,
-} from './types'
-import { AggregationTallyOperatorReducer } from './aggregationTallyOperatorReducer'
-import { AggregationTallyOperatorFilter } from './aggregationTallyOperatorFilter'
+} from './types.js'
+import { AggregationTallyOperatorReducer } from './aggregationTallyOperatorReducer.js'
+import { AggregationTallyOperatorFilter } from './aggregationTallyOperatorFilter.js'
 
 export class AggregationTallyScript {
   public context: Context

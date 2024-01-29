@@ -5,12 +5,12 @@ import {
   MarkupType,
   OutputType,
   Context,
-} from './types'
+} from './types.js'
 import {
   aggregationTallyReducerDescriptions,
   aTReducerMarkupOptions,
   aTRNGReducerMarkupOptions,
-} from './structures'
+} from './structures.js'
 
 export class AggregationTallyOperatorReducer {
   public context: Context

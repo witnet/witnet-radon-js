@@ -1,7 +1,7 @@
-import { AggregationTallyOperatorReducer } from '../../src/aggregationTallyOperatorReducer'
-import { Cache } from '../../src/structures'
-import { AggregationTallyReducer } from '../../src/types'
-import { I18n } from '../../src/i18n'
+import { AggregationTallyOperatorReducer } from '../../src/aggregationTallyOperatorReducer.js'
+import { Cache } from '../../src/structures.js'
+import { AggregationTallyReducer } from '../../src/types.js'
+import { I18n } from '../../src/i18n.js'
 
 describe('AggregationTallyOperatorReducer', () => {
   it('getJs', () => {

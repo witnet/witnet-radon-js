@@ -1,13 +1,13 @@
-import { MirRequest, OperatorCode, MarkupRequest, Context, Kind } from './types'
-import { KIND_OPTIONS, DEFAULT_KIND_OPTION, CONTENT_TYPE_OPTIONS } from './constants'
-import { Cache } from './structures'
-import { Source } from './source'
-import { AggregationTallyScript } from './aggregationTallyScript'
-import { Script } from './script'
-import { Operator } from './operator'
-import { Argument } from './argument'
-import { formatJs } from './utils'
-import { I18n, Locale } from './i18n'
+import { MirRequest, OperatorCode, MarkupRequest, Context, Kind } from './types.js'
+import { KIND_OPTIONS, DEFAULT_KIND_OPTION, CONTENT_TYPE_OPTIONS } from './constants.js'
+import { Cache } from './structures.js'
+import { Source } from './source.js'
+import { AggregationTallyScript } from './aggregationTallyScript.js'
+import { Script } from './script.js'
+import { Operator } from './operator.js'
+import { Argument } from './argument.js'
+import { formatJs } from './utils.js'
+import { I18n, Locale } from './i18n.js'
 
 export class Radon {
   public timelock: number

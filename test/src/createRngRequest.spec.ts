@@ -1,7 +1,7 @@
-import { Radon } from '../../src/radon'
-import { KIND_OPTIONS, DEFAULT_KIND_OPTION, CONTENT_TYPE_OPTIONS } from '../../src/constants'
-import { I18n } from '../../src/i18n'
-import { Cache } from '../../src/structures'
+import { Radon } from '../../src/radon.js'
+import { KIND_OPTIONS, DEFAULT_KIND_OPTION, CONTENT_TYPE_OPTIONS } from '../../src/constants.js'
+import { I18n } from '../../src/i18n.js'
+import { Cache } from '../../src/structures.js'
 import {
   MirRequest,
   AggregationTallyReducer,
@@ -9,9 +9,9 @@ import {
   MirAggregationTallyScript,
   AggregationTallyFilter,
   OperatorCode,
-} from '../../src/types'
-import { AggregationTallyScript } from '../../src/aggregationTallyScript'
-import { formatJsTest } from '../utils'
+} from '../../src/types.js'
+import { AggregationTallyScript } from '../../src/aggregationTallyScript.js'
+import { formatJsTest } from '../utils.js'
 
 describe('RandomNumberGenerator request', () => {
   const mir: MirRequest = {

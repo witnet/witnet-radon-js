@@ -18,9 +18,9 @@ import {
   AggregationTallyReducer,
   AggregationTallyFilterDescriptions,
   AggregationTallyReducerDescriptions,
-} from './types'
-import { I18n } from './i18n'
-import { getEnumNames } from './utils'
+} from './types.js'
+import { I18n } from './i18n.js'
+import { getEnumNames } from './utils.js'
 export const typeSystem: TypeSystem = {
   [Type.Array]: {
     [ArrayOperatorName.Count]: [OperatorCode.ArrayCount, OutputType.Integer],

@@ -1,4 +1,4 @@
-import { OperatorCode, OutputType, Kind } from './types'
+import { OperatorCode, OutputType, Kind } from './types.js'
 
 export const DEFAULT_OPERATOR = OperatorCode.ArrayCount
 export const DEFAULT_INPUT_TYPE = OutputType.Array

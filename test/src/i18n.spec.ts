@@ -1,4 +1,4 @@
-import { I18n } from '../../src/i18n'
+import { I18n } from '../../src/i18n.js'
 
 describe('i18n', () => {
   it('should use en as default locale', () => {

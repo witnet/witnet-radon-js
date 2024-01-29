@@ -1,6 +1,6 @@
-import { Radon } from '../../src/radon'
-import { DEFAULT_KIND_OPTION, KIND_OPTIONS, CONTENT_TYPE_OPTIONS } from '../../src/constants'
-import { MirRequest, AggregationTallyReducer, MarkupInput } from '../../src/types'
+import { Radon } from '../../src/radon.js'
+import { DEFAULT_KIND_OPTION, KIND_OPTIONS, CONTENT_TYPE_OPTIONS } from '../../src/constants.js'
+import { MirRequest, AggregationTallyReducer, MarkupInput } from '../../src/types.js'
 
 describe('Radon', () => {
   it('addOperator', () => {
