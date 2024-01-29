@@ -3,6 +3,7 @@ import { OperatorCode, OutputType, MirOperator, Context } from '../../src/types'
 import { Cache, markupOptions, allMarkupOptions, operatorInfos } from '../../src/structures'
 import { DEFAULT_OPERATOR } from '../../src/constants'
 import { I18n } from '../../src/i18n'
+import { vi } from 'vitest'
 
 describe('Operator methods', () => {
   describe('getJs', () => {
@@ -1140,7 +1141,7 @@ describe('Operator methods', () => {
     describe('from operator code ', () => {
       it('map with subscript argument', () => {
         const context: Context = { cache: new Cache(), i18n: new I18n() }
-        const emitMock = jest.fn()
+        const emitMock = vi.fn()
         const op = OperatorCode.ArrayCount
         const operator = new Operator(context, 0, OutputType.SubscriptOutput, op, {
           emit: emitMock,
@@ -1156,7 +1157,7 @@ describe('Operator methods', () => {
 
       it('default operator', () => {
         const context: Context = { cache: new Cache(), i18n: new I18n() }
-        const emitMock = jest.fn()
+        const emitMock = vi.fn()
         const operator = new Operator(context, 0, null, null, { emit: emitMock })
         const newOperatorCode = OperatorCode.BooleanAsString
 
@@ -1173,7 +1174,7 @@ describe('Operator methods', () => {
 
       it('array', () => {
         const context: Context = { cache: new Cache(), i18n: new I18n() }
-        const emitMock = jest.fn()
+        const emitMock = vi.fn()
         const op = OperatorCode.ArrayCount
         const operator = new Operator(context, 0, OutputType.Array, op, { emit: emitMock })
         const newOperatorCode = OperatorCode.BooleanAsString
@@ -1188,7 +1189,7 @@ describe('Operator methods', () => {
 
       it('boolean', () => {
         const context: Context = { cache: new Cache(), i18n: new I18n() }
-        const emitMock = jest.fn()
+        const emitMock = vi.fn()
         const op = OperatorCode.BooleanAsString
         const operator = new Operator(context, 0, OutputType.Boolean, op, { emit: emitMock })
         const newOperatorCode = OperatorCode.ArrayCount
@@ -1203,7 +1204,7 @@ describe('Operator methods', () => {
 
       it('bytes', () => {
         const context: Context = { cache: new Cache(), i18n: new I18n() }
-        const emitMock = jest.fn()
+        const emitMock = vi.fn()
         const op = OperatorCode.BytesAsString
         const operator = new Operator(context, 0, OutputType.Bytes, op, { emit: emitMock })
         const newOperatorCode = OperatorCode.ArrayCount
@@ -1218,7 +1219,7 @@ describe('Operator methods', () => {
 
       it('integer', () => {
         const context: Context = { cache: new Cache(), i18n: new I18n() }
-        const emitMock = jest.fn()
+        const emitMock = vi.fn()
         const op = OperatorCode.IntegerAsString
         const operator = new Operator(context, 0, OutputType.Integer, op, { emit: emitMock })
         const newOperatorCode = OperatorCode.FloatGreaterThan
@@ -1233,7 +1234,7 @@ describe('Operator methods', () => {
 
       it('float', () => {
         const context: Context = { cache: new Cache(), i18n: new I18n() }
-        const emitMock = jest.fn()
+        const emitMock = vi.fn()
         const op = OperatorCode.FloatAbsolute
         const operator = new Operator(context, 0, OutputType.Float, op, { emit: emitMock })
         const newOperatorCode = OperatorCode.FloatCeiling
@@ -1248,7 +1249,7 @@ describe('Operator methods', () => {
 
       it('map', () => {
         const context: Context = { cache: new Cache(), i18n: new I18n() }
-        const emitMock = jest.fn()
+        const emitMock = vi.fn()
         const op = OperatorCode.MapKeys
         const operator = new Operator(context, 0, OutputType.Map, op, { emit: emitMock })
         const newOperatorCode = OperatorCode.MapGetString
@@ -1263,7 +1264,7 @@ describe('Operator methods', () => {
 
       it('string', () => {
         const context: Context = { cache: new Cache(), i18n: new I18n() }
-        const emitMock = jest.fn()
+        const emitMock = vi.fn()
         const op = OperatorCode.StringAsFloat
         const operator = new Operator(context, 0, OutputType.String, op, { emit: emitMock })
         const newOperatorCode = OperatorCode.StringAsInteger
@@ -1280,7 +1281,7 @@ describe('Operator methods', () => {
     describe('from operator name', () => {
       it('array', () => {
         const context: Context = { cache: new Cache(), i18n: new I18n() }
-        const emitMock = jest.fn()
+        const emitMock = vi.fn()
         const operatorName = 'ArrayFilter'
         const operator = new Operator(context, 0, OutputType.Array, OperatorCode[operatorName], {
           emit: emitMock,
@@ -1298,7 +1299,7 @@ describe('Operator methods', () => {
 
       it('boolean', () => {
         const context: Context = { cache: new Cache(), i18n: new I18n() }
-        const emitMock = jest.fn()
+        const emitMock = vi.fn()
         const operatorName = 'BooleanAsString'
         const operator = new Operator(context, 0, OutputType.Boolean, OperatorCode[operatorName], {
           emit: emitMock,
@@ -1316,7 +1317,7 @@ describe('Operator methods', () => {
 
       it('bytes', () => {
         const context: Context = { cache: new Cache(), i18n: new I18n() }
-        const emitMock = jest.fn()
+        const emitMock = vi.fn()
         const operatorName = 'BytesAsString'
         const operator = new Operator(context, 0, OutputType.Bytes, OperatorCode[operatorName], {
           emit: emitMock,
@@ -1333,7 +1334,7 @@ describe('Operator methods', () => {
 
       it('integer', () => {
         const context: Context = { cache: new Cache(), i18n: new I18n() }
-        const emitMock = jest.fn()
+        const emitMock = vi.fn()
         const operatorName = 'IntegerAsString'
         const operator = new Operator(context, 0, OutputType.Integer, OperatorCode[operatorName], {
           emit: emitMock,
@@ -1350,7 +1351,7 @@ describe('Operator methods', () => {
 
       it('float', () => {
         const context: Context = { cache: new Cache(), i18n: new I18n() }
-        const emitMock = jest.fn()
+        const emitMock = vi.fn()
         const operatorName = 'FloatAbsolute'
         const operator = new Operator(context, 0, OutputType.Float, OperatorCode[operatorName], {
           emit: emitMock,
@@ -1368,7 +1369,7 @@ describe('Operator methods', () => {
 
       it('map', () => {
         const context: Context = { cache: new Cache(), i18n: new I18n() }
-        const emitMock = jest.fn()
+        const emitMock = vi.fn()
         const operatorName = 'MapGetString'
         const operator = new Operator(context, 0, OutputType.Map, OperatorCode[operatorName], {
           emit: emitMock,
@@ -1386,7 +1387,7 @@ describe('Operator methods', () => {
 
       it('string', () => {
         const context: Context = { cache: new Cache(), i18n: new I18n() }
-        const emitMock = jest.fn()
+        const emitMock = vi.fn()
         const operatorName = 'StringMatch'
         const operator = new Operator(context, 0, OutputType.String, OperatorCode[operatorName], {
           emit: emitMock,
