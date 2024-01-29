@@ -11,7 +11,7 @@
     "build": "tsc -p tsconfig.build.json",
     "lint": "prettier --write '{src,test}/**/*.{t,j}s'",
     "lint:check": "prettier --check '{src,test}/**/*.{t,j}s'",
-    "test": "jest",
+    "test": "vitest",
     "prepare": "npm run build"
   },
   "keywords": [
@@ -21,10 +21,8 @@
   "author": "Witnet Foundation <info@witnet.foundation>",
   "license": "GPL-3.0",
   "devDependencies": {
-    "@types/jest": "latest",
-    "jest": "latest",
-    "ts-jest": "latest",
-    "typescript": "latest"
+    "typescript": "latest",
+    "vitest": "^1.2.2"
   },
   "dependencies": {
     "json5": "2.2.3",
