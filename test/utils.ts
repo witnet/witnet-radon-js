@@ -1,4 +1,4 @@
-import { formatJs } from '../src/utils'
+import { formatJs } from '../src/utils.js'
 
 export async function formatJsTest(source: string): Promise<string> {
   return removeBreakLine(await formatJs(source))

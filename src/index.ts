@@ -1,7 +1,7 @@
-import { Radon } from './radon'
-import { Source } from './source'
-import { Script } from './script'
-import { Operator } from './operator'
+import { Radon } from './radon.js'
+import { Source } from './source.js'
+import { Script } from './script.js'
+import { Operator } from './operator.js'
 export { Radon, Source, Script, Operator }
 
 export default {

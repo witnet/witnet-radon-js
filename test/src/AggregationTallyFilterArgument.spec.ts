@@ -1,6 +1,6 @@
-import { I18n } from '../../src/i18n'
-import { AggregationTallyFilterArgument } from '../../src/aggregationTallyFilterArgument'
-import { Cache } from '../../src/structures'
+import { I18n } from '../../src/i18n.js'
+import { AggregationTallyFilterArgument } from '../../src/aggregationTallyFilterArgument.js'
+import { Cache } from '../../src/structures.js'
 
 describe('AggregationTallyFilterArgument', () => {
   it('getMarkup', () => {

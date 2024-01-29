@@ -7,11 +7,11 @@ import {
   Kind,
   EventEmitter,
   ContentTypeOptions,
-} from './types'
-import { KIND_OPTIONS, CONTENT_TYPE_OPTIONS } from './constants'
-import { Cache } from './structures'
-import { Script } from './script'
-import { I18n } from './i18n'
+} from './types.js'
+import { KIND_OPTIONS, CONTENT_TYPE_OPTIONS } from './constants.js'
+import { Cache } from './structures.js'
+import { Script } from './script.js'
+import { I18n } from './i18n.js'
 import { OutgoingHttpHeaders } from 'http'
 
 export class Source {

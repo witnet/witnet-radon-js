@@ -1,4 +1,4 @@
-import { areSoftEqualArrays, getEnumValues, getEnumNames } from '../../src/utils'
+import { areSoftEqualArrays, getEnumValues, getEnumNames } from '../../src/utils.js'
 
 describe('areSoftEqualArrays', () => {
   it('check if two diffrent arrays return false', () => {

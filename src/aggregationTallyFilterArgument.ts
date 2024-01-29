@@ -5,7 +5,7 @@ import {
   MarkupType,
   MirArgument,
   Context,
-} from './types'
+} from './types.js'
 
 export class AggregationTallyFilterArgument {
   public context: Context

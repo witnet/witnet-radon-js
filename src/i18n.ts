@@ -1,7 +1,8 @@
 import rosetta, { Rosetta } from 'rosetta'
-
-import en from './locales/en.json'
-import es from './locales/es.json'
+import { createRequire } from 'module'
+const require = createRequire(import.meta.url)
+const en = require('./locales/en.json')
+const es = require('./locales/es.json')
 
 export type Locale = 'en' | 'es'
 

@@ -1,7 +1,7 @@
-import { AggregationTallyOperatorFilter } from '../../src/aggregationTallyOperatorFilter'
-import { Cache } from '../../src/structures'
-import { AggregationTallyFilter, MirAggregationTallyFilterOperator } from '../../src/types'
-import { I18n } from '../../src/i18n'
+import { AggregationTallyOperatorFilter } from '../../src/aggregationTallyOperatorFilter.js'
+import { Cache } from '../../src/structures.js'
+import { AggregationTallyFilter, MirAggregationTallyFilterOperator } from '../../src/types.js'
+import { I18n } from '../../src/i18n.js'
 
 describe('AggregationTallyOperatorFilter', () => {
   describe('getJs', () => {

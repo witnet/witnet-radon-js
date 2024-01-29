@@ -12,10 +12,10 @@ import {
   Filter,
   Reducer,
   Type,
-} from './types'
-import { DEFAULT_OPERATOR } from './constants'
-import { markupOptions } from './structures'
-import { Operator } from './operator'
+} from './types.js'
+import { DEFAULT_OPERATOR } from './constants.js'
+import { markupOptions } from './structures.js'
+import { Operator } from './operator.js'
 
 // check if contains the same elements
 export function areSoftEqualArrays(arr1: any[], arr2: any[]): boolean {

@@ -1,15 +1,19 @@
-import { Radon } from '../../src/radon'
-import { Operator } from '../../src/operator'
-import { DEFAULT_KIND_OPTION, KIND_OPTIONS, CONTENT_TYPE_OPTIONS } from '../../src/constants'
+import { Radon } from '../../src/radon.js'
+import { Operator } from '../../src/operator.js'
+import { DEFAULT_KIND_OPTION, KIND_OPTIONS, CONTENT_TYPE_OPTIONS } from '../../src/constants.js'
 import {
   MirRequest,
   OperatorCode,
   AggregationTallyReducer,
   AggregationTallyFilter,
   Kind,
-} from '../../src/types'
-import { markupOptions, aTFilterMarkupOptions, aTReducerMarkupOptions } from '../../src/structures'
-import { formatJsTest } from '../utils'
+} from '../../src/types.js'
+import {
+  markupOptions,
+  aTFilterMarkupOptions,
+  aTReducerMarkupOptions,
+} from '../../src/structures.js'
+import { formatJsTest } from '../utils.js'
 
 describe('Radon', () => {
   it('addOperator', () => {

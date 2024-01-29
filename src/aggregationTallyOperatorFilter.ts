@@ -6,9 +6,9 @@ import {
   MirAggregationTallyFilterOperator,
   OutputType,
   Context,
-} from './types'
-import { aggregationTallyFilterDescriptions, aTFilterMarkupOptions } from './structures'
-import { AggregationTallyFilterArgument } from './aggregationTallyFilterArgument'
+} from './types.js'
+import { aggregationTallyFilterDescriptions, aTFilterMarkupOptions } from './structures.js'
+import { AggregationTallyFilterArgument } from './aggregationTallyFilterArgument.js'
 
 export class AggregationTallyOperatorFilter {
   public context: Context
