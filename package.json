@@ -14,7 +14,10 @@
     "test": "jest",
     "prepare": "npm run build"
   },
-  "keywords": ["radon", "witnet"],
+  "keywords": [
+    "radon",
+    "witnet"
+  ],
   "author": "Witnet Foundation <info@witnet.foundation>",
   "license": "GPL-3.0",
   "devDependencies": {
@@ -25,7 +28,7 @@
   },
   "dependencies": {
     "json5": "2.2.3",
-    "prettier": "2.8.8",
+    "prettier": "3.2.4",
     "rosetta": "1.1.0"
   },
   "repository": {

@@ -92,7 +92,7 @@ export class Radon {
     this.retrieve.splice(sourceIndex, 1)
   }
 
-  public getJs(): string {
+  public async getJs(): Promise<string> {
     const sourcesDeclaration = this.retrieve
       .map((source, index) => `${source.getJs(index)}`)
       .join('\n')

@@ -3222,7 +3222,7 @@ describe('Radon', () => {
   })
 
   describe('getJs method', () => {
-    it('case 1', () => {
+    it('case 1', async () => {
       const mirRequest: MirRequest = {
         timelock: 0,
         retrieve: [
@@ -3264,8 +3264,8 @@ describe('Radon', () => {
       }
 
       const radon = new Radon(mirRequest)
-      const js = formatJsTest(radon.getJs())
-      const expected = formatJsTest(
+      const js = await formatJsTest(await radon.getJs())
+      const expected = await formatJsTest(
         `import * as Witnet from \"witnet-requests\"
         const request = new Witnet.Request()
         const source_0 = new Witnet.Source(\"source_1\")
@@ -3302,7 +3302,7 @@ describe('Radon', () => {
       expect(js).toBe(expected)
     })
 
-    it('case 2', () => {
+    it('case 2', async () => {
       const mirRequest: MirRequest = {
         timelock: 0,
         retrieve: [
@@ -3363,8 +3363,8 @@ describe('Radon', () => {
         },
       }
       const radon = new Radon(mirRequest)
-      const js = formatJsTest(radon.getJs())
-      const expected = formatJsTest(
+      const js = await formatJsTest(await radon.getJs())
+      const expected = await formatJsTest(
         `import * as Witnet from \"witnet-requests\"
         const request = new Witnet.Request()
         const source_0 = new Witnet.Source(\"https://api.bithumb.com/public/ticker/BTC\")
