@@ -307,7 +307,7 @@ describe('RandomNumberGenerator request', () => {
     })
   })
   describe('JS', () => {
-    it('maintain empty script', () => {
+    it('maintain empty script', async () => {
       const mir: MirRequest = {
         timelock: 0,
         retrieve: [
@@ -333,7 +333,7 @@ describe('RandomNumberGenerator request', () => {
       const radon = new Radon(mir)
 
       radon.addOperator(2)
-      const expected = formatJsTest(`import * as Witnet from "witnet-requests"
+      const expected = await formatJsTest(`import * as Witnet from "witnet-requests"
         const request = new Witnet.Request()
         const source_0 = new Witnet.Source("")
         const aggregator = new Witnet.aggregator({  filters: [],  reducer: Witnet.Types.REDUCERS.hashConcatenate,})
@@ -346,9 +346,9 @@ describe('RandomNumberGenerator request', () => {
           .setFees(10, 1, 1, 1) // Set economic incentives  
           .schedule(0) // Make this request immediately solvable
         export { request as default }`)
-      expect(formatJsTest(radon.getJs())).toBe(expected)
+      expect(await formatJsTest(await radon.getJs())).toBe(expected)
     })
-    it('correctly updates the source deleting source script operators', () => {
+    it('correctly updates the source deleting source script operators', async () => {
       const radon = new Radon(mir)
       radon.addOperator(2)
       radon.retrieve[0].update({
@@ -356,7 +356,7 @@ describe('RandomNumberGenerator request', () => {
         url: '',
         contentType: Kind.RNG,
       })
-      const expected = formatJsTest(`import * as Witnet from "witnet-requests"
+      const expected = await formatJsTest(`import * as Witnet from "witnet-requests"
         const request = new Witnet.Request()
         const source_0 = new Witnet.Source("")
         const aggregator = new Witnet.aggregator({  filters: [],  reducer: Witnet.Types.REDUCERS.hashConcatenate,})
@@ -369,7 +369,7 @@ describe('RandomNumberGenerator request', () => {
           .setFees(10, 1, 1, 1) // Set economic incentives  
           .schedule(0) // Make this request immediately solvable
         export { request as default }`)
-      expect(formatJsTest(radon.getJs())).toBe(expected)
+      expect(await formatJsTest(await radon.getJs())).toBe(expected)
     })
   })
 })

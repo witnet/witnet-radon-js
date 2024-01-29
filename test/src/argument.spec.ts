@@ -546,7 +546,7 @@ describe('Argument methods', () => {
       const context: Context = { cache: new Cache(), i18n: new I18n() }
       const argument = new Argument(context, argumentInfo, [operator[1], operator[2]] as [
         Filter,
-        number
+        number,
       ])
       const result = argument.getMarkup()
       const expected = {

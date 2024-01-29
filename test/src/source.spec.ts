@@ -38,7 +38,7 @@ describe('Source', () => {
       expect(result).toStrictEqual(expected)
     })
 
-    it('multiple operators', () => {
+    it('multiple operators', async () => {
       const context = { cache: new Cache(), i18n: new I18n() }
 
       const mirScript: MirScript = [
@@ -57,7 +57,7 @@ describe('Source', () => {
         headers: {},
       }
 
-      const result = formatJsTest(new Source(context, mirSource, onChildrenEvent()).getJs(0))
+      const result = await formatJsTest(new Source(context, mirSource, onChildrenEvent()).getJs(0))
 
       const expected = 'const source_0 = new Witnet.Source("url").asBoolean().negate().asString()'
 
