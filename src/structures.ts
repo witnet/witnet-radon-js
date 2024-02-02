@@ -47,7 +47,7 @@ export const typeSystem: TypeSystem = {
     [BytesOperatorName.Hash]: [OperatorCode.BytesHash, OutputType.Bytes],
     [BytesOperatorName.Length]: [OperatorCode.BytesLength, OutputType.Integer],
     [BytesOperatorName.Slice]: [OperatorCode.BytesSlice, OutputType.Bytes],
-    [BytesOperatorName.Stringify]: [OperatorCode.BytesStringify, OutputType.String],
+    [BytesOperatorName.AsString]: [OperatorCode.BytesAsString, OutputType.String],
   },
   [Type.Integer]: {
     [IntegerOperatorName.Absolute]: [OperatorCode.IntegerAbsolute, OutputType.Integer],
@@ -58,7 +58,7 @@ export const typeSystem: TypeSystem = {
     [IntegerOperatorName.Negate]: [OperatorCode.IntegerNegate, OutputType.Integer],
     [IntegerOperatorName.Power]: [OperatorCode.IntegerPower, OutputType.Integer],
     [IntegerOperatorName.ToBytes]: [OperatorCode.IntegerToBytes, OutputType.Bytes],
-    [IntegerOperatorName.ToFloat]: [OperatorCode.IntegerToFloat, OutputType.Float],
+    [IntegerOperatorName.ToFloat]: [OperatorCode.IntegerAsFloat, OutputType.Float],
     [IntegerOperatorName.AsString]: [OperatorCode.IntegerAsString, OutputType.String],
   },
   [Type.Float]: {
@@ -403,9 +403,9 @@ export const operatorInfos: OperatorInfos = {
     outputType: OutputType.Boolean,
     description: (i18n: I18n) => () => i18n.t('operator_info_description.boolean.negate'),
   },
-  [OperatorCode.BytesStringify]: {
+  [OperatorCode.BytesAsString]: {
     type: Type.Bytes,
-    name: BytesOperatorName.Stringify,
+    name: BytesOperatorName.AsString,
     arguments: [
       {
         name: 'encoding',
@@ -461,7 +461,7 @@ export const operatorInfos: OperatorInfos = {
     outputType: OutputType.Bytes,
     description: (i18n: I18n) => () => descriptions.cast(i18n)('Integer', 'Bytes'),
   },
-  [OperatorCode.IntegerToFloat]: {
+  [OperatorCode.IntegerAsFloat]: {
     type: Type.Integer,
     name: IntegerOperatorName.ToFloat,
     arguments: [],

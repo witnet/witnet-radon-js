@@ -244,13 +244,15 @@ export enum OperatorCode {
   BooleanNegate = 0x22,
   BooleanAsString = 0x20,
 
+  BytesAsString = 0x30,
   BytesAsInteger = 0x32,
   BytesHash = 0x31,
   BytesLength = 0x34,
   BytesSlice = 0x3c,
-  BytesStringify = 0x30,
 
   IntegerAbsolute = 0x40,
+  IntegerAsFloat = 0x41,
+  IntegerAsString = 0x42,
   IntegerGreaterThan = 0x43,
   IntegerLessThan = 0x44,
   IntegerModulo = 0x46,
@@ -258,10 +260,9 @@ export enum OperatorCode {
   IntegerNegate = 0x48,
   IntegerPower = 0x49,
   IntegerToBytes = 0x4a,
-  IntegerToFloat = 0x41,
-  IntegerAsString = 0x42,
 
   FloatAbsolute = 0x50,
+  FloatAsString = 0x51,
   FloatCeiling = 0x52,
   FloatFloor = 0x54,
   FloatGreaterThan = 0x53,
@@ -271,8 +272,9 @@ export enum OperatorCode {
   FloatNegate = 0x58,
   FloatPower = 0x59,
   FloatRound = 0x5b,
-  FloatAsString = 0x51,
   FloatTruncate = 0x5d,
+
+  MapStringify = 0x60,
   MapGetArray = 0x61,
   MapGetBoolean = 0x62,
   MapGetBytes = 0x63,
@@ -285,7 +287,6 @@ export enum OperatorCode {
   //MapEntries = 0x6a,
   MapAlter = 0x6b,
   MapPick = 0x6e,
-  MapStringify = 0x60,
 
   StringAsBoolean = 0x70,
   StringAsBytes = 0x71,
@@ -436,15 +437,15 @@ export enum ArrayOperatorName {
 
 export enum BooleanOperatorName {
   Negate = 'negate',
-  AsString = 'toString',
+  AsString = 'asString',
 }
 
 export enum BytesOperatorName {
   AsInteger = 'asInteger',
+  AsString = 'asString',
   Hash = 'hash',
   Length = 'length',
   Slice = 'slice',
-  Stringify = 'stringify',
 }
 
 export enum IntegerOperatorName {
@@ -457,11 +458,12 @@ export enum IntegerOperatorName {
   Power = 'power',
   ToBytes = 'toBytes',
   ToFloat = 'toFloat',
-  AsString = 'stringify',
+  AsString = 'asString',
 }
 
 export enum FloatOperatorName {
   Absolute = 'absolute',
+  AsString = 'asString',
   Ceiling = 'ceiling',
   GreaterThan = 'greaterThan',
   Floor = 'floor',
@@ -471,7 +473,6 @@ export enum FloatOperatorName {
   Negate = 'negate',
   Power = 'power',
   Round = 'round',
-  AsString = 'stringify',
   Truncate = 'truncate',
 }
 
