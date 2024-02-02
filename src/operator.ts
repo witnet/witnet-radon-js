@@ -99,7 +99,7 @@ export class Operator {
   }
 
   public getMir(): MirOperator {
-    return this.operatorInfo.arguments.length
+    return this.operatorInfo.arguments.length && this.arguments.length
       ? ([this.code, ...this.arguments.map((argument) => argument.getMir())] as MirOperator)
       : this.code
   }
