@@ -212,7 +212,7 @@ describe('Operator methods', () => {
           },
           {
             hierarchicalType: 'operatorOption',
-            label: 'BooleanToString',
+            label: 'BooleanAsString',
             markupType: 'option',
             outputType: 'string',
           },
@@ -242,7 +242,7 @@ describe('Operator methods', () => {
           },
           {
             hierarchicalType: 'operatorOption',
-            label: 'FloatToString',
+            label: 'FloatAsString',
             markupType: 'option',
             outputType: 'string',
           },
@@ -434,7 +434,7 @@ describe('Operator methods', () => {
           },
           {
             hierarchicalType: 'operatorOption',
-            label: 'IntegerToString',
+            label: 'IntegerAsString',
             markupType: 'option',
             outputType: 'string',
           },
@@ -566,7 +566,7 @@ describe('Operator methods', () => {
                     },
                     {
                       hierarchicalType: 'operatorOption',
-                      label: 'BooleanToString',
+                      label: 'BooleanAsString',
                       markupType: 'option',
                       outputType: 'string',
                     },
@@ -596,7 +596,7 @@ describe('Operator methods', () => {
                     },
                     {
                       hierarchicalType: 'operatorOption',
-                      label: 'FloatToString',
+                      label: 'FloatAsString',
                       markupType: 'option',
                       outputType: 'string',
                     },
@@ -788,7 +788,7 @@ describe('Operator methods', () => {
                     },
                     {
                       hierarchicalType: 'operatorOption',
-                      label: 'IntegerToString',
+                      label: 'IntegerAsString',
                       markupType: 'option',
                       outputType: 'string',
                     },
@@ -1159,7 +1159,7 @@ describe('Operator methods', () => {
         const context: Context = { cache: new Cache(), i18n: new I18n() }
         const emitMock = vi.fn()
         const operator = new Operator(context, 0, null, null, { emit: emitMock })
-        const newOperatorCode = OperatorCode.BooleanToString
+        const newOperatorCode = OperatorCode.BooleanAsString
 
         expect(operator.default).toBe(true)
 
@@ -1177,7 +1177,7 @@ describe('Operator methods', () => {
         const emitMock = vi.fn()
         const op = OperatorCode.ArrayCount
         const operator = new Operator(context, 0, OutputType.Array, op, { emit: emitMock })
-        const newOperatorCode = OperatorCode.BooleanToString
+        const newOperatorCode = OperatorCode.BooleanAsString
 
         operator.update(newOperatorCode)
 
@@ -1190,7 +1190,7 @@ describe('Operator methods', () => {
       it('boolean', () => {
         const context: Context = { cache: new Cache(), i18n: new I18n() }
         const emitMock = vi.fn()
-        const op = OperatorCode.BooleanToString
+        const op = OperatorCode.BooleanAsString
         const operator = new Operator(context, 0, OutputType.Boolean, op, { emit: emitMock })
         const newOperatorCode = OperatorCode.ArrayCount
 
@@ -1220,7 +1220,7 @@ describe('Operator methods', () => {
       it('integer', () => {
         const context: Context = { cache: new Cache(), i18n: new I18n() }
         const emitMock = vi.fn()
-        const op = OperatorCode.IntegerToString
+        const op = OperatorCode.IntegerAsString
         const operator = new Operator(context, 0, OutputType.Integer, op, { emit: emitMock })
         const newOperatorCode = OperatorCode.FloatGreaterThan
 
@@ -1300,7 +1300,7 @@ describe('Operator methods', () => {
       it('boolean', () => {
         const context: Context = { cache: new Cache(), i18n: new I18n() }
         const emitMock = vi.fn()
-        const operatorName = 'BooleanToString'
+        const operatorName = 'BooleanAsString'
         const operator = new Operator(context, 0, OutputType.Boolean, OperatorCode[operatorName], {
           emit: emitMock,
         })
@@ -1335,7 +1335,7 @@ describe('Operator methods', () => {
       it('integer', () => {
         const context: Context = { cache: new Cache(), i18n: new I18n() }
         const emitMock = vi.fn()
-        const operatorName = 'IntegerToString'
+        const operatorName = 'IntegerAsString'
         const operator = new Operator(context, 0, OutputType.Integer, OperatorCode[operatorName], {
           emit: emitMock,
         })

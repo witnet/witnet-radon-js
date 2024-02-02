@@ -39,7 +39,7 @@ export const typeSystem: TypeSystem = {
     [ArrayOperatorName.Pick]: [OperatorCode.ArrayPick, OutputType.Same],
   },
   [Type.Boolean]: {
-    [BooleanOperatorName.ToString]: [OperatorCode.BooleanToString, OutputType.String],
+    [BooleanOperatorName.AsString]: [OperatorCode.BooleanAsString, OutputType.String],
     [BooleanOperatorName.Negate]: [OperatorCode.BooleanNegate, OutputType.Boolean],
   },
   [Type.Bytes]: {
@@ -59,7 +59,7 @@ export const typeSystem: TypeSystem = {
     [IntegerOperatorName.Power]: [OperatorCode.IntegerPower, OutputType.Integer],
     [IntegerOperatorName.ToBytes]: [OperatorCode.IntegerToBytes, OutputType.Bytes],
     [IntegerOperatorName.ToFloat]: [OperatorCode.IntegerToFloat, OutputType.Float],
-    [IntegerOperatorName.ToString]: [OperatorCode.IntegerToString, OutputType.String],
+    [IntegerOperatorName.AsString]: [OperatorCode.IntegerAsString, OutputType.String],
   },
   [Type.Float]: {
     [FloatOperatorName.Absolute]: [OperatorCode.FloatAbsolute, OutputType.Float],
@@ -72,7 +72,7 @@ export const typeSystem: TypeSystem = {
     [FloatOperatorName.Negate]: [OperatorCode.FloatNegate, OutputType.Float],
     [FloatOperatorName.Power]: [OperatorCode.FloatPower, OutputType.Float],
     [FloatOperatorName.Round]: [OperatorCode.FloatRound, OutputType.Integer],
-    [FloatOperatorName.ToString]: [OperatorCode.FloatToString, OutputType.String],
+    [FloatOperatorName.AsString]: [OperatorCode.FloatAsString, OutputType.String],
     [FloatOperatorName.Truncate]: [OperatorCode.FloatTruncate, OutputType.Integer],
   },
   [Type.Map]: {
@@ -370,9 +370,9 @@ export const operatorInfos: OperatorInfos = {
     description: (i18n: I18n) => (min, max) =>
       i18n.t('operator_info_description.array.take', { min, max }),
   },*/
-  [OperatorCode.BooleanToString]: {
+  [OperatorCode.BooleanAsString]: {
     type: Type.Boolean,
-    name: BooleanOperatorName.ToString,
+    name: BooleanOperatorName.AsString,
     arguments: [],
     outputType: OutputType.String,
     description: (i18n: I18n) => () => descriptions.cast(i18n)('Boolean', 'String'),
@@ -468,9 +468,9 @@ export const operatorInfos: OperatorInfos = {
     outputType: OutputType.Float,
     description: (i18n: I18n) => () => descriptions.cast(i18n)('Integer', 'Float'),
   },
-  [OperatorCode.IntegerToString]: {
+  [OperatorCode.IntegerAsString]: {
     type: Type.Integer,
-    name: IntegerOperatorName.ToString,
+    name: IntegerOperatorName.AsString,
     arguments: [],
     outputType: OutputType.String,
     description: (i18n: I18n) => () => descriptions.cast(i18n)('Integer', 'String'),
@@ -609,9 +609,9 @@ export const operatorInfos: OperatorInfos = {
     outputType: OutputType.Float,
     description: (i18n: I18n) => () => i18n.t('operator_info_description.float.absolute'),
   },
-  [OperatorCode.FloatToString]: {
+  [OperatorCode.FloatAsString]: {
     type: Type.Float,
-    name: FloatOperatorName.ToString,
+    name: FloatOperatorName.AsString,
     arguments: [
       {
         name: 'decimals',

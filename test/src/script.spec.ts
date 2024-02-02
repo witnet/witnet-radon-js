@@ -16,11 +16,11 @@ describe('Script methods', () => {
       script.addOperator()
 
       expect(script.operators[script.operators.length - 1].code).toStrictEqual(
-        OperatorCode.BooleanToString
+        OperatorCode.BooleanAsString
       )
     })
     it('last type is a pseudotype', () => {
-      const mirScript: MirScript = [OperatorCode.StringAsBoolean, OperatorCode.BooleanToString]
+      const mirScript: MirScript = [OperatorCode.StringAsBoolean, OperatorCode.BooleanAsString]
       const context = { cache: new Cache(), i18n: new I18n() }
       const script = new Script(context, mirScript, Kind.HttpGet)
       script.addOperator()
@@ -33,7 +33,7 @@ describe('Script methods', () => {
 
   describe('deleteOperator method', () => {
     it('deletes operator by id', () => {
-      const mirScript: MirScript = [OperatorCode.StringAsBoolean, OperatorCode.BooleanToString]
+      const mirScript: MirScript = [OperatorCode.StringAsBoolean, OperatorCode.BooleanAsString]
       const context = { cache: new Cache(), i18n: new I18n() }
       const script = new Script(context, mirScript, Kind.HttpGet)
       const firstOperatorId = script.operators[0].id
@@ -57,7 +57,7 @@ describe('Script methods', () => {
       const mirScript: MirScript = [
         OperatorCode.StringAsBoolean,
         OperatorCode.BooleanNegate,
-        OperatorCode.BooleanToString,
+        OperatorCode.BooleanAsString,
       ]
       const context = { cache: new Cache(), i18n: new I18n() }
       const script = new Script(context, mirScript, Kind.HttpGet)
@@ -98,7 +98,7 @@ describe('Script methods', () => {
       const mirScript: MirScript = [
         OperatorCode.StringAsBoolean,
         OperatorCode.BooleanNegate,
-        OperatorCode.BooleanToString,
+        OperatorCode.BooleanAsString,
       ]
 
       const script = new Script(context, mirScript, Kind.HttpGet)
@@ -155,7 +155,7 @@ describe('Script methods', () => {
       const mirScript: MirScript = [
         OperatorCode.StringAsBoolean,
         OperatorCode.BooleanNegate,
-        OperatorCode.BooleanToString,
+        OperatorCode.BooleanAsString,
       ]
 
       const script = new Script(context, mirScript, Kind.HttpGet)
@@ -247,7 +247,7 @@ describe('Script methods', () => {
       const mirScript: MirScript = [
         OperatorCode.StringAsBoolean,
         OperatorCode.BooleanNegate,
-        OperatorCode.BooleanToString,
+        OperatorCode.BooleanAsString,
       ]
 
       const script = new Script(context, mirScript, Kind.HttpGet)
@@ -285,7 +285,7 @@ describe('Script methods', () => {
 
     const script = new Script(context, mirScript, Kind.HttpGet)
 
-    script.push(OperatorCode.BooleanToString)
+    script.push(OperatorCode.BooleanAsString)
     const expectedCode = 32
     const expectedArguments: any = []
 

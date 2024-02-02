@@ -172,7 +172,7 @@ describe('Argument methods', () => {
               },
               {
                 hierarchicalType: 'operatorOption',
-                label: 'BooleanToString',
+                label: 'BooleanAsString',
                 markupType: 'option',
                 outputType: 'string',
               },
@@ -202,7 +202,7 @@ describe('Argument methods', () => {
               },
               {
                 hierarchicalType: 'operatorOption',
-                label: 'FloatToString',
+                label: 'FloatAsString',
                 markupType: 'option',
                 outputType: 'string',
               },
@@ -394,7 +394,7 @@ describe('Argument methods', () => {
               },
               {
                 hierarchicalType: 'operatorOption',
-                label: 'IntegerToString',
+                label: 'IntegerAsString',
                 markupType: 'option',
                 outputType: 'string',
               },
@@ -730,7 +730,7 @@ describe('Argument methods', () => {
                     },
                     {
                       hierarchicalType: 'operatorOption',
-                      label: 'BooleanToString',
+                      label: 'BooleanAsString',
                       markupType: 'option',
                       outputType: 'string',
                     },
@@ -760,7 +760,7 @@ describe('Argument methods', () => {
                     },
                     {
                       hierarchicalType: 'operatorOption',
-                      label: 'FloatToString',
+                      label: 'FloatAsString',
                       markupType: 'option',
                       outputType: 'string',
                     },
@@ -952,7 +952,7 @@ describe('Argument methods', () => {
                     },
                     {
                       hierarchicalType: 'operatorOption',
-                      label: 'IntegerToString',
+                      label: 'IntegerAsString',
                       markupType: 'option',
                       outputType: 'string',
                     },

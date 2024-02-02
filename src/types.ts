@@ -242,7 +242,7 @@ export enum OperatorCode {
   ArrayPick = 0x1e,
 
   BooleanNegate = 0x22,
-  BooleanToString = 0x20,
+  BooleanAsString = 0x20,
 
   BytesAsInteger = 0x32,
   BytesHash = 0x31,
@@ -259,7 +259,7 @@ export enum OperatorCode {
   IntegerPower = 0x49,
   IntegerToBytes = 0x4a,
   IntegerToFloat = 0x41,
-  IntegerToString = 0x42,
+  IntegerAsString = 0x42,
 
   FloatAbsolute = 0x50,
   FloatCeiling = 0x52,
@@ -271,7 +271,7 @@ export enum OperatorCode {
   FloatNegate = 0x58,
   FloatPower = 0x59,
   FloatRound = 0x5b,
-  FloatToString = 0x51,
+  FloatAsString = 0x51,
   FloatTruncate = 0x5d,
   MapGetArray = 0x61,
   MapGetBoolean = 0x62,
@@ -436,7 +436,7 @@ export enum ArrayOperatorName {
 
 export enum BooleanOperatorName {
   Negate = 'negate',
-  ToString = 'toString',
+  AsString = 'toString',
 }
 
 export enum BytesOperatorName {
@@ -457,7 +457,7 @@ export enum IntegerOperatorName {
   Power = 'power',
   ToBytes = 'toBytes',
   ToFloat = 'toFloat',
-  ToString = 'stringify',
+  AsString = 'stringify',
 }
 
 export enum FloatOperatorName {
@@ -471,7 +471,7 @@ export enum FloatOperatorName {
   Negate = 'negate',
   Power = 'power',
   Round = 'round',
-  ToString = 'stringify',
+  AsString = 'stringify',
   Truncate = 'truncate',
 }
 
