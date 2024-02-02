@@ -352,10 +352,8 @@ export const operatorInfos: OperatorInfos = {
       },
     ],
     outputType: OutputType.Same,
-    description:
-      (i18n: I18n) =>
-      (indexes: number[]) =>
-        i18n.t('operator_info_description.array.pick', { indexes: JSON.stringify(indexes) }),
+    description: (i18n: I18n) => (indexes: number[]) =>
+      i18n.t('operator_info_description.array.pick', { indexes: JSON.stringify(indexes) }),
   },
   /*[OperatorCode.ArrayTake]: {
     type: Type.Array,
@@ -780,12 +778,12 @@ export const operatorInfos: OperatorInfos = {
         name: 'subscript',
         optional: false,
         type: MirArgumentType.Subscript,
-      }
+      },
     ],
     outputType: OutputType.Same,
     description:
       (i18n: I18n) =>
-      (keys: string[], subscript: string = "subscript") =>
+      (keys: string[], subscript: string = 'subscript') =>
         i18n.t('operator_info_description.map.alter', { key: JSON.stringify(keys), subscript }),
   },
   [OperatorCode.MapGetArray]: {
@@ -904,10 +902,8 @@ export const operatorInfos: OperatorInfos = {
       },
     ],
     outputType: OutputType.Same,
-    description:
-      (i18n: I18n) =>
-      (keys: string[]) =>
-        i18n.t('operator_info_description.map.pick', { keys: JSON.stringify(keys) }),
+    description: (i18n: I18n) => (keys: string[]) =>
+      i18n.t('operator_info_description.map.pick', { keys: JSON.stringify(keys) }),
   },
   [OperatorCode.MapStringify]: {
     type: Type.Map,
@@ -1031,9 +1027,10 @@ export const operatorInfos: OperatorInfos = {
       },
     ],
     outputType: OutputType.Array,
-    description: (i18n: I18n) => (paths?: string | string[]) => i18n.t('operator_info_description.string.parse_json_array', {
-      jsonPaths: JSON.stringify(paths) || ''
-    }),
+    description: (i18n: I18n) => (paths?: string | string[]) =>
+      i18n.t('operator_info_description.string.parse_json_array', {
+        jsonPaths: JSON.stringify(paths) || '',
+      }),
   },
   [OperatorCode.StringParseJsonMap]: {
     type: Type.String,
@@ -1046,9 +1043,10 @@ export const operatorInfos: OperatorInfos = {
       },
     ],
     outputType: OutputType.Map,
-    description: (i18n: I18n) => (jsonPath?: string) => i18n.t('operator_info_description.string.parse_json_map', { 
-      jsonPath: jsonPath || '' 
-    }),
+    description: (i18n: I18n) => (jsonPath?: string) =>
+      i18n.t('operator_info_description.string.parse_json_map', {
+        jsonPath: jsonPath || '',
+      }),
   },
   [OperatorCode.StringParseXmlMap]: {
     type: Type.String,

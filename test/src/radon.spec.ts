@@ -8,7 +8,11 @@ import {
   AggregationTallyFilter,
   Kind,
 } from '../../src/types.js'
-import { markupOptions, aTFilterMarkupOptions, aTReducerMarkupOptions } from '../../src/structures.js'
+import {
+  markupOptions,
+  aTFilterMarkupOptions,
+  aTReducerMarkupOptions,
+} from '../../src/structures.js'
 import { formatJsTest } from '../utils.js'
 
 describe('Radon', () => {
