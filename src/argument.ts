@@ -39,13 +39,13 @@ export class Argument {
     this.context = context
     this.value = argument
     if (
-      this.argumentInfo?.type === MirArgumentType.Boolean ||
-      this.argumentInfo?.type === MirArgumentType.Float ||
-      this.argumentInfo?.type === MirArgumentType.Integer ||
-      this.argumentInfo?.type === MirArgumentType.String
+      this.argumentInfo.type === MirArgumentType.Boolean ||
+      this.argumentInfo.type === MirArgumentType.Float ||
+      this.argumentInfo.type === MirArgumentType.Integer ||
+      this.argumentInfo.type === MirArgumentType.String
     ) {
       this.argument = null
-    } else if (this.argumentInfo?.type === MirArgumentType.FilterFunction) {
+    } else if (this.argumentInfo.type === MirArgumentType.FilterFunction) {
       // Check if it's custom filter to know if contains a subscript or a filter function
       if (Array.isArray(argument) && Array.isArray(argument[1])) {
         this.argument = new Argument(
@@ -60,13 +60,13 @@ export class Argument {
           (argument as [Filter, boolean | string | number])[1]
         )
       }
-    } else if (this.argumentInfo?.type === MirArgumentType.ReducerFunction) {
+    } else if (this.argumentInfo.type === MirArgumentType.ReducerFunction) {
       this.argument = new Argument(
         this.context,
         { name: 'by', optional: false, type: MirArgumentType.String },
         argument as Reducer
       )
-    } else if (this.argumentInfo?.type === MirArgumentType.Subscript) {
+    } else if (this.argumentInfo.type === MirArgumentType.Subscript) {
       this.argument = new Script(
         this.context,
         argument as MirScript,
