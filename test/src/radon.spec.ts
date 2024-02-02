@@ -841,6 +841,12 @@ describe('Radon', () => {
                   },
                   {
                     hierarchicalType: 'operatorOption',
+                    label: 'StringAsBytes',
+                    markupType: 'option',
+                    outputType: 'bytes',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
                     label: 'StringAsFloat',
                     markupType: 'option',
                     outputType: 'float',
@@ -890,6 +896,24 @@ describe('Radon', () => {
                   {
                     hierarchicalType: 'operatorOption',
                     label: 'StringToUpperCase',
+                    markupType: 'option',
+                    outputType: 'string',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'StringReplace',
+                    markupType: 'option',
+                    outputType: 'string',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'StringSlice',
+                    markupType: 'option',
+                    outputType: 'string',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'StringSplit',
                     markupType: 'option',
                     outputType: 'string',
                   },
@@ -965,6 +989,24 @@ describe('Radon', () => {
                     markupType: 'option',
                     outputType: 'arrayArray',
                   },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'MapAlter',
+                    markupType: 'option',
+                    outputType: 'map',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'MapPick',
+                    markupType: 'option',
+                    outputType: 'map',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'MapStringify',
+                    markupType: 'option',
+                    outputType: 'string',
+                  },
                 ],
                 outputType: 'array',
                 scriptId: 2,
@@ -1004,6 +1046,12 @@ describe('Radon', () => {
                     label: 'ArrayFilter',
                     markupType: 'option',
                     outputType: 'same',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'ArrayJoin',
+                    markupType: 'option',
+                    outputType: 'joinOutput',
                   },
                   {
                     hierarchicalType: 'operatorOption',
@@ -1062,6 +1110,12 @@ describe('Radon', () => {
                   {
                     hierarchicalType: 'operatorOption',
                     label: 'ArraySort',
+                    markupType: 'option',
+                    outputType: 'same',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'ArrayPick',
                     markupType: 'option',
                     outputType: 'same',
                   },
@@ -1125,6 +1179,13 @@ describe('Radon', () => {
                                   },
                                   {
                                     hierarchicalType: 'operatorOption',
+                                    label: 'ArrayJoin',
+                                    markupType: 'option',
+                                    outputType: 'joinOutput',
+                                  },
+
+                                  {
+                                    hierarchicalType: 'operatorOption',
                                     label: 'ArrayGetArray',
                                     markupType: 'option',
                                     outputType: 'array',
@@ -1185,6 +1246,13 @@ describe('Radon', () => {
                                   },
                                   {
                                     hierarchicalType: 'operatorOption',
+                                    label: 'ArrayPick',
+                                    markupType: 'option',
+                                    outputType: 'same',
+                                  },
+
+                                  {
+                                    hierarchicalType: 'operatorOption',
                                     label: 'BooleanAsString',
                                     markupType: 'option',
                                     outputType: 'string',
@@ -1197,9 +1265,9 @@ describe('Radon', () => {
                                   },
                                   {
                                     hierarchicalType: 'operatorOption',
-                                    label: 'BytesStringify',
+                                    label: 'BytesAsInteger',
                                     markupType: 'option',
-                                    outputType: 'string',
+                                    outputType: 'integer',
                                   },
                                   {
                                     hierarchicalType: 'operatorOption',
@@ -1209,16 +1277,29 @@ describe('Radon', () => {
                                   },
                                   {
                                     hierarchicalType: 'operatorOption',
+                                    label: 'BytesLength',
+                                    markupType: 'option',
+                                    outputType: 'integer',
+                                  },
+                                  {
+                                    hierarchicalType: 'operatorOption',
+                                    label: 'BytesSlice',
+                                    markupType: 'option',
+                                    outputType: 'bytes',
+                                  },
+                                  {
+                                    hierarchicalType: 'operatorOption',
+                                    label: 'BytesAsString',
+                                    markupType: 'option',
+                                    outputType: 'string',
+                                  },
+                                  {
+                                    hierarchicalType: 'operatorOption',
                                     label: 'FloatAbsolute',
                                     markupType: 'option',
                                     outputType: 'float',
                                   },
-                                  {
-                                    hierarchicalType: 'operatorOption',
-                                    label: 'FloatAsString',
-                                    markupType: 'option',
-                                    outputType: 'string',
-                                  },
+
                                   {
                                     hierarchicalType: 'operatorOption',
                                     label: 'FloatCeiling',
@@ -1275,6 +1356,13 @@ describe('Radon', () => {
                                   },
                                   {
                                     hierarchicalType: 'operatorOption',
+                                    label: 'FloatAsString',
+                                    markupType: 'option',
+                                    outputType: 'string',
+                                  },
+
+                                  {
+                                    hierarchicalType: 'operatorOption',
                                     label: 'FloatTruncate',
                                     markupType: 'option',
                                     outputType: 'integer',
@@ -1285,6 +1373,13 @@ describe('Radon', () => {
                                     markupType: 'option',
                                     outputType: 'boolean',
                                   },
+                                  {
+                                    hierarchicalType: 'operatorOption',
+                                    label: 'StringAsBytes',
+                                    markupType: 'option',
+                                    outputType: 'bytes',
+                                  },
+
                                   {
                                     hierarchicalType: 'operatorOption',
                                     label: 'StringAsFloat',
@@ -1336,6 +1431,24 @@ describe('Radon', () => {
                                   {
                                     hierarchicalType: 'operatorOption',
                                     label: 'StringToUpperCase',
+                                    markupType: 'option',
+                                    outputType: 'string',
+                                  },
+                                  {
+                                    hierarchicalType: 'operatorOption',
+                                    label: 'StringReplace',
+                                    markupType: 'option',
+                                    outputType: 'string',
+                                  },
+                                  {
+                                    hierarchicalType: 'operatorOption',
+                                    label: 'StringSlice',
+                                    markupType: 'option',
+                                    outputType: 'string',
+                                  },
+                                  {
+                                    hierarchicalType: 'operatorOption',
+                                    label: 'StringSplit',
                                     markupType: 'option',
                                     outputType: 'string',
                                   },
@@ -1395,22 +1508,29 @@ describe('Radon', () => {
                                   },
                                   {
                                     hierarchicalType: 'operatorOption',
+                                    label: 'MapAlter',
+                                    markupType: 'option',
+                                    outputType: 'map',
+                                  },
+                                  {
+                                    hierarchicalType: 'operatorOption',
+                                    label: 'MapPick',
+                                    markupType: 'option',
+                                    outputType: 'map',
+                                  },
+                                  {
+                                    hierarchicalType: 'operatorOption',
+                                    label: 'MapStringify',
+                                    markupType: 'option',
+                                    outputType: 'string',
+                                  },
+                                  {
+                                    hierarchicalType: 'operatorOption',
                                     label: 'IntegerAbsolute',
                                     markupType: 'option',
                                     outputType: 'integer',
                                   },
-                                  {
-                                    hierarchicalType: 'operatorOption',
-                                    label: 'IntegerToFloat',
-                                    markupType: 'option',
-                                    outputType: 'float',
-                                  },
-                                  {
-                                    hierarchicalType: 'operatorOption',
-                                    label: 'IntegerAsString',
-                                    markupType: 'option',
-                                    outputType: 'string',
-                                  },
+
                                   {
                                     hierarchicalType: 'operatorOption',
                                     label: 'IntegerGreaterThan',
@@ -1446,6 +1566,24 @@ describe('Radon', () => {
                                     label: 'IntegerPower',
                                     markupType: 'option',
                                     outputType: 'integer',
+                                  },
+                                  {
+                                    hierarchicalType: 'operatorOption',
+                                    label: 'IntegerToBytes',
+                                    markupType: 'option',
+                                    outputType: 'bytes',
+                                  },
+                                  {
+                                    hierarchicalType: 'operatorOption',
+                                    label: 'IntegerAsFloat',
+                                    markupType: 'option',
+                                    outputType: 'float',
+                                  },
+                                  {
+                                    hierarchicalType: 'operatorOption',
+                                    label: 'IntegerAsString',
+                                    markupType: 'option',
+                                    outputType: 'string',
                                   },
                                 ],
                                 outputType: 'array',
@@ -1487,6 +1625,13 @@ describe('Radon', () => {
                                     markupType: 'option',
                                     outputType: 'same',
                                   },
+                                  {
+                                    hierarchicalType: 'operatorOption',
+                                    label: 'ArrayJoin',
+                                    markupType: 'option',
+                                    outputType: 'joinOutput',
+                                  },
+
                                   {
                                     hierarchicalType: 'operatorOption',
                                     label: 'ArrayGetArray',
@@ -1544,6 +1689,12 @@ describe('Radon', () => {
                                   {
                                     hierarchicalType: 'operatorOption',
                                     label: 'ArraySort',
+                                    markupType: 'option',
+                                    outputType: 'same',
+                                  },
+                                  {
+                                    hierarchicalType: 'operatorOption',
+                                    label: 'ArrayPick',
                                     markupType: 'option',
                                     outputType: 'same',
                                   },
@@ -1635,6 +1786,13 @@ describe('Radon', () => {
                   },
                   {
                     hierarchicalType: 'operatorOption',
+                    label: 'ArrayJoin',
+                    markupType: 'option',
+                    outputType: 'joinOutput',
+                  },
+
+                  {
+                    hierarchicalType: 'operatorOption',
                     label: 'ArrayGetArray',
                     markupType: 'option',
                     outputType: 'array',
@@ -1693,6 +1851,12 @@ describe('Radon', () => {
                     markupType: 'option',
                     outputType: 'same',
                   },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'ArrayPick',
+                    markupType: 'option',
+                    outputType: 'same',
+                  },
                 ],
                 outputType: 'same',
                 scriptId: 2,
@@ -1725,6 +1889,13 @@ describe('Radon', () => {
                             },
                             {
                               hierarchicalType: 'operatorOption',
+                              label: 'ArrayJoin',
+                              markupType: 'option',
+                              outputType: 'joinOutput',
+                            },
+                            {
+                              hierarchicalType: 'operatorOption',
+
                               label: 'ArrayGetArray',
                               markupType: 'option',
                               outputType: 'array',
@@ -1785,6 +1956,13 @@ describe('Radon', () => {
                             },
                             {
                               hierarchicalType: 'operatorOption',
+                              label: 'ArrayPick',
+                              markupType: 'option',
+                              outputType: 'same',
+                            },
+                            {
+                              hierarchicalType: 'operatorOption',
+
                               label: 'BooleanAsString',
                               markupType: 'option',
                               outputType: 'string',
@@ -1797,9 +1975,9 @@ describe('Radon', () => {
                             },
                             {
                               hierarchicalType: 'operatorOption',
-                              label: 'BytesStringify',
+                              label: 'BytesAsInteger',
                               markupType: 'option',
-                              outputType: 'string',
+                              outputType: 'integer',
                             },
                             {
                               hierarchicalType: 'operatorOption',
@@ -1809,16 +1987,29 @@ describe('Radon', () => {
                             },
                             {
                               hierarchicalType: 'operatorOption',
+                              label: 'BytesLength',
+                              markupType: 'option',
+                              outputType: 'integer',
+                            },
+                            {
+                              hierarchicalType: 'operatorOption',
+                              label: 'BytesSlice',
+                              markupType: 'option',
+                              outputType: 'bytes',
+                            },
+                            {
+                              hierarchicalType: 'operatorOption',
+                              label: 'BytesAsString',
+                              markupType: 'option',
+                              outputType: 'string',
+                            },
+                            {
+                              hierarchicalType: 'operatorOption',
                               label: 'FloatAbsolute',
                               markupType: 'option',
                               outputType: 'float',
                             },
-                            {
-                              hierarchicalType: 'operatorOption',
-                              label: 'FloatAsString',
-                              markupType: 'option',
-                              outputType: 'string',
-                            },
+
                             {
                               hierarchicalType: 'operatorOption',
                               label: 'FloatCeiling',
@@ -1875,6 +2066,13 @@ describe('Radon', () => {
                             },
                             {
                               hierarchicalType: 'operatorOption',
+                              label: 'FloatAsString',
+                              markupType: 'option',
+                              outputType: 'string',
+                            },
+
+                            {
+                              hierarchicalType: 'operatorOption',
                               label: 'FloatTruncate',
                               markupType: 'option',
                               outputType: 'integer',
@@ -1884,6 +2082,12 @@ describe('Radon', () => {
                               label: 'StringAsBoolean',
                               markupType: 'option',
                               outputType: 'boolean',
+                            },
+                            {
+                              hierarchicalType: 'operatorOption',
+                              label: 'StringAsBytes',
+                              markupType: 'option',
+                              outputType: 'bytes',
                             },
                             {
                               hierarchicalType: 'operatorOption',
@@ -1941,6 +2145,25 @@ describe('Radon', () => {
                             },
                             {
                               hierarchicalType: 'operatorOption',
+                              label: 'StringReplace',
+                              markupType: 'option',
+                              outputType: 'string',
+                            },
+                            {
+                              hierarchicalType: 'operatorOption',
+                              label: 'StringSlice',
+                              markupType: 'option',
+                              outputType: 'string',
+                            },
+                            {
+                              hierarchicalType: 'operatorOption',
+                              label: 'StringSplit',
+                              markupType: 'option',
+                              outputType: 'string',
+                            },
+
+                            {
+                              hierarchicalType: 'operatorOption',
                               label: 'MapGetArray',
                               markupType: 'option',
                               outputType: 'array',
@@ -1995,22 +2218,29 @@ describe('Radon', () => {
                             },
                             {
                               hierarchicalType: 'operatorOption',
+                              label: 'MapAlter',
+                              markupType: 'option',
+                              outputType: 'map',
+                            },
+                            {
+                              hierarchicalType: 'operatorOption',
+                              label: 'MapPick',
+                              markupType: 'option',
+                              outputType: 'map',
+                            },
+                            {
+                              hierarchicalType: 'operatorOption',
+                              label: 'MapStringify',
+                              markupType: 'option',
+                              outputType: 'string',
+                            },
+                            {
+                              hierarchicalType: 'operatorOption',
                               label: 'IntegerAbsolute',
                               markupType: 'option',
                               outputType: 'integer',
                             },
-                            {
-                              hierarchicalType: 'operatorOption',
-                              label: 'IntegerToFloat',
-                              markupType: 'option',
-                              outputType: 'float',
-                            },
-                            {
-                              hierarchicalType: 'operatorOption',
-                              label: 'IntegerAsString',
-                              markupType: 'option',
-                              outputType: 'string',
-                            },
+
                             {
                               hierarchicalType: 'operatorOption',
                               label: 'IntegerGreaterThan',
@@ -2046,6 +2276,24 @@ describe('Radon', () => {
                               label: 'IntegerPower',
                               markupType: 'option',
                               outputType: 'integer',
+                            },
+                            {
+                              hierarchicalType: 'operatorOption',
+                              label: 'IntegerToBytes',
+                              markupType: 'option',
+                              outputType: 'bytes',
+                            },
+                            {
+                              hierarchicalType: 'operatorOption',
+                              label: 'IntegerAsFloat',
+                              markupType: 'option',
+                              outputType: 'float',
+                            },
+                            {
+                              hierarchicalType: 'operatorOption',
+                              label: 'IntegerAsString',
+                              markupType: 'option',
+                              outputType: 'string',
                             },
                           ],
                           outputType: 'string',
@@ -2099,6 +2347,13 @@ describe('Radon', () => {
                   },
                   {
                     hierarchicalType: 'operatorOption',
+                    label: 'ArrayJoin',
+                    markupType: 'option',
+                    outputType: 'joinOutput',
+                  },
+
+                  {
+                    hierarchicalType: 'operatorOption',
                     label: 'ArrayGetArray',
                     markupType: 'option',
                     outputType: 'array',
@@ -2157,6 +2412,12 @@ describe('Radon', () => {
                     markupType: 'option',
                     outputType: 'same',
                   },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'ArrayPick',
+                    markupType: 'option',
+                    outputType: 'same',
+                  },
                 ],
                 outputType: 'subscriptOutput',
                 scriptId: 2,
@@ -2187,6 +2448,13 @@ describe('Radon', () => {
                               markupType: 'option',
                               outputType: 'same',
                             },
+                            {
+                              hierarchicalType: 'operatorOption',
+                              label: 'ArrayJoin',
+                              markupType: 'option',
+                              outputType: 'joinOutput',
+                            },
+
                             {
                               hierarchicalType: 'operatorOption',
                               label: 'ArrayGetArray',
@@ -2249,6 +2517,13 @@ describe('Radon', () => {
                             },
                             {
                               hierarchicalType: 'operatorOption',
+                              label: 'ArrayPick',
+                              markupType: 'option',
+                              outputType: 'same',
+                            },
+
+                            {
+                              hierarchicalType: 'operatorOption',
                               label: 'BooleanAsString',
                               markupType: 'option',
                               outputType: 'string',
@@ -2261,9 +2536,9 @@ describe('Radon', () => {
                             },
                             {
                               hierarchicalType: 'operatorOption',
-                              label: 'BytesStringify',
+                              label: 'BytesAsInteger',
                               markupType: 'option',
-                              outputType: 'string',
+                              outputType: 'integer',
                             },
                             {
                               hierarchicalType: 'operatorOption',
@@ -2273,16 +2548,29 @@ describe('Radon', () => {
                             },
                             {
                               hierarchicalType: 'operatorOption',
+                              label: 'BytesLength',
+                              markupType: 'option',
+                              outputType: 'integer',
+                            },
+                            {
+                              hierarchicalType: 'operatorOption',
+                              label: 'BytesSlice',
+                              markupType: 'option',
+                              outputType: 'bytes',
+                            },
+                            {
+                              hierarchicalType: 'operatorOption',
+                              label: 'BytesAsString',
+                              markupType: 'option',
+                              outputType: 'string',
+                            },
+                            {
+                              hierarchicalType: 'operatorOption',
                               label: 'FloatAbsolute',
                               markupType: 'option',
                               outputType: 'float',
                             },
-                            {
-                              hierarchicalType: 'operatorOption',
-                              label: 'FloatAsString',
-                              markupType: 'option',
-                              outputType: 'string',
-                            },
+
                             {
                               hierarchicalType: 'operatorOption',
                               label: 'FloatCeiling',
@@ -2339,6 +2627,13 @@ describe('Radon', () => {
                             },
                             {
                               hierarchicalType: 'operatorOption',
+                              label: 'FloatAsString',
+                              markupType: 'option',
+                              outputType: 'string',
+                            },
+
+                            {
+                              hierarchicalType: 'operatorOption',
                               label: 'FloatTruncate',
                               markupType: 'option',
                               outputType: 'integer',
@@ -2349,6 +2644,13 @@ describe('Radon', () => {
                               markupType: 'option',
                               outputType: 'boolean',
                             },
+                            {
+                              hierarchicalType: 'operatorOption',
+                              label: 'StringAsBytes',
+                              markupType: 'option',
+                              outputType: 'bytes',
+                            },
+
                             {
                               hierarchicalType: 'operatorOption',
                               label: 'StringAsFloat',
@@ -2400,6 +2702,24 @@ describe('Radon', () => {
                             {
                               hierarchicalType: 'operatorOption',
                               label: 'StringToUpperCase',
+                              markupType: 'option',
+                              outputType: 'string',
+                            },
+                            {
+                              hierarchicalType: 'operatorOption',
+                              label: 'StringReplace',
+                              markupType: 'option',
+                              outputType: 'string',
+                            },
+                            {
+                              hierarchicalType: 'operatorOption',
+                              label: 'StringSlice',
+                              markupType: 'option',
+                              outputType: 'string',
+                            },
+                            {
+                              hierarchicalType: 'operatorOption',
+                              label: 'StringSplit',
                               markupType: 'option',
                               outputType: 'string',
                             },
@@ -2459,21 +2779,27 @@ describe('Radon', () => {
                             },
                             {
                               hierarchicalType: 'operatorOption',
+                              label: 'MapAlter',
+                              markupType: 'option',
+                              outputType: 'map',
+                            },
+                            {
+                              hierarchicalType: 'operatorOption',
+                              label: 'MapPick',
+                              markupType: 'option',
+                              outputType: 'map',
+                            },
+                            {
+                              hierarchicalType: 'operatorOption',
+                              label: 'MapStringify',
+                              markupType: 'option',
+                              outputType: 'string',
+                            },
+                            {
+                              hierarchicalType: 'operatorOption',
                               label: 'IntegerAbsolute',
                               markupType: 'option',
                               outputType: 'integer',
-                            },
-                            {
-                              hierarchicalType: 'operatorOption',
-                              label: 'IntegerToFloat',
-                              markupType: 'option',
-                              outputType: 'float',
-                            },
-                            {
-                              hierarchicalType: 'operatorOption',
-                              label: 'IntegerAsString',
-                              markupType: 'option',
-                              outputType: 'string',
                             },
                             {
                               hierarchicalType: 'operatorOption',
@@ -2510,6 +2836,24 @@ describe('Radon', () => {
                               label: 'IntegerPower',
                               markupType: 'option',
                               outputType: 'integer',
+                            },
+                            {
+                              hierarchicalType: 'operatorOption',
+                              label: 'IntegerToBytes',
+                              markupType: 'option',
+                              outputType: 'bytes',
+                            },
+                            {
+                              hierarchicalType: 'operatorOption',
+                              label: 'IntegerAsFloat',
+                              markupType: 'option',
+                              outputType: 'float',
+                            },
+                            {
+                              hierarchicalType: 'operatorOption',
+                              label: 'IntegerAsString',
+                              markupType: 'option',
+                              outputType: 'string',
                             },
                           ],
                           outputType: 'string',
@@ -2569,6 +2913,12 @@ describe('Radon', () => {
                   },
                   {
                     hierarchicalType: 'operatorOption',
+                    label: 'StringAsBytes',
+                    markupType: 'option',
+                    outputType: 'bytes',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
                     label: 'StringAsFloat',
                     markupType: 'option',
                     outputType: 'float',
@@ -2618,6 +2968,24 @@ describe('Radon', () => {
                   {
                     hierarchicalType: 'operatorOption',
                     label: 'StringToUpperCase',
+                    markupType: 'option',
+                    outputType: 'string',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'StringReplace',
+                    markupType: 'option',
+                    outputType: 'string',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'StringSlice',
+                    markupType: 'option',
+                    outputType: 'string',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'StringSplit',
                     markupType: 'option',
                     outputType: 'string',
                   },
@@ -2659,6 +3027,12 @@ describe('Radon', () => {
                   },
                   {
                     hierarchicalType: 'operatorOption',
+                    label: 'StringAsBytes',
+                    markupType: 'option',
+                    outputType: 'bytes',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
                     label: 'StringAsFloat',
                     markupType: 'option',
                     outputType: 'float',
@@ -2708,6 +3082,24 @@ describe('Radon', () => {
                   {
                     hierarchicalType: 'operatorOption',
                     label: 'StringToUpperCase',
+                    markupType: 'option',
+                    outputType: 'string',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'StringReplace',
+                    markupType: 'option',
+                    outputType: 'string',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'StringSlice',
+                    markupType: 'option',
+                    outputType: 'string',
+                  },
+                  {
+                    hierarchicalType: 'operatorOption',
+                    label: 'StringSplit',
                     markupType: 'option',
                     outputType: 'string',
                   },

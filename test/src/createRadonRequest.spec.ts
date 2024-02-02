@@ -31,7 +31,7 @@ describe('Radon', () => {
     expect(radon.getMarkup().retrieve[0].script).toStrictEqual([])
     radon.addOperator(2)
 
-    expect(radon.getMarkup().retrieve[0].script[0].options[6].label).toBe('StringParseJsonMap')
+    expect(radon.getMarkup().retrieve[0].script[0].options[6].label).toBe('StringParseJsonArray')
 
     // Update operator with stringparsejsonmap option
     radon.update(7, 'StringParseJsonMap')
@@ -139,7 +139,7 @@ describe('Radon', () => {
     expect(radon.getMarkup().retrieve[0].script).toStrictEqual([])
     radon.addOperator(2)
 
-    expect(radon.getMarkup().retrieve[0].script[0].options[6].label).toBe('StringParseJsonMap')
+    expect(radon.getMarkup().retrieve[0].script[0].options[6].label).toBe('StringParseJsonArray')
 
     // Update operator with stringparsejsonmap option
     radon.update(7, 'StringParseJsonMap')

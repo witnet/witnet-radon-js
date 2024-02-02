@@ -40,7 +40,7 @@ describe('Operator methods', () => {
     })
 
     it('bytes', () => {
-      const op = OperatorCode.BytesStringify
+      const op = OperatorCode.BytesAsString
       const context: Context = { cache: new Cache(), i18n: new I18n() }
       const operator = new Operator(context, 0, OutputType.Bytes, op, { emit: () => {} })
 
@@ -152,6 +152,12 @@ describe('Operator methods', () => {
           },
           {
             hierarchicalType: 'operatorOption',
+            label: 'ArrayJoin',
+            markupType: 'option',
+            outputType: 'joinOutput',
+          },
+          {
+            hierarchicalType: 'operatorOption',
             label: 'ArrayGetArray',
             markupType: 'option',
             outputType: 'array',
@@ -212,6 +218,13 @@ describe('Operator methods', () => {
           },
           {
             hierarchicalType: 'operatorOption',
+            label: 'ArrayPick',
+            markupType: 'option',
+            outputType: 'same',
+          },
+
+          {
+            hierarchicalType: 'operatorOption',
             label: 'BooleanAsString',
             markupType: 'option',
             outputType: 'string',
@@ -224,9 +237,9 @@ describe('Operator methods', () => {
           },
           {
             hierarchicalType: 'operatorOption',
-            label: 'BytesStringify',
+            label: 'BytesAsInteger',
             markupType: 'option',
-            outputType: 'string',
+            outputType: 'integer',
           },
           {
             hierarchicalType: 'operatorOption',
@@ -236,15 +249,29 @@ describe('Operator methods', () => {
           },
           {
             hierarchicalType: 'operatorOption',
-            label: 'FloatAbsolute',
+            label: 'BytesLength',
             markupType: 'option',
-            outputType: 'float',
+            outputType: 'integer',
           },
           {
             hierarchicalType: 'operatorOption',
-            label: 'FloatAsString',
+            label: 'BytesSlice',
+            markupType: 'option',
+            outputType: 'bytes',
+          },
+
+          {
+            hierarchicalType: 'operatorOption',
+            label: 'BytesAsString',
             markupType: 'option',
             outputType: 'string',
+          },
+
+          {
+            hierarchicalType: 'operatorOption',
+            label: 'FloatAbsolute',
+            markupType: 'option',
+            outputType: 'float',
           },
           {
             hierarchicalType: 'operatorOption',
@@ -302,6 +329,12 @@ describe('Operator methods', () => {
           },
           {
             hierarchicalType: 'operatorOption',
+            label: 'FloatAsString',
+            markupType: 'option',
+            outputType: 'string',
+          },
+          {
+            hierarchicalType: 'operatorOption',
             label: 'FloatTruncate',
             markupType: 'option',
             outputType: 'integer',
@@ -311,6 +344,12 @@ describe('Operator methods', () => {
             label: 'StringAsBoolean',
             markupType: 'option',
             outputType: 'boolean',
+          },
+          {
+            hierarchicalType: 'operatorOption',
+            label: 'StringAsBytes',
+            markupType: 'option',
+            outputType: 'bytes',
           },
           {
             hierarchicalType: 'operatorOption',
@@ -363,6 +402,24 @@ describe('Operator methods', () => {
           {
             hierarchicalType: 'operatorOption',
             label: 'StringToUpperCase',
+            markupType: 'option',
+            outputType: 'string',
+          },
+          {
+            hierarchicalType: 'operatorOption',
+            label: 'StringReplace',
+            markupType: 'option',
+            outputType: 'string',
+          },
+          {
+            hierarchicalType: 'operatorOption',
+            label: 'StringSlice',
+            markupType: 'option',
+            outputType: 'string',
+          },
+          {
+            hierarchicalType: 'operatorOption',
+            label: 'StringSplit',
             markupType: 'option',
             outputType: 'string',
           },
@@ -422,21 +479,27 @@ describe('Operator methods', () => {
           },
           {
             hierarchicalType: 'operatorOption',
+            label: 'MapAlter',
+            markupType: 'option',
+            outputType: 'map',
+          },
+          {
+            hierarchicalType: 'operatorOption',
+            label: 'MapPick',
+            markupType: 'option',
+            outputType: 'map',
+          },
+          {
+            hierarchicalType: 'operatorOption',
+            label: 'MapStringify',
+            markupType: 'option',
+            outputType: 'string',
+          },
+          {
+            hierarchicalType: 'operatorOption',
             label: 'IntegerAbsolute',
             markupType: 'option',
             outputType: 'integer',
-          },
-          {
-            hierarchicalType: 'operatorOption',
-            label: 'IntegerToFloat',
-            markupType: 'option',
-            outputType: 'float',
-          },
-          {
-            hierarchicalType: 'operatorOption',
-            label: 'IntegerAsString',
-            markupType: 'option',
-            outputType: 'string',
           },
           {
             hierarchicalType: 'operatorOption',
@@ -474,6 +537,24 @@ describe('Operator methods', () => {
             markupType: 'option',
             outputType: 'integer',
           },
+          {
+            hierarchicalType: 'operatorOption',
+            label: 'IntegerToBytes',
+            markupType: 'option',
+            outputType: 'bytes',
+          },
+          {
+            hierarchicalType: 'operatorOption',
+            label: 'IntegerAsFloat',
+            markupType: 'option',
+            outputType: 'float',
+          },
+          {
+            hierarchicalType: 'operatorOption',
+            label: 'IntegerAsString',
+            markupType: 'option',
+            outputType: 'string',
+          },
         ],
         outputType: 'subscriptOutput',
         scriptId: 0,
@@ -503,6 +584,12 @@ describe('Operator methods', () => {
                       label: 'ArrayFilter',
                       markupType: 'option',
                       outputType: 'same',
+                    },
+                    {
+                      hierarchicalType: 'operatorOption',
+                      label: 'ArrayJoin',
+                      markupType: 'option',
+                      outputType: 'joinOutput',
                     },
                     {
                       hierarchicalType: 'operatorOption',
@@ -566,6 +653,12 @@ describe('Operator methods', () => {
                     },
                     {
                       hierarchicalType: 'operatorOption',
+                      label: 'ArrayPick',
+                      markupType: 'option',
+                      outputType: 'same',
+                    },
+                    {
+                      hierarchicalType: 'operatorOption',
                       label: 'BooleanAsString',
                       markupType: 'option',
                       outputType: 'string',
@@ -578,9 +671,9 @@ describe('Operator methods', () => {
                     },
                     {
                       hierarchicalType: 'operatorOption',
-                      label: 'BytesStringify',
+                      label: 'BytesAsInteger',
                       markupType: 'option',
-                      outputType: 'string',
+                      outputType: 'integer',
                     },
                     {
                       hierarchicalType: 'operatorOption',
@@ -590,15 +683,27 @@ describe('Operator methods', () => {
                     },
                     {
                       hierarchicalType: 'operatorOption',
-                      label: 'FloatAbsolute',
+                      label: 'BytesLength',
                       markupType: 'option',
-                      outputType: 'float',
+                      outputType: 'integer',
                     },
                     {
                       hierarchicalType: 'operatorOption',
-                      label: 'FloatAsString',
+                      label: 'BytesSlice',
+                      markupType: 'option',
+                      outputType: 'bytes',
+                    },
+                    {
+                      hierarchicalType: 'operatorOption',
+                      label: 'BytesAsString',
                       markupType: 'option',
                       outputType: 'string',
+                    },
+                    {
+                      hierarchicalType: 'operatorOption',
+                      label: 'FloatAbsolute',
+                      markupType: 'option',
+                      outputType: 'float',
                     },
                     {
                       hierarchicalType: 'operatorOption',
@@ -656,6 +761,12 @@ describe('Operator methods', () => {
                     },
                     {
                       hierarchicalType: 'operatorOption',
+                      label: 'FloatAsString',
+                      markupType: 'option',
+                      outputType: 'string',
+                    },
+                    {
+                      hierarchicalType: 'operatorOption',
                       label: 'FloatTruncate',
                       markupType: 'option',
                       outputType: 'integer',
@@ -666,6 +777,13 @@ describe('Operator methods', () => {
                       markupType: 'option',
                       outputType: 'boolean',
                     },
+                    {
+                      hierarchicalType: 'operatorOption',
+                      label: 'StringAsBytes',
+                      markupType: 'option',
+                      outputType: 'bytes',
+                    },
+
                     {
                       hierarchicalType: 'operatorOption',
                       label: 'StringAsFloat',
@@ -722,6 +840,25 @@ describe('Operator methods', () => {
                     },
                     {
                       hierarchicalType: 'operatorOption',
+                      label: 'StringReplace',
+                      markupType: 'option',
+                      outputType: 'string',
+                    },
+                    {
+                      hierarchicalType: 'operatorOption',
+                      label: 'StringSlice',
+                      markupType: 'option',
+                      outputType: 'string',
+                    },
+                    {
+                      hierarchicalType: 'operatorOption',
+                      label: 'StringSplit',
+                      markupType: 'option',
+                      outputType: 'string',
+                    },
+
+                    {
+                      hierarchicalType: 'operatorOption',
                       label: 'MapGetArray',
                       markupType: 'option',
                       outputType: 'array',
@@ -776,21 +913,27 @@ describe('Operator methods', () => {
                     },
                     {
                       hierarchicalType: 'operatorOption',
+                      label: 'MapAlter',
+                      markupType: 'option',
+                      outputType: 'map',
+                    },
+                    {
+                      hierarchicalType: 'operatorOption',
+                      label: 'MapPick',
+                      markupType: 'option',
+                      outputType: 'map',
+                    },
+                    {
+                      hierarchicalType: 'operatorOption',
+                      label: 'MapStringify',
+                      markupType: 'option',
+                      outputType: 'string',
+                    },
+                    {
+                      hierarchicalType: 'operatorOption',
                       label: 'IntegerAbsolute',
                       markupType: 'option',
                       outputType: 'integer',
-                    },
-                    {
-                      hierarchicalType: 'operatorOption',
-                      label: 'IntegerToFloat',
-                      markupType: 'option',
-                      outputType: 'float',
-                    },
-                    {
-                      hierarchicalType: 'operatorOption',
-                      label: 'IntegerAsString',
-                      markupType: 'option',
-                      outputType: 'string',
                     },
                     {
                       hierarchicalType: 'operatorOption',
@@ -827,6 +970,24 @@ describe('Operator methods', () => {
                       label: 'IntegerPower',
                       markupType: 'option',
                       outputType: 'integer',
+                    },
+                    {
+                      hierarchicalType: 'operatorOption',
+                      label: 'IntegerToBytes',
+                      markupType: 'option',
+                      outputType: 'bytes',
+                    },
+                    {
+                      hierarchicalType: 'operatorOption',
+                      label: 'IntegerAsFloat',
+                      markupType: 'option',
+                      outputType: 'float',
+                    },
+                    {
+                      hierarchicalType: 'operatorOption',
+                      label: 'IntegerAsString',
+                      markupType: 'option',
+                      outputType: 'string',
                     },
                   ],
                   outputType: 'integer',
@@ -910,7 +1071,7 @@ describe('Operator methods', () => {
     })
 
     it('bytes', () => {
-      const op = OperatorCode.BytesStringify
+      const op = OperatorCode.BytesAsString
       const context: Context = { cache: new Cache(), i18n: new I18n() }
       const operator = new Operator(context, 0, OutputType.Bytes, op, { emit: () => {} })
 
@@ -1080,7 +1241,7 @@ describe('Operator methods', () => {
     })
 
     it('bytes', () => {
-      const op = OperatorCode.BytesStringify
+      const op = OperatorCode.BytesAsString
       const context: Context = { cache: new Cache(), i18n: new I18n() }
       const operator = new Operator(context, 0, OutputType.Bytes, op, { emit: () => {} })
 
@@ -1205,7 +1366,7 @@ describe('Operator methods', () => {
       it('bytes', () => {
         const context: Context = { cache: new Cache(), i18n: new I18n() }
         const emitMock = vi.fn()
-        const op = OperatorCode.BytesStringify
+        const op = OperatorCode.BytesAsString
         const operator = new Operator(context, 0, OutputType.Bytes, op, { emit: emitMock })
         const newOperatorCode = OperatorCode.ArrayCount
 
@@ -1318,7 +1479,7 @@ describe('Operator methods', () => {
       it('bytes', () => {
         const context: Context = { cache: new Cache(), i18n: new I18n() }
         const emitMock = vi.fn()
-        const operatorName = 'BytesStringify'
+        const operatorName = 'BytesAsString'
         const operator = new Operator(context, 0, OutputType.Bytes, OperatorCode[operatorName], {
           emit: emitMock,
         })

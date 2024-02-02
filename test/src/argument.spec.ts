@@ -112,6 +112,12 @@ describe('Argument methods', () => {
               },
               {
                 hierarchicalType: 'operatorOption',
+                label: 'ArrayJoin',
+                markupType: 'option',
+                outputType: 'joinOutput',
+              },
+              {
+                hierarchicalType: 'operatorOption',
                 label: 'ArrayGetArray',
                 markupType: 'option',
                 outputType: 'array',
@@ -172,6 +178,12 @@ describe('Argument methods', () => {
               },
               {
                 hierarchicalType: 'operatorOption',
+                label: 'ArrayPick',
+                markupType: 'option',
+                outputType: 'same',
+              },
+              {
+                hierarchicalType: 'operatorOption',
                 label: 'BooleanAsString',
                 markupType: 'option',
                 outputType: 'string',
@@ -184,9 +196,9 @@ describe('Argument methods', () => {
               },
               {
                 hierarchicalType: 'operatorOption',
-                label: 'BytesStringify',
+                label: 'BytesAsInteger',
                 markupType: 'option',
-                outputType: 'string',
+                outputType: 'integer',
               },
               {
                 hierarchicalType: 'operatorOption',
@@ -196,16 +208,30 @@ describe('Argument methods', () => {
               },
               {
                 hierarchicalType: 'operatorOption',
+                label: 'BytesLength',
+                markupType: 'option',
+                outputType: 'integer',
+              },
+              {
+                hierarchicalType: 'operatorOption',
+                label: 'BytesSlice',
+                markupType: 'option',
+                outputType: 'bytes',
+              },
+
+              {
+                hierarchicalType: 'operatorOption',
+                label: 'BytesAsString',
+                markupType: 'option',
+                outputType: 'string',
+              },
+              {
+                hierarchicalType: 'operatorOption',
                 label: 'FloatAbsolute',
                 markupType: 'option',
                 outputType: 'float',
               },
-              {
-                hierarchicalType: 'operatorOption',
-                label: 'FloatAsString',
-                markupType: 'option',
-                outputType: 'string',
-              },
+
               {
                 hierarchicalType: 'operatorOption',
                 label: 'FloatCeiling',
@@ -262,6 +288,13 @@ describe('Argument methods', () => {
               },
               {
                 hierarchicalType: 'operatorOption',
+                label: 'FloatAsString',
+                markupType: 'option',
+                outputType: 'string',
+              },
+
+              {
+                hierarchicalType: 'operatorOption',
                 label: 'FloatTruncate',
                 markupType: 'option',
                 outputType: 'integer',
@@ -272,6 +305,13 @@ describe('Argument methods', () => {
                 markupType: 'option',
                 outputType: 'boolean',
               },
+              {
+                hierarchicalType: 'operatorOption',
+                label: 'StringAsBytes',
+                markupType: 'option',
+                outputType: 'bytes',
+              },
+
               {
                 hierarchicalType: 'operatorOption',
                 label: 'StringAsFloat',
@@ -326,6 +366,25 @@ describe('Argument methods', () => {
                 markupType: 'option',
                 outputType: 'string',
               },
+              {
+                hierarchicalType: 'operatorOption',
+                label: 'StringReplace',
+                markupType: 'option',
+                outputType: 'string',
+              },
+              {
+                hierarchicalType: 'operatorOption',
+                label: 'StringSlice',
+                markupType: 'option',
+                outputType: 'string',
+              },
+              {
+                hierarchicalType: 'operatorOption',
+                label: 'StringSplit',
+                markupType: 'option',
+                outputType: 'string',
+              },
+
               {
                 hierarchicalType: 'operatorOption',
                 label: 'MapGetArray',
@@ -382,22 +441,29 @@ describe('Argument methods', () => {
               },
               {
                 hierarchicalType: 'operatorOption',
+                label: 'MapAlter',
+                markupType: 'option',
+                outputType: 'map',
+              },
+              {
+                hierarchicalType: 'operatorOption',
+                label: 'MapPick',
+                markupType: 'option',
+                outputType: 'map',
+              },
+              {
+                hierarchicalType: 'operatorOption',
+                label: 'MapStringify',
+                markupType: 'option',
+                outputType: 'string',
+              },
+              {
+                hierarchicalType: 'operatorOption',
                 label: 'IntegerAbsolute',
                 markupType: 'option',
                 outputType: 'integer',
               },
-              {
-                hierarchicalType: 'operatorOption',
-                label: 'IntegerToFloat',
-                markupType: 'option',
-                outputType: 'float',
-              },
-              {
-                hierarchicalType: 'operatorOption',
-                label: 'IntegerAsString',
-                markupType: 'option',
-                outputType: 'string',
-              },
+
               {
                 hierarchicalType: 'operatorOption',
                 label: 'IntegerGreaterThan',
@@ -434,6 +500,24 @@ describe('Argument methods', () => {
                 markupType: 'option',
                 outputType: 'integer',
               },
+              {
+                hierarchicalType: 'operatorOption',
+                label: 'IntegerToBytes',
+                markupType: 'option',
+                outputType: 'bytes',
+              },
+              {
+                hierarchicalType: 'operatorOption',
+                label: 'IntegerAsFloat',
+                markupType: 'option',
+                outputType: 'float',
+              },
+              {
+                hierarchicalType: 'operatorOption',
+                label: 'IntegerAsString',
+                markupType: 'option',
+                outputType: 'string',
+              },
             ],
             outputType: 'string',
             scriptId: 2,
@@ -468,6 +552,13 @@ describe('Argument methods', () => {
                 markupType: 'option',
                 outputType: 'boolean',
               },
+              {
+                hierarchicalType: 'operatorOption',
+                label: 'StringAsBytes',
+                markupType: 'option',
+                outputType: 'bytes',
+              },
+
               {
                 hierarchicalType: 'operatorOption',
                 label: 'StringAsFloat',
@@ -519,6 +610,24 @@ describe('Argument methods', () => {
               {
                 hierarchicalType: 'operatorOption',
                 label: 'StringToUpperCase',
+                markupType: 'option',
+                outputType: 'string',
+              },
+              {
+                hierarchicalType: 'operatorOption',
+                label: 'StringReplace',
+                markupType: 'option',
+                outputType: 'string',
+              },
+              {
+                hierarchicalType: 'operatorOption',
+                label: 'StringSlice',
+                markupType: 'option',
+                outputType: 'string',
+              },
+              {
+                hierarchicalType: 'operatorOption',
+                label: 'StringSplit',
                 markupType: 'option',
                 outputType: 'string',
               },
@@ -670,6 +779,12 @@ describe('Argument methods', () => {
                     },
                     {
                       hierarchicalType: 'operatorOption',
+                      label: 'ArrayJoin',
+                      markupType: 'option',
+                      outputType: 'joinOutput',
+                    },
+                    {
+                      hierarchicalType: 'operatorOption',
                       label: 'ArrayGetArray',
                       markupType: 'option',
                       outputType: 'array',
@@ -730,6 +845,12 @@ describe('Argument methods', () => {
                     },
                     {
                       hierarchicalType: 'operatorOption',
+                      label: 'ArrayPick',
+                      markupType: 'option',
+                      outputType: 'same',
+                    },
+                    {
+                      hierarchicalType: 'operatorOption',
                       label: 'BooleanAsString',
                       markupType: 'option',
                       outputType: 'string',
@@ -742,9 +863,9 @@ describe('Argument methods', () => {
                     },
                     {
                       hierarchicalType: 'operatorOption',
-                      label: 'BytesStringify',
+                      label: 'BytesAsInteger',
                       markupType: 'option',
-                      outputType: 'string',
+                      outputType: 'integer',
                     },
                     {
                       hierarchicalType: 'operatorOption',
@@ -754,15 +875,27 @@ describe('Argument methods', () => {
                     },
                     {
                       hierarchicalType: 'operatorOption',
-                      label: 'FloatAbsolute',
+                      label: 'BytesLength',
                       markupType: 'option',
-                      outputType: 'float',
+                      outputType: 'integer',
                     },
                     {
                       hierarchicalType: 'operatorOption',
-                      label: 'FloatAsString',
+                      label: 'BytesSlice',
+                      markupType: 'option',
+                      outputType: 'bytes',
+                    },
+                    {
+                      hierarchicalType: 'operatorOption',
+                      label: 'BytesAsString',
                       markupType: 'option',
                       outputType: 'string',
+                    },
+                    {
+                      hierarchicalType: 'operatorOption',
+                      label: 'FloatAbsolute',
+                      markupType: 'option',
+                      outputType: 'float',
                     },
                     {
                       hierarchicalType: 'operatorOption',
@@ -820,6 +953,12 @@ describe('Argument methods', () => {
                     },
                     {
                       hierarchicalType: 'operatorOption',
+                      label: 'FloatAsString',
+                      markupType: 'option',
+                      outputType: 'string',
+                    },
+                    {
+                      hierarchicalType: 'operatorOption',
                       label: 'FloatTruncate',
                       markupType: 'option',
                       outputType: 'integer',
@@ -829,6 +968,12 @@ describe('Argument methods', () => {
                       label: 'StringAsBoolean',
                       markupType: 'option',
                       outputType: 'boolean',
+                    },
+                    {
+                      hierarchicalType: 'operatorOption',
+                      label: 'StringAsBytes',
+                      markupType: 'option',
+                      outputType: 'bytes',
                     },
                     {
                       hierarchicalType: 'operatorOption',
@@ -881,6 +1026,24 @@ describe('Argument methods', () => {
                     {
                       hierarchicalType: 'operatorOption',
                       label: 'StringToUpperCase',
+                      markupType: 'option',
+                      outputType: 'string',
+                    },
+                    {
+                      hierarchicalType: 'operatorOption',
+                      label: 'StringReplace',
+                      markupType: 'option',
+                      outputType: 'string',
+                    },
+                    {
+                      hierarchicalType: 'operatorOption',
+                      label: 'StringSlice',
+                      markupType: 'option',
+                      outputType: 'string',
+                    },
+                    {
+                      hierarchicalType: 'operatorOption',
+                      label: 'StringSplit',
                       markupType: 'option',
                       outputType: 'string',
                     },
@@ -940,21 +1103,27 @@ describe('Argument methods', () => {
                     },
                     {
                       hierarchicalType: 'operatorOption',
+                      label: 'MapAlter',
+                      markupType: 'option',
+                      outputType: 'map',
+                    },
+                    {
+                      hierarchicalType: 'operatorOption',
+                      label: 'MapPick',
+                      markupType: 'option',
+                      outputType: 'map',
+                    },
+                    {
+                      hierarchicalType: 'operatorOption',
+                      label: 'MapStringify',
+                      markupType: 'option',
+                      outputType: 'string',
+                    },
+                    {
+                      hierarchicalType: 'operatorOption',
                       label: 'IntegerAbsolute',
                       markupType: 'option',
                       outputType: 'integer',
-                    },
-                    {
-                      hierarchicalType: 'operatorOption',
-                      label: 'IntegerToFloat',
-                      markupType: 'option',
-                      outputType: 'float',
-                    },
-                    {
-                      hierarchicalType: 'operatorOption',
-                      label: 'IntegerAsString',
-                      markupType: 'option',
-                      outputType: 'string',
                     },
                     {
                       hierarchicalType: 'operatorOption',
@@ -992,6 +1161,24 @@ describe('Argument methods', () => {
                       markupType: 'option',
                       outputType: 'integer',
                     },
+                    {
+                      hierarchicalType: 'operatorOption',
+                      label: 'IntegerToBytes',
+                      markupType: 'option',
+                      outputType: 'bytes',
+                    },
+                    {
+                      hierarchicalType: 'operatorOption',
+                      label: 'IntegerAsFloat',
+                      markupType: 'option',
+                      outputType: 'float',
+                    },
+                    {
+                      hierarchicalType: 'operatorOption',
+                      label: 'IntegerAsString',
+                      markupType: 'option',
+                      outputType: 'string',
+                    },
                   ],
                   outputType: 'string',
                   scriptId: 3,
@@ -1028,6 +1215,12 @@ describe('Argument methods', () => {
                     },
                     {
                       hierarchicalType: 'operatorOption',
+                      label: 'StringAsBytes',
+                      markupType: 'option',
+                      outputType: 'bytes',
+                    },
+                    {
+                      hierarchicalType: 'operatorOption',
                       label: 'StringAsFloat',
                       markupType: 'option',
                       outputType: 'float',
@@ -1077,6 +1270,24 @@ describe('Argument methods', () => {
                     {
                       hierarchicalType: 'operatorOption',
                       label: 'StringToUpperCase',
+                      markupType: 'option',
+                      outputType: 'string',
+                    },
+                    {
+                      hierarchicalType: 'operatorOption',
+                      label: 'StringReplace',
+                      markupType: 'option',
+                      outputType: 'string',
+                    },
+                    {
+                      hierarchicalType: 'operatorOption',
+                      label: 'StringSlice',
+                      markupType: 'option',
+                      outputType: 'string',
+                    },
+                    {
+                      hierarchicalType: 'operatorOption',
+                      label: 'StringSplit',
                       markupType: 'option',
                       outputType: 'string',
                     },
@@ -1107,6 +1318,12 @@ describe('Argument methods', () => {
                     },
                     {
                       hierarchicalType: 'operatorOption',
+                      label: 'StringAsBytes',
+                      markupType: 'option',
+                      outputType: 'bytes',
+                    },
+                    {
+                      hierarchicalType: 'operatorOption',
                       label: 'StringAsFloat',
                       markupType: 'option',
                       outputType: 'float',
@@ -1156,6 +1373,24 @@ describe('Argument methods', () => {
                     {
                       hierarchicalType: 'operatorOption',
                       label: 'StringToUpperCase',
+                      markupType: 'option',
+                      outputType: 'string',
+                    },
+                    {
+                      hierarchicalType: 'operatorOption',
+                      label: 'StringReplace',
+                      markupType: 'option',
+                      outputType: 'string',
+                    },
+                    {
+                      hierarchicalType: 'operatorOption',
+                      label: 'StringSlice',
+                      markupType: 'option',
+                      outputType: 'string',
+                    },
+                    {
+                      hierarchicalType: 'operatorOption',
+                      label: 'StringSplit',
                       markupType: 'option',
                       outputType: 'string',
                     },
