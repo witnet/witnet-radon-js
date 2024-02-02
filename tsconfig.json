@@ -22,7 +22,12 @@
     "strictNullChecks": true,
     "strictPropertyInitialization": true,
     "target": "ESNext",
-    "typeRoots": ["./node_modules/@types", "@types"],
+    "typeRoots": [
+      "./node_modules/@types",
+      "./node_modules/@microsoft",
+      "./node_modules"
+    ],
+    "types": ["vitest/globals"]
   },
   "include": ["./**/*.ts"],
   "exclude": ["node_modules", "dist"],
