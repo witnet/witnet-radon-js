@@ -29,6 +29,6 @@
     ],
     "types": ["vitest/globals"]
   },
-  "include": ["./**/*.ts"],
+  "include": ["./**/*.ts", "./src/locales/*.json"],
   "exclude": ["node_modules", "dist"],
 }
