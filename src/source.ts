@@ -3,10 +3,9 @@ import {
   MirSource,
   OutputType,
   Context,
-  KindOptions,
   Kind,
   EventEmitter,
-  ContentTypeOptions,
+  KindOptions,
 } from './types.js'
 import { KIND_OPTIONS, CONTENT_TYPE_OPTIONS } from './constants.js'
 import { Cache } from './structures.js'
@@ -19,7 +18,7 @@ export class Source {
   public kindOptions: KindOptions
   public url: string
   public contentType: string
-  public contentTypeOptions: ContentTypeOptions
+  public contentTypeOptions: KindOptions
   public headers: OutgoingHttpHeaders
   public body?: object
   public script: Script

@@ -1,4 +1,6 @@
-import * as prettier from 'prettier'
+import { format } from 'prettier/standalone'
+import * as prettierPluginBabel from 'prettier/plugins/babel'
+import prettierPluginEstree from 'prettier/plugins/estree'
 import {
   ArgumentInfo,
   MarkupInputType,
@@ -57,7 +59,11 @@ export function fromOutputTypeToType(type: OutputType): Type | null {
 }
 
 export async function formatJs(source: string): Promise<string> {
-  return prettier.format(source, { semi: false, parser: 'babel' })
+  return await format(source, {
+    semi: false,
+    parser: 'babel',
+    plugins: [prettierPluginBabel, prettierPluginEstree],
+  })
 }
 
 export function getEnumNames(e: any): Array<any> {

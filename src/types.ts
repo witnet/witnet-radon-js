@@ -189,6 +189,8 @@ export type MarkupArgumentScript = {
   hierarchicalType: MarkupHierarchicalType.Argument
 }
 
+export type KindOptions = Record<Kind, string>
+
 export type MarkupSource = {
   kind: Kind
   kindOptions: KindOptions
@@ -196,7 +198,7 @@ export type MarkupSource = {
   body?: object
   url: string
   contentType: string
-  contentTypeOptions: ContentTypeOptions
+  contentTypeOptions: KindOptions
   script: MarkupScript
   scriptId: number
 }
@@ -216,13 +218,12 @@ export type Markup = {
   radRequest: MarkupRequest
 }
 
-export type KindOptions = Array<Kind>
-
 export enum Kind {
-  HttpGet = 'HTTP-GET',
-  HttpPost = 'HTTP-POST',
-  HttpHead = 'HTTP-HEAD',
-  RNG = 'RNG',
+  HttpGet = 0x01,
+  HttpPost = 0x02,
+  RNG = 0x03,
+  // TODO: suppport Http Head requests
+  // HttpHead = 0x04,
 }
 
 export enum OperatorCode {
@@ -378,13 +379,8 @@ export type MirSource = {
   kindOptions: KindOptions
   url: string
   contentType: string
-  contentTypeOptions: ContentTypeOptions
+  contentTypeOptions: KindOptions
   script: MirScript
-}
-
-export type ContentTypeOptions = {
-  [Kind.HttpGet]: string | Array<string>
-  [Kind.RNG]: string
 }
 
 export type MirRequest = {

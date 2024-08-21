@@ -22,7 +22,7 @@ describe('RandomNumberGenerator request', () => {
         kindOptions: KIND_OPTIONS,
         url: 'source_1',
         headers: {},
-        contentType: 'JSON API',
+        contentType: CONTENT_TYPE_OPTIONS[DEFAULT_KIND_OPTION],
         contentTypeOptions: CONTENT_TYPE_OPTIONS,
         script: [OperatorCode.StringAsBoolean, OperatorCode.BooleanNegate],
       },
@@ -31,7 +31,7 @@ describe('RandomNumberGenerator request', () => {
         kindOptions: KIND_OPTIONS,
         url: 'source_2',
         headers: {},
-        contentType: 'JSON API',
+        contentType: CONTENT_TYPE_OPTIONS[DEFAULT_KIND_OPTION],
         contentTypeOptions: CONTENT_TYPE_OPTIONS,
         script: [OperatorCode.StringAsBoolean, OperatorCode.BooleanNegate],
       },
@@ -55,7 +55,7 @@ describe('RandomNumberGenerator request', () => {
             kindOptions: KIND_OPTIONS,
             url: 'source_1',
             headers: {},
-            contentType: 'JSON API',
+            contentType: CONTENT_TYPE_OPTIONS[Kind.RNG],
             contentTypeOptions: CONTENT_TYPE_OPTIONS,
             script: [],
           },
@@ -90,7 +90,7 @@ describe('RandomNumberGenerator request', () => {
       radon.retrieve[0].update({
         kind: Kind.RNG,
         url: '',
-        contentType: Kind.RNG,
+        contentType: CONTENT_TYPE_OPTIONS[Kind.RNG],
       })
       expect(radon.retrieve[0].script.operators.length).toBe(0)
     })
@@ -100,7 +100,7 @@ describe('RandomNumberGenerator request', () => {
       radon.retrieve[0].update({
         kind: Kind.RNG,
         url: '',
-        contentType: Kind.RNG,
+        contentType: CONTENT_TYPE_OPTIONS[Kind.RNG],
       })
       expect(radon.aggregate.filters.length).toBe(0)
     })
@@ -110,7 +110,7 @@ describe('RandomNumberGenerator request', () => {
       radon.retrieve[0].update({
         kind: Kind.RNG,
         url: '',
-        contentType: Kind.RNG,
+        contentType: CONTENT_TYPE_OPTIONS[Kind.RNG],
       })
       expect(radon.retrieve[0].url).toBe('')
     })
@@ -125,7 +125,7 @@ describe('RandomNumberGenerator request', () => {
             kindOptions: KIND_OPTIONS,
             url: 'source_1',
             headers: {},
-            contentType: 'JSON API',
+            contentType: CONTENT_TYPE_OPTIONS[Kind.RNG],
             contentTypeOptions: CONTENT_TYPE_OPTIONS,
             script: [],
           },
@@ -160,7 +160,7 @@ describe('RandomNumberGenerator request', () => {
       radon.retrieve[0].update({
         kind: Kind.RNG,
         url: '',
-        contentType: Kind.RNG,
+        contentType: CONTENT_TYPE_OPTIONS[Kind.RNG],
       })
       expect(radon.getMarkup().retrieve[0].script.length).toBe(0)
     })
@@ -170,7 +170,7 @@ describe('RandomNumberGenerator request', () => {
       radon.retrieve[0].update({
         kind: Kind.RNG,
         url: '',
-        contentType: Kind.RNG,
+        contentType: CONTENT_TYPE_OPTIONS[Kind.RNG],
       })
       expect(radon.getMarkup().aggregate.filters.length).toBe(0)
     })
@@ -180,7 +180,7 @@ describe('RandomNumberGenerator request', () => {
       radon.retrieve[0].update({
         kind: Kind.RNG,
         url: '',
-        contentType: Kind.RNG,
+        contentType: CONTENT_TYPE_OPTIONS[Kind.RNG],
       })
       expect(radon.getMarkup().retrieve[0].url).toBe('')
     })
@@ -195,7 +195,7 @@ describe('RandomNumberGenerator request', () => {
             kindOptions: KIND_OPTIONS,
             url: 'source_1',
             headers: {},
-            contentType: 'JSON API',
+            contentType: CONTENT_TYPE_OPTIONS[Kind.RNG],
             contentTypeOptions: CONTENT_TYPE_OPTIONS,
             script: [],
           },
@@ -224,7 +224,7 @@ describe('RandomNumberGenerator request', () => {
             kindOptions: KIND_OPTIONS,
             url: 'source_1',
             headers: {},
-            contentType: 'JSON API',
+            contentType: CONTENT_TYPE_OPTIONS[Kind.RNG],
             contentTypeOptions: CONTENT_TYPE_OPTIONS,
             script: [],
           },
@@ -233,7 +233,7 @@ describe('RandomNumberGenerator request', () => {
             kindOptions: KIND_OPTIONS,
             url: 'source_1',
             headers: {},
-            contentType: 'JSON API',
+            contentType: CONTENT_TYPE_OPTIONS[Kind.RNG],
             contentTypeOptions: CONTENT_TYPE_OPTIONS,
             script: [],
           },
@@ -252,9 +252,9 @@ describe('RandomNumberGenerator request', () => {
       radon.retrieve[0].update({
         kind: Kind.HttpGet,
         url: '',
-        contentType: 'JSON API',
+        contentType: CONTENT_TYPE_OPTIONS[Kind.HttpGet],
       })
-      expect(radon.getMir().retrieve[0].kind).toBe('HTTP-GET')
+      expect(radon.getMir().retrieve[0].kind).toBe(1)
     })
     it('creates an aggregation/tally script with RNG source', () => {
       const mirScript: MirAggregationTallyScript = {
@@ -271,7 +271,7 @@ describe('RandomNumberGenerator request', () => {
       radon.retrieve[0].update({
         kind: Kind.RNG,
         url: '',
-        contentType: Kind.RNG,
+        contentType: CONTENT_TYPE_OPTIONS[Kind.RNG],
       })
       expect(radon.getMir().retrieve[0].script.length).toBe(0)
     })
@@ -281,7 +281,7 @@ describe('RandomNumberGenerator request', () => {
       radon.retrieve[0].update({
         kind: Kind.RNG,
         url: '',
-        contentType: Kind.RNG,
+        contentType: CONTENT_TYPE_OPTIONS[Kind.RNG],
       })
       expect(radon.getMir().retrieve.length).toBe(1)
     })
@@ -291,7 +291,7 @@ describe('RandomNumberGenerator request', () => {
       radon.retrieve[0].update({
         kind: Kind.RNG,
         url: '',
-        contentType: Kind.RNG,
+        contentType: CONTENT_TYPE_OPTIONS[Kind.RNG],
       })
       expect(radon.getMir().aggregate.filters.length).toBe(0)
     })
@@ -301,7 +301,7 @@ describe('RandomNumberGenerator request', () => {
       radon.retrieve[0].update({
         kind: Kind.RNG,
         url: '',
-        contentType: Kind.RNG,
+        contentType: CONTENT_TYPE_OPTIONS[Kind.RNG],
       })
       expect(radon.getMir().retrieve[0].url).toBe('')
     })
@@ -316,7 +316,7 @@ describe('RandomNumberGenerator request', () => {
             kindOptions: KIND_OPTIONS,
             url: 'source_1',
             headers: {},
-            contentType: 'RNG',
+            contentType: CONTENT_TYPE_OPTIONS[Kind.RNG],
             contentTypeOptions: CONTENT_TYPE_OPTIONS,
             script: [],
           },
@@ -354,7 +354,7 @@ describe('RandomNumberGenerator request', () => {
       radon.retrieve[0].update({
         kind: Kind.RNG,
         url: '',
-        contentType: Kind.RNG,
+        contentType: CONTENT_TYPE_OPTIONS[Kind.RNG],
       })
       const expected = await formatJsTest(`import * as Witnet from "witnet-requests"
         const request = new Witnet.Request()

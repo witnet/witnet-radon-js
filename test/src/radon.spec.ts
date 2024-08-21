@@ -3610,10 +3610,53 @@ describe('Radon', () => {
       }
 
       const radon = new Radon(mirRequest)
-      radon.updateSource(0, { kind: 'new_kind', url: 'new_url' })
+      radon.updateSource(0, { kind: 2, url: 'new_url' })
       const updatedSource = radon.retrieve[0]
       expect(updatedSource.url).toBe('new_url')
-      expect(updatedSource.kind).toBe('new_kind')
+      expect(updatedSource.kind).toBe(2)
+      expect(updatedSource.contentType).toBe('JSON API')
+    })
+
+    it('update to rng protocol kind', () => {
+      const mirRequest: MirRequest = {
+        timelock: 0,
+        retrieve: [
+          {
+            kind: DEFAULT_KIND_OPTION,
+            kindOptions: KIND_OPTIONS,
+            url: 'source_1',
+            headers: {},
+            contentType: 'JSON API',
+            contentTypeOptions: CONTENT_TYPE_OPTIONS,
+            script: [OperatorCode.StringAsBoolean, OperatorCode.BooleanNegate],
+          },
+          {
+            kind: DEFAULT_KIND_OPTION,
+            kindOptions: KIND_OPTIONS,
+            url: 'source_2',
+            headers: {},
+            contentType: 'JSON API',
+            contentTypeOptions: CONTENT_TYPE_OPTIONS,
+            script: [OperatorCode.StringAsBoolean, OperatorCode.BooleanNegate],
+          },
+        ],
+        aggregate: {
+          filters: [AggregationTallyFilter.mode, [AggregationTallyFilter.deviationStandard, 1.1]],
+          reducer: AggregationTallyReducer.mode,
+        },
+        tally: {
+          filters: [AggregationTallyFilter.mode, [AggregationTallyFilter.deviationStandard, 1.1]],
+          reducer: AggregationTallyReducer.mode,
+        },
+      }
+
+      const radon = new Radon(mirRequest)
+      expect(radon.retrieve.length).toBe(2)
+      radon.updateSource(1, { kind: 3 })
+      const updatedSource = radon.retrieve[0]
+      expect(updatedSource.kind).toBe(3)
+      expect(updatedSource.contentType).toBe('Binary file')
+      expect(radon.retrieve.length).toBe(1)
     })
   })
 
