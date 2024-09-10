@@ -8,7 +8,7 @@ You can simply add the `witnet-radon-js` package as a
 dependency with npm:
 
 ```console
-yarn add witnet-radon-js
+pnpm add witnet-radon-js
 ```
 
 

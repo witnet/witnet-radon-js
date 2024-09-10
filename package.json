@@ -20,7 +20,7 @@
     "lint": "prettier --write '{src,test}/**/*.{t,j}s'",
     "lint:check": "prettier --check '{src,test}/**/*.{t,j}s'",
     "test": "vitest",
-    "prepare": "npm run build"
+    "prepare": "pnpm run build"
   },
   "keywords": [
     "radon",
