@@ -2,17 +2,21 @@
   "name": "witnet-radon-js",
   "version": "2.0.1",
   "description": "",
-  "main": "dist/src/index.js",
+  "main": "dist/witnet-radon-js.cjs.js",
+  "module": "dist/witnet-radon-js.es.js",
   "types": "dist/src/index.d.ts",
   "type": "module",
   "files": [
     "dist/**/*"
   ],
   "exports": {
-    ".": "./dist/src/index.js"
+    ".": {
+      "import": "./dist/witnet-radon-js.es.js",
+      "require": "./dist/witnet-radon-js.cjs.js" 
+    }
   },
   "scripts": {
-    "build": "tsc -p tsconfig.build.json",
+    "build": "vite build",
     "lint": "prettier --write '{src,test}/**/*.{t,j}s'",
     "lint:check": "prettier --check '{src,test}/**/*.{t,j}s'",
     "test": "vitest",
@@ -26,7 +30,8 @@
   "license": "GPL-3.0",
   "devDependencies": {
     "typescript": "latest",
-    "vitest": "^2.0.5"
+    "vite": "^5.4.3",
+    "vitest": "^1.2.2"
   },
   "dependencies": {
     "@types/node": "^20.11.10",
