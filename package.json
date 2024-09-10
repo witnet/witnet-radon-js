@@ -1,6 +1,6 @@
 {
   "name": "witnet-radon-js",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "",
   "main": "dist/witnet-radon-js.cjs.js",
   "module": "dist/witnet-radon-js.es.js",
