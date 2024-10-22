@@ -40,10 +40,10 @@
       "modulo": "Calcula el valor obtenido de la división del Float de entrada y {{argument}} Luego proporciona el resultado como Float",
       "multiply": "Calcula el resultado del producto del Float de entrada por {{argument}}. Luego proporciona el resultado como Integer",
       "negate": "Calcula el valor absoluto del Float de entrada, y proporciona el resultado como Float",
-      "power": "Calcula el Float de entrada elevado a la potencia de {{exponent}}. Luego, gestiona el resultado como un Float",
+      "power": "Calcula el Float de entrada elevado a la potencia de {{exponent}}. Luego, proporciona el resultado como un Float",
       "reciprocal": "Calcula el recíproco o inverso multiplicativo (/x) del Integer de entrada, y proporciona el resultado como Float",
       "round": "Redondea la parte entera de la entrada Float y proporciona el resultado como Integer",
-      "sum": "Calcula la suma entre el Float de entrada y {{addend}}. Luego administra el resultado como Float",
+      "sum": "Calcula la suma entre el Float de entrada y {{addend}}. Luego proporciona el resultado como Float",
       "truncate": "Toma la parte entera de la entrada Float y proporciona el resultado como Integer"
     },
     "map": {
